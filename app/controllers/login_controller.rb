@@ -4,13 +4,13 @@ class LoginController < ApplicationController
   end
 
   def new
-    a = User.find(:first, :conditions =>
+    user = User.find(:first, :conditions =>
         ["username = ? and password = ?", params[:user]['username'],params[:user]['password']])
 
-    if a.nil?
+    if user.nil?
       redirect_to root_url
     else
-      cookies.permanent[:user_id] = User.find_by_username(a['username']).id
+      cookies.permanent[:user_id] = User.find_by_username(user['username']).id
       redirect_to competitions_path
     end
 
