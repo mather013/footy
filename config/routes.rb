@@ -1,9 +1,9 @@
 Footy::Application.routes.draw do
-  root :to => "login#index"
+  root :to => "sessions#index"
 
   resources :competitions, :only => [:index]
-  resources :login, :only => [:index, :new]
+  resources :sessions, :only => [:new, :create]
 
-  get 'login' => 'login#index'
-  post 'login/new' => 'login#new'#, :as => new_login_path
+  get 'sessions' => 'sessions#new'
+
 end
