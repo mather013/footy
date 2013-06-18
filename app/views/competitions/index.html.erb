@@ -4,6 +4,12 @@
 <%= render "common/header" %>
 
 <div data-role="content">
-  You are logged in. This is the competition page!
+  <ul data-role="listview" id = "comp-list">
+    <% @competitions.each do |competition| %>
+    <li >
+      <%= Date.parse(competition.close_date.to_s).strftime('%b %e %Y')%>
+    </li>
+    <% end %>
+  </ul>
 </div>
 </html>
