@@ -4,10 +4,10 @@
 <%= render "common/header" %>
 
 <div data-role="content">
-  <ul data-role="listview" id = "comp-list">
+  <ul data-role="listview" id = "fix-list">
     <% @fixtures.each do |fixture| %>
     <li>
-        <%= "#{ fixture.home_team_id } #{ fixture.away_team_id }" %>
+        <%= "#{ fixture.to_s }" %>
     </li>
     <% end %>
   </ul>
