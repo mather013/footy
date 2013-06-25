@@ -5,4 +5,10 @@ class CompetitionsController < ApplicationController
   def index
     @competitions = Competition.sorted
   end
+
+  def show
+    @fixtures = Competition.find(params[:id]).fixtures
+  end
+
+
 end

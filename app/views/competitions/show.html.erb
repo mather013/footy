@@ -5,9 +5,9 @@
 
 <div data-role="content">
   <ul data-role="listview" id = "comp-list">
-    <% @competitions.each do |competition| %>
+    <% @fixtures.each do |fixture| %>
     <li>
-      <a href="<%= competition_path(competition.id) %>"> <%= Date.parse(competition.close_date.to_s).strftime('%b %e %Y') %></a>
+        <%= "#{ fixture.home_team_id } #{ fixture.away_team_id }" %>
     </li>
     <% end %>
   </ul>
