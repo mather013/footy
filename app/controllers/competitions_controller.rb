@@ -7,7 +7,8 @@ class CompetitionsController < ApplicationController
   end
 
   def show
-    @fixtures = Competition.find(params[:id]).fixtures
+    @competition = Competition.find(params[:id])
+    @fixtures = @competition.fixtures
   end
 
 

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <a href="#" data-rel="back" data-theme="a">Back</a>
+  <h1><%= Date.parse(@competition.close_date.to_s).strftime('%b %e %Y') %></h1>
+</div>
 
-<%= render "common/header" %>
-
-<div data-role="content">
+<div data-role="content" >
   <ul data-role="listview" id = "fix-list">
     <% @fixtures.each do |fixture| %>
     <li>
