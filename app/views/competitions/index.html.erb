@@ -7,7 +7,7 @@
   <ul data-role="listview" id = "comp-list">
     <% @competitions.each do |competition| %>
     <li>
-      <a href="<%= competition_path(competition.id) %>"> <%= Date.parse(competition.close_date.to_s).strftime('%b %e %Y') %></a>
+      <a href="<%= competition_path(competition.id) %>"> <%= "Week #{competition.week[4..6]} - #{Date.parse(competition.close_date.to_s).strftime('%e %B %Y')}" %></a>
     </li>
     <% end %>
   </ul>

@@ -9,7 +9,11 @@
   <ul data-role="listview" id = "fix-list">
     <% @fixtures.each do |fixture| %>
     <li>
-        <%= "#{ fixture.to_s }" %>
+      <%= "#{ fixture.to_s }" %>
+      <br>
+      <h10 class="kickoff">
+        <%= DateTime.parse(fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M:%S') %>
+      </h10>
     </li>
     <% end %>
   </ul>
