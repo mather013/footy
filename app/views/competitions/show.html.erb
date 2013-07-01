@@ -2,7 +2,7 @@
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="#" data-rel="back" data-theme="a">Back</a>
-  <h1><%= Date.parse(@competition.close_date.to_s).strftime('%b %e %Y') %></h1>
+  <h1><%= "Week #{@competition.week[4..6]}" %></h1>
 </div>
 
 <div data-role="content" >
@@ -12,7 +12,7 @@
       <%= "#{ fixture.to_s }" %>
       <br>
       <h10 class="kickoff">
-        <%= DateTime.parse(fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M:%S') %>
+        <%= DateTime.parse(fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
       </h10>
     </li>
     <% end %>
