@@ -2,3 +2,9 @@
   font-size: .7em;
   color: #979797;
 }
+
+.headerimg {
+    position:relative;
+    top:4px;
+    left:-5px;
+}
