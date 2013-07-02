@@ -3,8 +3,15 @@
   color: #979797;
 }
 
+.compdate {
+    color: #979797;
+}
+
 .headerimg {
     position:relative;
     top:4px;
     left:-5px;
+}
+.ui-header .ui-title {
+    overflow: visible !important;
 }
