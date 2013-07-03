@@ -1,7 +1,7 @@
 Footy::Application.routes.draw do
   root :to => "sessions#index"
 
-  resources :competitions, :only => [:index, :show]
+  resources :weeks,    :only => [:index, :show]
   resources :fixtures, :only => [:index]
   resources :sessions, :only => [:new, :create]
 

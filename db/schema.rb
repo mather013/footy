@@ -11,23 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625193630) do
-
-  create_table "competitions", :force => true do |t|
-    t.string   "week",        :null => false
-    t.datetime "close_date",  :null => false
-    t.string   "description", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130703190816) do
 
   create_table "fixtures", :force => true do |t|
-    t.integer  "competition_id"
+    t.integer  "week_id"
     t.datetime "kickoff"
     t.integer  "home_team_id"
     t.integer  "away_team_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "teams", :force => true do |t|
@@ -41,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20130625193630) do
     t.string   "password",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "weeks", :force => true do |t|
+    t.string   "week",        :null => false
+    t.datetime "close_date",  :null => false
+    t.string   "description", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end

@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
 
   def index
-    redirect_to competitions_path if current_user
+    redirect_to weeks_path if current_user
   end
 
   def new
-    redirect_to competitions_path if current_user
+    redirect_to weeks_path if current_user
   end
 
   def create
@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
       cookies.permanent[:user_id] = user.id
     end
 
-    redirect_to competitions_path
+    redirect_to weeks_path
   end
 end

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<%= render "common/header" %>
+
+<div data-role="content">
+  <ul data-role="listview" id = "comp-list">
+    <% @weeks.each do |week| %>
+    <li>
+      <a href="<%= week_path(week.id) %>">
+        <%= "Week #{week.week[4..6]}" %>
+        <br>
+        <h10 class="kickoff">
+          Kickoff: <%= "#{Date.parse(week.close_date.to_s).strftime('%e %B')}" %>
+        </h10>
+      </a>
+    </li>
+    <% end %>
+  </ul>
+</div>
+</html>
