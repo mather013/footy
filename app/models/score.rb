@@ -1,6 +1,6 @@
 class Score < ActiveRecord::Base
 
-  attr_accessible :home, :away
+  attr_accessible :id, :fixture_id, :home, :away
 
   def to_s
     "#{home} - #{away}"
