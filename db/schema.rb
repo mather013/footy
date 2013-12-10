@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130703201101) do
+ActiveRecord::Schema.define(:version => 20131210220142) do
+
+  create_table "bets", :force => true do |t|
+    t.integer  "fixture_id", :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "value",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "fixtures", :force => true do |t|
     t.integer  "week_id"
