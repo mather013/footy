@@ -494,3 +494,15 @@ Fixture.find_or_create_by_id(:id => 247, :kickoff => DateTime.parse('2014-02-08 
 Fixture.find_or_create_by_id(:id => 248, :kickoff => DateTime.parse('2014-02-08 15:00:00'), :home_team_id => 16, :away_team_id => 8,  :week_id => 25)
 Fixture.find_or_create_by_id(:id => 249, :kickoff => DateTime.parse('2014-02-08 15:00:00'), :home_team_id => 17, :away_team_id => 3,  :week_id => 25)
 Fixture.find_or_create_by_id(:id => 250, :kickoff => DateTime.parse('2014-02-08 15:00:00'), :home_team_id => 18, :away_team_id => 6,  :week_id => 25)
+
+
+Score.find_or_create_by_id(:id => 1,  :fixture_id => 1,  :home => 1, :away => 3)
+Score.find_or_create_by_id(:id => 2,  :fixture_id => 2,  :home => 2, :away => 0)
+Score.find_or_create_by_id(:id => 3,  :fixture_id => 3,  :home => 0, :away => 1)
+Score.find_or_create_by_id(:id => 4,  :fixture_id => 4,  :home => 1, :away => 0)
+Score.find_or_create_by_id(:id => 5,  :fixture_id => 5,  :home => 4, :away => 0)
+Score.find_or_create_by_id(:id => 6,  :fixture_id => 6,  :home => 2, :away => 2)
+Score.find_or_create_by_id(:id => 7,  :fixture_id => 7,  :home => 0, :away => 1)
+Score.find_or_create_by_id(:id => 8,  :fixture_id => 8,  :home => 1, :away => 4)
+Score.find_or_create_by_id(:id => 9,  :fixture_id => 9,  :home => 0, :away => 1)
+Score.find_or_create_by_id(:id => 10, :fixture_id => 10, :home => 2, :away => 0)

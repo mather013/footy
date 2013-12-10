@@ -8,14 +8,30 @@
 <div data-role="content" >
   <ul data-role="listview" id = "fix-list">
     <% @fixtures.each do |fixture| %>
-    <li>
-      <%= "#{ fixture.to_s }" %>
-      <br>
-      <h10 class="kickoff">
-        <%= DateTime.parse(fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
-      </h10>
-    </li>
+        <li>
+          <a href="<%= week_path(@week.id) %>">
+            <div class="ui-grid-b">
+              <div class="ui-block-a" style="width:75%">
+                <%= "#{ fixture.to_s }" %>
+                <br>
+                <h10 class="kickoff">
+                  <%= DateTime.parse(fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
+                </h10>
+              </div>
+
+              <div class="ui-block-b" align="center" style="width:10%">
+                <%= fixture.score.present? ? "H":" "%>
+              </div>
+
+              <div class="ui-block-c" align="center" style="width:15%">
+                <%= "#{fixture.score.home} - #{fixture.score.away}" if fixture.score.present? %>
+              </div>
+
+            </div>
+          </a>
+        </li>
     <% end %>
   </ul>
 </div>
+
 </html>

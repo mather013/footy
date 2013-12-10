@@ -15,3 +15,41 @@
 .ui-header .ui-title {
     overflow: visible !important;
 }
+
+.fixture .content {
+    float: left;
+}
+
+.fixture .ui-btn-text {
+    position: static;
+}
+
+.fixture .choice_value {
+    float: right;
+    padding-top: 3px;
+    margin-right: -5px;
+}
+
+.choice_value {
+    color: #686868;
+    position: absolute;
+    top: 50%;
+    margin-top: -13px;
+    right: 39px;
+    text-align: right;
+    font-size: 18px;
+}
+
+.fixture.correct:not(.ui-btn-active) span, .fixture.correct:not(.ui-btn-active) div:not(.content) {
+    color: #32cd32;
+}
+
+.fixture.wrong:not(.ui-btn-active) span, .fixture.wrong:not(.ui-btn-active) div:not(.content) {
+    color: red;
+}
+
+.fixture .kickoff {
+    font-size: .7em;
+    color: #979797;
+}
+
