@@ -2,7 +2,10 @@ class BetsController < ApplicationController
   #before_filter :require_login
 
   def new
-    @fixture = Fixture.find(params["fixture_id"])
+    puts "bet_new"*50
+    puts params
+    puts "bet_new"*50
+    #@fixture = Fixture.find(params["fixture_id"])
     #load_competition
     #bet_id = current_user.bets.for(@competition).first.id if current_user.bets.for(@competition).present?
     #redirect_to competition_bet_path(@competition.id, bet_id) unless bet_id.nil?
@@ -10,7 +13,9 @@ class BetsController < ApplicationController
   end
 
   def create
-    binding.pry
+    puts "bet_create"*50
+    puts params
+    puts "bet_create"*50
     #load_competition
     #bet = Bet.new(:competition_id => @competition.id, :user_id => current_user.id)
     #
@@ -22,4 +27,5 @@ class BetsController < ApplicationController
     #  render :json => {:redirect => competition_bet_path(@competition.id, bet.reload.id)}
     #end
   end
+
 end

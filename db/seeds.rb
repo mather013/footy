@@ -2,6 +2,8 @@ User.delete_all
 Week.delete_all
 Fixture.delete_all
 Team.delete_all
+Score.delete_all
+Bet.delete_all
 
 User.find_or_create_by_username(:id => 1, :username => 'markm',  :password => 'bodie')
 User.find_or_create_by_username(:id => 2, :username => 'davidb', :password => 'apple12')
@@ -575,3 +577,14 @@ Score.find_or_create_by_id(:id => 187, :fixture_id => 187, :home => 0, :away => 
 Score.find_or_create_by_id(:id => 188, :fixture_id => 188, :home => 0, :away => 1)
 Score.find_or_create_by_id(:id => 189, :fixture_id => 189, :home => 3, :away => 0)
 Score.find_or_create_by_id(:id => 190, :fixture_id => 190, :home => 3, :away => 3)
+
+Bet.find_or_create_by_id(:id => 1,  :fixture_id => 131, :user_id => 1, :value => "H")
+Bet.find_or_create_by_id(:id => 2,  :fixture_id => 132, :user_id => 1, :value => "D")
+Bet.find_or_create_by_id(:id => 3,  :fixture_id => 133, :user_id => 1, :value => "A")
+Bet.find_or_create_by_id(:id => 4,  :fixture_id => 134, :user_id => 1, :value => "H")
+Bet.find_or_create_by_id(:id => 5,  :fixture_id => 135, :user_id => 1, :value => "D")
+Bet.find_or_create_by_id(:id => 6,  :fixture_id => 136, :user_id => 1, :value => "A")
+Bet.find_or_create_by_id(:id => 7,  :fixture_id => 137, :user_id => 1, :value => "H")
+Bet.find_or_create_by_id(:id => 8,  :fixture_id => 138, :user_id => 1, :value => "D")
+Bet.find_or_create_by_id(:id => 9,  :fixture_id => 139, :user_id => 1, :value => "A")
+Bet.find_or_create_by_id(:id => 10, :fixture_id => 140, :user_id => 1, :value => "H")

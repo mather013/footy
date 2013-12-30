@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+    <a href="#" data-rel="back" data-theme="a">Back</a>
+
+    <h1><%= @fixture.to_s %></h1>
+    <a href="#" data-rel="save" data-theme="a">Save</a>
+</div>
+
+<div align="center">
+    <fieldset data-role="controlgroup" data-type="horizontal" name="Bet" id="Bet">
+        <input name="fixture_bet" id="H" value="No" type="radio"/>
+        <label for="H">Home win</label>
+        <input name="fixture_bet" id="D" value="No" type="radio"/>
+        <label for="D">Draw</label>
+        <input name="fixture_bet" id="A" value="No" type="radio"/>
+        <label for="A">Away win</label>
+    </fieldset>
+</div>
+
+</html>

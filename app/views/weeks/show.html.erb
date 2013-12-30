@@ -2,34 +2,35 @@
 <html>
 <div data-role="header" data-position="fixed">
   <a href="#" data-rel="back" data-theme="a">Back</a>
+
   <h1><%= "Week #{@week.week[4..6]}" %></h1>
   <a href="#" data-rel="save" data-theme="a">League</a>
 </div>
 
-<div data-role="content" >
-  <ul data-role="listview" id = "fix-list">
+<div data-role="content">
+  <ul data-role="listview" id="fix-list">
     <% @fixtures.order("kickoff asc").each do |fixture| %>
         <li>
-          <a href="<%= new_fixture_bet_path(@week.id, fixture.id) %>">
-            <div class="ui-grid-b">
-              <div class="ui-block-a" style="width:90%">
-                <%= "#{ fixture.to_s }" %>
-                <br>
-                <h10 class="kickoff">
-                  <%= DateTime.parse(fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
-                </h10>
-              </div>
+          <%= link_to new_fixture_bet_path(fixture.id), :method => :post do %>
+              <div class="ui-grid-b">
+                <div class="ui-block-a" style="width:90%">
+                  <%= "#{ fixture.to_s }" %>
+                  <br>
+                  <h10 class="kickoff">
+                    <%= DateTime.parse(fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
+                  </h10>
+                </div>
 
-              <div class="ui-block-b" align="center" style="width:10%">
-                <%= fixture.score.present? ? "":""%>
-                <br>
-                <h10 class="kickoff">
-                  <%= "#{fixture.score.home} - #{fixture.score.away}" if fixture.score.present? %>
-                </h10>
+                <div class="ui-block-b" align="center" style="width:10%">
+                  <% bet=Bet.find_by_fixture_id(fixture.id) %>
+                  <%= bet.nil? ? "" : "#{bet.value}" %>
+                  <br>
+                  <h10 class="kickoff">
+                    <%= "#{fixture.score.home} - #{fixture.score.away}" if fixture.score.present? %>
+                  </h10>
+                </div>
               </div>
-
-            </div>
-          </a>
+          <% end %>
         </li>
     <% end %>
   </ul>
