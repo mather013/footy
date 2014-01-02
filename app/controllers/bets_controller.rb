@@ -2,30 +2,22 @@ class BetsController < ApplicationController
   #before_filter :require_login
 
   def new
-    puts "bet_new"*50
-    puts params
-    puts "bet_new"*50
-    #@fixture = Fixture.find(params["fixture_id"])
-    #load_competition
-    #bet_id = current_user.bets.for(@competition).first.id if current_user.bets.for(@competition).present?
-    #redirect_to competition_bet_path(@competition.id, bet_id) unless bet_id.nil?
-    #redirect_to competition_bet_path(@competition.id, -1) if ((@competition.close_date < DateTime.now) && bet_id.nil?)
+    @fixture = Fixture.find(params["fixture_id"])
+    @bet = Bet.new
   end
 
   def create
-    puts "bet_create"*50
-    puts params
-    puts "bet_create"*50
-    #load_competition
-    #bet = Bet.new(:competition_id => @competition.id, :user_id => current_user.id)
-    #
-    #params[:choices].values.each do |choice|
-    #  bet.choices << Choice.new(:competition_fixture_id => choice[:competition_fixture_id], :value => choice[:value])
-    #end
-    #
-    #if bet.save!
-    #  render :json => {:redirect => competition_bet_path(@competition.id, bet.reload.id)}
-    #end
+    load_week
+    bet = Bet.new(:fixture_id => params['bet']['fixture_id'], :user_id => current_user.id, :value => params['bet']['value'])
+    if bet.save!
+      redirect_to week_path(@week.id)
+    end
+  end
+
+  private
+  def load_week
+    fixture = Fixture.find(params['bet']['fixture_id'])
+    @week = Week.find(fixture.week_id)
   end
 
 end
