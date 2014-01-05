@@ -9,7 +9,7 @@ class WeeksController < ApplicationController
   def show
     @week = Week.find(params[:id])
     @fixtures = @week.fixtures
+    @current_user = current_user
   end
-
 
 end
