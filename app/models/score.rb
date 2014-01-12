@@ -17,4 +17,11 @@ class Score < ActiveRecord::Base
   def draw?
     home == away
   end
+
+  def outcome
+    return 'H' if home_win?
+    return 'D' if draw?
+    return 'A' if away_win?
+  end
+
 end

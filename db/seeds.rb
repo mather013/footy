@@ -3,5 +3,3 @@ common_seeds.each do |seed_file|
   p "seeding file #{seed_file}"
   load seed_file
 end
-
-Bet.delete_all

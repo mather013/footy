@@ -29,11 +29,27 @@ namespace :footy do
     close_date = args[:date]
     week = Week.find_by_close_date(close_date)
     fixture_ids = week.fixtures.collect { |fixture| fixture.id }.flatten
-    bets = Bet.bets_for_fixtures(fixture_ids)
 
-    puts "bets for week: #{bets.inspect}"
+    puts "bets for fixtures: #{fixture_ids}"
 
+    User.all.each do |user|
+      puts "marking bets for user #{user.username}"
+      bets = Bet.bets_for_user_and_fixtures(fixture_ids, user.id)
+      points = 0
+      unless bets.empty?
+        puts "bets for week: #{bets.inspect}"
+
+        bets.each do |bet|
+
+          if bet.value == Fixture.find(bet.fixture_id).score.outcome
+            points +=10
+          end
+        end
+        puts "total points: #{points}"
+        Point.create(:user_id=>user.id, :value=>points, :week_id=> week.id)
+      end
+    end
+    puts "marking complete"
   end
-
-
 end
+
