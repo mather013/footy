@@ -4,8 +4,7 @@ class PointsController < ApplicationController
 
   def index
     @week = Week.find(params[:week_id])
-    @points = Point.find_all_by_week_id(params[:week_id])
-    #@points = Point.sorted
+    @points = Point.sorted.find_all_by_week_id(params[:week_id])
   end
 
 end

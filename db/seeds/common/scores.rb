@@ -1,5 +1,5 @@
-Score.delete_all
-
+#Score.delete_all
+#
 #Score.find_or_create_by_id(:id => 1,  :fixture_id => 1,  :home => 1, :away => 3)
 #Score.find_or_create_by_id(:id => 2,  :fixture_id => 2,  :home => 2, :away => 0)
 #Score.find_or_create_by_id(:id => 3,  :fixture_id => 3,  :home => 0, :away => 1)
@@ -76,14 +76,14 @@ Score.delete_all
 #Score.find_or_create_by_id(:id => 188, :fixture_id => 188, :home => 0, :away => 1)
 #Score.find_or_create_by_id(:id => 189, :fixture_id => 189, :home => 3, :away => 0)
 #Score.find_or_create_by_id(:id => 190, :fixture_id => 190, :home => 3, :away => 3)
-
-Score.find_or_create_by_id(:id => 901, :fixture_id => 191, :home => 2, :away => 0)
-Score.find_or_create_by_id(:id => 902, :fixture_id => 192, :home => 1, :away => 1)
-Score.find_or_create_by_id(:id => 903, :fixture_id => 193, :home => 2, :away => 1)
-Score.find_or_create_by_id(:id => 904, :fixture_id => 194, :home => 2, :away => 0)
-Score.find_or_create_by_id(:id => 905, :fixture_id => 195, :home => 1, :away => 2)
-Score.find_or_create_by_id(:id => 906, :fixture_id => 196, :home => 0, :away => 3)
-Score.find_or_create_by_id(:id => 907, :fixture_id => 197, :home => 1, :away => 1)
-Score.find_or_create_by_id(:id => 908, :fixture_id => 198, :home => 0, :away => 1)
-Score.find_or_create_by_id(:id => 909, :fixture_id => 199, :home => 2, :away => 3)
-Score.find_or_create_by_id(:id => 910, :fixture_id => 200, :home => 1, :away => 0)
+#
+#Score.find_or_create_by_id(:id => 901, :fixture_id => 191, :home => 2, :away => 0)
+#Score.find_or_create_by_id(:id => 902, :fixture_id => 192, :home => 1, :away => 1)
+#Score.find_or_create_by_id(:id => 903, :fixture_id => 193, :home => 2, :away => 1)
+#Score.find_or_create_by_id(:id => 904, :fixture_id => 194, :home => 2, :away => 0)
+#Score.find_or_create_by_id(:id => 905, :fixture_id => 195, :home => 1, :away => 2)
+#Score.find_or_create_by_id(:id => 906, :fixture_id => 196, :home => 0, :away => 3)
+#Score.find_or_create_by_id(:id => 907, :fixture_id => 197, :home => 1, :away => 1)
+#Score.find_or_create_by_id(:id => 908, :fixture_id => 198, :home => 0, :away => 1)
+#Score.find_or_create_by_id(:id => 909, :fixture_id => 199, :home => 2, :away => 3)
+#Score.find_or_create_by_id(:id => 910, :fixture_id => 200, :home => 1, :away => 0)

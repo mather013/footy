@@ -94,41 +94,41 @@ Week.delete_all
 #                                 :week => '201319',
 #                                 :description => 'Premier League 28th Dec',
 #                                 :close_date => DateTime.parse('28-12-2013'))
-
-Week.find_or_create_by_id(:id => 20,
-                          :week => '201320',
-                          :description => 'Premier League 1st Jan',
-                          :close_date => DateTime.parse('01-01-2014'))
-
-Week.find_or_create_by_id(:id => 21,
-                          :week => '201321',
-                          :description => 'Premier League 11th Jan',
-                          :close_date => DateTime.parse('11-01-2014'))
+#
+#Week.find_or_create_by_id(:id => 20,
+#                          :week => '201320',
+#                          :description => 'Premier League 1st Jan',
+#                          :close_date => DateTime.parse('01-01-2014'))
+#
+#Week.find_or_create_by_id(:id => 21,
+#                          :week => '201321',
+#                          :description => 'Premier League 11th Jan',
+#                          :close_date => DateTime.parse('11-01-2014'))
 
 Week.find_or_create_by_id(:id => 22,
                           :week => '201322',
                           :description => 'Premier League 18th Jan',
-                          :close_date => DateTime.parse('18-01-2014'))
+                          :close_date => DateTime.parse('18-01-2014 12:00:00'))
 
 Week.find_or_create_by_id(:id => 23,
                           :week => '201323',
                           :description => 'Premier League 28th Jan',
-                          :close_date => DateTime.parse('28-01-2014'))
+                          :close_date => DateTime.parse('28-01-2014 12:00:00'))
 
 Week.find_or_create_by_id(:id => 24,
                           :week => '201324',
                           :description => 'Premier League 1st Feb',
-                          :close_date => DateTime.parse('01-02-2014'))
+                          :close_date => DateTime.parse('01-02-2014 19:00:00'))
 
 Week.find_or_create_by_id(:id => 25,
                           :week => '201325',
                           :description => 'Premier League 8th Feb',
-                          :close_date => DateTime.parse('08-02-2014'))
+                          :close_date => DateTime.parse('08-02-2014 12:00:00'))
 
 Week.find_or_create_by_id(:id => 26,
                           :week => '201326',
                           :description => 'Premier League 11th Feb',
-                          :close_date => DateTime.parse('11-02-2014'))
+                          :close_date => DateTime.parse('11-02-2014 19:00:00'))
 
 #Week.find_or_create_by_id(:id => 27,
 #                          :week => '201327',

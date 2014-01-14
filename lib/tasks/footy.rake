@@ -13,12 +13,13 @@ namespace :footy do
   end
 
   desc "Create user"
-  task :add_user, [:username, :password] => :environment do |t, args|
+  task :add_user, [:username, :password, :name] => :environment do |t, args|
 
     username = args[:username]
     password = args[:password]
+    fullname = args[:name]
 
-    user = User.new(:username => username, :password => password)
+    user = User.new(:username => username, :password => password, :name => fullname)
     user.save
 
   end
