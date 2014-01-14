@@ -130,11 +130,11 @@ Week.find_or_create_by_id(:id => 26,
                           :description => 'Premier League 11th Feb',
                           :close_date => DateTime.parse('11-02-2014 19:00:00'))
 
-#Week.find_or_create_by_id(:id => 27,
-#                          :week => '201327',
-#                          :description => 'Premier League 22nd Feb',
-#                          :close_date => DateTime.parse('22-02-2014'))
-#
+Week.find_or_create_by_id(:id => 27,
+                          :week => '201327',
+                          :description => 'Premier League 22nd Feb',
+                          :close_date => DateTime.parse('22-02-2014 12:00:00'))
+
 #Week.find_or_create_by_id(:id => 28,
 #                          :week => '201328',
 #                          :description => 'Premier League 1st Mar',
