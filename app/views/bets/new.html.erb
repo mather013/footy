@@ -3,6 +3,7 @@
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <!--<a href="#" data-rel="back" data-theme="a">Back</a>-->
   <a href="<%= week_path(@fixture.week_id) %>" data-theme="a" data-rel="">Back</a>
+
   <h1><%= @fixture.to_s %></h1>
   <!--<a href="#" data-rel="save" data-theme="a">Save</a>-->
 </div>
@@ -18,20 +19,23 @@
 <!--</fieldset>-->
 <!--</div>-->
 
-  <%= form_for(@bet) do |bet| %>
+<%= form_for(@bet) do |bet| %>
     <fieldset>
       <div class="control-group" align="center">
         <p>
-        <%= bet.radio_button :value, "H", checked: true, class: 'value' %>
-        <%= bet.label :value, "Home win", class: 'control-label' %>
-        <p>
-        <%= bet.radio_button :value, "D", checked: false, class: 'value' %>
-        <%= bet.label :value, "Draw", class: 'value' %>
-        <p>
-        <%= bet.radio_button :value, "A", checked: false, class: 'value' %>
-        <%= bet.label :value, "Away win", class: 'value' %>
+          <!--<%= bet.radio_button :value, "H", checked: true, class: 'value' %>-->
+          <!--<%= bet.label :value, "Home win", class: 'control-label' %>-->
+          <!--<p>-->
+          <!--<%= bet.radio_button :value, "D", checked: false, class: 'value' %>-->
+          <!--<%= bet.label :value, "Draw", class: 'value' %>-->
 
-        <%= bet.hidden_field :fixture_id, value: @fixture.id %>
+          <!--<p>-->
+          <!--<%= bet.radio_button :value, "A", checked: false, class: 'value' %>-->
+          <!--<%= bet.label :value, "Away win", class: 'value' %>-->
+
+          <%= bet.hidden_field :fixture_id, value: @fixture.id %>
+          <%= bet.select :value, options_for_select([["Home win", "H"], ["Draw", "D"], ["Away win", "A"]]) %>
+
         <p>
           <%= bet.submit "Save", class: "btn btn-large btn-primary" %>
       </div>
