@@ -20,6 +20,21 @@ Fixture.find_or_create_by_id(:id => 16, :kickoff => DateTime.parse('2014-06-17 1
 
 #Group stage round 2
 Fixture.find_or_create_by_id(:id => 17, :kickoff => DateTime.parse('2014-06-17 16:00:00'), :name => 'BRA-MEX', :home_team_id => 6,  :away_team_id => 24, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 18, :kickoff => DateTime.parse('2014-06-18 18:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 19, :kickoff => DateTime.parse('2014-06-18 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 20, :kickoff => DateTime.parse('2014-06-18 13:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 21, :kickoff => DateTime.parse('2014-06-19 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 22, :kickoff => DateTime.parse('2014-06-19 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 23, :kickoff => DateTime.parse('2014-06-19 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 24, :kickoff => DateTime.parse('2014-06-20 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 25, :kickoff => DateTime.parse('2014-06-20 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 26, :kickoff => DateTime.parse('2014-06-20 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 27, :kickoff => DateTime.parse('2014-06-21 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 28, :kickoff => DateTime.parse('2014-06-21 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 29, :kickoff => DateTime.parse('2014-06-21 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 30, :kickoff => DateTime.parse('2014-06-22 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 31, :kickoff => DateTime.parse('2014-06-22 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
+Fixture.find_or_create_by_id(:id => 32, :kickoff => DateTime.parse('2014-06-22 16:00:00'), :name => 'CAM-CRO', :home_team_id => 7,  :away_team_id => 12, :week_id => 2)
 #TODO: finish group stage round 2
 
 #Group stage round 3
