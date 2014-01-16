@@ -32,3 +32,5 @@ Team.find_or_create_by_id(:id => 29, :name => 'Spain')
 Team.find_or_create_by_id(:id => 30, :name => 'Switzerland')
 Team.find_or_create_by_id(:id => 31, :name => 'Uruguay')
 Team.find_or_create_by_id(:id => 32, :name => 'USA')
+
+Team.find_or_create_by_id(:id => 33, :name => 'TBA')
