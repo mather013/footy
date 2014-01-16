@@ -1,5 +1,6 @@
 Fixture.delete_all
 
+#Group stage round 1
 Fixture.find_or_create_by_id(:id => 1,  :kickoff => DateTime.parse('2014-06-12 17:00:00'), :name => 'BRA-CRO', :home_team_id => 6,  :away_team_id => 12, :week_id => 1)
 Fixture.find_or_create_by_id(:id => 2,  :kickoff => DateTime.parse('2014-06-13 13:00:00'), :name => 'MEX-CAM', :home_team_id => 24, :away_team_id => 7,  :week_id => 1)
 Fixture.find_or_create_by_id(:id => 3,  :kickoff => DateTime.parse('2014-06-13 16:00:00'), :name => 'SPA-NET', :home_team_id => 29, :away_team_id => 25, :week_id => 1)
@@ -16,3 +17,35 @@ Fixture.find_or_create_by_id(:id => 13, :kickoff => DateTime.parse('2014-06-16 1
 Fixture.find_or_create_by_id(:id => 14, :kickoff => DateTime.parse('2014-06-16 19:00:00'), :name => 'GHA-USA', :home_team_id => 17, :away_team_id => 32, :week_id => 1)
 Fixture.find_or_create_by_id(:id => 15, :kickoff => DateTime.parse('2014-06-17 13:00:00'), :name => 'BEL-ALG', :home_team_id => 4,  :away_team_id => 1,  :week_id => 1)
 Fixture.find_or_create_by_id(:id => 16, :kickoff => DateTime.parse('2014-06-17 18:00:00'), :name => 'RUS-KOR', :home_team_id => 28, :away_team_id => 23, :week_id => 1)
+
+#Group stage round 2
+Fixture.find_or_create_by_id(:id => 17, :kickoff => DateTime.parse('2014-06-17 16:00:00'), :name => 'BRA-MEX', :home_team_id => 6,  :away_team_id => 24, :week_id => 2)
+#TODO: finish group stage round 2
+
+#Group stage round 3
+Fixture.find_or_create_by_id(:id => 33, :kickoff => DateTime.parse('2014-06-23 17:00:00'), :name => 'CAM-BRA', :home_team_id => 7,  :away_team_id => 6,  :week_id => 3)
+#TODO: finish group stage round 3
+
+#Last 16 knockout
+Fixture.find_or_create_by_id(:id => 49, :kickoff => DateTime.parse('2014-06-28 13:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 50, :kickoff => DateTime.parse('2014-06-28 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 51, :kickoff => DateTime.parse('2014-06-29 13:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 52, :kickoff => DateTime.parse('2014-06-29 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 53, :kickoff => DateTime.parse('2014-06-30 13:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 54, :kickoff => DateTime.parse('2014-06-30 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 55, :kickoff => DateTime.parse('2014-07-01 13:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 56, :kickoff => DateTime.parse('2014-07-01 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+
+#Quarted final knockout
+Fixture.find_or_create_by_id(:id => 57, :kickoff => DateTime.parse('2014-07-04 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
+Fixture.find_or_create_by_id(:id => 58, :kickoff => DateTime.parse('2014-07-04 13:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
+Fixture.find_or_create_by_id(:id => 59, :kickoff => DateTime.parse('2014-07-05 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
+Fixture.find_or_create_by_id(:id => 60, :kickoff => DateTime.parse('2014-07-05 13:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
+
+#Semi final knockout
+Fixture.find_or_create_by_id(:id => 61, :kickoff => DateTime.parse('2014-07-08 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 6)
+Fixture.find_or_create_by_id(:id => 62, :kickoff => DateTime.parse('2014-07-09 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 6)
+
+#Final knockout
+Fixture.find_or_create_by_id(:id => 63, :kickoff => DateTime.parse('2014-07-12 17:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 7)
+Fixture.find_or_create_by_id(:id => 64, :kickoff => DateTime.parse('2014-07-13 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 7)
