@@ -31,6 +31,9 @@ namespace :footy do
     week = Week.find_by_close_date(close_date)
     fixture_ids = week.fixtures.collect { |fixture| fixture.id }.flatten
 
+    Point.find_all_by_week_id(week.id).each do |p|
+      p.delete
+    end
     puts "bets for fixtures: #{fixture_ids}"
 
     User.all.each do |user|
@@ -42,12 +45,15 @@ namespace :footy do
 
         bets.each do |bet|
 
-          if bet.value == Fixture.find(bet.fixture_id).score.outcome
-            points +=10
+          fixture_score = Fixture.find(bet.fixture_id).score
+          if fixture_score.present?
+            if bet.value == fixture_score.outcome
+              points +=10
+            end
           end
         end
         puts "total points: #{points}"
-        Point.create(:user_id=>user.id, :value=>points, :week_id=> week.id)
+        Point.create(:user_id => user.id, :value => points, :week_id => week.id)
       end
     end
     puts "marking complete"
