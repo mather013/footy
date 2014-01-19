@@ -9,6 +9,7 @@
 <div data-role="content">
   <ul data-role="listview" id="comp-list">
     <% position = 1 %>
+    <% previous_score = 0 %>
     <% @points.each do |point| %>
         <li>
         <div class="ui-grid-b">
@@ -35,7 +36,8 @@
           </div>
         </div>
         </li>
-        <% position +=1 %>
+        <% position +=1 unless previous_score = point.value %>
+        <% previous_score = point.value %>
     <% end %>
   </ul>
 </div>
