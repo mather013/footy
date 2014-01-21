@@ -2,9 +2,7 @@
 <html>
 <div data-role="header" data-position="fixed">
   <a href="<%= weeks_path(@week_id) %>" data-theme="a" data-rel="">Back</a>
-
   <h1><%= "Week #{@week.week[4..6]}" %></h1>
-  <!--<a href="#" data-rel="save" data-theme="a">League</a>-->
   <a href="<%= week_points_path(@week.id) %>" data-theme="a" data-rel="">Points</a>
 </div>
 
@@ -12,7 +10,7 @@
   <ul data-role="listview" id="fix-list">
     <% @fixtures.order("kickoff asc").each do |fixture| %>
         <li>
-          <% bet=Bet.find_by_fixture_id_and_user_id(fixture.id,@current_user.id) %>
+          <% bet=Bet.find_by_fixture_id_and_user_id(fixture.id, @current_user.id) %>
           <% if @week.betable? and bet.nil? %>
 
               <%= link_to new_fixture_bet_path(fixture.id), :method => :post do %>
@@ -45,14 +43,33 @@
                   </h10>
                 </div>
 
-                <div class="ui-block-b" align="center" style="width:10%">
-                  <% bet=Bet.find_by_fixture_id_and_user_id(fixture.id,@current_user.id) %>
-                  <%= bet.nil? ? "" : "#{bet.value}" %>
-                  <br>
-                  <h10 class="kickoff">
-                    <%= "#{fixture.score.home} - #{fixture.score.away}" if fixture.score.present? %>
-                  </h10>
-                </div>
+                <% bet=Bet.find_by_fixture_id_and_user_id(fixture.id, @current_user.id) %>
+
+                <% if fixture.score.nil? %>
+                    <div class="ui-block-b" align="center" style="width:10%">
+                      <%= bet.nil? ? "" : "#{bet.value}" %>
+                      <br>
+                      <h10 class="kickoff">
+                        <%= "#{fixture.score.home} - #{fixture.score.away}" if fixture.score.present? %>
+                      </h10>
+                    </div>
+                <% elsif bet.value == fixture.score.outcome %>
+                    <div class="correct ui-block-b" align="center" style="width:10%">
+                      <%= bet.nil? ? "" : "#{bet.value}" %>
+                      <br>
+                      <h10 class="kickoff">
+                        <%= "#{fixture.score.home} - #{fixture.score.away}" if fixture.score.present? %>
+                      </h10>
+                    </div>
+                <% else %>
+                    <div class="wrong ui-block-b" align="center" style="width:10%">
+                      <%= bet.nil? ? "" : "#{bet.value}" %>
+                      <br>
+                      <h10 class="kickoff">
+                        <%= "#{fixture.score.home} - #{fixture.score.away}" if fixture.score.present? %>
+                      </h10>
+                    </div>
+                <% end %>
               </div>
           <% end %>
 

@@ -3,6 +3,14 @@
   color: #979797;
 }
 
+.correct {
+    color: #32cd32;
+}
+
+.wrong {
+    color: red;
+}
+
 .compdate {
     color: #979797;
 }

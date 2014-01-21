@@ -1,7 +1,6 @@
 namespace :footy do
   desc "Record score for fixture"
   task :add_score, [:fixture_name, :score] => :environment do |t, args|
-
     score_array = args[:score].split("-")
     home_goals = score_array[0]
     away_goals = score_array[1]
@@ -9,19 +8,16 @@ namespace :footy do
     fixture = Fixture.find_by_name(args[:fixture_name])
     score = Score.new(:fixture_id => fixture.id, :home => home_goals, :away => away_goals)
     score.save
-
   end
 
   desc "Create user"
   task :add_user, [:username, :password, :name] => :environment do |t, args|
-
     username = args[:username]
     password = args[:password]
     fullname = args[:name]
 
     user = User.new(:username => username, :password => password, :name => fullname)
     user.save
-
   end
 
   desc "Mark bets"
@@ -31,20 +27,13 @@ namespace :footy do
     week = Week.find_by_close_date(close_date)
     fixture_ids = week.fixtures.collect { |fixture| fixture.id }.flatten
 
-    Point.find_all_by_week_id(week.id).each do |p|
-      p.delete
-    end
-    puts "bets for fixtures: #{fixture_ids}"
-
     User.all.each do |user|
       puts "marking bets for user #{user.username}"
-      bets = Bet.bets_for_user_and_fixtures(fixture_ids, user.id)
+      bets = Bet.bets_for_user_and_fixtures(user, fixture_ids)
       points = 0
+
       unless bets.empty?
-        puts "bets for week: #{bets.inspect}"
-
         bets.each do |bet|
-
           fixture_score = Fixture.find(bet.fixture_id).score
           if fixture_score.present?
             if bet.value == fixture_score.outcome
@@ -52,11 +41,19 @@ namespace :footy do
             end
           end
         end
-        puts "total points: #{points}"
-        Point.create(:user_id => user.id, :value => points, :week_id => week.id)
+
+        point=Point.point_for_user_and_week(user, week).first
+        if point.present?
+          point.update_attributes(:value => points)
+          puts "points updated with value: #{points}"
+        else
+          Point.create(:user_id => user.id, :value => points, :week_id => week.id)
+          puts "points created with value: #{points}"
+        end
+      else
+        puts "no bets found for user: #{user.username}"
       end
     end
     puts "marking complete"
   end
 end
-
