@@ -21,10 +21,9 @@ namespace :footy do
   end
 
   desc "Mark bets"
-  task :mark_week, [:date] => :environment do |t, args|
+  task :mark_week, [:week_id] => :environment do |t, args|
 
-    close_date = args[:date]
-    week = Week.find_by_close_date(close_date)
+    week = Week.find(week_id)
     fixture_ids = week.fixtures.collect { |fixture| fixture.id }.flatten
 
     User.all.each do |user|

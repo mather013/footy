@@ -4,11 +4,11 @@
 }
 
 .correct {
-    color: #32cd32;
+    color: limegreen;
 }
 
 .wrong {
-    color: red;
+    color: #e00000;
 }
 
 .compdate {
