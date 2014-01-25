@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-<%= render "common/header" %>
+<div class="ui-title" data-role="header" align="left" data-position="fixed">
+  <h1>
+    Footy Forecast
+  </h1>
+  <a href="<%= points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Points</a>
+</div>
+
+<!--<%= render "common/header" %>-->
 
 <div data-role="content">
   <ul data-role="listview" id = "comp-list">

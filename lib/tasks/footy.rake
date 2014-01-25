@@ -20,10 +20,10 @@ namespace :footy do
     user.save
   end
 
-  desc "Mark bets"
+  desc "Mark bets for week"
   task :mark_week, [:week_id] => :environment do |t, args|
 
-    week = Week.find(week_id)
+    week = Week.find(args[:week_id])
     fixture_ids = week.fixtures.collect { |fixture| fixture.id }.flatten
 
     User.all.each do |user|

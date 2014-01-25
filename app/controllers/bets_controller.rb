@@ -1,5 +1,5 @@
 class BetsController < ApplicationController
-  #before_filter :require_login
+  before_filter :require_login
 
   def new
     @fixture = Fixture.find(params["fixture_id"])
