@@ -1,6 +1,3 @@
-require 'rake/dsl_definition'
-require 'rake'
-
 namespace :footy do
   desc "Record score for fixture"
   task :add_score, [:fixture_name, :score] => :environment do |t, args|
