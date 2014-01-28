@@ -2,7 +2,7 @@ class PointsController < ApplicationController
   before_filter :require_login
 
   def index
-
+    @total_points=Point.select("user_id, sum(new_value) as value").group("user_id").order("value DESC")
   end
 
   def show

@@ -9,12 +9,51 @@
 
 <div data-role="content">
   <ul data-role="listview" id="comp-list">
+    <% index = 0 %>
+    <% position = 0 %>
+    <% previous_score = -10 %>
+    <% @total_points.inspect %>
+    <% if @total_points.empty? %>
+        <div class="ui-grid-a" align="center">
+          <br>
+          Bets have not been marked yet
+        </div>
+    <% end %>
 
-    <div class="ui-grid-a" align="center">
-      <br>
-      Soon..
-    </div>
+    <% @total_points.each do |point| %>
+        <li>
+          <div class="ui-grid-b">
+            <% position +=1 unless previous_score == point.value %>
+            <% index += 1 %>
+            <div class="ui-block-a" style="width:10%">
+              <% if previous_score == point.value %>
+                  <%= "#{position}." %>
+              <% else %>
+                  <%= "#{index}." %>
+                  <% position = index %>
+              <% end %>
+              <br>
+              <h10 class="kickoff">
+              </h10>
+            </div>
 
+            <div class="ui-block-b" style="width:80%">
+              <%= "#{User.find(point.user_id).name}" %>
+              <br>
+              <h10 class="kickoff">
+              </h10>
+            </div>
+
+            <div class="ui-block-c" align="center" style="width:10%">
+              <%= "#{point.value}" %>
+              <br>
+              <h10 class="kickoff">
+              </h10>
+            </div>
+          </div>
+        </li>
+        <% previous_score = point.value %>
+    <% end %>
   </ul>
 </div>
 </html>
