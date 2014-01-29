@@ -23,10 +23,10 @@
     <% @points.each do |point| %>
         <li>
           <div class="ui-grid-b">
-            <% position +=1 unless previous_score == point.new_value %>
+            <% position +=1 unless previous_score == point.value %>
             <% index += 1 %>
             <div class="ui-block-a" style="width:10%">
-              <% if previous_score == point.new_value %>
+              <% if previous_score == point.value %>
                   <%= "#{position}." %>
               <% else %>
                   <%= "#{index}." %>
@@ -45,14 +45,14 @@
             </div>
 
             <div class="ui-block-c" align="center" style="width:10%">
-              <%= "#{point.new_value}" %>
+              <%= "#{point.value}" %>
               <br>
               <h10 class="kickoff">
               </h10>
             </div>
           </div>
         </li>
-        <% previous_score = point.new_value %>
+        <% previous_score = point.value %>
     <% end %>
   </ul>
 </div>
