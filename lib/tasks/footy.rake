@@ -43,10 +43,10 @@ namespace :footy do
 
         point=Point.point_for_user_and_week(user, week).first
         if point.present?
-          point.update_attributes(:value => 'na', :new_value => points)
+          point.update_attributes(:new_value => points)
           puts "points updated with value: #{points}"
         else
-          Point.create(:user_id => user.id, :value => 'na', :new_value => points, :week_id => week.id)
+          Point.create(:user_id => user.id, :new_value => points, :week_id => week.id)
           puts "points created with value: #{points}"
         end
       else
