@@ -1,0 +1,17 @@
+<div class="ui-grid-b">
+  <div class="ui-block-a" style="width:90%">
+    <%= "#{ @fixture.to_s }" %>
+    <br>
+    <h10 class="kickoff">
+      <%= DateTime.parse(@fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
+    </h10>
+  </div>
+
+  <div class="ui-block-b" align="center" style="width:10%">
+    <%= @bet.nil? ? "" : "#{@bet.value}" %>
+    <br>
+    <h10 class="kickoff">
+      <%= "#{@fixture.score.home} - #{@fixture.score.away}" if @fixture.score.present? %>
+    </h10>
+  </div>
+</div>
