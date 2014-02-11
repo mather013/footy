@@ -6,6 +6,7 @@ Footy::Application.routes.draw do
   resources :sessions, :only => [:new, :create]
   resources :bets,     :only => [:create]
 
+  get  'sessions' => 'sessions#new'
   post 'weeks/:fixture_id/bets' => 'bets#new', :as => 'new_fixture_bet'
   get  'weeks/:fixture_id/bets' => 'bets#edit', :as => 'edit_fixture_bet'
   put  'weeks/:fixture_id/bets' => 'bets#update', :as => 'update_fixture_bet'
