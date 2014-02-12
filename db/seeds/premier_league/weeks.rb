@@ -28,33 +28,33 @@ Week.find_or_create_by_id(:id => 26,
 Week.find_or_create_by_id(:id => 27,
                           :week => '201327',
                           :description => 'Premier League 22nd Feb',
-                          :close_date => DateTime.parse('22-02-2014 12:00:00'))
+                          :close_date => DateTime.parse('22-02-2014 12:45:00'))
 
 Week.find_or_create_by_id(:id => 28,
                           :week => '201328',
                           :description => 'Premier League 1st Mar',
-                          :close_date => DateTime.parse('01-03-2014 12:00:00'))
+                          :close_date => DateTime.parse('01-03-2014 12:45:00'))
 
 Week.find_or_create_by_id(:id => 29,
                           :week => '201329',
                           :description => 'Premier League 8th Mar',
-                          :close_date => DateTime.parse('08-03-2014 12:00:00'))
+                          :close_date => DateTime.parse('08-03-2014 12:45:00'))
 
-#Week.find_or_create_by_id(:id => 30,
-#                          :week => '201330',
-#                          :description => 'Premier League 15th Mar',
-#                          :close_date => DateTime.parse('15-03-2014'))
-#
-#Week.find_or_create_by_id(:id => 31,
-#                          :week => '201331',
-#                          :description => 'Premier League 22nd Mar',
-#                          :close_date => DateTime.parse('22-03-2014'))
-#
-#Week.find_or_create_by_id(:id => 32,
-#                          :week => '201332',
-#                          :description => 'Premier League 29th Mar',
-#                          :close_date => DateTime.parse('29-03-2014'))
-#
+Week.find_or_create_by_id(:id => 30,
+                          :week => '201330',
+                          :description => 'Premier League 15th Mar',
+                          :close_date => DateTime.parse('15-03-2014 12:45:00'))
+
+Week.find_or_create_by_id(:id => 31,
+                          :week => '201331',
+                          :description => 'Premier League 22nd Mar',
+                          :close_date => DateTime.parse('22-03-2014 12:45:00'))
+
+Week.find_or_create_by_id(:id => 32,
+                          :week => '201332',
+                          :description => 'Premier League 29th Mar',
+                          :close_date => DateTime.parse('29-03-2014 12:45:00'))
+
 #Week.find_or_create_by_id(:id => 33,
 #                          :week => '201333',
 #                          :description => 'Premier League 5th Apr',
