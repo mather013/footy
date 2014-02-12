@@ -1,16 +1,5 @@
 Fixture.delete_all
 
-#Fixture.find_or_create_by_id(:id => 211, :kickoff => DateTime.parse('2014-01-18 15:00:00'), :name => 'ARS-FUL', :home_team_id => 1,  :away_team_id => 7,  :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 212, :kickoff => DateTime.parse('2014-01-19 16:00:00'), :name => 'CHE-MUN', :home_team_id => 4,  :away_team_id => 11, :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 213, :kickoff => DateTime.parse('2014-01-18 15:00:00'), :name => 'CRY-STO', :home_team_id => 5,  :away_team_id => 15, :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 214, :kickoff => DateTime.parse('2014-01-18 17:30:00'), :name => 'LIV-AST', :home_team_id => 9,  :away_team_id => 2,  :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 215, :kickoff => DateTime.parse('2014-01-18 15:00:00'), :name => 'MCI-CAR', :home_team_id => 11, :away_team_id => 3,  :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 216, :kickoff => DateTime.parse('2014-01-18 15:00:00'), :name => 'NOR-HUL', :home_team_id => 13, :away_team_id => 8,  :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 217, :kickoff => DateTime.parse('2014-01-18 12:45:00'), :name => 'SUN-SOU', :home_team_id => 16, :away_team_id => 14, :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 218, :kickoff => DateTime.parse('2014-01-19 13:30:00'), :name => 'SWA-TOT', :home_team_id => 17, :away_team_id => 18, :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 219, :kickoff => DateTime.parse('2014-01-20 20:00:00'), :name => 'WBR-EVE', :home_team_id => 19, :away_team_id => 6,  :week_id => 22)
-#Fixture.find_or_create_by_id(:id => 220, :kickoff => DateTime.parse('2014-01-18 15:00:00'), :name => 'WHA-NEW', :home_team_id => 20, :away_team_id => 12, :week_id => 22)
-
 Fixture.find_or_create_by_id(:id => 221, :kickoff => DateTime.parse('2014-01-29 19:45:00'), :name => 'AST-WBR', :home_team_id => 2,  :away_team_id => 19, :week_id => 23)
 Fixture.find_or_create_by_id(:id => 222, :kickoff => DateTime.parse('2014-01-28 19:45:00'), :name => 'MUN-CAR', :home_team_id => 11, :away_team_id => 3,  :week_id => 23)
 Fixture.find_or_create_by_id(:id => 223, :kickoff => DateTime.parse('2014-01-28 19:45:00'), :name => 'NOR-NEW', :home_team_id => 13, :away_team_id => 12, :week_id => 23)

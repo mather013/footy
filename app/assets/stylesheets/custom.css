@@ -3,6 +3,17 @@
   color: #979797;
 }
 
+.points_sml {
+  font-size: .9em;
+  color: #979797;
+  position:relative;
+  top:10px;
+}
+
+.leaderboard {
+  font-size: .9em;
+}
+
 .correct {
     color: limegreen;
 }
