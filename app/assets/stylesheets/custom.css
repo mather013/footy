@@ -22,6 +22,10 @@
     color: #e00000;
 }
 
+.open {
+    color: green;
+}
+
 .compdate {
     color: #979797;
 }
