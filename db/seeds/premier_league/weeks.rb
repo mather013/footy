@@ -3,17 +3,20 @@ Week.delete_all
 Week.find_or_create_by_id(:id => 23,
                           :week => '201323',
                           :description => 'Premier League 28th Jan',
-                          :close_date => DateTime.parse('28-01-2014 19:45:00'))
+                          :close_date => DateTime.parse('28-01-2014 19:45:00'),
+                          :complete => true)
 
 Week.find_or_create_by_id(:id => 24,
                           :week => '201324',
                           :description => 'Premier League 1st Feb',
-                          :close_date => DateTime.parse('01-02-2014 12:45:00'))
+                          :close_date => DateTime.parse('01-02-2014 12:45:00'),
+                          :complete => true)
 
 Week.find_or_create_by_id(:id => 25,
                           :week => '201325',
                           :description => 'Premier League 8th Feb',
-                          :close_date => DateTime.parse('08-02-2014 12:45:00'))
+                          :close_date => DateTime.parse('08-02-2014 12:45:00'),
+                          :complete => true)
 
 Week.find_or_create_by_id(:id => 26,
                           :week => '201326',
@@ -23,7 +26,8 @@ Week.find_or_create_by_id(:id => 26,
 Week.find_or_create_by_id(:id => 27,
                           :week => '201327',
                           :description => 'Premier League 22nd Feb',
-                          :close_date => DateTime.parse('22-02-2014 12:45:00'))
+                          :close_date => DateTime.parse('22-02-2014 12:45:00'),
+                          :complete => true)
 
 Week.find_or_create_by_id(:id => 28,
                           :week => '201328',
