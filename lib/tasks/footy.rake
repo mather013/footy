@@ -55,4 +55,10 @@ namespace :footy do
     end
     puts "marking complete"
   end
+
+  desc "Set week to completed"
+  task :mark_complete, [:id] => :environment do |t, args|
+    Week.find(args[:id]).update_attributes(:complete => true)
+  end
+
 end
