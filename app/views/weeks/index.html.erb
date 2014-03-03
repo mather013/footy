@@ -15,13 +15,16 @@
           <a href="<%= week_path(week.id) %>">
             <div class="ui-grid-b">
               <div class="ui-block-a" style="width:90%">
-                <% if week.betable? %>
-                    <h11 class="open">
-                      <%= "Round #{week.week[4..6]}" %>
-                    </h11>
-                <% else %>
-                    <%= "Round #{week.week[4..6]}" %>
+                <%= "Round #{week.week[4..6]}" %>
+
+                <% case week.status
+                     when "Complete" %> <span class="label label-danger">Complete</span>
+                <% when "In play" %>
+                    <span class="label label-warning">In play</span>
+                <% when "Open" %>
+                    <span class="label label-success">Open</span>
                 <% end %>
+
                 <br>
                 <h10 class="kickoff">
                   Kickoff: <%= "#{DateTime.parse(week.close_date.to_s).strftime('%e %B %H:%M')}" %>
