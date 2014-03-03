@@ -19,6 +19,10 @@
 
                 <% case week.status
                      when "Complete" %> <span class="label label-danger">Complete</span>
+                <% when "In play" %>
+                    <span class="label label-warning">In play</span>
+                <% when "Open" %>
+                    <span class="label label-success">Open</span>
                 <% end %>
 
                 <br>
