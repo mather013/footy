@@ -1,17 +1,12 @@
-.kickoff {
-  font-size: .7em;
-  color: #979797;
-}
-
 .points_sml {
-  font-size: .9em;
-  color: #979797;
-  position:relative;
-  top:10px;
+    font-size: .9em;
+    color: #979797;
+    position: relative;
+    top: 10px;
 }
 
 .leaderboard {
-  font-size: .9em;
+    font-size: .9em;
 }
 
 .correct {
@@ -31,10 +26,11 @@
 }
 
 .headerimg {
-    position:relative;
-    top:4px;
-    left:-5px;
+    position: relative;
+    top: 4px;
+    left: -5px;
 }
+
 .ui-header .ui-title {
     overflow: visible !important;
 }
@@ -71,11 +67,20 @@
     color: red;
 }
 
-.fixture .kickoff {
+.kickoff {
     font-size: .7em;
     color: #979797;
 }
 
+.bet-versus {
+    font-size: .9em;
+    line-height: 8em;
+}
+
+.percent-points {
+    font-size: .7em;
+    color: #979797;
+}
 
 .label {
     display: inline;
@@ -121,7 +126,7 @@
 
 .label-success {
     background-color: #5cb85c;
-    margin:0 0 0 10px;
+    margin: 0 0 0 10px;
 }
 
 .label-success[href]:hover,
@@ -131,7 +136,7 @@
 
 .label-info {
     background-color: #5bc0de;
-    margin:0 0 0 10px;
+    margin: 0 0 0 10px;
 }
 
 .label-info[href]:hover,
@@ -141,7 +146,7 @@
 
 .label-warning {
     background-color: #f0ad4e;
-    margin:0 0 0 10px;
+    margin: 0 0 0 10px;
 }
 
 .label-warning[href]:hover,
@@ -151,7 +156,7 @@
 
 .label-danger {
     background-color: #d9534f;
-    margin:0 0 0 10px;
+    margin: 0 0 0 10px;
 }
 
 .label-danger[href]:hover,

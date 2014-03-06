@@ -5,10 +5,11 @@
   <h1><%= @fixture.to_s %></h1>
 </div>
 
+<%= render "teams" %>
+
 <%= form_for(@bet) do |bet| %>
     <fieldset>
       <div class="control-group" align="center">
-        <p>
           <%= bet.hidden_field :fixture_id, value: @fixture.id %>
           <%= bet.select :value, options_for_select([["Home win", "H"], ["Draw", "D"], ["Away win", "A"]]) %>
         <p>
