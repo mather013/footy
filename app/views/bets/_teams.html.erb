@@ -1,7 +1,7 @@
 <div class="ui-grid-b">
   <p>
   <div class="ui-block-a" style="width:40%;padding-right:10px;" align="right">
-    <%= image_tag "prem_teams/#{@fixture.home_team.abbreviation}.140.100.png" %>
+    <%= image_tag "prem_teams/#{@fixture.home_team.abbreviation}.140.100.png", class: "badge-size" %>
   </div>
   <div class="ui-block-b" style="width:20%" align="center">
     <h8 class="bet-versus">
@@ -9,6 +9,6 @@
     </h8>
   </div>
   <div class="ui-block-c" style="width:40%;padding-left:10px" align="left">
-    <%= image_tag "prem_teams/#{@fixture.away_team.abbreviation}.140.100.png" %>
+    <%= image_tag "prem_teams/#{@fixture.away_team.abbreviation}.140.100.png", class: "badge-size" %>
   </div>
 </div>

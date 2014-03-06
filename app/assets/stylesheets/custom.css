@@ -77,6 +77,11 @@
     line-height: 8em;
 }
 
+.badge-size {
+    max-width: 100px;
+    max-height: 100px;
+}
+
 .percent-points {
     font-size: .7em;
     color: #979797;
