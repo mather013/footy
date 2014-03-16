@@ -88,7 +88,7 @@ Fixture.find_or_create_by_id(:id => 298, :kickoff => DateTime.parse('2014-03-15 
 Fixture.find_or_create_by_id(:id => 299, :kickoff => DateTime.parse('2014-03-15 15:00:00'), :name => 'SWA-WBR', :home_team_id => 17, :away_team_id => 19, :week_id => 30)
 Fixture.find_or_create_by_id(:id => 300, :kickoff => DateTime.parse('2014-03-16 16:00:00'), :name => 'TOT-ARS', :home_team_id => 18, :away_team_id => 1,  :week_id => 30)
 
-Fixture.find_or_create_by_id(:id => 301, :kickoff => DateTime.parse('2014-03-23 16:00:00'), :name => 'AST-STO', :home_team_id => 1,  :away_team_id => 15, :week_id => 31)
+Fixture.find_or_create_by_id(:id => 301, :kickoff => DateTime.parse('2014-03-23 16:00:00'), :name => 'AST-STO', :home_team_id => 2,  :away_team_id => 15, :week_id => 31)
 Fixture.find_or_create_by_id(:id => 302, :kickoff => DateTime.parse('2014-03-22 15:00:00'), :name => 'CAR-LIV', :home_team_id => 3,  :away_team_id => 9,  :week_id => 31)
 Fixture.find_or_create_by_id(:id => 303, :kickoff => DateTime.parse('2014-03-22 12:45:00'), :name => 'CHE-ARS', :home_team_id => 4,  :away_team_id => 1,  :week_id => 31)
 Fixture.find_or_create_by_id(:id => 304, :kickoff => DateTime.parse('2014-03-22 15:00:00'), :name => 'EVE-SWA', :home_team_id => 6,  :away_team_id => 17, :week_id => 31)
