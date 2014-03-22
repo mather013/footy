@@ -1,0 +1,12 @@
+defaults: &defaults
+  competition: premier_league
+#  competition: world_cup
+
+development:
+  <<: *defaults
+
+test: &test
+  <<: *defaults
+
+production:
+  <<: *defaults

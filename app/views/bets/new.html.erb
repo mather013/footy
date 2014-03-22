@@ -2,7 +2,7 @@
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= week_path(@fixture.week_id) %>" data-theme="a" data-rel="" data-icon="back">Back</a>
-  <h1><%= @fixture.to_s %></h1>
+  <h1><%= "Fixture #{@fixture.id}" %></h1>
 </div>
 
 <%= render "teams" %>
