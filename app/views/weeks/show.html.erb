@@ -15,7 +15,6 @@
           <% @bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @current_user.id) %>
 
           <% if @week.open? %>
-
               <% if @bet.nil? %>
                   <%= link_to new_fixture_bet_path(@fixture.id), :method => :post do %>
                       <%= render "fixture_info" %>
@@ -25,46 +24,8 @@
                       <%= render "fixture_info" %>
                   <% end %>
               <% end %>
-
           <% else %>
-
-              <div class="ui-grid-b">
-                <div class="ui-block-a" style="width:90%">
-                  <%= "#{ @fixture.to_s }" %>
-                  <br>
-                  <h10 class="kickoff">
-                    <%= DateTime.parse(@fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
-                  </h10>
-                </div>
-
-                <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @current_user.id) %>
-
-                <% if @fixture.score.nil? || bet.nil? %>
-                    <div class="ui-block-b" align="center" style="width:10%">
-                      <%= bet.nil? ? "" : "#{bet.value}" %>
-                      <br>
-                      <h10 class="kickoff">
-                        <%= "#{@fixture.score.home} - #{@fixture.score.away}" if @fixture.score.present? %>
-                      </h10>
-                    </div>
-                <% elsif  bet.value == @fixture.score.outcome %>
-                    <div class="correct ui-block-b" align="center" style="width:10%">
-                      <%= bet.nil? ? "" : "#{bet.value}" %>
-                      <br>
-                      <h10 class="kickoff">
-                        <%= "#{@fixture.score.home} - #{@fixture.score.away}" if @fixture.score.present? %>
-                      </h10>
-                    </div>
-                <% else %>
-                    <div class="wrong ui-block-b" align="center" style="width:10%">
-                      <%= bet.nil? ? "" : "#{bet.value}" %>
-                      <br>
-                      <h10 class="kickoff">
-                        <%= "#{@fixture.score.home} - #{@fixture.score.away}" if @fixture.score.present? %>
-                      </h10>
-                    </div>
-                <% end %>
-              </div>
+              <%= render "fixture_info" %>
           <% end %>
 
         </li>
