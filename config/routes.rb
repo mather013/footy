@@ -13,5 +13,6 @@ Footy::Application.routes.draw do
   get  'weeks/:week_id/fixtures/:fixture_id/bet/:id' => 'bets#show', :as => 'fixture_bet'
   get  'weeks/:week_id/points' => 'points#show', :as => 'week_points'
   get  'points' => 'points#index', :as => 'points'
+  get  'info' => 'info#index', :as => 'info'
 
 end
