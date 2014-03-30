@@ -1,6 +1,10 @@
 <div class="ui-grid-b">
   <div class="ui-block-a" style="width:90%">
-    <%= "#{ @fixture.to_s }" %>
+    <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.home_team.abbreviation}.png", class: "strip-size" %>
+    <%= "#{ @fixture.home_team.name }" %>
+    vs
+    <%= "#{ @fixture.away_team.name }" %>
+    <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.away_team.abbreviation}.png", class: "strip-size" %>
     <br>
     <h10 class="kickoff">
       <%= DateTime.parse(@fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>

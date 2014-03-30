@@ -82,6 +82,11 @@
     max-height: 80px;
 }
 
+.strip-size {
+    max-width: 12px;
+    max-height: 12px;
+}
+
 .percent-points {
     font-size: .7em;
     color: #979797;
