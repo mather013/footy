@@ -72,6 +72,10 @@
     color: #979797;
 }
 
+.info-txt {
+    font-size: .7em;
+}
+
 .bet-versus {
     font-size: .9em;
     line-height: 8em;

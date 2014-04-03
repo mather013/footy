@@ -14,5 +14,6 @@ Footy::Application.routes.draw do
   get  'weeks/:week_id/points' => 'points#show', :as => 'week_points'
   get  'points' => 'points#index', :as => 'points'
   get  'info' => 'info#index', :as => 'info'
+  get 'weeks/:week_id/user/:id' => 'users#show', :as => 'week_users'
 
 end

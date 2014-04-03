@@ -3,8 +3,7 @@
 
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= week_path(@week.id) %>" data-theme="a" data-rel="" data-icon="back">Back</a>
-
-  <h1><%= "Round #{@week.week[4..6]} Points" %></h1>
+  <h1><%= "Round #{@week.week[4..6]}" %></h1>
 </div>
 
 <h10 class="leaderboard">
@@ -23,6 +22,7 @@
 
       <% @points.each do |point| %>
           <li>
+            <a href="<%= week_users_path(@week.id,point.user_id) %>">
             <div class="ui-grid-b">
               <% position +=1 unless previous_score == point.value %>
               <% index += 1 %>
@@ -43,6 +43,7 @@
                 <%= "#{point.value}" %>
               </div>
             </div>
+            </a>
           </li>
           <% previous_score = point.value %>
       <% end %>
