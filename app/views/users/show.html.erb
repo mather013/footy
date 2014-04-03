@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed">
-  <a data-rel="back"  data-theme="a" data-rel="" data-icon="back">Back</a>
+  <a href="<%= week_points_path(@week.id) %>" data-theme="a" data-rel="" data-icon="back">Back</a>
   <h1><%= "#{@view_user.name} R#{@week.week[4..6]}" %></h1>
 </div>
 
