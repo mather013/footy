@@ -3,6 +3,7 @@
 
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= week_path(@week.id) %>" data-theme="a" data-rel="" data-icon="back">Back</a>
+
   <h1><%= "Round #{@week.week[4..6]}" %></h1>
 </div>
 
@@ -22,27 +23,30 @@
 
       <% @points.each do |point| %>
           <li>
-            <a href="<%= week_users_path(@week.id,point.user_id) %>">
-            <div class="ui-grid-b">
-              <% position +=1 unless previous_score == point.value %>
-              <% index += 1 %>
-              <div class="ui-block-a" style="width:10%">
-                <% if previous_score == point.value %>
-                    <%= "#{position}." %>
-                <% else %>
-                    <%= "#{index}." %>
-                    <% position = index %>
-                <% end %>
-              </div>
+            <a href="<%= week_users_path(@week.id, point.user_id) %>">
+              <h8 class="points-user">
+                <div class="ui-grid-b">
+                  <% position +=1 unless previous_score == point.value %>
+                  <% index += 1 %>
+                  <div class="ui-block-a" style="width:10%">
+                    <% if previous_score == point.value %>
+                        <%= "#{position}." %>
+                    <% else %>
+                        <%= "#{index}." %>
+                        <% position = index %>
+                    <% end %>
+                  </div>
 
-              <div class="ui-block-b" style="width:80%">
-                <%= "#{User.find(point.user_id).name}" %>
-              </div>
+                  <div class="ui-block-b" style="width:80%">
+                    <%= "#{User.find(point.user_id).name}" %>
+                  </div>
 
-              <div class="ui-block-c" align="center" style="width:10%">
-                <%= "#{point.value}" %>
-              </div>
-            </div>
+                  <div class="ui-block-c" align="center" style="width:10%">
+                    <%= "#{point.value}" %>
+                  </div>
+
+                </div>
+              </h8>
             </a>
           </li>
           <% previous_score = point.value %>
