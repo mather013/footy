@@ -13,11 +13,17 @@ class Week < ActiveRecord::Base
   end
 
   def in_play?
-    close_date < Time.now and !complete?
+    close_date < current_date_and_time and !complete?
   end
 
   def open?
-    close_date > Time.now and close_date < Time.now + 7.days
+    close_date > current_date_and_time and close_date < current_date_and_time + 7.days
+  end
+
+  private
+
+  def current_date_and_time
+    Time.now.in_time_zone("London")
   end
 
 end
