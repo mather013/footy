@@ -60,7 +60,8 @@ Week.find_or_create_by_id(:id => 32,
 Week.find_or_create_by_id(:id => 33,
                           :week => '201333',
                           :description => 'Premier League 5th Apr',
-                          :close_date => DateTime.parse('05-04-2014 12:45:00'))
+                          :close_date => DateTime.parse('05-04-2014 12:45:00'),
+                          :complete => true)
 
 Week.find_or_create_by_id(:id => 34,
                           :week => '201334',
