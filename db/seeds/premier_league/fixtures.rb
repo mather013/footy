@@ -130,7 +130,7 @@ Fixture.find_or_create_by_id(:id => 336, :kickoff => DateTime.parse('2014-04-12 
 Fixture.find_or_create_by_id(:id => 337, :kickoff => DateTime.parse('2014-04-12 15:07:00'), :name => 'STO-NEW', :home_team_id => 15, :away_team_id => 12, :week_id => 34)
 Fixture.find_or_create_by_id(:id => 338, :kickoff => DateTime.parse('2014-04-12 15:07:00'), :name => 'SUN-EVE', :home_team_id => 16, :away_team_id => 6,  :week_id => 34)
 Fixture.find_or_create_by_id(:id => 339, :kickoff => DateTime.parse('2014-04-13 16:07:00'), :name => 'SWA-CHE', :home_team_id => 17, :away_team_id => 4,  :week_id => 34)
-Fixture.find_or_create_by_id(:id => 340, :kickoff => DateTime.parse('2014-04-12 15:00:00'), :name => 'WBR-TOT', :home_team_id => 19, :away_team_id => 18, :week_id => 34)
+Fixture.find_or_create_by_id(:id => 340, :kickoff => DateTime.parse('2014-04-12 15:07:00'), :name => 'WBR-TOT', :home_team_id => 19, :away_team_id => 18, :week_id => 34)
 
 Fixture.find_or_create_by_id(:id => 341, :kickoff => DateTime.parse('2014-04-19 15:00:00'), :name => 'AST-SOU', :home_team_id => 2,  :away_team_id => 14, :week_id => 35)
 Fixture.find_or_create_by_id(:id => 342, :kickoff => DateTime.parse('2014-04-19 15:00:00'), :name => 'CAR-STO', :home_team_id => 3,  :away_team_id => 15, :week_id => 35)
