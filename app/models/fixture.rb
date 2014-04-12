@@ -15,4 +15,8 @@ class Fixture < ActiveRecord::Base
     "#{home_team.name } vs #{ away_team.name }"
   end
 
+  def kickoff_local_time
+    kickoff.in_time_zone("London")
+  end
+
 end

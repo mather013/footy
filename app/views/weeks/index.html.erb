@@ -28,7 +28,7 @@
 
                 <br>
                 <h10 class="kickoff">
-                  Kickoff: <%= "#{DateTime.parse(week.close_date.to_s).strftime('%e %B %H:%M')}" %>
+                  Kickoff: <%= "#{DateTime.parse(week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
                 </h10>
               </div>
               <div class="ui-block-b" style="width:10%">

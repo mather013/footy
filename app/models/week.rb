@@ -12,6 +12,10 @@ class Week < ActiveRecord::Base
     return "Pending"
   end
 
+  def close_date_local_time
+    close_date.in_time_zone("London")
+  end
+
   def in_play?
     close_date < current_date_and_time and !complete?
   end
@@ -23,7 +27,7 @@ class Week < ActiveRecord::Base
   private
 
   def current_date_and_time
-    Time.now.in_time_zone("London")
+    Time.now
   end
 
 end

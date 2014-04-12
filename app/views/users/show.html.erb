@@ -19,7 +19,7 @@
               <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.away_team.abbreviation}.png", class: "strip-size" %>
               <br>
               <h10 class="kickoff">
-                <%= DateTime.parse(@fixture.kickoff.to_s).strftime('%A %e %B %Y %H:%M') %>
+                <%= DateTime.parse(@fixture.kickoff_local_time.to_s).strftime('%A %e %B %Y %H:%M') %>
               </h10>
             </div>
 
