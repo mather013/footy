@@ -2,7 +2,7 @@
 <html>
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed">
-  <a href="<%= info_path %>" class="ui-btn-left" data-theme="a" data-icon="info" data-rel="">Info</a>
+  <!--<a href="<%= info_path %>" class="ui-btn-left" data-theme="a" data-icon="info" data-rel="">Info</a>-->
   <h1>
     Footy Forecast
   </h1>
@@ -13,7 +13,7 @@
   <ul data-role="listview" id="fix-list">
     <% @weeks.each do |week| %>
         <li>
-          <a href="<%= week_path(week.id) %>">
+          <a href="<%= fixtures_path(week.id) %>">
             <div class="ui-grid-b">
               <div class="ui-block-a" style="width:90%">
                 <%= "Round #{week.week[4..6]}" %>
