@@ -1,6 +1,7 @@
 defaults: &defaults
   competition: premier_league
 #  competition: world_cup
+  round_open_period_in_days: 7
 
 development:
   <<: *defaults
