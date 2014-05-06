@@ -1,8 +1,8 @@
 .points_sml {
-    font-size: .9em;
+    font-size: .8em;
     color: #979797;
     position: relative;
-    top: 10px;
+    top: 7px;
 }
 
 .leaderboard {
@@ -69,6 +69,8 @@
 
 .kickoff {
     font-size: .7em;
+    position: relative;
+    top: 1px;
     color: #979797;
 }
 
