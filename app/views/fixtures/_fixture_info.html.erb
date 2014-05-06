@@ -1,5 +1,5 @@
 <div class="ui-grid-b">
-  <div class="ui-block-a" style="width:90%">
+  <div class="ui-block-a main-font" style="width:90%">
     <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.home_team.abbreviation}.png", class: "strip-size" %>
     <%= "#{ @fixture.home_team.name[0..10] }" %>
     vs
@@ -14,7 +14,7 @@
   <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @current_user.id) %>
   <% bet.nil? ? outcome = "" : outcome = bet.outcome%>
 
-  <div class="<%= outcome %> ui-block-b" align="center" style="width:10%">
+  <div class="<%= outcome %> ui-block-b main-font" align="center" style="width:10%">
     <%= bet.nil? ? "" : "#{bet.value}" %>
     <br>
     <h10 class="kickoff">
