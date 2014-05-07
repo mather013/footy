@@ -67,10 +67,18 @@
     color: red;
 }
 
-.kickoff {
-    font-size: .7em;
+.fixture-kickoff {
+    font-size: .8em;
     position: relative;
-    top: 1px;
+    top: 2px;
+    left: 16px;
+    color: #979797;
+}
+
+.kickoff {
+    font-size: .8em;
+    position: relative;
+    top: 2px;
     color: #979797;
 }
 
@@ -131,6 +139,7 @@
 
 .label-default {
     background-color: #999999;
+    margin: 0 0 0 10px;
 }
 
 .label-default[href]:hover,
