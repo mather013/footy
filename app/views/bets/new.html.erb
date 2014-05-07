@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false">
-  <a href="<%= fixtures_path(@fixture.week_id) %>" data-theme="a" data-rel="" data-icon="back">Back</a>
-  <h1><%= "Fixture #{@fixture.id}" %></h1>
+  <a href="<%= fixtures_path(@fixture.week_id) %>" data-theme="a" data-rel="">Back</a>
+  <h1><%= "Fixture #{@fixture.id.to_s.rjust(3, "0")}" %></h1>
 </div>
 
 <%= render "teams" %>

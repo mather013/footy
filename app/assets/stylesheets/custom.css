@@ -75,9 +75,7 @@
 }
 
 .main-font {
-    font-size: .9em;
-    /*font-family: "Helvetica Neue";*/
-    /*font-weight: lighter;*/
+    font-size: 14px;
 }
 .info-txt {
     font-size: .7em;
@@ -200,7 +198,6 @@
 
 table {
     color: #333;
-    font-family: Helvetica, Arial, sans-serif;
     font-size: 10px;
     width: 640px;
     border-collapse: collapse; border-spacing: 0; ;

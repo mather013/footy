@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed">
-  <a href="<%= weeks_path %>" data-theme="a" data-rel="" data-icon="back">Back</a>
-  <h1><%= "Round #{@week.week[4..6]}" %></h1>
+  <a href="<%= weeks_path %>" data-theme="a" data-rel="">Back</a>
+  <h1><%= "Round #{@week.id.to_s.rjust(2, "0")}" %></h1>
   <a href="<%= week_points_path(@week.id) %>" data-theme="a" data-rel="">Points</a>
 </div>
 
@@ -25,10 +25,8 @@
           <% else %>
               <%= render "fixture_info" %>
           <% end %>
-
         </li>
     <% end %>
   </ul>
 </div>
-
 </html>

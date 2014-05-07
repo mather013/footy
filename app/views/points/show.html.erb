@@ -2,9 +2,9 @@
 <html>
 
 <div data-role="header" data-position="fixed" data-backbtn="false">
-  <a href="<%= fixtures_path(@week.id) %>" data-theme="a" data-rel="" data-icon="back">Back</a>
+  <a href="<%= fixtures_path(@week.id) %>" data-theme="a" data-rel="">Back</a>
 
-  <h1><%= "Round #{@week.week[4..6]}" %></h1>
+  <h1><%= "Round #{@week.id.to_s.rjust(2, "0")}" %></h1>
 </div>
 
 <h10 class="leaderboard">
