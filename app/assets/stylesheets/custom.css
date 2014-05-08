@@ -195,34 +195,3 @@
 .label-danger[href]:focus {
     background-color: #c9302c;
 }
-
-.groups_table {
-    border:1;
-    width:200px;
-}
-.groups_table tr {
-    margin:0;
-    padding:4px;
-}
-
-table {
-    color: #333;
-    font-size: 10px;
-    width: 640px;
-    border-collapse: collapse; border-spacing: 0; ;
-}
-
-td, th {
-    padding: .3em; border: 1px #ccc solid;
-    border: 1px solid #CCC;
-    height: 10px;
-}
-
-th {
-    background: #F3F3F3;
-    font-weight: bold;
-}
-
-td {
-    background: #FAFAFA;
-}

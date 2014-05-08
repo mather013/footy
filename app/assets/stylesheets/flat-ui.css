@@ -4,6 +4,7 @@
     /*border:0 !important;*/
     /*text-shadow: none !important*/
 /*}*/
+
 /*.ui-page .ui-btn {*/
     /*background:transparent !important;*/
     /*border:1 !important;*/
@@ -17,6 +18,12 @@
     /*font-weight: normal !important;*/
 /*}*/
 
+/*.ui-link-inherit {*/
+    /*text-shadow: none !important;*/
+    /*color: black !important;*/
+/*}*/
+
+/*coloured button arrows*/
 /*.ui-listview .ui-btn .ui-btn-inner .ui-icon-arrow-r {*/
     /*background-color: #3c8baa !important;*/
 /*}*/
