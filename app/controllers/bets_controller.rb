@@ -2,7 +2,7 @@ class BetsController < ApplicationController
   before_filter :require_login
 
   def new
-    @fixture = Fixture.find(params["fixture_id"])
+    load_fixture_and_choices
     @bet = Bet.new
   end
 
@@ -15,7 +15,7 @@ class BetsController < ApplicationController
   end
 
   def edit
-    @fixture = Fixture.find(params["fixture_id"])
+    load_fixture_and_choices
     @bet = Bet.find(:all, :conditions => ["fixture_id = ? AND user_id = ?", params['fixture_id'], current_user.id])
   end
 
@@ -29,9 +29,13 @@ class BetsController < ApplicationController
 
   private
 
+  def load_fixture_and_choices
+    @fixture = Fixture.find(params["fixture_id"])
+    @choices = @fixture.choices
+  end
+
   def load_week
-    fixture = Fixture.find(params['bet']['fixture_id'])
-    @week = Week.find(fixture.week_id)
+    @week = Week.find(Fixture.find(params['bet']['fixture_id']).week_id)
   end
 
 end

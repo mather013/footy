@@ -1,7 +1,9 @@
 defaults: &defaults
-  competition: premier_league
-#  competition: world_cup
   round_open_period_in_days: 7
+#  competition: premier_league
+#  knockout_rounds: []
+  competition: world_cup
+  knockout_rounds: [4,5,6,7]
 
 development:
   <<: *defaults

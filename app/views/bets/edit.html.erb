@@ -11,7 +11,7 @@
     <fieldset>
       <div class="control-group" align="center">
           <%= bet.hidden_field :fixture_id, value: @fixture.id %>
-          <%= bet.select :value, [["Home win", "H"], ["Draw", "D"], ["Away win", "A"]] %>
+          <%= bet.select :value, @choices %>
         <p>
           <%= bet.submit "Save", class: "btn btn-large btn-primary" %>
       </div>

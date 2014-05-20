@@ -10,8 +10,8 @@
 <%= form_for(@bet) do |bet| %>
     <fieldset>
       <div class="control-group" align="center">
-          <%= bet.hidden_field :fixture_id, value: @fixture.id %>
-          <%= bet.select :value, options_for_select([["Home win", "H"], ["Draw", "D"], ["Away win", "A"]]) %>
+        <%= bet.hidden_field :fixture_id, value: @fixture.id %>
+        <%= bet.select :value, options_for_select(@choices) %>
         <p>
           <%= bet.submit "Save", class: "btn btn-large btn-primary" %>
       </div>
