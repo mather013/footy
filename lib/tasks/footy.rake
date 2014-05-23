@@ -61,4 +61,25 @@ namespace :footy do
     Week.find(args[:id]).update_attributes(:complete => true)
   end
 
+  desc "Reset all data for new competition"
+  task :reset_all => :environment do
+    Bet.delete_all
+    puts "bets deleted"
+
+    Fixture.delete_all
+    puts "fixtures deleted"
+
+    Point.delete_all
+    puts "points deleted"
+
+    Score.delete_all
+    puts "score deleted"
+
+    Team.delete_all
+    puts "team deleted"
+
+    Week.delete_all
+    puts "weeks deleted"
+  end
+
 end

@@ -113,6 +113,10 @@
     color: #979797;
 }
 
+.payout-icon {
+    color:  #C9960C
+}
+
 .label {
     display: inline;
     padding: .2em .6em .3em;

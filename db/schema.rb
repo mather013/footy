@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140512091603) do
+ActiveRecord::Schema.define(:version => 20140520180729) do
 
   create_table "bets", :force => true do |t|
     t.integer  "fixture_id", :null => false
@@ -55,11 +55,12 @@ ActiveRecord::Schema.define(:version => 20140512091603) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",   :null => false
-    t.string   "password",   :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "username",    :null => false
+    t.string   "password",    :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "name"
+    t.boolean  "payout_user"
   end
 
   create_table "weeks", :force => true do |t|

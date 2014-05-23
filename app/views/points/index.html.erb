@@ -2,7 +2,7 @@
 <html>
 
 <div data-role="header" data-position="fixed" data-backbtn="false">
-  <a href="<%= weeks_path %>" data-theme="a" data-rel="" >Back</a>
+  <a href="<%= weeks_path %>" data-theme="a" data-rel="">Back</a>
   <h1><%= "Total Points" %></h1>
 </div>
 
@@ -35,17 +35,16 @@
               </div>
 
               <div class="ui-block-b" style="width:55%">
-                <%= "#{User.find(point.user_id).name}" %>
+                <% user = User.find(point.user_id) %>
+                <%= user.name %>
               </div>
 
-              <div class="ui-block-b" style="width:5%">
-                <%= "$" %>
+              <div class="ui-block-b payout-icon" style="width:5%">
+                <%= "$" if user.payout_user? %>
               </div>
 
-              <div class="ui-block-d" align="center" style="width:20%">
-                <h10 class="percent-points">
-                  <%= "#{(point.value.round(2)/point.count.to_i).round(2)}%" %>
-                </h10>
+              <div class="ui-block-d percent-points" align="center" style="width:20%">
+                <%= "#{(point.value.round(2)/point.count.to_i).round(2)}%" %>
               </div>
 
               <div class="ui-block-e" align="center" style="width:10%">
