@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed">
+  <a href="<%= goals_path %>" class="ui-btn-left" data-theme="a" data-rel="">Goals</a>
+
+  <h1>5 Alive</h1>
+  <a href="<%= fa_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
+</div>
+
+<% if @bets.empty? %>
+    <div class="leaderboard" align="center">
+      <br>
+      No players selected
+    </div>
+<% end %>
+
+<div class="player-goals" data-role="listview" data-count-theme="d">
+  <li class="custom-li">
+    <% @bets.each do |bet| %>
+        <% player = Player.find_by_id(bet.player_id) %>
+        <div data-role="collapsible" class="custom-collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+          <h5>
+            <div class="ui-grid-b player-goals">
+              <div class="ui-block-a" style="width:8%">
+                <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: "strip-size" %>
+              </div>
+              <div class="ui-block-b" style="width:82%">
+                <%= "#{player.name}" %>
+              </div>
+              <div class="ui-block-c" align="center" style="width:10%">
+                <%= player.total_goals %>
+              </div>
+            </div>
+          </h5>
+
+          <ul data-role="listview">
+            <li>
+              <div class="ui-grid-b info-txt">
+                <div class="ui-block-a" style="width:15%"></div>
+                <div class="ui-block-b" style="width:85%">
+                  <% player_team = player.team.abbreviation %>
+                  <%= "no goals" if player.goals.empty? %>
+                  <% player.goals.each do |goal| %>
+                      <% opponent = goal.score.fixture.home_team.abbreviation == player_team ? goal.score.fixture.away_team.abbreviation : goal.score.fixture.home_team.abbreviation %>
+                      <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{opponent}.png", class: "strip-size" %>
+                      &nbsp
+                      <%= "#{goal.amount}" %>&nbsp&nbsp&nbsp
+                  <% end %>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+    <% end %>
+  </li>
+</div>
+<%= render "common/footer" %>
+</html>

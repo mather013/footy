@@ -11,12 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140520180729) do
+ActiveRecord::Schema.define(:version => 20140526094129) do
 
   create_table "bets", :force => true do |t|
     t.integer  "fixture_id", :null => false
     t.integer  "user_id",    :null => false
     t.string   "value",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "fa_bets", :force => true do |t|
+    t.integer  "player_id",  :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "fa_points", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "value",      :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -29,6 +43,21 @@ ActiveRecord::Schema.define(:version => 20140520180729) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "name"
+  end
+
+  create_table "goals", :force => true do |t|
+    t.integer  "player_id",  :null => false
+    t.integer  "score_id",   :null => false
+    t.integer  "amount",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "players", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "team_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "points", :force => true do |t|

@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false">
-  <a href="<%= weeks_path(@week_id) %>" data-theme="a" data-rel="" data-icon="back">Back</a>
   <h1><%= "Information" %></h1>
 </div>
 
-<div data-role="content">
-  <h7 class="info-txt">
-  <h8 class=kickoff>Version 0.86 (3rd April 2014)</h8> <br>
-  --------------------------- <br>
-  - Ability to view other user's predictions. Accessible from the points page once round has been closed for betting. <br>
-  - New info page shows new functionality and fixture updates. <br>
-  <p></p>
-
-  <h8 class=kickoff>Version 0.85 (30th March 2014)</h8> <br>
-  --------------------------- <br>
-  - Added team colour badges to fixture screens. <br>
-
-
-
-  </h7>
+<div class="kickoff" data-role="content">
+  <%= "Environment: #{Rails.env}" %> <br>
+  <%= "User: #{@user.name}" %> <br>
 </div>
 </html>

@@ -77,9 +77,14 @@
 }
 .info-txt {
     font-size: .7em;
+    color: #686868;
 }
 
 .points-user {
+    font-size: .9em;
+}
+
+.player-goals {
     font-size: .9em;
 }
 
@@ -188,4 +193,24 @@
 .label-danger[href]:hover,
 .label-danger[href]:focus {
     background-color: #c9302c;
+}
+
+div.ui-btn, input[type="submit"] {
+width: 200px !important;
+}
+
+.custom-li {
+    padding: 0 !important;
+    border-width:0 !important;
+}
+
+.custom-bottom-li {
+    border-top-width: 0 !important;
+}
+
+.custom-collapsible {
+    margin: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-width:0 !important;
 }

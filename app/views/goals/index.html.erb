@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed">
+  <a href="<%= fa_bets_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1>Goals</h1>
+</div>
+
+<% if @goals.empty? %>
+    <div class="leaderboard" align="center">
+      <br>
+      No goals yet
+    </div>
+<% end %>
+
+<div class="player-goals" data-role="listview" data-count-theme="d">
+  <li class="custom-li">
+    <% @goals.each do |goals_for_player| %>
+        <% player = Player.find_by_id(goals_for_player.player_id) %>
+        <div data-role="collapsible" class="custom-collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+          <h5>
+            <div class="ui-grid-b player-goals">
+              <div class="ui-block-a" style="width:8%">
+                <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: "strip-size" %>
+              </div>
+              <div class="ui-block-b" style="width:82%">
+                <%= "#{player.name}" %>
+              </div>
+              <div class="ui-block-c" align="center" style="width:10%">
+                <%= "#{goals_for_player.total}" %>
+              </div>
+            </div>
+          </h5>
+
+          <ul data-role="listview">
+            <li>
+              <div class="ui-grid-b info-txt">
+                <div class="ui-block-a" style="width:15%"></div>
+                <div class="ui-block-b" style="width:85%">
+                  <% player_team = player.team.abbreviation %>
+                  <% player.goals.each do |goal| %>
+                      <% opponent = goal.score.fixture.home_team.abbreviation == player_team ? goal.score.fixture.away_team.abbreviation : goal.score.fixture.home_team.abbreviation %>
+                      <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{opponent}.png", class: "strip-size" %>&nbsp
+                      <%= "#{goal.amount}" %>&nbsp&nbsp&nbsp
+                  <% end %>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+    <% end %>
+  </li>
+</div>
+<%= render "common/footer" %>
+</html>

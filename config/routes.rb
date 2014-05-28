@@ -4,6 +4,8 @@ Footy::Application.routes.draw do
   resources :weeks,    :only => [:index]
   resources :sessions, :only => [:new, :create]
   resources :bets,     :only => [:create]
+  resources :goals,    :only => [:index]
+  resources :fa_bets,  :only => [:index]
 
   get  'sessions' => 'sessions#new'
   get  'weeks/:week_id/fixtures' => 'fixtures#index', :as => 'fixtures'
@@ -14,6 +16,7 @@ Footy::Application.routes.draw do
   get  'weeks/:week_id/points' => 'points#show', :as => 'week_points'
   get  'points' => 'points#index', :as => 'points'
   get  'info' => 'info#index', :as => 'info'
-  get 'weeks/:week_id/user/:id' => 'users#show', :as => 'week_users'
+  get  'weeks/:week_id/user/:id' => 'users#show', :as => 'week_users'
+  get  'fa_points' => 'fa_points#index', :as => 'fa_points'
 
 end

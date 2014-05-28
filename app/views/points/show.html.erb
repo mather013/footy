@@ -3,7 +3,6 @@
 
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= fixtures_path(@week.id) %>" data-theme="a" data-rel="">Back</a>
-
   <h1><%= "Round #{@week.id.to_s.rjust(2, "0")}" %></h1>
 </div>
 
@@ -17,7 +16,7 @@
       <% if @points.empty? %>
           <div class="ui-grid-a" align="center">
             <br>
-            Bets have not been marked yet
+            Bets not marked yet
           </div>
       <% end %>
 
@@ -54,4 +53,5 @@
     </ul>
   </div>
 </h10>
+<%= render "common/footer" %>
 </html>

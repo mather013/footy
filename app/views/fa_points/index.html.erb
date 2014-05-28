@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <div data-role="header" data-position="fixed" data-backbtn="false">
-  <a href="<%= weeks_path %>" data-theme="a" data-rel="">Back</a>
-  <h1><%= "Footy Forecast" %></h1>
+  <a href="<%= fa_bets_path %>" data-theme="a" data-rel="">Back</a>
+  <h1><%= "5 Alive" %></h1>
 </div>
+
+<% if @total_points.empty? %>
+    <div class="leaderboard" align="center">
+      <br>
+      Bets not marked yet
+    </div>
+<% end %>
 
 <h10 class="leaderboard">
   <div data-role="content">
@@ -12,13 +18,6 @@
       <% index = 0 %>
       <% position = 0 %>
       <% previous_score = -10 %>
-      <% @total_points.inspect %>
-      <% if @total_points.empty? %>
-          <div class="ui-grid-a" align="center">
-            <br>
-            Bets not marked yet
-          </div>
-      <% end %>
 
       <% @total_points.each do |point| %>
           <li>
@@ -34,17 +33,19 @@
                 <% end %>
               </div>
 
-              <div class="ui-block-b" style="width:55%">
+              <div class="ui-block-b" style="width:45%">
                 <% user = User.find(point.user_id) %>
                 <%= user.name %>
               </div>
 
-              <div class="ui-block-b payout-icon" style="width:5%">
-                <%= "$" if user.payout_user? %>
+              <div class="ui-block-c" align="left" style="width:30%">
+                <% user.fa_teams.each do |team| %>
+                    <!--<%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{team}.png", class: "strip-size" %>-->
+                <% end %>
               </div>
 
-              <div class="ui-block-d percent-points" align="center" style="width:20%">
-                <%= "#{(point.value.round(2)/point.count.to_i).round(2)}%" %>
+              <div class="ui-block-d payout-icon" style="width:5%">
+                <%= "$" if user.payout_user? %>
               </div>
 
               <div class="ui-block-e" align="center" style="width:10%">
