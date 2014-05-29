@@ -1,13 +1,14 @@
 .ui-page .ui-header {
     /*background: #3c8baa !important;*/
-    background: #75AF6E !important;
+    background: #70A668 !important;
     border-color: lightgrey !important;
     border:0 !important;
     text-shadow: none !important;
 }
 
 .ui-page .ui-footer {
-    background: #75AF6E !important;
+    /*background: #3c8baa !important;*/
+    background: #70A668 !important;
     border-color: lightgrey !important;
     border:0 !important;
     text-shadow: none !important;
@@ -32,8 +33,9 @@
 }
 
 .ui-btn-active {
+    /*background: lightgrey !important;*/
     background: #FEFF77 !important;
-    color: #75AF6E !important;
+    color: #70A668 !important;
 }
 
 .ui-header .ui-btn {
