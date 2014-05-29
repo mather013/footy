@@ -21,6 +21,7 @@ class Week < ActiveRecord::Base
   end
 
   def open?
+    #id == 1 or (close_date > current_date_and_time and close_date < current_date_and_time + ENVIRONMENT_CONFIG['round_open_period_in_days'].days)
     close_date > current_date_and_time and close_date < current_date_and_time + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
   end
 
