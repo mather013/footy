@@ -52,13 +52,14 @@ namespace :footy do
   desc "Creates fa_bets for users"
   task :create_fa_bets => :environment do
     FaBet.delete_all
-    bets = [{ user_id: User.find_by_username('markm').id, player_names: ['D Sturridge', 'L Suarez', 'M Reus', 'Neymar Jr', 'C Ronaldo'] },
-            { user_id: User.find_by_username('andyb').id, player_names: ['S Aguero', 'D Costa', 'T Muller', 'Neymar Jr', 'C Ronaldo'] },
-            { user_id: User.find_by_username('ryans').id, player_names: ['L Messi', 'Neymar Jr', 'W Rooney', 'C Ronaldo', 'F Torres'] },
+    bets = [{ user_id: User.find_by_username('markm').id,  player_names: ['D Sturridge', 'L Suarez', 'M Reus', 'Neymar Jr', 'C Ronaldo'] },
+            { user_id: User.find_by_username('andyb').id,  player_names: ['S Aguero', 'D Costa', 'T Muller', 'Neymar Jr', 'C Ronaldo'] },
+            { user_id: User.find_by_username('ryans').id,  player_names: ['L Messi', 'Neymar Jr', 'W Rooney', 'C Ronaldo', 'F Torres'] },
             { user_id: User.find_by_username('davidb').id, player_names: ['K Benzema', 'E Dzeko', 'R Falcao', 'E Hazard', 'T Muller'] },
-            { user_id: User.find_by_username('samc').id, player_names: ['K Benzema', 'R Lukaku', 'L Messi', 'Neymar Jr', 'C Ronaldo'] },
-            { user_id: User.find_by_username('adams').id, player_names: ['S Aguero', 'G Higuain', 'R Lukaku', 'Neymar Jr', 'C Ronaldo'] },
-            { user_id: User.find_by_username('samt').id, player_names: ['S Aguero', 'R Lukaku', 'L Messi', 'Neymar Jr', 'C Ronaldo'] }]
+            { user_id: User.find_by_username('samc').id,   player_names: ['K Benzema', 'R Lukaku', 'L Messi', 'Neymar Jr', 'C Ronaldo'] },
+            { user_id: User.find_by_username('adams').id,  player_names: ['S Aguero', 'G Higuain', 'R Lukaku', 'Neymar Jr', 'C Ronaldo'] },
+            { user_id: User.find_by_username('samt').id,   player_names: ['S Aguero', 'R Lukaku', 'L Messi', 'Neymar Jr', 'C Ronaldo'] },
+            { user_id: User.find_by_username('stef').id,   player_names: ['S Aguero', 'T Muller', 'Neymar Jr', 'C Ronaldo','L Suarez'] }]
 
     bets.each do |bet|
       bet[:player_names].each do |player_name|
