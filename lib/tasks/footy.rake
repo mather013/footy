@@ -57,7 +57,9 @@ namespace :footy do
             { user_id: User.find_by_username('samc').id,   player_names: ['K Benzema', 'R Lukaku',    'L Messi',   'Neymar Jr', 'C Ronaldo'  ] },
             { user_id: User.find_by_username('adams').id,  player_names: ['S Aguero',  'G Higuain',   'R Lukaku',  'Neymar Jr', 'C Ronaldo'  ] },
             { user_id: User.find_by_username('samt').id,   player_names: ['S Aguero',  'M Balotelli', 'Fred',      'T Muller',  'C Ronaldo'  ] },
-            { user_id: User.find_by_username('stef').id,   player_names: ['S Aguero',  'T Muller',    'Neymar Jr', 'C Ronaldo', 'L Suarez'   ] }]
+            { user_id: User.find_by_username('stef').id,   player_names: ['S Aguero',  'T Muller',    'Neymar Jr', 'C Ronaldo', 'L Suarez'   ] },
+            { user_id: User.find_by_username('dazm').id,   player_names: ['K Benzema', 'R Falcao',    'R Lukaka',  'L Messi',   'T Muller'   ] }]
+            #davidm, davem, joshb, mickb, chrisg, peterm, neild, carld, sammyc, marks, stec, jonr, steb
 
     bets.each do |bet|
       bet[:player_names].each do |player_name|
