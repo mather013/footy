@@ -4,15 +4,23 @@
 <%= render "common/header" %>
 
 <div data-role="content">
-  <form method="POST" action= "<%= sessions_path %>" class="login_form">
-    <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
-      <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c ui-corner-top">
-        <label for="username">Username: </label>
-        <input name="user[username]" id="user_username" value="" required="true" placeholder="Please enter your name"/></li>
-      <li data-role="fieldcontain" class="ui-field-contain ui-body ui-br ui-li ui-li-static ui-btn-up-c ">
-        <label for="password">Password: </label>
-        <input name="user[password]" id="user_password" value="" type="password" required="true" placeholder="Please enter your password"/></li>
-      <li align="center" data-role="fieldcontain" class="ui-body ui-body-b ui-li ui-li-static ui-btn-up-c ui-corner-bottom ui-li-last"><input type="submit" value="Login"/></li>
+  <form method="POST" action="<%= sessions_path %>" class="login_form">
+    <ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all">
+      <li data-role="fieldcontain">
+        <div align="center">
+          <label for="username"></label>
+          <input name="user[username]" id="user_username" value="" required="true" placeholder="username"/>
+        </div>
+      </li>
+      <li data-role="fieldcontain">
+        <div align="center">
+          <label for="password"></label>
+          <input name="user[password]" id="user_password" value="" type="password" required="true" placeholder="password"/>
+        </div>
+      </li>
+      <div align="center">
+        <input type="submit" value="Login"/>
+      </div>
     </ul>
   </form>
 </div>
