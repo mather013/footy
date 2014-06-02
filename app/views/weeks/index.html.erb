@@ -2,9 +2,7 @@
 <html>
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed">
-  <h1>
-    Footy Forecast
-  </h1>
+  <h1>Footy Forecast</h1>
   <a href="<%= points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>
 
@@ -31,11 +29,9 @@
                   Kickoff: <%= "#{DateTime.parse(week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
                 </h10>
               </div>
-              <div class="ui-block-b" style="width:10%">
-                <h9 class="points_sml">
-                  <% point= Point.point_for_user_and_week(User.find(@user), week).first %>
-                  <%= point.nil? ? " " : point.value %>
-                </h9>
+              <div class="ui-block-b points_sml" style="width:10%">
+                <% point= Point.point_for_user_and_week(User.find(@user), week).first %>
+                <%= point.nil? ? " " : point.value %>
               </div>
             </div>
           </a>
@@ -43,7 +39,5 @@
     <% end %>
   </ul>
 </div>
-
 <%= render "common/footer" %>
-
 </html>

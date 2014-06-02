@@ -7,11 +7,11 @@
 
 <%= render "teams" %>
 
-<%= form_for @bet, html: {autocomplete: "off"}, url: update_fixture_bet_path, method: :put do |bet| %>
+<%= form_for @bet, html: { autocomplete: "off" }, url: update_fixture_bet_path, method: :put do |bet| %>
     <fieldset>
       <div class="control-group" align="center">
-          <%= bet.hidden_field :fixture_id, value: @fixture.id %>
-          <%= bet.select :value, @choices %>
+        <%= bet.hidden_field :fixture_id, value: @fixture.id %>
+        <%= bet.select :value, @choices %>
         <p>
           <%= bet.submit "Save", class: "btn btn-large btn-primary" %>
       </div>

@@ -1,0 +1,12 @@
+  User.delete_all
+  User.find_or_create_by_id(id:1,  name:'Mark Mather',      username:'markm',  password:'bodie', payout_user: true)
+  User.find_or_create_by_id(id:2,  name:'David Bennett',    username:'davidb', password:'abc')
+  User.find_or_create_by_id(id:3,  name:'Andrew Bennett',   username:'andyb',  password:'abc')
+  User.find_or_create_by_id(id:4,  name:'David Mather',     username:'davidm', password:'abc',   payout_user: true)
+  User.find_or_create_by_id(id:5,  name:'Mick Briganti',    username:'mickb',  password:'abc')
+  User.find_or_create_by_id(id:6,  name:'Ryan Simpson',     username:'ryans',  password:'abc')
+  User.find_or_create_by_id(id:7,  name:'Sam Collins',      username:'samc',   password:'abc')
+  User.find_or_create_by_id(id:8,  name:'Adam Swann',       username:'adams',  password:'abc')
+  User.find_or_create_by_id(id:9,  name:'Sam Todd',         username:'samt',   password:'abc')
+  User.find_or_create_by_id(id:10, name:'Darren McCartney', username:'dazm',   password:'abc')
+  User.find_or_create_by_id(id:11, name:'Stephen Farmakis', username:'stef',   password:'abc')
