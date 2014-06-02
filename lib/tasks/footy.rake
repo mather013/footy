@@ -60,8 +60,10 @@ namespace :footy do
             { user_id: User.find_by_username('stef').id,   player_names: ['S Aguero',  'T Muller',    'Neymar Jr',    'C Ronaldo', 'L Suarez'   ] },
             { user_id: User.find_by_username('dazm').id,   player_names: ['K Benzema', 'R Falcao',    'R Lukaku',     'L Messi',   'T Muller'   ] },
             { user_id: User.find_by_username('johns').id,  player_names: ['Fred',      'R Lukaku',    'L Messi',      'T Muller',  'Neymar Jr'  ] },
-            { user_id: User.find_by_username('jonr').id,   player_names: ['R Lukaku',  'Neymar Jr',   'R Van Persie', 'C Ronaldo', 'D Sturridge'] }]
-            #davidm, davem, joshb, mickb, chrisg, peterm, neild, carld, sammyc, marks, stec, steb, liams, genec
+            { user_id: User.find_by_username('jonr').id,   player_names: ['R Lukaku',  'Neymar Jr',   'R Van Persie', 'C Ronaldo', 'D Sturridge'] },
+            { user_id: User.find_by_username('stec').id,   player_names: ['S Aguero',  'K Benzema',   'D Costa',      'R Lukaku',  'A Robben'   ] },
+            { user_id: User.find_by_username('liams').id,  player_names: ['S Aguero',  'L Messi',     'Neymar Jr',    'C Ronaldo', 'Y Toure'    ] }]
+            #davidm, davem, joshb, mickb, chrisg, peterm, neild, carld, sammyc, marks, steb, genec
 
     bets.each do |bet|
       bet[:player_names].each do |player_name|
