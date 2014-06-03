@@ -24,9 +24,9 @@ namespace :footy do
   task :reset_data, [:force] => :environment do |t, args|
     if args[:force]
       RakeTaskResources::ResetData.perform
-      puts "Reset data complete"
+      puts "Reset data complete."
     else
-      puts "Incorrect argument. Please confirm reset"
+      puts "Sorry, you have not confirmed that you want to reset the data."
     end
   end
 

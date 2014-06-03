@@ -23,22 +23,13 @@ module RakeTaskResources
         points = 0
 
         bets.each do |bet|
-          fixture_score = Fixture.find(bet.fixture_id).score
-          if fixture_score.present?
-            if bet.value == fixture_score.outcome
-              points +=10
-            end
-          end
+          points+=10 if bet.correct?
         end
 
         point=Point.point_for_user_and_week(user, @week).first
-
-        if point.present?
-          point.update_attributes(:value => points)
-        else
-          Point.create(:user_id => user.id, :value => points, :week_id => @week.id)
-        end
+        point.present? ? point.update_attributes(value: points) : Point.create(user_id: user.id, value: points, week_id: @week.id)
         puts "Points total: #{points}"
+
       end
     end
   end

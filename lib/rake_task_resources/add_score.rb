@@ -7,7 +7,7 @@ module RakeTaskResources
         away_goals  = score_array[1]
 
         fixture = Fixture.find_by_name(args[:fixture_name])
-        score   = Score.new(:fixture_id => fixture.id, :home => home_goals, :away => away_goals)
+        score   = Score.new(fixture_id: fixture.id, home: home_goals, away: away_goals)
         score.save
       end
     end

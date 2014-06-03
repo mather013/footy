@@ -17,17 +17,12 @@ module RakeTaskResources
         goals = 0
 
         fa_bets.each do |bet|
-          goals += Player.find_by_id(bet.player_id).total_goals
+          goals += bet.player.total_goals
         end
 
-        fa_point=FaPoint.find_by_user_id(user.id)
-
-        if fa_point.present?
-          fa_point.update_attributes(:value => goals)
-        else
-          FaPoint.create(:user_id => user.id, :value => goals)
-        end
+        user.fa_point.present? ? user.fa_point.update_attributes(value: goals) : FaPoint.create(user_id: user.id, value: goals)
         puts "goals total: #{goals}"
+
       end
     end
   end
