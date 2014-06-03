@@ -10,3 +10,8 @@
   User.find_or_create_by_id(id:9,  name:'Sam Todd',         username:'samt',   password:'abc')
   User.find_or_create_by_id(id:10, name:'Darren McCartney', username:'dazm',   password:'abc')
   User.find_or_create_by_id(id:11, name:'Stephen Farmakis', username:'stef',   password:'abc')
+  User.find_or_create_by_id(id:12, name:'Stephen Croasdale',username:'stec',   password:'abc')
+  User.find_or_create_by_id(id:13, name:'Liam Stephenson',  username:'liams',  password:'abc')
+  User.find_or_create_by_id(id:14, name:'John Stephens',    username:'johns',  password:'abc')
+  User.find_or_create_by_id(id:15, name:'Jon Rylands',      username:'jonr',   password:'abc')
+  User.find_or_create_by_id(id:16, name:'Sammy Colton',     username:'sammyc', password:'abc')
