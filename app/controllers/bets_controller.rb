@@ -9,8 +9,7 @@ class BetsController < ApplicationController
   def create
     bet = Bet.new(:fixture_id => params['bet']['fixture_id'], :user_id => current_user.id, :value => params['bet']['value'])
     if bet.save!
-      load_week
-      redirect_to fixtures_path(@week.id)
+      redirect_to fixtures_path(bet.fixture.week.id)
     end
   end
 
@@ -22,8 +21,7 @@ class BetsController < ApplicationController
   def update
     bet= Bet.find(:all, :conditions => ["fixture_id = ? AND user_id = ?", params['fixture_id'], current_user.id]).first
     if bet.update_attributes(:value => params['bet']['value'])
-      load_week
-      redirect_to fixtures_path(@week.id)
+      redirect_to fixtures_path(bet.fixture.week.id)
     end
   end
 
@@ -32,10 +30,6 @@ class BetsController < ApplicationController
   def load_fixture_and_choices
     @fixture = Fixture.find(params["fixture_id"])
     @choices = @fixture.choices
-  end
-
-  def load_week
-    @week = Week.find(Fixture.find(params['bet']['fixture_id']).week_id)
   end
 
 end

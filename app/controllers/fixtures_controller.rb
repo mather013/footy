@@ -4,7 +4,7 @@ class FixturesController < ApplicationController
   def index
     @week = Week.find(params[:week_id])
     @fixtures = @week.fixtures
-    @current_user = current_user
+    @user = current_user
   end
 
 end

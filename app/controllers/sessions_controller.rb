@@ -9,10 +9,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find(:first,
-                     :conditions => ["username = ? and password = ?",
-                                     params[:user]['username'],
-                                     params[:user]['password']])
+    user = User.find(:first, :conditions => ["username = ? and password = ?",
+                                            params[:user]['username'],
+                                            params[:user]['password']])
 
     unless user.nil?
       cookies.permanent[:user_id] = user.id
