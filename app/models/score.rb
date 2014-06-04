@@ -2,7 +2,6 @@ class Score < ActiveRecord::Base
 
   attr_accessible :id, :fixture_id, :home, :away
 
-  belongs_to :fixture,      :foreign_key => "fixture_id"
   has_many   :players
   has_many   :goals
 

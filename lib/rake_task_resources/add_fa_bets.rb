@@ -17,7 +17,7 @@ module RakeTaskResources
                 { user_id: User.find_by_username('stec').id,   player_names: ['S Aguero',  'K Benzema',   'D Costa',      'R Lukaku',    'A Robben'    ] },
                 { user_id: User.find_by_username('liams').id,  player_names: ['S Aguero',  'L Messi',     'Neymar Jr',    'C Ronaldo',   'Y Toure'     ] },
                 { user_id: User.find_by_username('sammyc').id, player_names: ['L Messi',   'Neymar Jr',   'C Ronaldo',    'D Sturridge', 'L Suarez'    ] },
-                { user_id: User.find_by_username('steb').id,    player_names: ['S Aguero',   'E Dzeko',    'T Muller',     'Neymar Jr',   'L Suarez'    ] }]
+                { user_id: User.find_by_username('steb').id,   player_names: ['S Aguero',   'E Dzeko',    'T Muller',     'Neymar Jr',   'L Suarez'    ] }]
                 #davidm, davem, joshb, mickb, chrisg, peterm, neild, carld, marks, genec
 
         bets.each do |bet|

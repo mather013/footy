@@ -4,7 +4,7 @@ class Fixture < ActiveRecord::Base
   belongs_to :week
   belongs_to :home_team, :foreign_key => "home_team_id", :class_name => "Team"
   belongs_to :away_team, :foreign_key => "away_team_id", :class_name => "Team"
-  has_one :score
+  has_one    :score
 
   def to_s
     "#{ home_team.name } vs #{ away_team.name }"
