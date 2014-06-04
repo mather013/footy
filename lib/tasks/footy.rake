@@ -16,8 +16,8 @@ namespace :footy do
   end
 
   desc "Record scorer for fixture"
-  task :add_goal, [:fixture_name, :player_name, :goals] => :environment do |t, args|
-    RakeTaskResources::AddGoal args
+  task :add_goal, [:fixture_name, :player_name, :amount] => :environment do |t, args|
+    RakeTaskResources::AddGoal.perform args
   end
 
   desc "Reset data ready for new competition"
