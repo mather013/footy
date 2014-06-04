@@ -4,10 +4,4 @@ class Player < ActiveRecord::Base
   belongs_to :team
   has_many :goals
 
-  #scope :sorted, order("players.goals DESC")
-
-  def total_goals
-    goals.sum("amount")
-  end
-
 end

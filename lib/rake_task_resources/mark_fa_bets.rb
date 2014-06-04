@@ -17,7 +17,7 @@ module RakeTaskResources
         goals = 0
 
         fa_bets.each do |bet|
-          goals += bet.player.total_goals
+          goals += bet.player.goals.count
         end
 
         user.fa_point.present? ? user.fa_point.update_attributes(value: goals) : FaPoint.create(user_id: user.id, value: goals)

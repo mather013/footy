@@ -27,7 +27,7 @@
                 <%= "#{player.name}" %>
               </div>
               <div class="ui-block-c" align="center" style="width:10%">
-                <%= player.total_goals %>
+                <%= player.goals.count %>
               </div>
             </div>
           </h5>
@@ -43,7 +43,6 @@
                       <% opponent = goal.score.fixture.home_team.abbreviation == player_team ? goal.score.fixture.away_team.abbreviation : goal.score.fixture.home_team.abbreviation %>
                       <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{opponent}.png", class: "strip-size" %>
                       &nbsp
-                      <%= "#{goal.amount}" %>&nbsp&nbsp&nbsp
                   <% end %>
                 </div>
               </div>

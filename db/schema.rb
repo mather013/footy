@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140526094129) do
+ActiveRecord::Schema.define(:version => 20140604144202) do
 
   create_table "bets", :force => true do |t|
     t.integer  "fixture_id", :null => false
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20140526094129) do
   create_table "goals", :force => true do |t|
     t.integer  "player_id",  :null => false
     t.integer  "score_id",   :null => false
-    t.integer  "amount",     :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
