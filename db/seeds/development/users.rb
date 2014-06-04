@@ -15,3 +15,4 @@
   User.find_or_create_by_id(id:14, name:'John Stephens',    username:'johns',  password:'abc')
   User.find_or_create_by_id(id:15, name:'Jon Rylands',      username:'jonr',   password:'abc')
   User.find_or_create_by_id(id:16, name:'Sammy Colton',     username:'sammyc', password:'abc')
+  User.find_or_create_by_id(id:17, name:'Ste Bretherton',   username:'steb',   password:'abc')
