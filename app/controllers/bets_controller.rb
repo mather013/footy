@@ -7,7 +7,12 @@ class BetsController < ApplicationController
   end
 
   def create
-    bet = Bet.new(:fixture_id => params['bet']['fixture_id'], :user_id => current_user.id, :value => params['bet']['value'])
+    #binding.pry
+    #bet = Bet.new(:fixture_id => params['bet']['fixture_id'], :user_id => current_user.id, :value => params['bet']['value'])
+    #if bet.save!
+    #  redirect_to fixtures_path(bet.fixture.week.id)
+    #end
+    bet = Bet.new(:fixture_id => params['fixture_id'], :user_id => current_user.id, :value => params['bet_value'])
     if bet.save!
       redirect_to fixtures_path(bet.fixture.week.id)
     end

@@ -7,19 +7,31 @@
 
 <%= render "teams" %>
 
-<%= form_for(@bet) do |bet| %>
-    <fieldset>
-      <div class="control-group" align="center">
-        <%= bet.hidden_field :fixture_id, value: @fixture.id %>
-        <%= bet.select :value, options_for_select(@choices) %>
-        <p>
-          <%= bet.submit "Save", class: "btn btn-large btn-primary" %>
-      </div>
+    <!--<%= form_for(@bet) do |bet| %>-->
+        <!--<fieldset>-->
+          <!--<div class="control-group" align="center">-->
+            <!--<%= bet.hidden_field :fixture_id, value: @fixture.id %>-->
+            <!--<%= bet.select :value, options_for_select(@choices) %>-->
+            <!--<p>-->
+              <!--<%= bet.submit "Save", class: "btn btn-large btn-primary" %>-->
+          <!--</div>-->
+        <!--</fieldset>-->
+    <!--<% end %>-->
+
+<form method="POST" action="<%= bets_path %>">
+  <div data-role="fieldcontain" align="center">
+    <fieldset data-role="controlgroup" data-type="horizontal" id="custom-fieldset">
+      <input type="hidden" name="fixture_id" id="fixture_id" value= "<%= @fixture.id %>"/>
+      <input type="radio" name="bet_value" id="radio-choice-1" value="H" checked="checked"/>
+      <label for="radio-choice-1">Home</label>
+      <input type="radio" name="bet_value" id="radio-choice-2" value="D"/>
+      <label for="radio-choice-2">Draw</label>
+      <input type="radio" name="bet_value" id="radio-choice-3" value="A"/>
+      <label for="radio-choice-3">Away</label>
     </fieldset>
-<% end %>
+    <p></p>
+    <input type="submit" value="Save"/>
+  </div>
+</form>
 <%= render "common/footer" %>
 </html>
-
-<!--TODO horizontal radio buttons for bet selection-->
-<!--<input name="bet[fixture_id]" id="bet_fixture_id" value="" required="true" placeholder="bet_fixture_id"/>-->
-<!--<input name="bet[value]" id="bet_value" value="" required="true" placeholder="bet_value"/>-->
