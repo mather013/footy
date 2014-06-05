@@ -22,11 +22,11 @@
   <div data-role="fieldcontain" align="center">
     <fieldset data-role="controlgroup" data-type="horizontal" id="custom-fieldset">
       <input type="hidden" name="fixture_id" id="fixture_id" value= "<%= @fixture.id %>"/>
-      <input type="radio" name="bet_value" id="radio-choice-1" value="H" checked="checked"/>
+      <input type="radio" name="bet_value" id="radio-choice-1" value="H" checked="checked" style="display:none;"/>
       <label for="radio-choice-1">Home</label>
-      <input type="radio" name="bet_value" id="radio-choice-2" value="D"/>
+      <input type="radio" name="bet_value" id="radio-choice-2" value="D" style="display:none;"/>
       <label for="radio-choice-2">Draw</label>
-      <input type="radio" name="bet_value" id="radio-choice-3" value="A"/>
+      <input type="radio" name="bet_value" id="radio-choice-3" value="A" style="display:none;"/>
       <label for="radio-choice-3">Away</label>
     </fieldset>
     <p></p>
