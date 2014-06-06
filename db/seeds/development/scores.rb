@@ -12,8 +12,8 @@
   Score.create(id: 3, fixture_id: Fixture.find_by_name('SPA-NET').id, home: 2, away: 2)
   Goal.create(score_id: 3, player_id: Player.find_by_name('D Costa').id)
   Goal.create(score_id: 3, player_id: Player.find_by_name('F Torres').id)
-  Goal.create(score_id: 3, player_id: Player.find_by_name('R Van Persie').id)
-  Goal.create(score_id: 3, player_id: Player.find_by_name('R Van Persie').id)
+  Goal.create(score_id: 3, player_id: Player.find_by_name('R van Persie').id)
+  Goal.create(score_id: 3, player_id: Player.find_by_name('R van Persie').id)
 
   Score.create(id: 4, fixture_id: Fixture.find_by_name('CHI-AUS').id, home: 0, away: 0)
 
