@@ -6,6 +6,9 @@ class Fixture < ActiveRecord::Base
   belongs_to :away_team, :foreign_key => "away_team_id", :class_name => "Team"
   has_one    :score
 
+  NORMAL_CHOICES = [{ name: "Home", value: "H"}, {name: "Draw", value: "D"}, { name: "Away", value: "A"}]
+  KNOCKOUT_CHOICES = [{ name: "Home", value: "H"}, { name: "Away", value: "A"}]
+
   def to_s
     "#{ home_team.name } vs #{ away_team.name }"
   end
@@ -16,7 +19,6 @@ class Fixture < ActiveRecord::Base
 
   def choices
     knockout_rounds = ENVIRONMENT_CONFIG['knockout_rounds']
-    knockout_rounds.include?(week_id) ? [["Home win", "H"], ["Away win", "A"]] : [["Home win", "H"], ["Draw", "D"], ["Away win", "A"]]
+    knockout_rounds.include?(week_id) ? KNOCKOUT_CHOICES : NORMAL_CHOICES
   end
-
 end

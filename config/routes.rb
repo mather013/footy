@@ -3,16 +3,15 @@ Footy::Application.routes.draw do
 
   resources :weeks,    :only => [:index]
   resources :sessions, :only => [:new, :create]
-  resources :bets,     :only => [:create]
+  resources :bets,     :only => [:create, :update]
   resources :goals,    :only => [:index]
   resources :fa_bets,  :only => [:index]
 
   get  'sessions' => 'sessions#new'
   get  'weeks/:week_id/fixtures' => 'fixtures#index', :as => 'fixtures'
+  put  'weeks/:week_id/fixtures' => 'fixtures#index', :as => 'fixtures'
   post 'weeks/:week_id/fixtures/:fixture_id/bets' => 'bets#new', :as => 'new_fixture_bet'
   get  'weeks/:week_id/fixtures/:fixture_id/bets' => 'bets#edit', :as => 'edit_fixture_bet'
-  put  'weeks/:week_id/fixtures/:fixture_id/bets' => 'bets#update', :as => 'update_fixture_bet'
-  get  'weeks/:week_id/fixtures/:fixture_id/bet/:id' => 'bets#show', :as => 'fixture_bet'
   get  'weeks/:week_id/points' => 'points#show', :as => 'week_points'
   get  'points' => 'points#index', :as => 'points'
   get  'info' => 'info#index', :as => 'info'

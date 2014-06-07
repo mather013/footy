@@ -1,0 +1,14 @@
+<div data-role="fieldcontain" align="center">
+  <fieldset data-role="controlgroup" data-type="horizontal">
+    <input type="hidden" name="fixture_id" id="fixture_id" value="<%= @fixture.id %>"/>
+    <% i = 0 %>
+    <% @choices.each do |choice| %>
+        <% i+=1 %>
+        <% radio_choice = "checked=\"checked" if @bet.value == choice[:value] || @bet.value.nil? && choice[:value] == "H" %>
+        <input type="radio" name="bet_value" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= choice[:value] %>" style="display:none;"/>
+        <label for="radio-choice-<%= i %>"> <%= choice[:name] %></label>
+    <% end %>
+  </fieldset>
+  <br>&nbsp<br>
+  <input type="submit" value="Save"/>
+</div>

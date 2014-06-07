@@ -7,26 +7,25 @@ class BetsController < ApplicationController
   end
 
   def create
-    #binding.pry
-    #bet = Bet.new(:fixture_id => params['bet']['fixture_id'], :user_id => current_user.id, :value => params['bet']['value'])
-    #if bet.save!
-    #  redirect_to fixtures_path(bet.fixture.week.id)
-    #end
     bet = Bet.new(:fixture_id => params['fixture_id'], :user_id => current_user.id, :value => params['bet_value'])
     if bet.save!
       redirect_to fixtures_path(bet.fixture.week.id)
+    else
+      redirect_to root_path
     end
   end
 
   def edit
     load_fixture_and_choices
-    @bet = Bet.find(:all, :conditions => ["fixture_id = ? AND user_id = ?", params['fixture_id'], current_user.id])
+    @bet = Bet.find(:all, :conditions => ["fixture_id = ? AND user_id = ?", params['fixture_id'], current_user.id]).first
   end
 
   def update
-    bet= Bet.find(:all, :conditions => ["fixture_id = ? AND user_id = ?", params['fixture_id'], current_user.id]).first
-    if bet.update_attributes(:value => params['bet']['value'])
+    bet= Bet.find(params['id'])
+    if bet.update_attributes(:value => params['bet_value'])
       redirect_to fixtures_path(bet.fixture.week.id)
+    else
+      redirect_to root_path
     end
   end
 

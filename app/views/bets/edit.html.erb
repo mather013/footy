@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= fixtures_path(@fixture.week_id) %>" data-theme="a" data-rel="">Back</a>
@@ -7,15 +6,8 @@
 
 <%= render "teams" %>
 
-<%= form_for @bet, html: { autocomplete: "off" }, url: update_fixture_bet_path, method: :put do |bet| %>
-    <fieldset>
-      <div class="control-group" align="center">
-        <%= bet.hidden_field :fixture_id, value: @fixture.id %>
-        <%= bet.select :value, @choices %>
-        <p>
-          <%= bet.submit "Save", class: "btn btn-large btn-primary" %>
-      </div>
-    </fieldset>
-<% end %>
+<form method="PUT" action="<%= bet_path(@bet.id) %>">
+  <%= render "selection" %>
+</form>
 <%= render "common/footer" %>
 </html>
