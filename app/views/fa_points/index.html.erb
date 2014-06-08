@@ -33,7 +33,7 @@
                 <% end %>
               </div>
 
-              <div class="ui-block-b" style="width:40%">
+              <div class="ui-block-b" style="width:45%">
                 <% user = User.find(point.user_id) %>
                 <%= user.name %>
               </div>
@@ -49,7 +49,7 @@
                 <%= "$" if user.payout_user? %>
               </div>
 
-              <div class="ui-block-e" align="center" style="width:10%">
+              <div class="ui-block-e" align="center" style="width:5%">
                 <%= "#{point.value}" %>
               </div>
             </div>
