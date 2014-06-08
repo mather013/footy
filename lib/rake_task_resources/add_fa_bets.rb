@@ -22,7 +22,7 @@ module RakeTaskResources
                 { user_id: User.find_by_username('peterm').id, player_names: ['K Benzema', 'Fred',        'M Gotze',      'G Higuain',   'Neymar Jr'   ] },
                 { user_id: User.find_by_username('genec').id,  player_names: ['Fred',      'J Rodriguez', 'G Higuain',    'Neymar Jr',   'R van Persie'] }]
                 #{ user_id: User.find_by_username('neild').id,  player_names: ['A di Maria' 'T Muller',    'A Robben',     'TBA',        'TBA'      ] }]
-                #davidm, joshb, mickb, chrisg, neild, carld, marks
+                #davidm, joshb, mickb, chrisg, neild, carld, marks, mikea, wozza
 
         bets.each do |bet|
           bet[:player_names].each do |player_name|
