@@ -38,15 +38,15 @@
                 <%= user.name %>
               </div>
 
-              <div class="ui-block-c" align="left" style="width:30%">
+              <div class="ui-block-c payout-icon" style="width:8%">
+                <%= "$" if user.payout_user? %>
+              </div>
+
+              <div class="ui-block-d" align="left" style="width:32%">
                 <% user.fa_teams.each do |team| %>
                     <!--<%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{team.abbreviation}.png", class: "strip-size" %>-->
                     <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/tba.png", class: "strip-size" %>
                 <% end %>
-              </div>
-
-              <div class="ui-block-d payout-icon" style="width:10%">
-                <%= "$" if user.payout_user? %>
               </div>
 
               <div class="ui-block-e" align="center" style="width:5%">
