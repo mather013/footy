@@ -13,8 +13,8 @@
     </div>
 <% end %>
 
-<div class="player-goals" data-role="listview" data-count-theme="d">
-  <li class="custom-li">
+<div data-role="collapsible-set">
+  <div class="player-goals" data-role="listview" data-count-theme="d">
     <% @goals.each do |goals_for_player| %>
         <% player = goals_for_player.player %>
         <div data-role="collapsible" class="custom-collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
@@ -24,29 +24,25 @@
                 <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: "strip-size" %>
               </div>
               <div class="ui-block-b" style="width:82%">
-                <%= "#{player.name}" %>
+                <%= player.name %>
               </div>
               <div class="ui-block-c" align="center" style="width:10%">
-                <%= "#{goals_for_player.count}" %>
+                <%= goals_for_player.count %>
               </div>
             </div>
           </h5>
 
-          <ul data-role="listview">
-            <li>
-              <div class="ui-grid-b info-txt">
-                <div class="ui-block-a" style="width:15%"></div>
-                <div class="ui-block-b" style="width:85%">
-                  <% player.goals.each do |goal| %>
-                      <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>&nbsp
-                  <% end %>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <div class="ui-grid-b info-txt">
+            <div class="ui-block-a" style="width:16%"></div>
+            <div class="ui-block-b" style="width:84%">
+              <% player.goals.each do |goal| %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>&nbsp
+              <% end %>
+            </div>
+          </div>
         </div>
     <% end %>
-  </li>
+  </div>
 </div>
 <%= render "common/footer" %>
 </html>
