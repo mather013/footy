@@ -6,6 +6,11 @@
     text-shadow: none !important;
 }
 
+.ui-page .ui-header .ui-btn {
+    background:transparent;
+    width: 60px;
+}
+
 .ui-page .ui-footer {
     background: #3c8baa !important;
     /*background: #70A668 !important;*/
@@ -14,8 +19,12 @@
     text-shadow: none !important;
 }
 
-.ui-page .ui-btn {
+.ui-page .ui-footer .ui-btn {
     background:transparent;
+}
+
+.ui-page .ui-btn {
+    background:white;
     border:1 !important;
     border-color: lightgrey;
     text-shadow: none !important;
@@ -34,11 +43,7 @@
 
 .ui-btn-active {
     color: #3c8baa !important;
-    /*color: #70A668 !important;*/
     background: lightgrey !important;
+    /*color: #70A668 !important;*/
     /*background: #FEFF77 !important;*/
-}
-
-.ui-header .ui-btn {
-    width: 60px;
 }

@@ -6,52 +6,50 @@
   <h1><%= @week.description %></h1>
 </div>
 
-<h10 class="leaderboard">
-  <div data-role="content">
-    <ul data-role="listview" id="comp-list">
-      <% index = 0 %>
-      <% position = 0 %>
-      <% previous_score = -10 %>
+<div class="leaderboard">
+  <ul data-role="listview">
+    <% index = 0 %>
+    <% position = 0 %>
+    <% previous_score = -10 %>
 
-      <% if @points.empty? %>
-          <div class="ui-grid-a" align="center">
-            <br>
-            Bets not marked
-          </div>
-      <% end %>
+    <% if @points.empty? %>
+        <div class="ui-grid-a" align="center">
+          <br>
+          Bets not marked
+        </div>
+    <% end %>
 
-      <% @points.each do |point| %>
-          <li>
-            <!--<a href="<%= week_users_path(@week.id, point.user_id) %>">-->
-              <h8 class="points-user">
-                <div class="ui-grid-b">
-                  <% position +=1 unless previous_score == point.value %>
-                  <% index += 1 %>
-                  <div class="ui-block-a" style="width:10%">
-                    <% if previous_score == point.value %>
-                        <%= "#{position}" %>
-                    <% else %>
-                        <%= "#{index}" %>
-                        <% position = index %>
-                    <% end %>
-                  </div>
+    <% @points.each do |point| %>
+        <li class="custom-list">
+          <!--<a href="<%= week_users_path(@week.id, point.user_id) %>">-->
+          <h8 class="points-user">
+            <div class="ui-grid-b">
+              <% position +=1 unless previous_score == point.value %>
+              <% index += 1 %>
+              <div class="ui-block-a" style="width:10%">
+                <% if previous_score == point.value %>
+                    <%= "#{position}" %>
+                <% else %>
+                    <%= "#{index}" %>
+                    <% position = index %>
+                <% end %>
+              </div>
 
-                  <div class="ui-block-b" style="width:80%">
-                    <%= "#{User.find(point.user_id).name}" %>
-                  </div>
+              <div class="ui-block-b" style="width:80%">
+                <%= "#{User.find(point.user_id).name}" %>
+              </div>
 
-                  <div class="ui-block-c" align="center" style="width:10%">
-                    <%= "#{point.value}" %>
-                  </div>
+              <div class="ui-block-c" align="center" style="width:10%">
+                <%= "#{point.value}" %>
+              </div>
 
-                </div>
-              </h8>
-            <!--</a>-->
-          </li>
-          <% previous_score = point.value %>
-      <% end %>
-    </ul>
-  </div>
-</h10>
+            </div>
+          </h8>
+          <!--</a>-->
+        </li>
+        <% previous_score = point.value %>
+    <% end %>
+  </ul>
+</div>
 <%= render "common/footer" %>
 </html>

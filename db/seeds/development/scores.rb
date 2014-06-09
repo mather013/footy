@@ -19,12 +19,13 @@
 
   Score.create(id: 5, fixture_id: Fixture.find_by_name('COL-GRE').id, home: 2, away: 0)
   Goal.create(score_id: 5, player_id: Player.find_by_name('R Falcao').id)
-  Goal.create(score_id: 5, player_id: Player.find_by_name('R Falcao').id)
+  Goal.create(score_id: 5, player_id: Player.find_by_name('J Rodriguez').id)
 
   Score.create(id: 6, fixture_id: Fixture.find_by_name('COT-JAP').id, home: 1, away: 0)
   Goal.create(score_id: 6, player_id: Player.find_by_name('Y Toure').id)
 
   Score.create(id: 7, fixture_id: Fixture.find_by_name('URU-COS').id, home: 3, away: 0)
+  Goal.create(score_id: 7, player_id: Player.find_by_name('L Suarez').id)
   Goal.create(score_id: 7, player_id: Player.find_by_name('L Suarez').id)
 
   Score.create(id: 8, fixture_id: Fixture.find_by_name('ENG-ITA').id, home: 3, away: 1)
@@ -35,12 +36,13 @@
 
   Score.create(id: 9, fixture_id: Fixture.find_by_name('SWI-ECU').id, home: 0, away: 0)
 
-  Score.create(id: 10, fixture_id: Fixture.find_by_name('FRA-HON').id, home: 2, away: 0)
+  Score.create(id: 10, fixture_id: Fixture.find_by_name('FRA-HON').id, home: 3, away: 0)
   Goal.create(score_id: 10, player_id: Player.find_by_name('O Giroud').id)
   Goal.create(score_id: 10, player_id: Player.find_by_name('O Giroud').id)
+  Goal.create(score_id: 10, player_id: Player.find_by_name('K Benzema').id)
 
   Score.create(id: 11, fixture_id: Fixture.find_by_name('ARG-BOS').id, home: 3, away: 0)
-  Goal.create(score_id: 11, player_id: Player.find_by_name('S Aguero').id)
+  Goal.create(score_id: 11, player_id: Player.find_by_name('A di Maria').id)
   Goal.create(score_id: 11, player_id: Player.find_by_name('S Aguero').id)
   Goal.create(score_id: 11, player_id: Player.find_by_name('L Messi').id)
 

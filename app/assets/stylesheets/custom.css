@@ -196,7 +196,9 @@
 }
 
 div.ui-btn, input[type="submit"] {
-width: 160px !important;
+    width: 160px !important;
+    border: 0px;
+    border-color: lightgrey !important;
 }
 
 .custom-li {
@@ -211,4 +213,9 @@ width: 160px !important;
 .custom-collapsible {
     margin-left: 0px !important;
     border-width: 0px !important;
-    background-color: white  !important;}
+    background-color: white  !important;
+}
+
+.custom-list {
+    background: white  !important;
+}
