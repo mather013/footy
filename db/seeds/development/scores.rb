@@ -18,7 +18,7 @@
   Score.create(id: 4, fixture_id: Fixture.find_by_name('CHI-AUS').id, home: 0, away: 0)
 
   Score.create(id: 5, fixture_id: Fixture.find_by_name('COL-GRE').id, home: 2, away: 0)
-  Goal.create(score_id: 5, player_id: Player.find_by_name('R Falcao').id)
+  Goal.create(score_id: 5, player_id: Player.find_by_name('J Rodriguez').id)
   Goal.create(score_id: 5, player_id: Player.find_by_name('J Rodriguez').id)
 
   Score.create(id: 6, fixture_id: Fixture.find_by_name('COT-JAP').id, home: 1, away: 0)
@@ -50,7 +50,7 @@
 
   Score.create(id: 13, fixture_id: Fixture.find_by_name('GER-POR').id, home: 2, away: 3)
   Goal.create(score_id: 13, player_id: Player.find_by_name('L Podolski').id)
-  Goal.create(score_id: 13, player_id: Player.find_by_name('M Reus').id)
+  Goal.create(score_id: 13, player_id: Player.find_by_name('M Gotze').id)
   Goal.create(score_id: 13, player_id: Player.find_by_name('C Ronaldo').id)
   Goal.create(score_id: 13, player_id: Player.find_by_name('C Ronaldo').id)
   Goal.create(score_id: 13, player_id: Player.find_by_name('C Ronaldo').id)

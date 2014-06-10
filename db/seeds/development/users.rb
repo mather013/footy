@@ -17,7 +17,7 @@
   User.find_or_create_by_id(id:16, name:'Sammy Colton',      username:'sammyc', password:'abc')
   User.find_or_create_by_id(id:17, name:'Ste Bretherton',    username:'steb',   password:'abc')
   User.find_or_create_by_id(id:19, name:'Dave Mather',       username:'davem',  password:'abc')
-  User.find_or_create_by_id(id:20, name:'Josh Bendon',       username:'davidm', password:'abc')
+  User.find_or_create_by_id(id:20, name:'Josh Bendon',       username:'joshb',  password:'abc')
   User.find_or_create_by_id(id:21, name:'Chris Goldstone',   username:'chrisc', password:'abc')
   User.find_or_create_by_id(id:22, name:'Peter Mitchell',    username:'peterm', password:'abc')
   User.find_or_create_by_id(id:23, name:'Mark Simmister',    username:'marks',  password:'abc')

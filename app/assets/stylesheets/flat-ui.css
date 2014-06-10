@@ -11,6 +11,10 @@
     width: 60px;
 }
 
+.ui-page .ui-header .ui-btn-active {
+    background: lightgrey !important;
+}
+
 .ui-page .ui-footer {
     background: #3c8baa !important;
     /*background: #70A668 !important;*/
@@ -21,6 +25,10 @@
 
 .ui-page .ui-footer .ui-btn {
     background:transparent;
+}
+
+.ui-page .ui-footer .ui-btn-active {
+    background: lightgrey !important;
 }
 
 .ui-page .ui-btn {
