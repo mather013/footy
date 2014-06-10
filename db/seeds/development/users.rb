@@ -24,3 +24,5 @@
   User.find_or_create_by_id(id:24, name:'Neil Duckett',      username:'neild',  password:'abc')
   User.find_or_create_by_id(id:25, name:'Carl Daly',         username:'carld',  password:'abc')
   User.find_or_create_by_id(id:26, name:'Gene Coates',       username:'genec',  password:'abc')
+  User.find_or_create_by_id(id:27, name:'Mike Adams',        username:'mikea',  password:'abc')
+  User.find_or_create_by_id(id:28, name:'Mark Simister',     username:'marks',  password:'abc')
