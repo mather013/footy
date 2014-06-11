@@ -17,7 +17,7 @@ module RakeTaskResources
                 { user_id: User.find_by_username('stec').id,   player_names: ['S Aguero',  'D Costa',     'J Drmic',      'R Lukaku',    'L Podolski'  ] },
                 { user_id: User.find_by_username('liams').id,  player_names: ['S Aguero',  'L Messi',     'Neymar Jr',    'C Ronaldo',   'Y Toure'     ] },
                 { user_id: User.find_by_username('sammyc').id, player_names: ['L Messi',   'Neymar Jr',   'C Ronaldo',    'D Sturridge', 'L Suarez'    ] },
-                { user_id: User.find_by_username('steb').id,   player_names: ['S Aguero',  'E Dzeko',     'T Muller',     'Neymar Jr',   'L Suarez'    ] },
+                { user_id: User.find_by_username('steb').id,   player_names: ['S Aguero',  'T Muller',     'Neymar Jr',   'A Sanchez',   'L Suarez'    ] },
                 { user_id: User.find_by_username('davem').id,  player_names: ['D Costa',   'T Gutierrez', 'L Messi',      'Neymar Jr',   'L Suarez'    ] },
                 { user_id: User.find_by_username('peterm').id, player_names: ['K Benzema', 'Fred',        'M Gotze',      'G Higuain',   'Neymar Jr'   ] },
                 { user_id: User.find_by_username('genec').id,  player_names: ['Fred',      'J Rodriguez', 'G Higuain',    'Neymar Jr',   'R van Persie'] },
