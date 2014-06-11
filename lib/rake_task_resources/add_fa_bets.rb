@@ -13,7 +13,7 @@ module RakeTaskResources
                 { user_id: User.find_by_username('stef').id,   player_names: ['S Aguero',  'T Muller',    'Neymar Jr',    'C Ronaldo',   'L Suarez'    ] },
                 { user_id: User.find_by_username('dazm').id,   player_names: ['K Benzema', 'C Bacca',     'R Lukaku',     'L Messi',     'T Muller'    ] },
                 { user_id: User.find_by_username('johns').id,  player_names: ['Fred',      'R Lukaku',    'L Messi',      'T Muller',    'Neymar Jr'   ] },
-                { user_id: User.find_by_username('jonr').id,   player_names: ['R Lukaku',  'L Messi',     'Neymar Jr',   'C Ronaldo',   'D Sturridge' ] },
+                { user_id: User.find_by_username('jonr').id,   player_names: ['R Lukaku',  'L Messi',     'Neymar Jr',    'C Ronaldo',   'D Sturridge' ] },
                 { user_id: User.find_by_username('stec').id,   player_names: ['S Aguero',  'D Costa',     'J Drmic',      'R Lukaku',    'L Podolski'  ] },
                 { user_id: User.find_by_username('liams').id,  player_names: ['S Aguero',  'L Messi',     'Neymar Jr',    'C Ronaldo',   'Y Toure'     ] },
                 { user_id: User.find_by_username('sammyc').id, player_names: ['L Messi',   'Neymar Jr',   'C Ronaldo',    'D Sturridge', 'L Suarez'    ] },
@@ -26,8 +26,8 @@ module RakeTaskResources
                 { user_id: User.find_by_username('joshb').id,  player_names: ['Fred',      'L Messi',     'Neymar Jr',    'C Ronaldo',   'L Suarez'    ] },
                 { user_id: User.find_by_username('chrisc').id, player_names: ['K Benzema', 'R Lukaku',    'L Messi',      'Neymar Jr',   'W Rooney'    ] },
                 { user_id: User.find_by_username('mikea').id,  player_names: ['Fred',      'G Higuain',   'L Messi',      'Neymar Jr',   'L Suarez'    ] },
-                { user_id: User.find_by_username('mickb').id,  player_names: ['M Gotze',   'L Messi',     'Neymar Jr',    'A Pirlo',     'C Ronaldo'   ] }]
-                #{ user_id: User.find_by_username('marks').id,  player_names: [ ] }]
+                { user_id: User.find_by_username('mickb').id,  player_names: ['M Gotze',   'L Messi',     'Neymar Jr',    'A Pirlo',     'C Ronaldo'   ] },
+                { user_id: User.find_by_username('marks').id,  player_names: ['R Lukaku',  'L Messi',     'Neymar Jr',    'C Ronaldo',   'L Suarez'    ] }]
 
         bets.each do |bet|
           bet[:player_names].each do |player_name|
