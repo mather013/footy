@@ -6,7 +6,6 @@ module RakeTaskResources
         puts "===================="
         @fixture_ids = get_fixtures_ids_for week_id
         User.all.each do |user|
-          puts "marking #{user.username}"
           bets = Bet.bets_for_user_and_fixtures(user, @fixture_ids)
           mark_footy_forecast user, bets unless bets.empty?
         end
@@ -28,7 +27,7 @@ module RakeTaskResources
 
         point=Point.point_for_user_and_week(user, @week).first
         point.present? ? point.update_attributes(value: points) : Point.create(user_id: user.id, value: points, week_id: @week.id)
-        puts "Points total: #{points}"
+        puts "#{user.name} points: #{points}"
 
       end
     end
