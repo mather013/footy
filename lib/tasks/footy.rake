@@ -1,7 +1,7 @@
 namespace :footy do
   desc "Record score for fixture"
   task :add_score, [:fixture_name, :score] => :environment do |t, args|
-    RakeTaskResources::AddScore args
+    RakeTaskResources::AddScore.perform args
   end
 
   desc "Create user"
