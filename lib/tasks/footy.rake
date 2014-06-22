@@ -43,4 +43,18 @@ namespace :footy do
     RakeTaskResources::MarkFaBets.perform
     puts "===================="
   end
+
+  desc "Create dev data"
+  task :create_dev_data => :environment do
+    #Development data only. Used for visual checks for developing/testing (UAT like)
+    if Rails.env.development?
+      dev_seeds = Dir.glob(File.join(Rails.root, 'db', 'seeds', "#{Rails.env}/*.rb"))
+      dev_seeds.each do |seed_file|
+        p "seeding file #{seed_file}"
+        load seed_file
+      end
+      puts "Added development data"
+    end
+  end
+
 end
