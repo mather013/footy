@@ -4,6 +4,7 @@ defaults: &defaults
 #  knockout_rounds: []
   competition: world_cup
   knockout_rounds: [4,5,6,7]
+  teams_in: ['alg','arg','bel','bra','chi','col','cos','ecu','fra','ger','gha','gre','kor','mex','net','nig','por','rus','swi','uru','usa']
 
 development:
   <<: *defaults
