@@ -68,7 +68,7 @@ Fixture.find_or_create_by_id(:id => 56, :kickoff => DateTime.parse('2014-07-01 2
 Fixture.find_or_create_by_id(:id => 57, :kickoff => DateTime.parse('2014-07-04 20:00:00'), :name => 'BRA-COL', :home_team_id => 6,  :away_team_id => 9,  :week_id => 5)
 Fixture.find_or_create_by_id(:id => 58, :kickoff => DateTime.parse('2014-07-04 16:00:00'), :name => 'FRA-GER', :home_team_id => 15, :away_team_id => 16, :week_id => 5)
 Fixture.find_or_create_by_id(:id => 59, :kickoff => DateTime.parse('2014-07-05 20:00:00'), :name => 'NET-COS', :home_team_id => 25, :away_team_id => 11, :week_id => 5)
-Fixture.find_or_create_by_id(:id => 60, :kickoff => DateTime.parse('2014-07-05 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
+Fixture.find_or_create_by_id(:id => 60, :kickoff => DateTime.parse('2014-07-05 16:00:00'), :name => 'ARG-BEL', :home_team_id => 2,  :away_team_id => 4,  :week_id => 5)
 
 #Semi final knockout
 Fixture.find_or_create_by_id(:id => 61, :kickoff => DateTime.parse('2014-07-08 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 6)
