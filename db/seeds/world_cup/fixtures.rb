@@ -55,19 +55,19 @@ Fixture.find_or_create_by_id(:id => 47, :kickoff => DateTime.parse('2014-06-26 2
 Fixture.find_or_create_by_id(:id => 48, :kickoff => DateTime.parse('2014-06-26 20:00:00'), :name => 'ALG-RUS', :home_team_id => 1,  :away_team_id => 28, :week_id => 3)
 
 #Last 16 knockout
-Fixture.find_or_create_by_id(:id => 49, :kickoff => DateTime.parse('2014-06-28 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
-Fixture.find_or_create_by_id(:id => 50, :kickoff => DateTime.parse('2014-06-28 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
-Fixture.find_or_create_by_id(:id => 51, :kickoff => DateTime.parse('2014-06-29 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
-Fixture.find_or_create_by_id(:id => 52, :kickoff => DateTime.parse('2014-06-29 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
-Fixture.find_or_create_by_id(:id => 53, :kickoff => DateTime.parse('2014-06-30 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
-Fixture.find_or_create_by_id(:id => 54, :kickoff => DateTime.parse('2014-06-30 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
-Fixture.find_or_create_by_id(:id => 55, :kickoff => DateTime.parse('2014-07-01 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
-Fixture.find_or_create_by_id(:id => 56, :kickoff => DateTime.parse('2014-07-01 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 49, :kickoff => DateTime.parse('2014-06-28 16:00:00'), :name => 'BRA-CHI', :home_team_id => 6,  :away_team_id => 8,  :week_id => 4)
+Fixture.find_or_create_by_id(:id => 50, :kickoff => DateTime.parse('2014-06-28 20:00:00'), :name => 'COL-URU', :home_team_id => 9,  :away_team_id => 31, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 51, :kickoff => DateTime.parse('2014-06-29 16:00:00'), :name => 'NET-MEX', :home_team_id => 25, :away_team_id => 24, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 52, :kickoff => DateTime.parse('2014-06-29 20:00:00'), :name => 'COS-GRE', :home_team_id => 11, :away_team_id => 18, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 53, :kickoff => DateTime.parse('2014-06-30 16:00:00'), :name => 'FRA-NIG', :home_team_id => 15, :away_team_id => 26, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 54, :kickoff => DateTime.parse('2014-06-30 20:00:00'), :name => 'GER-ALG', :home_team_id => 16, :away_team_id => 1,  :week_id => 4)
+Fixture.find_or_create_by_id(:id => 55, :kickoff => DateTime.parse('2014-07-01 16:00:00'), :name => 'ARG-SWI', :home_team_id => 2,  :away_team_id => 30, :week_id => 4)
+Fixture.find_or_create_by_id(:id => 56, :kickoff => DateTime.parse('2014-07-01 20:00:00'), :name => 'BEL-USA', :home_team_id => 4,  :away_team_id => 32, :week_id => 4)
 
-#Quarted final knockout
-Fixture.find_or_create_by_id(:id => 57, :kickoff => DateTime.parse('2014-07-04 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
-Fixture.find_or_create_by_id(:id => 58, :kickoff => DateTime.parse('2014-07-04 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
-Fixture.find_or_create_by_id(:id => 59, :kickoff => DateTime.parse('2014-07-05 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
+#Quarter final knockout
+Fixture.find_or_create_by_id(:id => 57, :kickoff => DateTime.parse('2014-07-04 20:00:00'), :name => 'BRA-COL', :home_team_id => 6,  :away_team_id => 9,  :week_id => 5)
+Fixture.find_or_create_by_id(:id => 58, :kickoff => DateTime.parse('2014-07-04 16:00:00'), :name => 'FRA-GER', :home_team_id => 15, :away_team_id => 16, :week_id => 5)
+Fixture.find_or_create_by_id(:id => 59, :kickoff => DateTime.parse('2014-07-05 20:00:00'), :name => 'NET-COS', :home_team_id => 25, :away_team_id => 11, :week_id => 5)
 Fixture.find_or_create_by_id(:id => 60, :kickoff => DateTime.parse('2014-07-05 16:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 5)
 
 #Semi final knockout
