@@ -18,12 +18,12 @@ Week.find_or_create_by_id(:id => 3,
 Week.find_or_create_by_id(:id => 4,
                           :description => 'Round of 16',
                           :close_date => DateTime.parse('28-06-2014 16:00:00'),
-                          :complete => nil)
+                          :complete => true)
 
  Week.find_or_create_by_id(:id => 5,
                            :description => 'Quarter-final',
                            :close_date => DateTime.parse('04-07-2014 16:00:00'),
-                           :complete => nil)
+                           :complete => true)
  
  Week.find_or_create_by_id(:id => 6,
                            :description => 'Semi-final',
