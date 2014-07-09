@@ -28,7 +28,7 @@ Week.find_or_create_by_id(:id => 4,
  Week.find_or_create_by_id(:id => 6,
                            :description => 'Semi-final',
                            :close_date => DateTime.parse('08-07-2014 20:00:00'),
-                           :complete => nil)
+                           :complete => true)
  
  Week.find_or_create_by_id(:id => 7,
                            :description => 'Final',

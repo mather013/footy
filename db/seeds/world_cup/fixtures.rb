@@ -75,5 +75,5 @@ Fixture.find_or_create_by_id(:id => 61, :kickoff => DateTime.parse('2014-07-08 2
 Fixture.find_or_create_by_id(:id => 62, :kickoff => DateTime.parse('2014-07-09 20:00:00'), :name => 'NET-ARG', :home_team_id => 25, :away_team_id => 2,  :week_id => 6)
 
 #Final knockout
-Fixture.find_or_create_by_id(:id => 63, :kickoff => DateTime.parse('2014-07-12 20:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 7)
-Fixture.find_or_create_by_id(:id => 64, :kickoff => DateTime.parse('2014-07-13 19:00:00'), :name => 'TBA-TBA', :home_team_id => 33, :away_team_id => 33, :week_id => 7)
+Fixture.find_or_create_by_id(:id => 63, :kickoff => DateTime.parse('2014-07-12 20:00:00'), :name => 'BRA-NET', :home_team_id => 6,  :away_team_id => 25, :week_id => 7)
+Fixture.find_or_create_by_id(:id => 64, :kickoff => DateTime.parse('2014-07-13 19:00:00'), :name => 'GER-ARG', :home_team_id => 16, :away_team_id => 2,  :week_id => 7)
