@@ -8,6 +8,9 @@ module RakeTaskResources
         FaBet.delete_all
         Goal.delete_all
         Score.delete_all
+        LmPoint.delete_all
+        LmBet.delete_all
+        LmRound.delete_all
       end
     end
   end
