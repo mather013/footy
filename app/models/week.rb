@@ -17,18 +17,40 @@ class Week < ActiveRecord::Base
   end
 
   def in_play?
-    close_date < current_date_and_time and !complete?
+    close_date < Time.now and !complete?
   end
 
   def open?
-    close_date > current_date_and_time and close_date < current_date_and_time + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
-    #close_date > current_date_and_time and close_date < current_date_and_time + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
+    close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
+    #close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
   end
 
-  private
+  def winning_teams
+    teams = []
+    self.fixtures.each do |fixture|
+      teams << fixture.winning_team unless fixture.winning_team.nil?
+    end
+    teams
+  end
 
-  def current_date_and_time
-    Time.now
+  def results_hash
+    results = {}
+    self.fixtures.each do |fixture|
+      if fixture.score.nil?
+        results.merge!(fixture.home_team.abbreviation.to_sym => 'tba')
+        results.merge!(fixture.away_team.abbreviation.to_sym => 'tba')
+      elsif fixture.score.outcome == 'H'
+        results.merge!(fixture.home_team.abbreviation.to_sym => 'W')
+        results.merge!(fixture.away_team.abbreviation.to_sym => 'L')
+      elsif fixture.score.outcome == 'A'
+        results.merge!(fixture.home_team.abbreviation.to_sym => 'L')
+        results.merge!(fixture.away_team.abbreviation.to_sym => 'W')
+      else
+        results.merge!(fixture.home_team.abbreviation.to_sym => 'D')
+        results.merge!(fixture.away_team.abbreviation.to_sym => 'D')
+      end
+    end
+    results
   end
 
 end

@@ -1,0 +1,21 @@
+<% fixtures = @fixtures.order("kickoff asc") %>
+<div data-role="content">
+  <ul data-role="listview" id="fix-list">
+    <% (fixtures.count*0.5).to_i.times do |i| %>
+        <li>
+          <div class="ui-grid-b main-font">
+            <div class="ui-block-a" align="center" style="width: 50%">
+              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2].home_team.abbreviation}.png", class: "strip-size" %>
+              <%= "#{fixtures[i*2].home_team.abbreviation.upcase} v #{fixtures[i*2].away_team.abbreviation.upcase} " %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2].away_team.abbreviation}.png", class: "strip-size" %>
+            </div>
+            <div class="ui-block-b" align="center" style="width: 50%">
+              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2+1].home_team.abbreviation}.png", class: "strip-size" %>
+              <%= "#{fixtures[i*2+1].home_team.abbreviation.upcase} v #{fixtures[i*2+1].away_team.abbreviation.upcase} " %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2+1].away_team.abbreviation}.png", class: "strip-size" %>
+            </div>
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>

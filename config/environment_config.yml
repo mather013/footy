@@ -1,13 +1,14 @@
 defaults: &defaults
-  round_open_period_in_days: 3
-#  competition: premier_league
-#  knockout_rounds: []
-  competition: world_cup
-  knockout_rounds: [4,5,6,7]
-  teams_in: ['arg','bra', 'ger','net']
+  round_open_period_in_days: 7
+  competition: premier_league
+  knockout_rounds: []
+#  competition: world_cup
+#  knockout_rounds: [4,5,6,7]
+#  teams_in: ['arg','bra', 'ger','net']
 
 development:
   <<: *defaults
+  round_open_period_in_days: 35
 
 test: &test
   <<: *defaults

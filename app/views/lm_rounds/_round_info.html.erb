@@ -1,0 +1,22 @@
+<div class="ui-grid-b">
+  <div class="ui-block-a main-font" style="width:60%">
+    <%= "Round #{i}" %>
+
+    <% case round.week.status %>
+    <% when "Complete" %>
+        <span class="label label-default">Complete</span>
+    <% when "In play" %>
+        <span class="label label-warning">In play</span>
+    <% when "Open" %>
+        <span class="label label-success">Open</span>
+    <% end %>
+
+    <br>
+    <h10 class="kickoff">
+      Kickoff: <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+    </h10>
+  </div>
+  <div class="ui-block-b points_sml" style="width:40%">
+    <%= lm_bet.first.team.name unless lm_bet.empty? %>
+  </div>
+</div>
