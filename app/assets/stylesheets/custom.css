@@ -219,3 +219,6 @@ div.ui-btn, input[type="submit"] {
 .custom-list {
     background: white  !important;
 }
+.disabled-font {
+    color: #979797;
+}
