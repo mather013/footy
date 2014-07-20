@@ -6,4 +6,8 @@ class LmRoundsController < ApplicationController
     @user = current_user
   end
 
+  def info
+
+  end
+
 end

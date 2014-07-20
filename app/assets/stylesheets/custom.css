@@ -5,6 +5,13 @@
     top: 7px;
 }
 
+.lm_team {
+    font-size: .8em;
+    color: black;
+    position: relative;
+    top: 7px;
+}
+
 .leaderboard {
     font-size: .8em;
 }

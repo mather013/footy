@@ -22,5 +22,6 @@ Footy::Application.routes.draw do
   post 'lm_rounds/:lm_round_id/lm_bets' => 'lm_bets#new', :as => 'new_lm_bet'
   get  'lm_rounds/:lm_round_id/lm_bets' => 'lm_bets#edit', :as => 'edit_lm_bet'
   get  'lm_points' => 'lm_points#index', :as => 'lm_points'
+  get  'lm_rounds_info' => 'lm_rounds#info', :as => 'lm_rounds_info'
   #put  'lm_rounds/:lm_round_id/lm_bets' => 'lm_bets#update', :as => 'update_lm_bet'
 end
