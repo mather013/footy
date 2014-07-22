@@ -12,15 +12,15 @@
         <li>
           <a href="<%= fixtures_path(week.id) %>">
             <div class="ui-grid-b">
-              <div class="ui-block-a main-font" style="width:18%">
+              <div class="ui-block-a main-font" style="width:21%">
                 <%= "#{week.description}" %>
                 <br>
                 <h10 class="kickoff">
-                  Kickoff: <%= "#{DateTime.parse(week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+                  <%= "#{DateTime.parse(week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
                 </h10>
               </div>
 
-              <div class="ui-block-b main-font" style="width:72%">
+              <div class="ui-block-b main-font" style="width:69%">
                 <% case week.status %>
                 <% when "Complete" %>
                     <span class="label label-default">Complete</span>
@@ -33,7 +33,7 @@
 
               <div class="ui-block-c points_sml" style="width:10%">
                 <% point= Point.point_for_user_and_week(User.find(@user), week).first %>
-                <%= point.nil? ? " " : point.value %>
+                <%= point.value if point.present? %>
               </div>
 
             </div>

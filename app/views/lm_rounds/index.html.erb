@@ -16,46 +16,32 @@
               <% if lm_bet.nil? %>
                   <%= link_to new_lm_bet_path(round.id), :method => :post do %>
                       <div class="ui-grid-b">
-                        <div class="ui-block-a main-font" style="width:20%">
+                        <div class="ui-block-a main-font" style="width:21%">
                           <%= "Round #{round.id.to_s.rjust(2, "0")}" %>
                           <br>
                           <h10 class="kickoff">
-                            Kickoff: <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+                            <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
                           </h10>
                         </div>
-                        <div class="ui-block-b main-font" style="width:30%">
-                          <% case round.week.status %>
-                          <% when "Complete" %>
-                              <span class="label label-default">Complete</span>
-                          <% when "In play" %>
-                              <span class="label label-warning">In play</span>
-                          <% when "Open" %>
-                              <span class="label label-success">Open</span>
-                          <% end %>
+                        <div class="ui-block-b main-font" style="width:33%">
+                          <span class="label label-success">Open</span>
                         </div>
                       </div>
                   <% end %>
               <% else %>
                   <%= link_to edit_lm_bet_path(round.id), :method => :get do %>
                       <div class="ui-grid-b">
-                        <div class="ui-block-a main-font" style="width:20%">
+                        <div class="ui-block-a main-font" style="width:21%">
                           <%= "Round #{round.id.to_s.rjust(2, "0")}" %>
                           <br>
                           <h10 class="kickoff">
-                            Kickoff: <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+                            <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
                           </h10>
                         </div>
-                        <div class="ui-block-b main-font" style="width:30%">
-                          <% case round.week.status %>
-                          <% when "Complete" %>
-                              <span class="label label-default">Complete</span>
-                          <% when "In play" %>
-                              <span class="label label-warning">In play</span>
-                          <% when "Open" %>
-                              <span class="label label-success">Open</span>
-                          <% end %>
+                        <div class="ui-block-b main-font" style="width:33%">
+                          <span class="label label-success">Open</span>
                         </div>
-                        <div class="ui-block-c lm_team" style="width:40%">
+                        <div class="ui-block-c lm_team" style="width:36%">
                           <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{lm_bet.team.abbreviation}.png", class: "strip-size" %>
                           <%= lm_bet.team.name.upcase %>
                         </div>
@@ -68,7 +54,7 @@
                   <%= "Round #{round.id.to_s.rjust(2, "0")}" %>
                   <br>
                   <h10 class="kickoff">
-                    Kickoff: <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+                    <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
                   </h10>
                 </div>
                 <div class="ui-block-b main-font" style="width:30%">
@@ -77,35 +63,27 @@
                       <span class="label label-default">Complete</span>
                   <% when "In play" %>
                       <span class="label label-warning">In play</span>
-                  <% when "Open" %>
-                      <span class="label label-success">Open</span>
                   <% end %>
                 </div>
 
-                <% bet_result = lm_bet.result if lm_bet.present? %>
+                <% if lm_bet.present? %>
+                    <div class="ui-block-b points_sml" style="width:40%">
+                      <% if lm_bet.present? %>
+                          <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{lm_bet.team.abbreviation}.png", class: "strip-size" %>
+                          <%= lm_bet.team.name.upcase %>
+                      <% end %>
+                    </div>
 
-                <div class="ui-block-b points_sml" style="width:40%">
-                  <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{lm_bet.team.abbreviation}.png", class: "strip-size" %>
-                  <%= lm_bet.team.name.upcase %>
-                </div>
-
-                <% if lm_bet.nil? %>
-                    <% unless round.week.complete? %>
-                        <div class="ui-block-c points_sml" style="width:10%">
-                        </div>
-                    <% else %>
-                        <div class="wrong ui-block-c points_sml" style="width:10%">
-                          <%= "L" %>
-                        </div>
+                    <% bet_result = lm_bet.result %>
+                    <% if bet_result == 'W' %>
+                        <div class="correct ui-block-c points_sml" style="width:10%"><%= "W" %></div>
+                    <% elsif bet_result == 'L' or bet_result == 'D' %>
+                        <div class="wrong ui-block-c points_sml" style="width:10%"><%= "L" %></div>
                     <% end %>
-                <% elsif bet_result == 'W' %>
-                    <div class="correct ui-block-c points_sml" style="width:10%">
-                      <%= "W" %>
-                    </div>
-                <% elsif bet_result == 'L' or bet_result == 'D' %>
-                    <div class="wrong ui-block-c points_sml" style="width:10%">
-                      <%= "L" %>
-                    </div>
+
+                <% elsif round.week.complete? %>
+                    <!--<div class="ui-block-b points_sml" style="width:40%"></div>-->
+                    <!--<div class="wrong ui-block-c points_sml" style="width:10%"><%= "L" %></div>-->
                 <% end %>
               </div>
           <% end %>
