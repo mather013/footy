@@ -1,22 +1,17 @@
 <div class="ui-grid-b">
-  <div class="ui-block-a main-font" style="width:60%">
-    <%= "Round #{i}" %>
+  <div class="ui-block-a main-font" style="width:43%">
+    <%= "Round #{@round.id.to_s.rjust(2, "0")}" %>
 
-    <% case round.week.status %>
-    <% when "Complete" %>
-        <span class="label label-default">Complete</span>
-    <% when "In play" %>
-        <span class="label label-warning">In play</span>
-    <% when "Open" %>
-        <span class="label label-success">Open</span>
-    <% end %>
-
+    <span class="label label-success">Open</span>
     <br>
     <h10 class="kickoff">
-      Kickoff: <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+      <%= "#{DateTime.parse(@round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
     </h10>
   </div>
-  <div class="ui-block-b points_sml" style="width:40%">
-    <%= lm_bet.first.team.name unless lm_bet.empty? %>
-  </div>
+  <% if @lm_bet.present? %>
+      <div class="ui-block-b lm_team" style="width:50%">
+        <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@lm_bet.team.abbreviation}.png", class: "strip-size" %>
+        <%= @lm_bet.team.name.upcase %>
+      </div>
+  <% end %>
 </div>
