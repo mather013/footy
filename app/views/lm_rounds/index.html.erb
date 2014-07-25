@@ -24,37 +24,7 @@
                   <% end %>
               <% end %>
           <% else %>
-              <div class="ui-grid-b">
-                <div class="ui-block-a main-font" style="width:40%">
-                  <%= "Round #{round.id.to_s.rjust(2, "0")}" %>
-                  <% if round.week.status == "In play" %>
-                      <span class="label label-warning">In play</span>
-                  <% end %>
-                  <br>
-                  <h10 class="kickoff">
-                    <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
-                  </h10>
-                </div>
-                <% if @lm_bet.present? %>
-                    <div class="ui-block-b points_sml" style="width:50%">
-                      <% if @lm_bet.present? %>
-                          <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@lm_bet.team.abbreviation}.png", class: "strip-size" %>
-                          <%= @lm_bet.team.name.upcase %>
-                      <% end %>
-                    </div>
-
-                    <% bet_result = @lm_bet.result %>
-                    <% if bet_result == 'W' %>
-                        <div class="correct ui-block-c points_sml" style="width:10%"><%= "W" %></div>
-                    <% elsif bet_result == 'L' or bet_result == 'D' %>
-                        <div class="wrong ui-block-c points_sml" style="width:10%"><%= "L" %></div>
-                    <% end %>
-
-                <% elsif @round.week.complete? %>
-                    <!--<div class="ui-block-b points_sml" style="width:40%"></div>-->
-                    <!--<div class="wrong ui-block-c points_sml" style="width:10%"><%= "L" %></div>-->
-                <% end %>
-              </div>
+              <%= render "round_info" %>
           <% end %>
         </li>
     <% end %>

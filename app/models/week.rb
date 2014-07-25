@@ -22,7 +22,6 @@ class Week < ActiveRecord::Base
 
   def open?
     close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
-    #close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
   end
 
   def winning_teams
