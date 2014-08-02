@@ -6,13 +6,6 @@
   <h1><%= "5 Alive" %></h1>
 </div>
 
-<% if @total_points.empty? %>
-    <div class="leaderboard" align="center">
-      <br>
-      Bets not marked
-    </div>
-<% end %>
-
 <div class="leaderboard">
   <ul data-role="listview">
     <% index = 0 %>
