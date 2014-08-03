@@ -6,7 +6,7 @@
         <% team_names=[] %>
         <% @choices.each { |team| team_names << team[0] } %>
 
-        <li>
+        <li class="custom-list">
           <div class="ui-grid-b main-font">
             <div class="ui-block-a" align="center" style="width: 50%">
               <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2].home_team.abbreviation}.png", class: "strip-size" %>

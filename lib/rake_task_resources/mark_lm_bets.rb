@@ -18,7 +18,7 @@ module RakeTaskResources
       def mark_last_man lm_bets
         points = 0
         lm_bets.each do |lm_bet|
-          points +=1 unless lm_bet.result == 'L'
+          points +=1 unless lm_bet.result == 'L' || lm_bet.result == 'D'
         end
         points
       end

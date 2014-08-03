@@ -11,23 +11,26 @@
     <% @total_points.each do |point| %>
         <li class="custom-list">
           <div class="ui-grid-b">
-            <% unless point.value >= @max_round.id-1 %>
-                <% style = "disabled-font" %>
-                <% text = "Round #{point.value+1} KO" %>
-            <% end %>
+
+            <% knocked_out = point.value < @max_round.id-1 %>
+            <% style = "disabled-font" if knocked_out %>
+            <% user = User.find(point.user_id) %>
 
             <div class= "ui-block-b <%= style %>" style="width:40%">
-              <% user = User.find(point.user_id) %>
               <%= user.name %>
             </div>
 
-            <div class="ui-block-c payout-icon" style="width:30%">
+            <div class="ui-block-c payout-icon" style="width:10%">
               <%= "$" if user.payout_user? %>
             </div>
 
-            <div class="ui-block-d  <%= style %>" align="center" style="width:30%">
-              <%= text %>
+            <div class="ui-block-d <%= style %>" align="left" style="width:50%">
+              <% if knocked_out %>
+                  <%= "Round #{point.value+1}:" %>
+                  <%= user.lm_bets.present? ? user.lm_bets.last.team.name : "Not Selected" %>
+              <% end %>
             </div>
+
           </div>
         </li>
     <% end %>
