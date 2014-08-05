@@ -32,7 +32,7 @@
             </div>
 
             <div class="ui-block-c payout-icon" style="width:8%">
-              <%= "$" if user.payout_user? %>
+              <%= "$" if user.games.include?(@game) %>
             </div>
 
             <div class="ui-block-d" align="left" style="width:32%">

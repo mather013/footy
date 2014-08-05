@@ -21,7 +21,7 @@
             </div>
 
             <div class="ui-block-c payout-icon" style="width:10%">
-              <%= "$" if user.payout_user? %>
+              <%= "$" if user.games.include?(@game) %>
             </div>
 
             <div class="ui-block-d <%= style %>" align="left" style="width:50%">

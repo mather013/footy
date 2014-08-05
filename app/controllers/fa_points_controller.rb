@@ -2,7 +2,13 @@ class FaPointsController < ApplicationController
   before_filter :require_login
 
   def index
+    @game = game
     @total_points = FaPoint.find(:all, :select => 'user_id, value', :order => 'value DESC')
+  end
+
+  private
+  def game
+    Game.find_by_name('5 Alive')
   end
 
 end

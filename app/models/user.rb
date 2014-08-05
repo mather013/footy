@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :id, :username, :password, :name, :payout_user
+  attr_accessible :id, :username, :password, :name
 
   has_many :bets
   has_many :fa_bets
@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :points
   has_one :fa_point
   has_one :lm_point
+  has_and_belongs_to_many :games
 
   def fa_teams
     teams=[]
