@@ -13,7 +13,7 @@
         <% @round = round %>
         <li class="custom-list">
           <% @lm_bet = LmBet.bets_for_user_and_round(@user, round).first %>
-          <% if round.week.open? and not @user.readonly_user? and @user.lm_survivor? %>
+          <% if round.week.open? and not @user.read_only? and @user.lm_survivor? %>
               <% if @lm_bet.nil? %>
                   <%= link_to new_lm_bet_path(round.id), :method => :post do %>
                       <%= render "round_info" %>

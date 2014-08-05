@@ -12,7 +12,6 @@ class LmBetsController < ApplicationController
     redirect_to lm_rounds_path
   end
 
-
   def edit
     load_details
     @bet = LmBet.find(:all, :conditions => ["lm_round_id = ? AND user_id = ?", params[:lm_round_id], current_user.id]).first
@@ -31,6 +30,7 @@ class LmBetsController < ApplicationController
     @week      = @lm_round.week
     @fixtures  = @lm_round.week.fixtures
     all_teams  = Team.all_for_choices
+
     teams_used = []
     LmBet.find(:all, :conditions => ["lm_round_id <> ? AND user_id = ?", params[:lm_round_id], current_user.id]).each do |bet|
       teams_used << Team.find(bet.team_id)
@@ -40,7 +40,7 @@ class LmBetsController < ApplicationController
     teams_used.each { |team| teams_used_ids << [team.name, team.id] }
 
     @choices = all_teams - teams_used_ids
-    #binding.pry
+
   end
 
 end
