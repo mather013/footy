@@ -25,6 +25,11 @@ namespace :footy do
     RakeTaskResources::AddFaBets.perform
   end
 
+  desc "Add next LMS round"
+  task :add_lm_round => :environment do
+    RakeTaskResources::AddLmRound.perform
+  end
+
   desc "Mark bets for week"
   task :mark_week, [:week_id] => :environment do |t, args|
     puts "===================="
