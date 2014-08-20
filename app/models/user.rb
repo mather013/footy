@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :username, :password
 
+  def admin?
+    username == 'markm'
+  end
+
   def read_only?
     username == 'guest'
   end
