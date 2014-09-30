@@ -36,7 +36,7 @@ Fixture.find_or_create_by_id(id: 30,  kickoff: DateTime.parse('30-08-2014 14:00:
 Fixture.find_or_create_by_id(id: 31,  kickoff: DateTime.parse('13-09-2014 11:45:00'), name: 'ARS-MCI', home_team_id: 1,  away_team_id: 10, week_id: 4)
 Fixture.find_or_create_by_id(id: 32,  kickoff: DateTime.parse('13-09-2014 14:00:00'), name: 'CHE-SWA', home_team_id: 4,  away_team_id: 17, week_id: 4)
 Fixture.find_or_create_by_id(id: 33,  kickoff: DateTime.parse('13-09-2014 14:00:00'), name: 'CRY-BUR', home_team_id: 5,  away_team_id: 3,  week_id: 4)
-Fixture.find_or_create_by_id(id: 34,  kickoff: DateTime.parse('15-09-2014 19:00:00'), name: 'HUL_WHA', home_team_id: 7,  away_team_id: 20, week_id: 4)
+Fixture.find_or_create_by_id(id: 34,  kickoff: DateTime.parse('15-09-2014 19:00:00'), name: 'HUL-WHA', home_team_id: 7,  away_team_id: 20, week_id: 4)
 Fixture.find_or_create_by_id(id: 35,  kickoff: DateTime.parse('13-09-2014 16:30:00'), name: 'LIV-AST', home_team_id: 9,  away_team_id: 2,  week_id: 4)
 Fixture.find_or_create_by_id(id: 36,  kickoff: DateTime.parse('14-09-2014 15:00:00'), name: 'MUN-QPR', home_team_id: 11, away_team_id: 13, week_id: 4)
 Fixture.find_or_create_by_id(id: 37,  kickoff: DateTime.parse('13-09-2014 14:00:00'), name: 'SOU-NEW', home_team_id: 14, away_team_id: 12, week_id: 4)
@@ -52,7 +52,7 @@ Fixture.find_or_create_by_id(id: 45,  kickoff: DateTime.parse('21-09-2014 15:00:
 Fixture.find_or_create_by_id(id: 46,  kickoff: DateTime.parse('20-09-2014 14:00:00'), name: 'NEW-HUL', home_team_id: 12, away_team_id: 7,  week_id: 5)
 Fixture.find_or_create_by_id(id: 47,  kickoff: DateTime.parse('20-09-2014 11:45:00'), name: 'QPR-STO', home_team_id: 13, away_team_id: 15, week_id: 5)
 Fixture.find_or_create_by_id(id: 48,  kickoff: DateTime.parse('20-09-2014 14:00:00'), name: 'SWA-SOU', home_team_id: 17, away_team_id: 14, week_id: 5)
-Fixture.find_or_create_by_id(id: 49,  kickoff: DateTime.parse('20-09-2014 14:00:00'), name: 'TOT-WBR', home_team_id: 18, away_team_id: 19, week_id: 5)
+Fixture.find_or_create_by_id(id: 49,  kickoff: DateTime.parse('21-09-2014 12:30:00'), name: 'TOT-WBR', home_team_id: 18, away_team_id: 19, week_id: 5)
 Fixture.find_or_create_by_id(id: 50,  kickoff: DateTime.parse('20-09-2014 16:30:00'), name: 'WHA-LIV', home_team_id: 20, away_team_id: 9,  week_id: 5)
 
 Fixture.find_or_create_by_id(id: 51,  kickoff: DateTime.parse('27-09-2014 16:30:00'), name: 'ARS-TOT', home_team_id: 1,  away_team_id: 18, week_id: 6)
@@ -74,7 +74,7 @@ Fixture.find_or_create_by_id(id: 65,  kickoff: DateTime.parse('04-10-2014 14:00:
 Fixture.find_or_create_by_id(id: 66,  kickoff: DateTime.parse('05-10-2014 11:00:00'), name: 'MUN-EVE', home_team_id: 11, away_team_id: 6,  week_id: 7)
 Fixture.find_or_create_by_id(id: 67,  kickoff: DateTime.parse('04-10-2014 14:00:00'), name: 'SUN-STO', home_team_id: 16, away_team_id: 15, week_id: 7)
 Fixture.find_or_create_by_id(id: 68,  kickoff: DateTime.parse('04-10-2014 14:00:00'), name: 'SWA-NEW', home_team_id: 17, away_team_id: 12, week_id: 7)
-Fixture.find_or_create_by_id(id: 69,  kickoff: DateTime.parse('04-10-2014 14:00:00'), name: 'TOT-SOU', home_team_id: 18, away_team_id: 14, week_id: 7)
+Fixture.find_or_create_by_id(id: 69,  kickoff: DateTime.parse('05-10-2014 13:05:00'), name: 'TOT-SOU', home_team_id: 18, away_team_id: 14, week_id: 7)
 Fixture.find_or_create_by_id(id: 70,  kickoff: DateTime.parse('05-10-2014 15:15:00'), name: 'WHA-QPR', home_team_id: 20, away_team_id: 13, week_id: 7)
 
 Fixture.find_or_create_by_id(id: 71,  kickoff: DateTime.parse('18-10-2014 14:00:00'), name: 'ARS-HUL', home_team_id: 1,  away_team_id: 7,  week_id: 8)
