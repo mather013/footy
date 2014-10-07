@@ -11,7 +11,7 @@
   <%= "User: #{@user.name}" %> <br>
 
   <p></p>
-  <%= "#{@week_current.description}" %> <br>
+  <%= "#{@week_current.description} - #{@week_current.status}" %> <br>
   <% @users.each do |user| %>
       <% if user.bets.present? %>
           <div class="ui-grid-b">
@@ -24,7 +24,7 @@
             </div>
 
             <div class="ui-block-c" style="width:20%">
-              <%= user.lm_survivor? ? LmBet.bets_for_user_and_round(user,@round_current).count : "X"%>
+              <%= LmBet.bets_for_user_and_round(user,@round_current).count if user.lm_survivor? %>
             </div>
           </div>
       <% end %>
