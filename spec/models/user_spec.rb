@@ -16,10 +16,11 @@ describe User do
     it { should respond_to(:name) }
     it { should respond_to(:username) }
     it { should respond_to(:password) }
+    it { should respond_to(:mobile) }
   end
 
   describe 'mass assignment' do
-    [:id, :name, :username, :password].each do |attribute|
+    [:id, :name, :username, :password, :mobile].each do |attribute|
       it { should allow_mass_assignment_of(attribute) }
     end
   end
