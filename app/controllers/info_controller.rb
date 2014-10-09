@@ -5,7 +5,7 @@ class InfoController < ApplicationController
     @users = User.order('username')
     @user = current_user
     @week_current = Week.current
-    @round_current = LmRound.last
+    @round_current = LmRound.current
   end
 
 end

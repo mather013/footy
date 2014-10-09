@@ -53,7 +53,7 @@ class Week < ActiveRecord::Base
   end
 
   def self.current
-    Week.where("close_date > '#{Time.now}'").order(:close_date).first
+    self.where("close_date > '#{Time.now}'").order(:close_date).first
   end
 
 end
