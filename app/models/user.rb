@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :fa_bets
   has_many :lm_bets
   has_many :points
+  has_many :communications
   has_one :fa_point
   has_one :lm_point
   has_and_belongs_to_many :games

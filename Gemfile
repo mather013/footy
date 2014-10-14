@@ -25,10 +25,12 @@ gem 'jquery-rails'
 gem 'therubyracer'
 gem 'jquery_mobile_rails'
 gem 'rspec-rails'
+gem 'rest-client'
 
 group :test do
   gem 'shoulda'
   gem 'rspec-spies'
+  gem 'webmock', '~>1.9'
 end
 
 # To use ActiveModel has_secure_password
