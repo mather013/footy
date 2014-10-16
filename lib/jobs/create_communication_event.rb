@@ -1,5 +1,5 @@
 module Jobs
-  class CreateReminderCommunication
+  class CreateCommunicationEvent
 
     MESSAGE = "Don't forget to make your predictions!"
 

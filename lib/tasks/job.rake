@@ -5,9 +5,9 @@ namespace :job do
     Jobs::SmsSender.new.perform
   end
 
-  desc "Create reminder event"
-  task :reminder_event => :environment do
-    Jobs::CreateReminderCommunication.new.perform
+  desc "Create communication events"
+  task :communication_event => :environment do
+    Jobs::CreateCommunicationEvent.new.perform
   end
 
 end

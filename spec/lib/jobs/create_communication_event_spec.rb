@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Jobs
-  describe CreateReminderCommunication do
+  describe CreateCommunicationEvent do
     let(:fixtures) { [double(Fixture, id: 1), double(Fixture, id: 2), double(Fixture, id: 3)] }
     let(:users) { [double(User, id: 99, mobile: mobile_number, bets: bets)] }
 
@@ -15,7 +15,7 @@ module Jobs
           User.stub(:all).and_return(users)
           Bet.stub(:bets_for_user_and_fixtures).and_return(bets)
 
-          Jobs::CreateReminderCommunication.new.perform
+          Jobs::CreateCommunicationEvent.new.perform
         end
 
         context 'when it is less than 12 hours until kick off of week' do
