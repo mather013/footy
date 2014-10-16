@@ -33,7 +33,6 @@ module Jobs
               communication.reload
               communication.status.should == Communication::Status::SENT
             end
-
           end
 
           it 'calls sms service perform for each' do
@@ -45,9 +44,7 @@ module Jobs
           end
 
         end
-
       end
-
     end
   end
 end
