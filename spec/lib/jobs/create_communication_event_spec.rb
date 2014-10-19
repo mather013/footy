@@ -20,7 +20,7 @@ module Jobs
 
         context 'when it is less than 12 hours until kick off of week' do
           let(:close_date) { 6.hours.from_now }
-          let(:current_week) { double(Week, description: 'Week 08', close_date: close_date, fixtures: fixtures) }
+          let(:current_week) { double(Week, description: 'Week 08', close_date_local_time: close_date, fixtures: fixtures, close_date: close_date) }
 
           context 'when user has insufficient bets for week' do
             let(:bets) { [double(Bet)] }
@@ -35,7 +35,7 @@ module Jobs
 
             context 'and the user has a mobile number' do
               let(:mobile_number) { '123456789' }
-              let(:expected_message) { "Don't forget to make your predictions! Week 08 kicks off today at #{close_date.utc.getlocal.strftime("%H:%M")}. Footy Forecast" }
+              let(:expected_message) { "Don't forget to make your predictions! Week 08 kicks off today at #{close_date.strftime("%H:%M")}. Footy Forecast" }
 
               it 'creates a pending sms communication record' do
                 expect(Communications::SmsCommunication.count).to eq(1)

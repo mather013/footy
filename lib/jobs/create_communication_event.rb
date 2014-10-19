@@ -25,7 +25,7 @@ module Jobs
     end
 
     def sms_message
-      "#{MESSAGE} #{@week_current.description} kicks off today at #{@week_current.close_date.utc.getlocal.strftime("%H:%M")}. Footy Forecast"
+      "#{MESSAGE} #{@week_current.description} kicks off today at #{@week_current.close_date_local_time.strftime("%H:%M")}. Footy Forecast"
     end
 
   end

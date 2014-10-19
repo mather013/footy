@@ -27,7 +27,7 @@
             <div class="ui-block-d <%= style %>" align="left" style="width:50%">
               <% if knocked_out %>
                   <%= "Round #{point.value+1}:" %>
-                  <%= user.lm_bets.present? && LmRound.count-1 == user.lm_bets.count ? user.lm_bets.last.team.name : "No Selection" %>
+                  <%= user.lm_bets.present? ? user.lm_bets.last.team.name : "No Selection" %>
               <% end %>
             </div>
 
