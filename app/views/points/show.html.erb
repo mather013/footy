@@ -21,29 +21,29 @@
 
     <% @points.each do |point| %>
         <li class="custom-list">
-          <!--<a href="">-->
-          <div class="ui-grid-b">
-            <% position +=1 unless previous_score == point.value %>
-            <% index += 1 %>
-            <div class="ui-block-a" style="width:10%">
-              <% if previous_score == point.value %>
-                  <%= "#{position}" %>
-              <% else %>
-                  <%= "#{index}" %>
-                  <% position = index %>
-              <% end %>
-            </div>
+          <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>" class="leaderboard">
+            <div class="ui-grid-b">
+              <% position +=1 unless previous_score == point.value %>
+              <% index += 1 %>
+              <div class="ui-block-a" style="width:10%">
+                <% if previous_score == point.value %>
+                    <%= "#{position}" %>
+                <% else %>
+                    <%= "#{index}" %>
+                    <% position = index %>
+                <% end %>
+              </div>
 
-            <div class="ui-block-b" style="width:80%">
-              <%= "#{User.find(point.user_id).name}" %>
-            </div>
+              <div class="ui-block-b" style="width:80%">
+                <%= "#{User.find(point.user_id).name}" %>
+              </div>
 
-            <div class="ui-block-c" align="center" style="width:10%">
-              <%= "#{point.value}" %>
-            </div>
+              <div class="ui-block-c" align="center" style="width:10%">
+                <%= "#{point.value}" %>
+              </div>
 
-          </div>
-          <!--</a>-->
+            </div>
+          </a>
         </li>
         <% previous_score = point.value %>
     <% end %>
