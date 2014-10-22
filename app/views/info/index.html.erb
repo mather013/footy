@@ -9,9 +9,8 @@
 <div class="kickoff" data-role="content">
   <%= "Environment: #{Rails.env}" %> <br>
   <%= "User: #{@user.name}" %> <br>
-
+  <%= "#{@week_current.description}: #{@week_current.status}" %> <br>
   <p></p>
-  <%= "#{@week_current.description} - #{@week_current.status}" %> <br>
   <% @users.each do |user| %>
       <% if user.bets.present? %>
           <div class="ui-grid-b">

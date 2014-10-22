@@ -9,4 +9,9 @@ class UsersController < ApplicationController
     @view_user = User.find(params[:user_id])
   end
 
+  def show
+    @rounds = LmRound.sorted
+    @view_user = User.find(params[:user_id])
+  end
+
 end
