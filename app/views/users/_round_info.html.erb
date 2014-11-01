@@ -20,7 +20,7 @@
         <% end %>
       </div>
 
-      <% bet_result = @lm_bet.result %>
+      <% @lm_bet.present? ? bet_result = @lm_bet.result : bet_result = 'L' %>
       <% if bet_result == 'W' %>
           <div class="correct ui-block-c points_sml" style="width:10%"><%= "W" %></div>
       <% elsif bet_result == 'L' or bet_result == 'D' %>
