@@ -23,12 +23,12 @@ class Fixture < ActiveRecord::Base
   end
 
   def bet_able?
-    kickoff > Time.now and week.status != 'Pending'
+    kickoff > Time.now and week.status == 'Open'
   end
 
   def winning_team
-    return nil if self.score.nil? || self.score.home == self.score.away
-    return self.score.home > self.score.away ? self.home_team : self.away_team
+    return nil if score.nil? || score.home == score.away
+    return score.home > score.away ? home_team : away_team
   end
 
 end

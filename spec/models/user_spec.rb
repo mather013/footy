@@ -77,16 +77,38 @@ describe User do
       end
 
       subject { user.fa_teams }
-
       it { should == [england,england,brazil] }
 
     end
 
     describe '#lm_survivor?' do
+      let!(:user) { User.create(name: 'Guest', username: 'guest', password: 'abc') }
+      let!(:lm_round) { LmRound.create(week_id: 1) }
+      let!(:bet)  { LmBet.create(lm_round_id: lm_round.id, user_id: user.id, team_id: 1) }
 
-      xit { should == [england,england,brazil] }
+      before :each do
+        user.stub(:read_only?).and_return(false)
+        LmBet.any_instance.stub(:correct?).and_return(true)
+        LmRound.create(week_id: 2)
+      end
+
+      context 'when user is not a lms survivor' do
+
+        before :each do
+          LmRound.create(week_id: 3)
+        end
+
+        it 'returns false' do
+          expect(user.lm_survivor?).to be_false
+        end
+      end
+
+      context 'when user is a lms survivor' do
+        it 'returns true' do
+          expect(user.lm_survivor?).to be_true
+        end
+      end
 
     end
-
   end
 end

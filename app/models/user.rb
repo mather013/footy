@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   def lm_survivor?
     return false if read_only?
     correct_count = 0
-    self.lm_bets.each do |bet|
+    lm_bets.each do |bet|
       correct_count +=1 if bet.correct?
     end
     correct_count == LmRound.all.count-1

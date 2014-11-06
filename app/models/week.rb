@@ -1,9 +1,13 @@
 class Week < ActiveRecord::Base
-  attr_accessible :id, :week, :close_date, :description, :complete
+  attr_accessible :id, :close_date, :description, :complete
 
   has_many :fixtures
 
   scope :sorted, :order => :close_date
+
+  def self.current
+    self.where("close_date > '#{Time.now}'").order(:close_date).first
+  end
 
   def status
     return "Complete" if complete?
@@ -16,17 +20,9 @@ class Week < ActiveRecord::Base
     close_date.in_time_zone("London")
   end
 
-  def in_play?
-    close_date < Time.now and !complete?
-  end
-
-  def open?
-    close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
-  end
-
   def winning_teams
     teams = []
-    self.fixtures.each do |fixture|
+    fixtures.each do |fixture|
       teams << fixture.winning_team unless fixture.winning_team.nil?
     end
     teams
@@ -52,8 +48,14 @@ class Week < ActiveRecord::Base
     results
   end
 
-  def self.current
-    self.where("close_date > '#{Time.now}'").order(:close_date).first
+  private
+
+  def in_play?
+    close_date < Time.now and !complete?
+  end
+
+  def open?
+    close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
   end
 
 end

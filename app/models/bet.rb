@@ -8,14 +8,13 @@ class Bet < ActiveRecord::Base
   scope :bets_for_user_and_fixtures, lambda { |user, fixture_ids| where("user_id = ? and fixture_id in (?)", user.id,fixture_ids) }
 
   def outcome
-    fixture = Fixture.find(self.fixture_id)
     return "" if fixture.score.nil?
-    return "correct" if self.value == fixture.score.outcome
+    return "correct" if value == fixture.score.outcome
     return "wrong"
   end
 
   def correct?
-    self.fixture.score.present? && self.value == self.fixture.score.outcome
+    fixture.score.present? && value == fixture.score.outcome
   end
 
 end
