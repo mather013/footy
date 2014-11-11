@@ -128,7 +128,7 @@ Fixture.find_or_create_by_id(id: 114, kickoff: DateTime.parse('23-11-2014 13:30:
 Fixture.find_or_create_by_id(id: 115, kickoff: DateTime.parse('22-11-2014 15:00:00'), name: 'EVE-WHA', home_team_id: 6, away_team_id: 20,  week_id: 12)
 Fixture.find_or_create_by_id(id: 116, kickoff: DateTime.parse('23-11-2014 16:00:00'), name: 'HUL-TOT', home_team_id: 7, away_team_id: 18,  week_id: 12)
 Fixture.find_or_create_by_id(id: 117, kickoff: DateTime.parse('22-11-2014 15:00:00'), name: 'LEI-SUN', home_team_id: 8, away_team_id: 16,  week_id: 12)
-Fixture.find_or_create_by_id(id: 118, kickoff: DateTime.parse('22-11-2014 15:00:00'), name: 'MCI-SWA', home_team_id: 11, away_team_id: 17, week_id: 12)
+Fixture.find_or_create_by_id(id: 118, kickoff: DateTime.parse('22-11-2014 15:00:00'), name: 'MCI-SWA', home_team_id: 10, away_team_id: 17, week_id: 12)
 Fixture.find_or_create_by_id(id: 119, kickoff: DateTime.parse('22-11-2014 15:00:00'), name: 'NEW-QPR', home_team_id: 12, away_team_id: 13, week_id: 12)
 Fixture.find_or_create_by_id(id: 120, kickoff: DateTime.parse('22-11-2014 15:00:00'), name: 'STO-BUR', home_team_id: 15, away_team_id: 3,  week_id: 12)
 

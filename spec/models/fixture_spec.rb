@@ -16,10 +16,11 @@ describe Fixture do
     it { should respond_to(:kickoff) }
     it { should respond_to(:week_id) }
     it { should respond_to(:name) }
+    it { should respond_to(:feed_id) }
   end
 
   describe 'mass assignment' do
-    [:id, :home_team_id, :away_team_id, :kickoff, :week_id, :name].each do |attribute|
+    [:id, :home_team_id, :away_team_id, :kickoff, :week_id, :name, :feed_id].each do |attribute|
       it { should allow_mass_assignment_of(attribute) }
     end
   end

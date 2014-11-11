@@ -6,10 +6,11 @@ describe Team do
     it { should respond_to(:id) }
     it { should respond_to(:name) }
     it { should respond_to(:abbreviation) }
+    it { should respond_to(:feed_id) }
   end
 
   describe 'mass assignment' do
-    [:id, :name, :abbreviation].each do |attribute|
+    [:id, :name, :abbreviation, :feed_id].each do |attribute|
       it { should allow_mass_assignment_of(attribute) }
     end
   end
