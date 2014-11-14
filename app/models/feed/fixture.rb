@@ -1,44 +1,29 @@
 module Feed
   class Fixture
 
+    attr_accessor :id, :home_team_id, :away_team_id, :events, :score
+
     module Status
       FULL_TIME = "FT"
     end
 
     def initialize(hash)
-      @data = hash
-    end
-
-    def id
-      @data[:match_id]
-    end
-
-    def home_team_id
-      @data[:match_localteam_id]
-    end
-
-    def away_team_id
-      @data[:match_visitorteam_id]
-    end
-
-    def match_date
-      @data[:match_formatted_date]
-    end
-
-    def match_time
-      @data[:match_time]
-    end
-
-    def events
-      @data[:match_events]
-    end
-
-    def score
-      @data[:match_ft_score]
+      @id = hash[:match_id].to_i
+      @home_team_id = hash[:match_localteam_id].to_i
+      @away_team_id = hash[:match_visitorteam_id].to_i
+      @date = hash[:match_formatted_date]
+      @time = hash[:match_time]
+      @events = hash[:match_events]
+      @score = hash[:match_ft_score]
+      @finished = hash[:match_status] == Status::FULL_TIME
     end
 
     def finished?
-      @data[:match_status] == Status::FULL_TIME
+      @finished
+    end
+
+    def kickoff
+      DateTime.parse("#{@date} #{@time}")
     end
 
   end

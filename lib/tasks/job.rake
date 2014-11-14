@@ -10,4 +10,9 @@ namespace :job do
     Jobs::CreateCommunicationEvent.new.perform
   end
 
+  desc "Sync fixtures"
+  task :sync_fixtures => :environment do
+    Jobs::SyncFixtures.new.perform
+  end
+
 end

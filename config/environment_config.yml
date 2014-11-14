@@ -5,6 +5,10 @@ defaults: &defaults
 #  competition: world_cup
 #  knockout_rounds: [4,5,6,7]
 #  teams_in: ['arg','bra', 'ger','net']
+  days_in_advance_to_sync_fixtures: 7
+  feed:
+    api_key: 23874509-922b-abe2-847ab13dadba
+    competition_id: 1204
 
 development:
   <<: *defaults
@@ -14,3 +18,6 @@ test: &test
 
 production:
   <<: *defaults
+  feed:
+    api_key: 23874509-922b-abe2-847ab13dadba
+    competition_id: 1204

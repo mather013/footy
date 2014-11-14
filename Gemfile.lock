@@ -46,6 +46,9 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.1)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
     i18n (0.6.4)
     journey (1.0.4)
     jquery-rails (2.2.1)
@@ -62,6 +65,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.22)
     multi_json (1.7.2)
+    multi_xml (0.5.5)
     netrc (0.7.7)
     pg (0.15.0)
     polyglot (0.3.3)
@@ -153,6 +157,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  httparty
   jquery-rails
   jquery_mobile_rails
   pg

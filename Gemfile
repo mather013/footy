@@ -33,6 +33,8 @@ group :test do
   gem 'webmock', '~>1.9'
 end
 
+gem 'httparty'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
