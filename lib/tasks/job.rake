@@ -15,4 +15,9 @@ namespace :job do
     Jobs::SyncFixtures.new.perform
   end
 
+  desc "Sync scores"
+  task :sync_scores => :environment do
+    Jobs::SyncScores.new.perform
+  end
+
 end

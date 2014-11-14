@@ -17,19 +17,18 @@ module Jobs
         before :each do
           Fixture.stub(:requiring_sync).and_return(fixtures_requiring_sync)
           Fixture.stub(:find_by_name).and_return(fixture)
-          fixture.stub(:update_attributes).with(feed_id: 999, kickoff: kickoff)
 
           Team.stub(:find_by_feed_id).with(1).and_return(home_team)
           Team.stub(:find_by_feed_id).with(2).and_return(away_team)
 
           sync_fixtures.stub(:fixtures_from_feed).and_return(feed_fixtures)
-          sync_fixtures.perform
         end
 
         context 'when there are no fixtures to sync' do
           let(:fixtures_requiring_sync) { [] }
 
           it 'does not attempt to sync fixture information ' do
+            sync_fixtures.perform
             sync_fixtures.should_not have_received(:fixtures_from_feed)
           end
         end
@@ -37,24 +36,45 @@ module Jobs
         context 'when there are fixtures to sync' do
           let(:fixtures_requiring_sync) { ['some_fixtures'] }
 
-          it 'attempts to sync fixture information' do
-            sync_fixtures.should have_received(:fixtures_from_feed)
-          end
-
-          it 'attempts to find the fixture using expected teams' do
-            Fixture.should have_received(:find_by_name).with('ARG-BRA')
-          end
-
           context 'and fixture is found' do
 
             context 'and the feed_id does not exists' do
+
+              before :each do
+                fixture.stub(:update_attributes).with(feed_id: 999, kickoff: kickoff)
+                sync_fixtures.perform
+              end
+
+              it 'attempts to sync fixture information' do
+                sync_fixtures.should have_received(:fixtures_from_feed)
+              end
+
+              it 'attempts to find the fixture using expected teams' do
+                Fixture.should have_received(:find_by_name).with('ARG-BRA')
+              end
+
               it 'updates feed_id of the expected fixture' do
                 fixture.should have_received(:update_attributes).with(feed_id: 999, kickoff: kickoff)
               end
+
             end
 
             context 'but the feed_id exists' do
               let(:feed_id) { 123 }
+
+              before :each do
+                fixture.stub(:update_attributes).with(feed_id: 999, kickoff: kickoff)
+                sync_fixtures.perform
+              end
+
+              it 'attempts to sync fixture information' do
+                sync_fixtures.should have_received(:fixtures_from_feed)
+              end
+
+              it 'attempts to find the fixture using expected teams' do
+                Fixture.should have_received(:find_by_name).with('ARG-BRA')
+              end
+
               it 'does not update expected fixture' do
                 fixture.should_not have_received(:update_attributes)
               end
@@ -64,8 +84,13 @@ module Jobs
           context 'and fixture is not found' do
             let(:fixture) { nil }
 
+            before :each do
+              sync_fixtures.perform
+            end
+
             context 'and the feed_id exists' do
               let(:feed_id) { 123 }
+
               it 'does not update expected fixture' do
                 fixture.should_not have_received(:update_attributes)
               end

@@ -1,7 +1,7 @@
 module Feed
   class Fixture
 
-    attr_accessor :id, :home_team_id, :away_team_id, :events, :score
+    attr_accessor :id, :home_team_id, :away_team_id, :events, :score, :home_team_goals, :away_team_goals
 
     module Status
       FULL_TIME = "FT"
@@ -11,6 +11,8 @@ module Feed
       @id = hash[:match_id].to_i
       @home_team_id = hash[:match_localteam_id].to_i
       @away_team_id = hash[:match_visitorteam_id].to_i
+      @home_team_goals = hash[:match_ft_score].dup[1..-2].split("-").first.to_i
+      @away_team_goals = hash[:match_ft_score].dup[1..-2].split("-").last.to_i
       @date = hash[:match_formatted_date]
       @time = hash[:match_time]
       @events = hash[:match_events]
