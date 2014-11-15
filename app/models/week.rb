@@ -48,8 +48,6 @@ class Week < ActiveRecord::Base
     results
   end
 
-  private
-
   def in_play?
     close_date < Time.now and !complete?
   end
