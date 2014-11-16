@@ -15,11 +15,18 @@ module Feed
 
     def send_request url
       response = HTTParty.get(url)
+      print_error response unless response['ERROR'] == "OK"
       JSON.parse(response.body, symbolize_names: true)[:matches]
     end
 
     def api_url
       "http://football-api.com/api/?Action=fixtures&APIKey=#{ENVIRONMENT_CONFIG['feed']['api_key']}&comp_id=#{ENVIRONMENT_CONFIG['feed']['competition_id']}"
+    end
+
+    def print_error response
+      puts "===================="
+      puts response
+      puts "===================="
     end
 
   end

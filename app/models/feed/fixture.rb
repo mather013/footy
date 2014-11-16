@@ -11,8 +11,8 @@ module Feed
       @id = hash[:match_id].to_i
       @home_team_id = hash[:match_localteam_id].to_i
       @away_team_id = hash[:match_visitorteam_id].to_i
-      @home_team_goals = hash[:match_ft_score].dup[1..-2].split("-").first.to_i
-      @away_team_goals = hash[:match_ft_score].dup[1..-2].split("-").last.to_i
+      @home_team_goals = hash[:match_ft_score].dup[1..-2].split("-").first.to_i unless hash[:match_ft_score].blank?
+      @away_team_goals = hash[:match_ft_score].dup[1..-2].split("-").last.to_i unless hash[:match_ft_score].blank?
       @date = hash[:match_formatted_date]
       @time = hash[:match_time]
       @events = hash[:match_events]
