@@ -1,5 +1,6 @@
 module Feed
   class FixturesController < ApplicationController
+    include ProximoParty
 
     DATE_FORMAT = '%d.%m.%Y'
 
@@ -14,7 +15,7 @@ module Feed
     private
 
     def send_request url
-      response = HTTParty.get(url)
+      response = ProximoParty.get(url)
       print_error response unless response['ERROR'] == "OK"
       JSON.parse(response.body, symbolize_names: true)[:matches]
     end
