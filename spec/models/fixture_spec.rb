@@ -25,6 +25,30 @@ describe Fixture do
     end
   end
 
+  describe 'scopes' do
+    describe 'requiring_sync' do
+      let!(:fixture_one) { Fixture.create(kickoff: 2.days.from_now, feed_id: nil) }
+      let!(:fixture_two) { Fixture.create(kickoff: 3.days.from_now, feed_id: nil) }
+      let!(:fixture_three) { Fixture.create(kickoff: 10.days.from_now, feed_id: nil) }
+
+      it 'returns the expected fixtures' do
+        Fixture.requiring_sync.should eq [fixture_one, fixture_two]
+      end
+    end
+
+    describe 'recently_finished' do
+      let!(:fixture_one) { Fixture.create(kickoff: 180.minutes.ago, feed_id: nil) }
+      let!(:fixture_two) { Fixture.create(kickoff: 120.minutes.ago, feed_id: nil) }
+      let!(:fixture_three) { Fixture.create(kickoff: 124.minutes.ago, feed_id: nil) }
+      let!(:fixture_four) { Fixture.create(kickoff: 60.minutes.ago, feed_id: nil) }
+
+      it 'returns the expected fixtures' do
+        Fixture.recently_finished.should eq [fixture_two, fixture_three]
+      end
+    end
+
+  end
+
   describe 'instance methods' do
     let(:close_date) { 1.days.from_now }
     let(:week) { Week.create(close_date: close_date, description: 'Week 99') }
