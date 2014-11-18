@@ -30,6 +30,11 @@ namespace :footy do
     RakeTaskResources::AddLmRound.perform
   end
 
+  desc "Set user's paid games"
+  task :user_games, [:username, :game_ids] => :environment do |t, args|
+    RakeTaskResources::UserGames.perform args
+  end
+
   desc "Mark bets for week"
   task :mark_week, [:week_id] => :environment do |t, args|
     puts "===================="
