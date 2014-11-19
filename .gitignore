@@ -19,3 +19,6 @@ db/schema.rb
 
 # Ignore secret environment variables files
 /.env*
+
+#Ignore vendor bundle
+vendor/bundle
