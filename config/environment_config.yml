@@ -7,6 +7,7 @@ defaults: &defaults
 #  teams_in: ['arg','bra', 'ger','net']
   days_in_advance_to_sync_fixtures: 7
   feed:
+    url: http://football-api.com/api/?Action=fixtures
     api_key: 23874509-922b-abe2-847ab13dadba
     competition_id: 1204
 

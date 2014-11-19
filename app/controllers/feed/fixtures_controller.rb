@@ -21,7 +21,7 @@ module Feed
     end
 
     def api_url
-      "http://football-api.com/api/?Action=fixtures&APIKey=#{ENVIRONMENT_CONFIG['feed']['api_key']}&comp_id=#{ENVIRONMENT_CONFIG['feed']['competition_id']}"
+      "#{ENVIRONMENT_CONFIG['feed']['url']}&APIKey=#{ENVIRONMENT_CONFIG['feed']['api_key']}&comp_id=#{ENVIRONMENT_CONFIG['feed']['competition_id']}"
     end
 
     def print_error response
