@@ -16,3 +16,6 @@
 
 .idea/*
 db/schema.rb
+
+# Ignore secret environment variables files
+/.env*

@@ -26,6 +26,7 @@ gem 'therubyracer'
 gem 'jquery_mobile_rails'
 gem 'rspec-rails'
 gem 'rest-client'
+gem 'httparty'
 
 group :test do
   gem 'shoulda'
@@ -33,7 +34,10 @@ group :test do
   gem 'webmock', '~>1.9'
 end
 
-gem 'httparty'
+group :development, :test do
+  gem "dotenv"
+  gem "dotenv-deployment"
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
