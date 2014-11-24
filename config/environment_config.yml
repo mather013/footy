@@ -19,6 +19,3 @@ test: &test
 
 production:
   <<: *defaults
-  feed:
-    api_key: 23874509-922b-abe2-847ab13dadba
-    competition_id: 1204
