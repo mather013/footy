@@ -15,12 +15,12 @@ module Jobs
         end
       end
     end
+
+    private
+
+    def fixtures_from_feed
+      Feed::FixturesController.new.get_fixtures_for Date.today
+    end
+
   end
-
-  private
-
-  def fixtures_from_feed
-    Feed::FixturesController.new.get_fixtures_for Date.today
-  end
-
 end
