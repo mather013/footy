@@ -1,8 +1,8 @@
 module Jobs
   class SyncScores
 
-    def perform
-      return if Fixture.recently_finished.blank?
+    def perform(force=false)
+      return if force==false && Fixture.recently_finished.blank?
 
       fixtures_from_feed.each do |feed_fixture|
         if feed_fixture.finished?

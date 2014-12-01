@@ -16,8 +16,8 @@ namespace :job do
   end
 
   desc "Sync scores"
-  task :sync_scores => :environment do
-    Jobs::SyncScores.new.perform
+  task :sync_scores, [:force] => :environment do |t, args|
+    Jobs::SyncScores.new.perform args[:force]
   end
 
 end
