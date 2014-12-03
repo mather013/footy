@@ -17,6 +17,7 @@ module Jobs
           Fixture.stub(:recently_finished).and_return(recently_finished)
           Fixture.stub(:find_by_external_id).and_return(fixture)
 
+          sync_scores.stub(:mark_games)
           sync_scores.stub(:fixtures_from_feed).and_return(feed_fixtures)
         end
 
@@ -58,6 +59,11 @@ module Jobs
               sync_scores.perform
                 Fixture.should_not have_received(:find_by_external_id)
               end
+
+              it 'does not attempt to run markings' do
+                sync_scores.should_not have_received(:mark_games)
+              end
+
             end
 
             context 'and fixture has finished' do
@@ -81,6 +87,10 @@ module Jobs
                   fixture.score.should have_received(:update_attributes).with(home: 3, away: 2)
                 end
 
+                it 'attempts to run markings' do
+                  sync_scores.should have_received(:mark_games)
+                end
+
               end
 
               context 'and there is no score' do
@@ -101,6 +111,10 @@ module Jobs
 
                 it 'create a new score for fixture' do
                   fixture.should have_received(:create_score).with(home: 3, away: 2)
+                end
+
+                it 'attempts to run markings' do
+                  sync_scores.should have_received(:mark_games)
                 end
 
               end
