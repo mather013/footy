@@ -21,7 +21,8 @@ module Services
 
     def send_request url
       response = ProximoParty.get(url)
-      JSON.parse(response.body, symbolize_names: true)[:matches]
+      hash = JSON.parse(response.body, symbolize_names: true)
+      hash[:matches]
     end
 
   end

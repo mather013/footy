@@ -16,7 +16,7 @@ module Jobs
           requires_marking = true
         end
       end
-      mark_games if requires_marking
+      run_marking if requires_marking
     end
 
     private
@@ -25,7 +25,7 @@ module Jobs
       Feed::FixturesController.new.get_fixtures_for Date.today
     end
 
-    def mark_games
+    def run_marking
       RakeTaskResources::MarkWeek.perform((Week.current.id) -1)
       RakeTaskResources::MarkLmBets.perform
     end

@@ -13,7 +13,7 @@ Week.find_or_create_by_id(id: 10, description: 'Week 10', close_date: DateTime.p
 Week.find_or_create_by_id(id: 11, description: 'Week 11', close_date: DateTime.parse('08-11-2014 12:45:00'), complete: true)
 Week.find_or_create_by_id(id: 12, description: 'Week 12', close_date: DateTime.parse('22-11-2014 12:45:00'), complete: true)
 Week.find_or_create_by_id(id: 13, description: 'Week 13', close_date: DateTime.parse('29-11-2014 12:45:00'), complete: true)
-Week.find_or_create_by_id(id: 14, description: 'Week 14', close_date: DateTime.parse('02-12-2014 12:45:00'), complete: true)
+Week.find_or_create_by_id(id: 14, description: 'Week 14', close_date: DateTime.parse('02-12-2014 19:45:00'))
 Week.find_or_create_by_id(id: 15, description: 'Week 15', close_date: DateTime.parse('06-12-2014 12:45:00'))
 Week.find_or_create_by_id(id: 16, description: 'Week 16', close_date: DateTime.parse('13-12-2014 12:45:00'))
 Week.find_or_create_by_id(id: 17, description: 'Week 17', close_date: DateTime.parse('20-12-2014 12:45:00'))
