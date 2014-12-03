@@ -1,5 +1,5 @@
 class Team  < ActiveRecord::Base
-  attr_accessible :id, :name, :abbreviation, :feed_id
+  attr_accessible :id, :name, :abbreviation, :external_id
 
   def self.all_for_choices
     teams = []

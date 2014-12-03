@@ -6,20 +6,20 @@ module Jobs
     describe 'instance methods' do
 
       describe '#perform' do
-        let(:feed_id) { nil }
+        let(:external_id) { nil }
         let(:kickoff) { DateTime.parse('2014-11-03 20:00') }
         let(:sync_fixtures) { Jobs::SyncFixtures.new }
         let(:home_team) { double(Team, id: 1, abbreviation: 'arg') }
         let(:away_team) { double(Team, id: 2, abbreviation: 'bra') }
         let(:feed_fixtures) { [double(Feed::Fixture, home_team_id: 1, away_team_id: 2, id: 999, kickoff: kickoff)] }
-        let(:fixture) { double(Fixture, feed_id: feed_id, kickoff: DateTime.now) }
+        let(:fixture) { double(Fixture, external_id: external_id, kickoff: DateTime.now) }
 
         before :each do
           Fixture.stub(:requiring_sync).and_return(fixtures_requiring_sync)
           Fixture.stub(:find_by_name).and_return(fixture)
 
-          Team.stub(:find_by_feed_id).with(1).and_return(home_team)
-          Team.stub(:find_by_feed_id).with(2).and_return(away_team)
+          Team.stub(:find_by_external_id).with(1).and_return(home_team)
+          Team.stub(:find_by_external_id).with(2).and_return(away_team)
 
           sync_fixtures.stub(:fixtures_from_feed).and_return(feed_fixtures)
         end
@@ -38,10 +38,10 @@ module Jobs
 
           context 'and fixture is found' do
 
-            context 'and the feed_id does not exists' do
+            context 'and the external_id does not exists' do
 
               before :each do
-                fixture.stub(:update_attributes).with(feed_id: 999, kickoff: kickoff)
+                fixture.stub(:update_attributes).with(external_id: 999, kickoff: kickoff)
                 sync_fixtures.perform
               end
 
@@ -53,17 +53,17 @@ module Jobs
                 Fixture.should have_received(:find_by_name).with('ARG-BRA')
               end
 
-              it 'updates feed_id of the expected fixture' do
-                fixture.should have_received(:update_attributes).with(feed_id: 999, kickoff: kickoff)
+              it 'updates external_id of the expected fixture' do
+                fixture.should have_received(:update_attributes).with(external_id: 999, kickoff: kickoff)
               end
 
             end
 
-            context 'but the feed_id exists' do
-              let(:feed_id) { 123 }
+            context 'but the external_id exists' do
+              let(:external_id) { 123 }
 
               before :each do
-                fixture.stub(:update_attributes).with(feed_id: 999, kickoff: kickoff)
+                fixture.stub(:update_attributes).with(external_id: 999, kickoff: kickoff)
                 sync_fixtures.perform
               end
 
@@ -88,15 +88,15 @@ module Jobs
               sync_fixtures.perform
             end
 
-            context 'and the feed_id exists' do
-              let(:feed_id) { 123 }
+            context 'and the external_id exists' do
+              let(:external_id) { 123 }
 
               it 'does not update expected fixture' do
                 fixture.should_not have_received(:update_attributes)
               end
             end
 
-            context 'but the feed_id does not exists' do
+            context 'but the external_id does not exists' do
               it 'does not update expected fixture' do
                 fixture.should_not have_received(:update_attributes)
               end

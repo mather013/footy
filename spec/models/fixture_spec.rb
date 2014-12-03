@@ -16,20 +16,20 @@ describe Fixture do
     it { should respond_to(:kickoff) }
     it { should respond_to(:week_id) }
     it { should respond_to(:name) }
-    it { should respond_to(:feed_id) }
+    it { should respond_to(:external_id) }
   end
 
   describe 'mass assignment' do
-    [:id, :home_team_id, :away_team_id, :kickoff, :week_id, :name, :feed_id].each do |attribute|
+    [:id, :home_team_id, :away_team_id, :kickoff, :week_id, :name, :external_id].each do |attribute|
       it { should allow_mass_assignment_of(attribute) }
     end
   end
 
   describe 'scopes' do
     describe 'requiring_sync' do
-      let!(:fixture_one) { Fixture.create(kickoff: 2.days.from_now, feed_id: nil) }
-      let!(:fixture_two) { Fixture.create(kickoff: 3.days.from_now, feed_id: nil) }
-      let!(:fixture_three) { Fixture.create(kickoff: 10.days.from_now, feed_id: nil) }
+      let!(:fixture_one) { Fixture.create(kickoff: 2.days.from_now, external_id: nil) }
+      let!(:fixture_two) { Fixture.create(kickoff: 3.days.from_now, external_id: nil) }
+      let!(:fixture_three) { Fixture.create(kickoff: 10.days.from_now, external_id: nil) }
 
       it 'returns the expected fixtures' do
         Fixture.requiring_sync.should eq [fixture_one, fixture_two]
@@ -37,10 +37,10 @@ describe Fixture do
     end
 
     describe 'recently_finished' do
-      let!(:fixture_one) { Fixture.create(kickoff: 180.minutes.ago, feed_id: nil) }
-      let!(:fixture_two) { Fixture.create(kickoff: 120.minutes.ago, feed_id: nil) }
-      let!(:fixture_three) { Fixture.create(kickoff: 124.minutes.ago, feed_id: nil) }
-      let!(:fixture_four) { Fixture.create(kickoff: 60.minutes.ago, feed_id: nil) }
+      let!(:fixture_one) { Fixture.create(kickoff: 180.minutes.ago, external_id: nil) }
+      let!(:fixture_two) { Fixture.create(kickoff: 120.minutes.ago, external_id: nil) }
+      let!(:fixture_three) { Fixture.create(kickoff: 124.minutes.ago, external_id: nil) }
+      let!(:fixture_four) { Fixture.create(kickoff: 60.minutes.ago, external_id: nil) }
 
       it 'returns the expected fixtures' do
         Fixture.recently_finished.should eq [fixture_two, fixture_three]

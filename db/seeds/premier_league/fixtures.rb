@@ -1,4 +1,4 @@
-Fixture.delete_all
+#Fixture.delete_all
 
 Fixture.find_or_create_by_id(id: 1,   kickoff: DateTime.parse('16-08-2014 16:30:00'), name: 'ARS-CRY', home_team_id: 1,  away_team_id: 5,  week_id: 1)
 Fixture.find_or_create_by_id(id: 2,   kickoff: DateTime.parse('18-08-2014 19:00:00'), name: 'BUR-CHE', home_team_id: 3,  away_team_id: 4,  week_id: 1)

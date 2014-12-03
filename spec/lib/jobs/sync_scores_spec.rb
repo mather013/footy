@@ -11,11 +11,11 @@ module Jobs
         let(:feed_fixtures) { [double(Feed::Fixture, id: 999, home_team_id: 1, away_team_id: 2,
                                       home_team_goals:   3, away_team_goals: 2, finished?: fixture_finished)] }
         let(:score) { double(Score, home: 1, away: 0) }
-        let(:fixture) { double(Fixture, feed_id: 999, score: score, name: "ARG-BRA") }
+        let(:fixture) { double(Fixture, external_id: 999, score: score, name: "ARG-BRA") }
 
         before :each do
           Fixture.stub(:recently_finished).and_return(recently_finished)
-          Fixture.stub(:find_by_feed_id).and_return(fixture)
+          Fixture.stub(:find_by_external_id).and_return(fixture)
 
           sync_scores.stub(:fixtures_from_feed).and_return(feed_fixtures)
         end
@@ -56,7 +56,7 @@ module Jobs
 
               it 'does not attempt to find fixture to sync' do
               sync_scores.perform
-                Fixture.should_not have_received(:find_by_feed_id)
+                Fixture.should_not have_received(:find_by_external_id)
               end
             end
 
@@ -74,7 +74,7 @@ module Jobs
                 end
 
                 it 'finds fixture to sync' do
-                  Fixture.should have_received(:find_by_feed_id)
+                  Fixture.should have_received(:find_by_external_id)
                 end
 
                 it 'updates existing score for fixture' do
@@ -96,7 +96,7 @@ module Jobs
                 end
 
                 it 'finds fixture to sync' do
-                  Fixture.should have_received(:find_by_feed_id)
+                  Fixture.should have_received(:find_by_external_id)
                 end
 
                 it 'create a new score for fixture' do
