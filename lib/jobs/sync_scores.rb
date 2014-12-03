@@ -26,7 +26,7 @@ module Jobs
     end
 
     def mark_games
-      RakeTaskResources::MarkWeek.perform Week.current.id -1
+      RakeTaskResources::MarkWeek.perform((Week.current.id) -1)
       RakeTaskResources::MarkLmBets.perform
     end
 
