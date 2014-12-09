@@ -12,13 +12,17 @@ module Jobs
                                       home_team_goals:   3, away_team_goals: 2, finished?: fixture_finished)] }
         let(:score) { double(Score, home: 1, away: 0) }
         let(:fixture) { double(Fixture, external_id: 999, score: score, name: "ARG-BRA") }
+        let(:week) { double(Week, id: 1) }
 
         before :each do
           Fixture.stub(:recently_finished).and_return(recently_finished)
           Fixture.stub(:find_by_external_id).and_return(fixture)
 
-          sync_scores.stub(:mark_games)
+          sync_scores.stub(:required_week).and_return(week)
+          sync_scores.stub(:run_marking)
           sync_scores.stub(:fixtures_from_feed).and_return(feed_fixtures)
+
+          week.stub(:maybe_mark_complete)
         end
 
         context 'when forced to get fixtures' do
@@ -56,23 +60,25 @@ module Jobs
               let(:fixture_finished) { false }
 
               it 'does not attempt to find fixture to sync' do
-              sync_scores.perform
+                sync_scores.perform
                 Fixture.should_not have_received(:find_by_external_id)
               end
 
               it 'does not attempt to run markings' do
-                sync_scores.should_not have_received(:mark_games)
+                sync_scores.should_not have_received(:run_marking)
               end
 
             end
 
             context 'and fixture has finished' do
+              let(:week) { double(Week, id: 2) }
 
-              context 'and it already has a score' do
+              context 'and it already has a score recorded' do
 
                 before :each do
+                  Week.stub(:find).and_return(week)
                   fixture.score.stub(:update_attributes).with(home: 3, away: 2)
-                sync_scores.perform
+                  sync_scores.perform
                 end
 
                 it 'retrieves feed fixtures' do
@@ -88,17 +94,21 @@ module Jobs
                 end
 
                 it 'attempts to run markings' do
-                  sync_scores.should have_received(:mark_games)
+                  sync_scores.should have_received(:run_marking)
+                end
+
+                it 'attempts to mark week complete' do
+                  week.should have_received(:maybe_mark_complete)
                 end
 
               end
 
-              context 'and there is no score' do
+              context 'and there is no score already recorded' do
                 let(:score) { nil }
 
                 before :each do
                   fixture.stub(:create_score).with(home: 3, away: 2)
-                sync_scores.perform
+                  sync_scores.perform
                 end
 
                 it 'retrieves feed fixtures' do
@@ -114,7 +124,7 @@ module Jobs
                 end
 
                 it 'attempts to run markings' do
-                  sync_scores.should have_received(:mark_games)
+                  sync_scores.should have_received(:run_marking)
                 end
 
               end

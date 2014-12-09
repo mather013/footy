@@ -53,7 +53,7 @@ describe Week do
   describe 'instance methods' do
     let(:complete) { false }
     let(:close_date) { 7.days.ago }
-    let(:week) { Week.create(id:1 , close_date: close_date, complete: complete, description: 'Week 99') }
+    let(:week) { Week.create(id: 1, close_date: close_date, complete: complete, description: 'Week 99') }
 
     describe '#status' do
       context 'week is complete' do
@@ -97,25 +97,25 @@ describe Week do
     end
 
     describe '#winning_teams' do
-      let(:team_one)   { Team.create(id: 1, name: 'Argentina') }
-      let(:team_two)   { Team.create(id: 2, name: 'Brazil') }
+      let(:team_one) { Team.create(id: 1, name: 'Argentina') }
+      let(:team_two) { Team.create(id: 2, name: 'Brazil') }
       let(:team_three) { Team.create(id: 3, name: 'Colombia') }
-      let(:team_four)  { Team.create(id: 4, name: 'Denmark') }
+      let(:team_four) { Team.create(id: 4, name: 'Denmark') }
       let!(:fixture_one) { Fixture.create(week_id: week.id, home_team_id: team_one.id, away_team_id: team_two.id) }
       let!(:fixture_two) { Fixture.create(week_id: week.id, home_team_id: team_three.id, away_team_id: team_four.id) }
       let!(:score_one) { Score.create(fixture_id: fixture_one.id, home: 0, away: 1) }
       let!(:score_two) { Score.create(fixture_id: fixture_two.id, home: 1, away: 0) }
 
       it 'reruns expected array of winning teams for week' do
-        expect(week.winning_teams).to eq [team_two,team_three]
+        expect(week.winning_teams).to eq [team_two, team_three]
       end
     end
 
     describe '#results_hash' do
-      let(:team_one)   { Team.create(id: 1, name: 'Argentina', abbreviation: 'arg') }
-      let(:team_two)   { Team.create(id: 2, name: 'Brazil', abbreviation: 'bra') }
+      let(:team_one) { Team.create(id: 1, name: 'Argentina', abbreviation: 'arg') }
+      let(:team_two) { Team.create(id: 2, name: 'Brazil', abbreviation: 'bra') }
       let(:team_three) { Team.create(id: 3, name: 'Colombia', abbreviation: 'col') }
-      let(:team_four)  { Team.create(id: 4, name: 'Denmark', abbreviation: 'den') }
+      let(:team_four) { Team.create(id: 4, name: 'Denmark', abbreviation: 'den') }
       let!(:fixture_one) { Fixture.create(week_id: week.id, home_team_id: team_one.id, away_team_id: team_two.id) }
       let!(:fixture_two) { Fixture.create(week_id: week.id, home_team_id: team_three.id, away_team_id: team_four.id) }
       let!(:score_one) { Score.create(fixture_id: fixture_one.id, home: 0, away: 1) }
@@ -125,6 +125,41 @@ describe Week do
         expect(week.results_hash).to eq ({ arg: "L", bra: "W", col: "W", den: "L" })
       end
 
+    end
+
+    describe '#maybe_mark_complete' do
+      let!(:fixture_one) { Fixture.create(id: 1, week_id: week.id,) }
+      let!(:fixture_two) { Fixture.create(id: 2, week_id: week.id,) }
+      let!(:score_one) { Score.create(id: 1, fixture_id: 1, home: 1, away: 0) }
+
+      context 'when all scores are in' do
+        let!(:score_two) { Score.create(id: 2, fixture_id: 2, home: 1, away: 0) }
+
+        it 'marks week as complete' do
+          week.maybe_mark_complete
+          expect(week.complete).to eq (true)
+        end
+      end
+
+      context 'when all scores are not in' do
+        it 'does not mark week as complete' do
+          week.maybe_mark_complete
+          expect(week.complete).to eq (false)
+        end
+      end
+
+    end
+
+    describe '#mark_complete' do
+      let(:week) { Week.create(id: 2, close_date: 2.days.from_now, complete: false, description: 'Week 66') }
+
+      before :each do
+        week.mark_complete
+      end
+
+      it 'set week to complete' do
+        expect(week.complete).to eq (true)
+      end
     end
 
   end

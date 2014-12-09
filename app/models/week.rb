@@ -56,4 +56,19 @@ class Week < ActiveRecord::Base
     close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
   end
 
+  def maybe_mark_complete
+    mark_complete if can_be_marked_complete?
+  end
+
+  def mark_complete
+    self.complete = true
+    self.save
+  end
+
+  private
+
+  def can_be_marked_complete?
+    fixtures.collect(&:score).exclude?(nil)
+  end
+
 end
