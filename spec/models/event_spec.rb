@@ -8,7 +8,7 @@ describe Event do
 
   describe 'attributes' do
     it { should respond_to(:id) }
-    it { should respond_to(:type) }
+    it { should respond_to(:event_type) }
     it { should respond_to(:team) }
     it { should respond_to(:player_name) }
     it { should respond_to(:minute) }
@@ -17,7 +17,7 @@ describe Event do
   end
 
   describe 'mass assignment' do
-    [:id, :type, :team, :player_name, :minute, :fixture_id, :external_id].each do |attribute|
+    [:id, :event_type, :team, :player_name, :minute, :fixture_id, :external_id].each do |attribute|
       it { should allow_mass_assignment_of(attribute) }
     end
   end

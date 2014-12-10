@@ -33,7 +33,14 @@ module Jobs
     end
 
     def record_events feed_fixture
-
+      fixture = Fixture.find_by_external_id(feed_fixture.id)
+      feed_fixture.events.each do |event|
+        Event.find_or_initialize_by_external_id(event[:event_id]).update_attributes(fixture_id: fixture.id,
+                                                                                    event_type: event[:event_type],
+                                                                                    player_name: event[:event_player],
+                                                                                    team: event[:event_team],
+                                                                                    minute: event[:event_minute])
+      end
     end
 
     def required_week

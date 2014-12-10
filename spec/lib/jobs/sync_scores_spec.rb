@@ -8,8 +8,24 @@ module Jobs
       describe '#perform' do
         let(:sync_scores) { Jobs::SyncScores.new }
         let(:fixture_finished) { true }
+        let(:events) { [{ :event_id        => "19525541",
+                          :event_match_id  => "1952554",
+                          :event_type      => "goal",
+                          :event_minute    => "31",
+                          :event_team      => "visitorteam",
+                          :event_player    => "S. Fletcher",
+                          :event_player_id => "890",
+                          :event_result    => "[0 - 1]" },
+                        { :event_id        => "19525543",
+                          :event_match_id  => "1952554",
+                          :event_type      => "yellowcard",
+                          :event_minute    => "63",
+                          :event_team      => "visitorteam",
+                          :event_player    => "W. Buckley",
+                          :event_player_id => "50726",
+                          :event_result    => "" }] }
         let(:feed_fixtures) { [double(Feed::Fixture, id: 999, home_team_id: 1, away_team_id: 2,
-                                      home_team_goals:   3, away_team_goals: 2, finished?: fixture_finished)] }
+                                      home_team_goals:   3, away_team_goals: 2, finished?: fixture_finished, events: events)] }
 
         let!(:home_team) { Team.create(id:1, name: 'argentina', abbreviation: 'arg') }
         let!(:away_team) { Team.create(id:2, name: 'brazil', abbreviation: 'bra') }
@@ -70,11 +86,13 @@ module Jobs
 
             context 'and fixture has finished' do
 
-              context 'and it already has a score recorded' do
+              context 'and it already has a score and events recorded' do
 
                 before :each do
                   Week.stub(:find).and_return(week)
                   fixture.create_score(fixture_id: fixture.id, home: 0, away: 0)
+                  fixture.events << [Event.create(external_id: 19525543, event_type: 'hand ball', player_name: 'D. Maradona', team: 'hometeam', minute: 45),
+                                     Event.create(external_id: 19525541, event_type: 'own goal', player_name: 'S. Aguero', team: 'hometeam', minute: 10)]
                   sync_scores.perform
                 end
 
@@ -82,9 +100,14 @@ module Jobs
                   sync_scores.should have_received(:fixtures_from_feed)
                 end
 
-                it 'updates the score from feed fixture' do
+                it 'updates the score for fixture' do
                   Fixture.find(fixture.id).score.home.should eq(3)
                   Fixture.find(fixture.id).score.away.should eq(2)
+                end
+
+                it 'updates the events for fixture' do
+                  Fixture.find(fixture.id).events.collect(&:event_type).should =~ ["yellowcard", "goal"]
+                  Fixture.find(fixture.id).events.collect(&:player_name).should =~ ["W. Buckley", "S. Fletcher"]
                 end
 
                 it 'attempts to run markings' do
@@ -110,6 +133,11 @@ module Jobs
                 it 'create a new score for fixture' do
                   Fixture.find(fixture.id).score.home.should eq(3)
                   Fixture.find(fixture.id).score.away.should eq(2)
+                end
+
+                it 'create a new events for fixture' do
+                  Fixture.find(fixture.id).events.collect(&:event_type).should =~ ["yellowcard", "goal"]
+                  Fixture.find(fixture.id).events.collect(&:player_name).should =~ ["W. Buckley", "S. Fletcher"]
                 end
 
                 it 'attempts to run markings' do
