@@ -10,13 +10,14 @@ module Jobs
         let(:fixture_finished) { true }
         let(:feed_fixtures) { [double(Feed::Fixture, id: 999, home_team_id: 1, away_team_id: 2,
                                       home_team_goals:   3, away_team_goals: 2, finished?: fixture_finished)] }
-        let(:score) { double(Score, home: 1, away: 0) }
-        let(:fixture) { double(Fixture, external_id: 999, score: score, name: "ARG-BRA") }
-        let(:week) { double(Week, id: 1) }
+
+        let!(:home_team) { Team.create(id:1, name: 'argentina', abbreviation: 'arg') }
+        let!(:away_team) { Team.create(id:2, name: 'brazil', abbreviation: 'bra') }
+        let!(:week) { Week.create(id: 1, close_date: 30.minutes.ago, description: 'Week 01') }
+        let!(:fixture) { Fixture.create(week_id: week.id, external_id: 999, home_team_id: home_team.id, away_team_id: away_team.id, name: "ARG-BRA", kickoff: 1.day.from_now) }
 
         before :each do
           Fixture.stub(:recently_finished).and_return(recently_finished)
-          Fixture.stub(:find_by_external_id).and_return(fixture)
 
           sync_scores.stub(:required_week).and_return(week)
           sync_scores.stub(:run_marking)
@@ -30,13 +31,10 @@ module Jobs
 
           context 'and there are no fixtures that have recently finished' do
             let(:recently_finished) { [] }
-
-            before :each do
-              fixture.score.stub(:update_attributes).with(home: 3, away: 2)
-              sync_scores.perform force
-            end
+            let(:fixture_finished) { false }
 
             it 'still retrieves feed fixtures' do
+              sync_scores.perform force
               sync_scores.should have_received(:fixtures_from_feed)
             end
           end
@@ -71,13 +69,12 @@ module Jobs
             end
 
             context 'and fixture has finished' do
-              let(:week) { double(Week, id: 2) }
 
               context 'and it already has a score recorded' do
 
                 before :each do
                   Week.stub(:find).and_return(week)
-                  fixture.score.stub(:update_attributes).with(home: 3, away: 2)
+                  fixture.create_score(fixture_id: fixture.id, home: 0, away: 0)
                   sync_scores.perform
                 end
 
@@ -85,12 +82,9 @@ module Jobs
                   sync_scores.should have_received(:fixtures_from_feed)
                 end
 
-                it 'finds fixture to sync' do
-                  Fixture.should have_received(:find_by_external_id)
-                end
-
-                it 'updates existing score for fixture' do
-                  fixture.score.should have_received(:update_attributes).with(home: 3, away: 2)
+                it 'updates the score from feed fixture' do
+                  Fixture.find(fixture.id).score.home.should eq(3)
+                  Fixture.find(fixture.id).score.away.should eq(2)
                 end
 
                 it 'attempts to run markings' do
@@ -104,10 +98,8 @@ module Jobs
               end
 
               context 'and there is no score already recorded' do
-                let(:score) { nil }
 
                 before :each do
-                  fixture.stub(:create_score).with(home: 3, away: 2)
                   sync_scores.perform
                 end
 
@@ -115,12 +107,9 @@ module Jobs
                   sync_scores.should have_received(:fixtures_from_feed)
                 end
 
-                it 'finds fixture to sync' do
-                  Fixture.should have_received(:find_by_external_id)
-                end
-
                 it 'create a new score for fixture' do
-                  fixture.should have_received(:create_score).with(home: 3, away: 2)
+                  Fixture.find(fixture.id).score.home.should eq(3)
+                  Fixture.find(fixture.id).score.away.should eq(2)
                 end
 
                 it 'attempts to run markings' do

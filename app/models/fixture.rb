@@ -5,6 +5,7 @@ class Fixture < ActiveRecord::Base
   belongs_to :home_team, :foreign_key => "home_team_id", :class_name => "Team"
   belongs_to :away_team, :foreign_key => "away_team_id", :class_name => "Team"
   has_one    :score
+  has_many   :events
 
   NORMAL_CHOICES   = [{ name: "Home", value: "H" }, { name: "Draw", value: "D" }, { name: "Away", value: "A" }]
   KNOCKOUT_CHOICES = [{ name: "Home", value: "H" }, { name: "Away", value: "A" }]
