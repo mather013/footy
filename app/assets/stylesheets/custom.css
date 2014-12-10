@@ -82,6 +82,11 @@
 .main-font {
     font-size: 14px;
 }
+
+.event-font {
+    font-size: 11px;
+}
+
 .info-txt {
     font-size: .7em;
     color: #686868;

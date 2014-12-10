@@ -23,7 +23,13 @@
                   <% end %>
               <% end %>
           <% else %>
-              <%= render "fixture_info" %>
+              <% if @fixture.events.present? %>
+                  <%= link_to fixture_events_path(@week.id, @fixture.id), :method => :get do %>
+                      <%= render "fixture_info" %>
+                  <% end %>
+              <% else %>
+                  <%= render "fixture_info" %>
+              <% end %>
           <% end %>
         </li>
     <% end %>

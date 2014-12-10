@@ -24,4 +24,5 @@ Footy::Application.routes.draw do
   get  'lm_rounds_info'                           => 'lm_rounds#info',  :as => 'lm_rounds_info'
   get  'users/:user_id/weeks/:week_id/fixtures'   => 'users#index',     :as => 'user_week_fixtures'
   get  'users/:user_id/lm_rounds'                 => 'users#show',      :as => 'user_lm_rounds'
+  get  'weeks/:week_id/fixtures/:fixture_id/events' => 'events#index',  :as => 'fixture_events'
 end
