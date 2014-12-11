@@ -3,7 +3,8 @@ class Week < ActiveRecord::Base
 
   has_many :fixtures
 
-  scope :sorted, :order => :close_date
+  scope :sorted, order('close_date asc')
+  scope :sorted_open, order('complete desc, close_date asc')
 
   def self.current
     self.where("close_date > '#{Time.now}'").order(:close_date).first

@@ -20,7 +20,7 @@ describe Week do
   end
 
   describe 'scopes' do
-    let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.from_now) }
+    let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.ago, complete: true) }
     let!(:week_two) { Week.create(description: 'Week 02', close_date: 2.days.from_now) }
     let!(:week_three) { Week.create(description: 'Week 03', close_date: 3.days.from_now) }
 
@@ -31,9 +31,21 @@ describe Week do
       end
 
       it 'creates the expected sql for weeks by ascending close_date' do
-        expect(Week.sorted.to_sql.should == "SELECT \"weeks\".* FROM \"weeks\"  ORDER BY close_date")
+        expect(Week.sorted.to_sql.should == "SELECT \"weeks\".* FROM \"weeks\"  ORDER BY close_date asc")
       end
     end
+
+    describe 'ordered_open' do
+
+      it 'weeks by not complete and ascending close_date' do
+        Week.sorted_open.should eq [week_two, week_three, week_one]
+      end
+
+      it 'creates the expected sql for weeks by not complete and ascending close_date' do
+        expect(Week.sorted_open.to_sql.should == "SELECT \"weeks\".* FROM \"weeks\"  ORDER BY complete desc, close_date asc")
+      end
+    end
+
   end
 
   describe 'class methods' do
