@@ -9,12 +9,6 @@
   <a href="<%= points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>
 
-<script type="text/javascript">
-    $(document).bind('mobileinit', function () {
-        $.mobile.minScrollBack = 0;
-    });
-</script>
-
 <div data-role="content">
   <ul data-role="listview" id="fix-list">
     <% @weeks.each do |week| %>
@@ -28,7 +22,7 @@
                 <% when "Complete" %>
                     <span class="label label-default">Complete</span>
                 <% when "In play" %>
-                    <span id="the-element" class="label label-warning">In play</span>
+                    <span class="label label-warning">In play</span>
                 <% when "Open" %>
                     <span class="label label-success">Open</span>
                 <% end %>

@@ -3,7 +3,7 @@ class WeeksController < ApplicationController
 
   def index
     @user = current_user
-    @weeks = Week.sorted
+    @weeks = Week.sorted_open
   end
 
 end

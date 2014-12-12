@@ -14,14 +14,3 @@
 //= require jquery_ujs
 //= require jquery.mobile.min
 //= require_tree .
-
-$(document).delegate('.ui-page', 'pageshow', function () {
-
-    //get the offset of the element
-    var offset = $('#the-element').offset().top;
-
-    //now scroll to the element
-    setTimeout(function () {
-        $.mobile.silentScroll(offset);
-    }, 0);
-});
