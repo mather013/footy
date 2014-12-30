@@ -12,7 +12,7 @@ module Jobs
         User.all.each do |user|
           bets = Bet.bets_for_user_and_fixtures(user, @week_current.fixtures.map(&:id))
           if bets.count != fixtures.count
-            create_sms_communication(user, sms_message) unless user.mobile.blank?
+            create_communication_for user
           end
         end
       end
@@ -20,11 +20,11 @@ module Jobs
 
     private
 
-    def create_sms_communication user, message
-      Communications::SmsCommunication.create(status: Communication::Status::PENDING, user_id: user.id, message: message)
+    def create_communication_for user
+      Communications::SmsCommunication.create(status: Communication::Status::PENDING, user_id: user.id, message: message) if ENVIRONMENT_CONFIG['toggles']['sms_communications'] && user.mobile.present?
     end
 
-    def sms_message
+    def message
       "#{MESSAGE} #{@week_current.description} kicks off today at #{@week_current.close_date_local_time.strftime("%H:%M")}. Footy Forecast"
     end
 

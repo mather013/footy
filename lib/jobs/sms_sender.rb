@@ -2,7 +2,7 @@ module Jobs
   class SmsSender
 
     def perform
-      communications.each do |communication|
+      pending_sms_communications.each do |communication|
         if communication.user.mobile.present?
           begin
             send communication
@@ -17,7 +17,7 @@ module Jobs
 
     private
 
-    def communications
+    def pending_sms_communications
       Communications::SmsCommunication.pending
     end
 
