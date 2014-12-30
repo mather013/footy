@@ -37,4 +37,4 @@ Week.find_or_create_by_id(id: 25, description: 'Week 25', close_date: DateTime.p
 #Week.find_or_create_by_id(id: 35, description: 'Week 35', close_date: DateTime.parse('02-05-2015 12:45:00'))
 #Week.find_or_create_by_id(id: 36, description: 'Week 36', close_date: DateTime.parse('09-05-2015 12:45:00'))
 #Week.find_or_create_by_id(id: 37, description: 'Week 37', close_date: DateTime.parse('16-05-2015 12:45:00'))
-#Week.find_or_create_by_id(id: 38, description: 'Week 38', close_date: DateTime.parse('24-05-2015 12:45:00'))
+#Week.find_or_create_by_id(id: 38, description: 'Week 38', close_date: DateTime.parse('24-05-2015 15:00:00'))
