@@ -143,5 +143,30 @@ describe Fixture do
       its(:choices) { should == [{ name: "Home", value: "H" }, { name: "Draw", value: "D" }, { name: "Away", value: "A" }] }
     end
 
+    describe '#record_score' do
+      let(:score_hash) { { home: 2, away: 1 } }
+
+      context 'when fixture already has a score' do
+        let!(:score) { Score.create(fixture_id: fixture.id, home: 0, away: 0) }
+
+        it 'updates the score' do
+          fixture.record_score(score_hash)
+
+          fixture.score.home.should eq(2)
+          fixture.score.away.should eq(1)
+        end
+      end
+
+      context 'when fixture does not have a score' do
+        let(:score) { nil }
+
+        it 'creates the score' do
+          fixture.record_score(score_hash)
+
+          fixture.score.home.should eq(2)
+          fixture.score.away.should eq(1)
+        end
+      end
+    end
   end
 end
