@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141210105247) do
+ActiveRecord::Schema.define(:version => 20141231112004) do
 
   create_table "bets", :force => true do |t|
     t.integer  "fixture_id", :null => false
@@ -125,6 +125,16 @@ ActiveRecord::Schema.define(:version => 20141210105247) do
     t.integer  "fixture_id", :null => false
     t.integer  "home",       :null => false
     t.integer  "away",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "standings", :force => true do |t|
+    t.integer  "position"
+    t.integer  "team_id"
+    t.string   "form"
+    t.integer  "form_score"
+    t.integer  "points"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

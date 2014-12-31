@@ -15,6 +15,9 @@ describe Team do
     end
   end
 
+  describe 'associations' do
+    it { should have_one :standing }
+  end
 
   describe 'class methods' do
 

@@ -2,9 +2,7 @@
 <html>
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed">
-  <% if @user.admin? %>
-    <a href="<%= info_path %>" class="ui-btn-left" data-theme="a" data-rel="">Info</a>
-  <% end %>
+  <a href="<%= standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">Form</a>
   <h1>Footy Forecast</h1>
   <a href="<%= points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>

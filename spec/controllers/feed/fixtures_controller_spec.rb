@@ -6,12 +6,12 @@ module Feed
 
     describe 'instance methods' do
       let(:controller) { FixturesController.new }
-      let(:data_service) { Services::DataService.new }
+      let(:data_service) { Services::DataServiceFixtures.new }
       let(:fixtures) { [double(Fixture)] }
 
       before :each do
         controller.stub(:data_service).and_return(data_service)
-        data_service.stub(:get_fixtures).with(dates).and_return(response)
+        data_service.stub(:perform).with(dates).and_return(response)
         Feed::Fixtures.stub(:new).with(response).and_return(fixtures)
       end
 
