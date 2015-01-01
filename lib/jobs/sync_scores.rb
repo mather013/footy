@@ -18,6 +18,7 @@ module Jobs
         week = required_week
         run_marking(week)
         week.maybe_mark_complete
+        sync_standings
       end
 
     end
@@ -45,6 +46,10 @@ module Jobs
     def run_marking week
       RakeTaskResources::MarkWeek.perform week.id
       RakeTaskResources::MarkLmBets.perform
+    end
+
+    def sync_standings
+      Jobs::SyncStandings.new.perform
     end
 
   end

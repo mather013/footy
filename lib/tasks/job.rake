@@ -20,4 +20,9 @@ namespace :job do
     Jobs::SyncScores.new.perform args[:force]
   end
 
+  desc "Sync standings"
+  task :sync_standings => :environment do
+    Jobs::SyncStandings.new.perform
+  end
+
 end

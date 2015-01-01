@@ -38,6 +38,7 @@ module Jobs
           sync_scores.stub(:required_week).and_return(week)
           sync_scores.stub(:run_marking)
           sync_scores.stub(:fixtures_from_feed).and_return(feed_fixtures)
+          sync_scores.stub(:sync_standings)
 
           week.stub(:maybe_mark_complete)
         end
@@ -82,6 +83,10 @@ module Jobs
                 sync_scores.should_not have_received(:run_marking)
               end
 
+              it 'does not attempt to sync standings' do
+                sync_scores.should_not have_received(:sync_standings)
+              end
+
             end
 
             context 'and fixture has finished' do
@@ -118,6 +123,10 @@ module Jobs
                   week.should have_received(:maybe_mark_complete)
                 end
 
+                it 'attempts to sync standings' do
+                  sync_scores.should have_received(:sync_standings)
+                end
+
               end
 
               context 'and there is no score already recorded' do
@@ -142,6 +151,10 @@ module Jobs
 
                 it 'attempts to run markings' do
                   sync_scores.should have_received(:run_marking)
+                end
+
+                it 'attempts to sync standings' do
+                  sync_scores.should have_received(:sync_standings)
                 end
 
               end
