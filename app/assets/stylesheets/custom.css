@@ -125,6 +125,10 @@
     color:  #C9960C
 }
 
+.current_user {
+    font-weight: bold !important;
+}
+
 .label {
     display: inline;
     padding: .2em .6em .3em;

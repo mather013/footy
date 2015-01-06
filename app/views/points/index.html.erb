@@ -26,8 +26,10 @@
               <% end %>
             </div>
 
-            <div class="ui-block-b" style="width:45%">
-              <% user = User.find(point.user_id) %>
+            <% user = User.find(point.user_id) %>
+            <% username_style = (user.id == @current_user.id ?  "ui-block-b current_user" : "ui-block-b") %>
+
+            <div class="<%=username_style%>" style="width:45%">
               <%= user.name %>
             </div>
 
@@ -35,11 +37,11 @@
               <%= "$" if user.games.include?(@game) %>
             </div>
 
-            <div class="ui-block-d percent-points" align="center" style="width:15%">
+            <div class="ui-block-c percent-points" align="center" style="width:15%">
               <%= "#{(point.value.round(2)/point.count.to_i).round(2)}%" %>
             </div>
 
-            <div class="ui-block-e" align="center" style="width:10%">
+            <div class="ui-block-d" align="center" style="width:10%">
               <%= "#{point.value}" %>
             </div>
           </div>
