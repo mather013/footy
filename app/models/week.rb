@@ -10,6 +10,10 @@ class Week < ActiveRecord::Base
     self.where("close_date > '#{Time.now}'").order(:close_date).first
   end
 
+  def self.previous
+    self.where("close_date < '#{Time.now}'").order('close_date desc').first
+  end
+
   def status
     return "Complete" if complete?
     return "Open" if open?

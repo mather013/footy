@@ -19,7 +19,7 @@ module RakeTaskResources
       end
 
       def record_position user_id, current
-        week = Week.current
+        week = Week.previous
         position = Position.find_by_user_id(user_id)
 
         if position.present?

@@ -60,6 +60,17 @@ describe Week do
       end
 
     end
+
+    describe 'previous' do
+      let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
+      let!(:week_two) { Week.create(description: 'Week 02', close_date: 1.days.from_now) }
+      let!(:week_three) { Week.create(description: 'Week 03', close_date: 2.days.from_now) }
+
+      it 'returns the immediate week' do
+        expect(Week.previous).to eq week_one
+      end
+
+    end
   end
 
   describe 'instance methods' do

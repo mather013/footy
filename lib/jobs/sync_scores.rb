@@ -40,7 +40,7 @@ module Jobs
     end
 
     def required_week
-      Week.find((Week.current.id)-1)
+      Week.previous
     end
 
     def run_marking week
