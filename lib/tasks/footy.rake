@@ -44,6 +44,8 @@ namespace :footy do
     #puts "===================="
     RakeTaskResources::MarkLmBets.perform
     puts "===================="
+    RakeTaskResources::RefreshPositions.perform
+    puts "===================="
   end
 
 end

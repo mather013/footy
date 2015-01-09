@@ -10,6 +10,7 @@ describe User do
     it { should have_many :communications }
     it { should have_one :fa_point }
     it { should have_one :lm_point }
+    it { should have_one :position }
     it { should have_and_belong_to_many :games }
   end
 

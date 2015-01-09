@@ -9,7 +9,7 @@ module Jobs
         if feed_fixture.finished?
           @fixture = Fixture.find_by_external_id(feed_fixture.id)
           @fixture.record_score({home: feed_fixture.home_team_goals, away: feed_fixture.away_team_goals})
-          record_events feed_fixture
+          record_events feed_fixture.events
           scores_recorded = true
         end
       end
@@ -25,8 +25,8 @@ module Jobs
 
     private
 
-    def record_events feed_fixture
-      feed_fixture.events.each do |event|
+    def record_events events
+      events.each do |event|
         Event.find_or_initialize_by_external_id(event[:event_id]).update_attributes(fixture_id: @fixture.id,
                                                                                     event_type: event[:event_type],
                                                                                     player_name: event[:event_player],
@@ -46,6 +46,7 @@ module Jobs
     def run_marking week
       RakeTaskResources::MarkWeek.perform week.id
       RakeTaskResources::MarkLmBets.perform
+      RakeTaskResources::RefreshPositions.perform
     end
 
     def sync_standings
