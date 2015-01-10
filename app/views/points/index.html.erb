@@ -23,14 +23,14 @@
             </div>
 
             <% user = User.find(point.user_id) %>
-            <% username_style = (user.id == @current_user.id ? "ui-block-b current_user" : "ui-block-b") %>
-
-            <div class="<%= username_style %>" style="width:45%">
-              <%= user.name %>
-            </div>
 
             <div class="ui-block-b" style="width:10%">
-              <%= image_tag "position/#{user.position.movement}.png", class: "strip-size" if user.position.movement != "none" %>
+              <%= image_tag "position/#{user.position.movement}.png", class: "strip-size" if user.position.present? && user.position.movement != "none" %>
+            </div>
+
+            <% username_style = (user.id == @current_user.id ? "ui-block-b current_user" : "ui-block-b") %>
+            <div class="<%= username_style %>" style="width:45%">
+              <%= user.name %>
             </div>
 
             <div class="ui-block-c payout-icon" style="width:10%">
