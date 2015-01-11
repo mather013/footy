@@ -26,9 +26,11 @@
               </div>
 
               <div class="ui-block-d <%= style %>" align="left" style="width:50%">
-                <% if knocked_out %>
-                    <%= "Round #{point.value+1}:" %>
-                    <%= user.lm_bets.present? ? user.lm_bets.last.team.name : "No Selection" %>
+                <% if user.lm_bets.present? %>
+                    <% lm_round = user.lm_bets.last.lm_round %>
+                    <%= lm_round.week.status == 'Open' ? "Round #{lm_round.id}: ? ? ? ? ?" : "Round #{lm_round.id}: #{user.lm_bets.last.team.name}"%>
+                <% else %>
+                    Round 1: No Selection
                 <% end %>
               </div>
 
