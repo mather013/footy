@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Feed
   describe FixturesController do
-    let(:response) { [{"some_key" => "some_value"}] }
+    let(:response) { [{'some_key' => 'some_value'}] }
 
     describe 'instance methods' do
       let(:controller) { FixturesController.new }

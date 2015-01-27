@@ -17,7 +17,7 @@ class BetsController < ApplicationController
 
   def edit
     load_fixture_and_choices
-    @bet = Bet.find(:all, :conditions => ["fixture_id = ? AND user_id = ?", params['fixture_id'], current_user.id]).first
+    @bet = Bet.find(:all, :conditions => ['fixture_id = ? AND user_id = ?', params['fixture_id'], current_user.id]).first
   end
 
   def update
@@ -32,7 +32,7 @@ class BetsController < ApplicationController
   private
 
   def load_fixture_and_choices
-    @fixture = Fixture.find(params["fixture_id"])
+    @fixture = Fixture.find(params['fixture_id'])
     @choices = @fixture.choices
   end
 

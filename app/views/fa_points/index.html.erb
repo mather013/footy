@@ -3,7 +3,7 @@
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= fa_bets_path %>" data-theme="a" data-rel="">Back</a>
 
-  <h1><%= "5 Alive" %></h1>
+  <h1><%= '5 Alive' %></h1>
 </div>
 
 <div class="leaderboard">
@@ -27,7 +27,7 @@
             </div>
 
             <% user = User.find(point.user_id) %>
-            <% username_style = (user.id == @current_user.id ?  "ui-block-b current_user" : "ui-block-b") %>
+            <% username_style = (user.id == @current_user.id ?  'ui-block-b current_user' : 'ui-block-b') %>
 
             <div class="<%=username_style%>" style="width:45%">
               <%= user.name %>
@@ -40,7 +40,7 @@
             <div class="ui-block-d" align="left" style="width:32%">
               <% user.fa_teams.shuffle.each do |team| %>
                   <% if ENVIRONMENT_CONFIG['teams_in'].include? team.abbreviation %>
-                      <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{team.abbreviation}.png", class: "strip-size" %>
+                      <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{team.abbreviation}.png", class: 'strip-size' %>
                   <% end %>
               <% end %>
             </div>
@@ -54,5 +54,5 @@
     <% end %>
   </ul>
 </div>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>

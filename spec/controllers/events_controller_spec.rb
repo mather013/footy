@@ -3,7 +3,7 @@ require 'spec_helper'
 describe EventsController do
 
   before :each do
-    log_in_as "admin"
+    log_in_as 'admin'
   end
 
   describe 'index' do

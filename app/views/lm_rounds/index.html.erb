@@ -16,19 +16,19 @@
           <% if round.week.open? and not @user.read_only? and @user.lm_survivor? %>
               <% if @lm_bet.nil? %>
                   <%= link_to new_lm_bet_path(round.id), :method => :post do %>
-                      <%= render "round_info" %>
+                      <%= render 'round_info' %>
                   <% end %>
               <% else %>
                   <%= link_to edit_lm_bet_path(round.id), :method => :get do %>
-                      <%= render "round_info" %>
+                      <%= render 'round_info' %>
                   <% end %>
               <% end %>
           <% else %>
-              <%= render "round_info" %>
+              <%= render 'round_info' %>
           <% end %>
         </li>
     <% end %>
   </ul>
 </div>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>

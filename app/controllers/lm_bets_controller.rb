@@ -14,7 +14,7 @@ class LmBetsController < ApplicationController
 
   def edit
     load_details
-    @bet = LmBet.find(:all, :conditions => ["lm_round_id = ? AND user_id = ?", params[:lm_round_id], current_user.id]).first
+    @bet = LmBet.find(:all, :conditions => ['lm_round_id = ? AND user_id = ?', params[:lm_round_id], current_user.id]).first
   end
 
   def update
@@ -32,7 +32,7 @@ class LmBetsController < ApplicationController
     all_teams  = Team.all_for_choices
 
     teams_used = []
-    LmBet.find(:all, :conditions => ["lm_round_id <> ? AND user_id = ?", params[:lm_round_id], current_user.id]).each do |bet|
+    LmBet.find(:all, :conditions => ['lm_round_id <> ? AND user_id = ?', params[:lm_round_id], current_user.id]).each do |bet|
       teams_used << Team.find(bet.team_id)
     end
 

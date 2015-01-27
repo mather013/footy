@@ -4,10 +4,10 @@
   <h1><%= "Fixture #{@fixture.id.to_s.rjust(3, "0")}" %></h1>
 </div>
 
-<%= render "teams" %>
+<%= render 'teams' %>
 
 <form method="PUT" action="<%= bet_path(@bet.id) %>">
-  <%= render "selection" %>
+  <%= render 'selection' %>
 </form>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>

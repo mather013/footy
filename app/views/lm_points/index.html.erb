@@ -3,7 +3,7 @@
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= lm_rounds_path %>" data-theme="a" data-rel="">Back</a>
 
-  <h1><%= "Last Man Standing" %></h1>
+  <h1><%= 'Last Man Standing' %></h1>
 </div>
 
 <div class="leaderboard">
@@ -14,7 +14,7 @@
             <div class="ui-grid-b">
 
               <% knocked_out = point.value < @max_round.id-1 %>
-              <% style = "disabled-font" if knocked_out %>
+              <% style = 'disabled-font' if knocked_out %>
               <% user = User.find(point.user_id) %>
 
               <div class="ui-block-b <%= style %>" style="width:40%">
@@ -40,5 +40,5 @@
     <% end %>
   </ul>
 </div>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>

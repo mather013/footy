@@ -2,8 +2,8 @@ module RakeTaskResources
   class RefreshPositions
     class << self
       def perform
-        puts "refresh user positions"
-        puts "===================="
+        puts 'refresh user positions'
+        puts '===================='
         index = 0
         position = 0
         previous_score = -10
@@ -18,7 +18,7 @@ module RakeTaskResources
         end
       end
 
-      def record_position user_id, current
+      def record_position(user_id, current)
         week = Week.previous
         position = Position.find_by_user_id(user_id)
 

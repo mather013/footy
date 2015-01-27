@@ -5,12 +5,12 @@ class Bet < ActiveRecord::Base
 
   validates :user_id, :uniqueness => {:scope => :fixture_id}
 
-  scope :bets_for_user_and_fixtures, lambda { |user, fixture_ids| where("user_id = ? and fixture_id in (?)", user.id,fixture_ids) }
+  scope :bets_for_user_and_fixtures, lambda { |user, fixture_ids| where('user_id = ? and fixture_id in (?)', user.id, fixture_ids) }
 
   def outcome
-    return "" if fixture.score.nil?
-    return "correct" if value == fixture.score.outcome
-    return "wrong"
+    return '' if fixture.score.nil?
+    return 'correct' if value == fixture.score.outcome
+    return 'wrong'
   end
 
   def correct?

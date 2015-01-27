@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find(:first, :conditions => ["username = ? and password = ?",
+    user = User.find(:first, :conditions => ['username = ? and password = ?',
                                             params[:user]['username'],
                                             params[:user]['password']])
 

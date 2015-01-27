@@ -12,10 +12,10 @@
         <% @round = round %>
         <li class="custom-list">
           <% @lm_bet = LmBet.bets_for_user_and_round(@view_user, round).first %>
-          <%= render "round_info" %>
+          <%= render 'round_info' %>
         </li>
     <% end %>
   </ul>
 </div>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>

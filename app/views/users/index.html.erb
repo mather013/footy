@@ -7,16 +7,16 @@
 
 <div data-role="content">
   <ul data-role="listview">
-    <% @fixtures.order("kickoff asc").each do |fixture| %>
+    <% @fixtures.order('kickoff asc').each do |fixture| %>
         <% @fixture = fixture %>
         <li class="custom-list">
           <div class="ui-grid-b">
             <div class="ui-block-a main-font" style="width:90%">
-              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.home_team.abbreviation}.png", class: "strip-size" %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.home_team.abbreviation}.png", class: 'strip-size' %>
               <%= "#{ @fixture.home_team.name[0..10] }" %>
               vs
               <%= "#{ @fixture.away_team.name[0..10] }" %>
-              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.away_team.abbreviation}.png", class: "strip-size" %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@fixture.away_team.abbreviation}.png", class: 'strip-size' %>
               <br>
               <h10 class="kickoff">
                 <%= DateTime.parse(@fixture.kickoff_local_time.to_s).strftime('%A %e %B %Y %H:%M') %>
@@ -38,5 +38,5 @@
     <% end %>
   </ul>
 </div>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>

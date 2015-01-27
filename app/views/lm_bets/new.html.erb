@@ -2,7 +2,7 @@
 <html>
 <div data-role="header" data-position="fixed">
   <a href="<%= lm_rounds_path %>" data-theme="a" data-rel="">Back</a>
-  <h1><%= "Round #{@lm_round.id.to_s.rjust(2, "0")}" %></h1>
+  <h1><%= "Round #{@lm_round.id.to_s.rjust(2, '0')}" %></h1>
 </div>
 
 <div data-role="content">
@@ -11,11 +11,11 @@
         <div class="control-group" align="center">
           <%= bet.hidden_field :lm_round, value: @lm_round.id %>
           <%= bet.select :team_id, options_for_select(@choices) %>
-          <%= bet.submit "Save", class: "btn btn-large btn-primary" %>
+          <%= bet.submit 'Save', class: 'btn btn-large btn-primary' %>
         </div>
       </fieldset>
   <% end %>
 </div>
-<%= render "fixtures" %>
-<%= render "common/footer" %>
+<%= render 'fixtures' %>
+<%= render 'common/footer' %>
 </html>

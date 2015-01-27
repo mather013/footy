@@ -17,11 +17,11 @@
                 <%= "#{week.description}" %>
 
                 <% case week.status %>
-                <% when "Complete" %>
+                <% when 'Complete' %>
                     <span class="label label-default">Complete</span>
-                <% when "In play" %>
+                <% when 'In play' %>
                     <span class="label label-warning">In play</span>
-                <% when "Open" %>
+                <% when 'Open' %>
                     <span class="label label-success">Open</span>
                 <% end %>
 
@@ -42,5 +42,5 @@
     <% end %>
   </ul>
 </div>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>

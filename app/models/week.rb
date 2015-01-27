@@ -15,14 +15,14 @@ class Week < ActiveRecord::Base
   end
 
   def status
-    return "Complete" if complete?
-    return "Open" if open?
-    return "In play" if in_play?
-    return "Pending"
+    return 'Complete' if complete?
+    return 'Open' if open?
+    return 'In play' if in_play?
+    return 'Pending'
   end
 
   def close_date_local_time
-    close_date.in_time_zone("London")
+    close_date.in_time_zone('London')
   end
 
   def winning_teams

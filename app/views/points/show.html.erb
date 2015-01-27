@@ -35,7 +35,7 @@
               </div>
 
               <% user = User.find(point.user_id) %>
-              <% username_style = (user.id == @current_user.id ?  "ui-block-b current_user" : "ui-block-b") %>
+              <% username_style = (user.id == @current_user.id ?  'ui-block-b current_user' : 'ui-block-b') %>
 
               <div class="<%=username_style%>" style="width:80%">
                 <%= user.name %>
@@ -52,5 +52,5 @@
     <% end %>
   </ul>
 </div>
-<%= render "common/footer" %>
+<%= render 'common/footer' %>
 </html>
