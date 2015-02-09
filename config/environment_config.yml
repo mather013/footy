@@ -8,7 +8,6 @@ defaults: &defaults
   days_in_advance_to_sync_fixtures: 7
   feed:
     url: http://football-api.com/api/
-    api_key: 23874509-922b-abe2-847ab13dadba
     competition_id: 1204
   toggles:
     sms_communications: true
@@ -22,4 +21,4 @@ test: &test
 production:
   <<: *defaults
   toggles:
-    sms_communications: false
+    sms_communications: true

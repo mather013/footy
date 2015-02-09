@@ -21,7 +21,9 @@ module Jobs
     private
 
     def create_communication_for user
-      Communications::SmsCommunication.create(status: Communication::Status::PENDING, user_id: user.id, message: message) if ENVIRONMENT_CONFIG['toggles']['sms_communications'] && user.mobile.present?
+      if ENVIRONMENT_CONFIG['toggles']['sms_communications'] && user.mobile.present?
+        Communications::SmsCommunication.create(status: Communication::Status::PENDING, user_id: user.id, message: message)
+      end
     end
 
     def message

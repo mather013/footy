@@ -1,15 +1,22 @@
 module Services
   class SmsService
 
-    def perform hash
-      blowerio = RestClient::Resource.new(blower_url)
-      blowerio['/messages'].post :to => "#{hash['mobile']}", :message => "#{hash['message']}"
+    def perform(hash)
+      require 'clockwork'
+      api = Clockwork::API.new(clockwork_api_key)
+      message = api.messages.build(:to => clean_number(hash['mobile']), :content => hash['message'])
+      response = message.deliver
+      response.success
     end
 
     private
 
-    def blower_url
-      ENV['BLOWERIO_URL']
+    def clockwork_api_key
+      ENV['CLOCKWORK_KEY']
+    end
+
+    def clean_number mobile
+      mobile.gsub('+', '')
     end
 
   end

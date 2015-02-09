@@ -27,6 +27,7 @@ gem 'jquery_mobile_rails'
 gem 'rspec-rails'
 gem 'rest-client'
 gem 'httparty'
+gem 'clockworksms'
 
 group :test do
   gem 'shoulda'

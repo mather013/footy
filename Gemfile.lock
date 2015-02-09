@@ -31,6 +31,9 @@ GEM
     addressable (2.3.6)
     arel (3.0.2)
     builder (3.0.4)
+    clockworksms (1.2.1)
+      faraday (~> 0.8)
+      nokogiri (~> 1.5.2)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -48,6 +51,8 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     hike (1.2.1)
     httparty (0.11.0)
       multi_json (~> 1.0)
@@ -69,7 +74,9 @@ GEM
     mime-types (1.22)
     multi_json (1.7.2)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     netrc (0.7.7)
+    nokogiri (1.5.11)
     pg (0.15.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -164,6 +171,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  clockworksms
   coffee-rails (~> 3.2.1)
   dotenv
   dotenv-deployment
