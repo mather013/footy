@@ -35,7 +35,7 @@ module Jobs
 
               context 'and the user has a mobile number' do
                 let(:mobile_number) { '123456789' }
-                let(:expected_message) { "Don't forget to make your predictions! Week 08 kicks off today at #{close_date.strftime("%H:%M")}. Footy Forecast" }
+                let(:expected_message) { "Don't forget to make your predictions! Week 08 kicks off today at #{close_date.strftime('%H:%M')}. Footy Forecast" }
 
                 it 'creates a pending sms communication record' do
                   expect(Communications::SmsCommunication.count).to eq(1)

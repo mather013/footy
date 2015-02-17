@@ -11,7 +11,7 @@ class Fixture < ActiveRecord::Base
   KNOCKOUT_CHOICES = [{ name: 'Home', value: 'H' }, { name: 'Away', value: 'A' }]
 
   scope :requiring_sync, lambda { where('external_id is null and kickoff between ? and ?', DateTime.now, ENVIRONMENT_CONFIG['days_in_advance_to_sync_fixtures'].days.from_now) }
-  scope :recently_finished, lambda { where('kickoff between ? and ?', 155.minutes.ago, 85.minutes.ago) }
+  scope :recently_finished, lambda { where('kickoff between ? and ?', 155.minutes.ago, 95.minutes.ago) }
 
   def to_s
     "#{ home_team.name } vs #{ away_team.name }"

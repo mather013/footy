@@ -21,7 +21,7 @@ module Jobs
       Communications::SmsCommunication.pending
     end
 
-    def send communication
+    def send(communication)
       Services::SmsService.new.perform(communication.to_hash)
     end
 

@@ -25,7 +25,7 @@ module Jobs
 
     private
 
-    def record_events events
+    def record_events(events)
       events.each do |event|
         Event.find_or_initialize_by_external_id(event[:event_id]).update_attributes(fixture_id: @fixture.id,
                                                                                     event_type: event[:event_type],

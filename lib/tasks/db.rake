@@ -1,5 +1,5 @@
 namespace :db do
-  desc "Create dev data"
+  desc 'Create dev data'
   task :create_dev_data => :environment do
     #Development data only. Used for visual checks for developing/testing (UAT like)
     if Rails.env.development?
@@ -8,27 +8,27 @@ namespace :db do
         p "seeding file #{seed_file}"
         load seed_file
       end
-      puts "Added development data"
+      puts 'Added development data'
     end
   end
 
-  desc "Reset data ready for new competition"
+  desc 'Reset data ready for new competition'
   task :reset_data, [:force] => :environment do |t, args|
     if args[:force]
       RakeTaskResources::ResetData.perform
-      puts "Reset data complete."
+      puts 'Reset data complete.'
     else
-      puts "Sorry, you have not confirmed that you want to reset the data."
+      puts 'Sorry, you have not confirmed that you want to reset the data.'
     end
   end
 
-  desc "Reset last man game for new round"
+  desc 'Reset last man game for new round'
   task :reset_lm, [:week_id, :force] => :environment do |t, args|
     if args[:force]
       RakeTaskResources::ResetLm.perform args[:week_id]
       puts "New last man starting for week #{args[:week_id]}"
     else
-      puts "Sorry, you have not confirmed that you want to reset last man data."
+      puts 'Sorry, you have not confirmed that you want to reset last man data.'
     end
   end
 

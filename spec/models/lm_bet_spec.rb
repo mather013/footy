@@ -95,7 +95,7 @@ describe LmBet do
 
     describe '#result' do
       let(:team) { double(Team, id: 1, abbreviation: 'col') }
-      let(:week) { double(Week, results_hash: { arg: "L", bra: "W", col: "W", den: "L" }) }
+      let(:week) { double(Week, results_hash: { arg: 'L', bra: 'W', col: 'W', den: 'L' }) }
       let(:lm_round) { double(LmRound, id: 1, week: week) }
       let(:lm_bet) { LmBet.create(user_id: 1, team_id: team.id, lm_round_id: 1) }
 
@@ -108,5 +108,35 @@ describe LmBet do
         expect(lm_bet.result).to eq 'W'
       end
     end
+
+    describe '#opposing_team_name' do
+      let!(:home_team) { Team.create(id: 1, name: 'Argentina', abbreviation: 'arg') }
+      let!(:away_team) { Team.create(id: 2, name: 'Brazil', abbreviation: 'bra') }
+      let(:lm_bet) { LmBet.create(user_id: 1, team_id: team.id, lm_round_id: 1) }
+
+      before :each do
+        Week.create(id: 1,  description: 'Week 01', close_date: 1.week.from_now)
+        Fixture.create(id: 1, week_id: 1, home_team_id: 1, away_team_id: 2, name: 'ARG-BRA')
+        LmRound.create(id:1, week_id:1)
+      end
+
+      context 'when bet is for home team' do
+        let(:team) { home_team }
+
+        it 'returns expected opposition with away identifier' do
+          expect(lm_bet.opposing_team_name).to eq('Brazil (H)')
+        end
+      end
+
+      context 'when bet is for away team' do
+        let(:team) { away_team }
+
+        it 'returns expected opposition with home identifier' do
+          expect(lm_bet.opposing_team_name).to eq('Argentina (A)')
+        end
+      end
+
+    end
+
   end
 end
