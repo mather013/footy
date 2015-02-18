@@ -8,29 +8,29 @@ module Jobs
       describe '#perform' do
         let(:sync_scores) { Jobs::SyncScores.new }
         let(:fixture_finished) { true }
-        let(:events) { [{ :event_id        => "19525541",
-                          :event_match_id  => "1952554",
-                          :event_type      => "goal",
-                          :event_minute    => "31",
-                          :event_team      => "visitorteam",
-                          :event_player    => "S. Fletcher",
-                          :event_player_id => "890",
-                          :event_result    => "[0 - 1]" },
-                        { :event_id        => "19525543",
-                          :event_match_id  => "1952554",
-                          :event_type      => "yellowcard",
-                          :event_minute    => "63",
-                          :event_team      => "visitorteam",
-                          :event_player    => "W. Buckley",
-                          :event_player_id => "50726",
-                          :event_result    => "" }] }
+        let(:events) { [{ :event_id        => '19525541',
+                          :event_match_id  => '1952554',
+                          :event_type      => 'goal',
+                          :event_minute    => '31',
+                          :event_team      => 'visitorteam',
+                          :event_player    => 'S. Fletcher',
+                          :event_player_id => '890',
+                          :event_result    => '[0 - 1]' },
+                        { :event_id        => '19525543',
+                          :event_match_id  => '1952554',
+                          :event_type      => 'yellowcard',
+                          :event_minute    => '63',
+                          :event_team      => 'visitorteam',
+                          :event_player    => 'W. Buckley',
+                          :event_player_id => '50726',
+                          :event_result    => '' }] }
         let(:feed_fixtures) { [double(Feed::Fixture, id: 999, home_team_id: 1, away_team_id: 2,
                                       home_team_goals:   3, away_team_goals: 2, finished?: fixture_finished, events: events)] }
 
         let!(:home_team) { Team.create(id:1, name: 'argentina', abbreviation: 'arg') }
         let!(:away_team) { Team.create(id:2, name: 'brazil', abbreviation: 'bra') }
         let!(:week) { Week.create(id: 1, close_date: 30.minutes.ago, description: 'Week 01') }
-        let!(:fixture) { Fixture.create(week_id: week.id, external_id: 999, home_team_id: home_team.id, away_team_id: away_team.id, name: "ARG-BRA", kickoff: 1.day.from_now) }
+        let!(:fixture) { Fixture.create(week_id: week.id, external_id: 999, home_team_id: home_team.id, away_team_id: away_team.id, name: 'ARG-BRA', kickoff: 1.day.from_now) }
 
         before :each do
           Fixture.stub(:recently_finished).and_return(recently_finished)
@@ -111,8 +111,8 @@ module Jobs
                 end
 
                 it 'updates the events for fixture' do
-                  Fixture.find(fixture.id).events.collect(&:event_type).should =~ ["yellowcard", "goal"]
-                  Fixture.find(fixture.id).events.collect(&:player_name).should =~ ["W. Buckley", "S. Fletcher"]
+                  Fixture.find(fixture.id).events.collect(&:event_type).should =~ ['yellowcard', 'goal']
+                  Fixture.find(fixture.id).events.collect(&:player_name).should =~ ['W. Buckley', 'S. Fletcher']
                 end
 
                 it 'attempts to run markings' do
@@ -145,8 +145,8 @@ module Jobs
                 end
 
                 it 'create a new events for fixture' do
-                  Fixture.find(fixture.id).events.collect(&:event_type).should =~ ["yellowcard", "goal"]
-                  Fixture.find(fixture.id).events.collect(&:player_name).should =~ ["W. Buckley", "S. Fletcher"]
+                  Fixture.find(fixture.id).events.collect(&:event_type).should =~ ['yellowcard', 'goal']
+                  Fixture.find(fixture.id).events.collect(&:player_name).should =~ ['W. Buckley', 'S. Fletcher']
                 end
 
                 it 'attempts to run markings' do

@@ -15,7 +15,7 @@ module Services
       ENV['CLOCKWORK_KEY']
     end
 
-    def clean_number mobile
+    def clean_number(mobile)
       mobile.gsub('+', '')
     end
 

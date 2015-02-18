@@ -16,8 +16,8 @@ module Feed
 
     def calculate_form_score form
       score = 0
-      form.split("").each do |i|
-        i == "W" ? score+=3 : (score+=1 if i == "D")
+      form.split('').each do |i|
+        i == 'W' ? score+=3 : (score+=1 if i == 'D')
       end
       score
     end

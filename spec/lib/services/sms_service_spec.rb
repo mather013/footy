@@ -1,20 +1,40 @@
 require 'spec_helper'
+require 'clockwork'
 
 module Services
   describe SmsService do
+    let(:api_key) { 'SOME_KEY' }
+    let(:clockwork_service) { double(Clockwork::API, messages: clockwork_service_messages) }
+    let(:clockwork_service_messages) { double(Clockwork::API, build: clockwork_service_message) }
+    let(:clockwork_service_message) { double(Clockwork::API, deliver: clockwork_service_response) }
+    let(:clockwork_service_response) { double(Clockwork::API, success: true) }
+    let(:expected_hash) { {to: '123', content: 'make your predictions, fool!'} }
 
-    let(:config) { { 'test_url' => 'testurl.com' } }
-    let(:hash) { { 'message' => 'you have not made enough predictions!', 'mobile' => '123' } }
+    let(:hash) { {'message' => 'make your predictions, fool!', 'mobile' => '+123'} }
 
-    before(:each) do
-      stub_request(:any, 'http://testurl.com/messages')
-      stub_const('ENV', {'BLOWERIO_URL' => config['test_url']})
-      SmsService.new.perform(hash)
-    end
+    describe '#perform' do
 
-    describe '#send_sms' do
-      xit 'should make request with expected values' do
-        WebMock.should have_requested(:post, 'http://testurl.com/messages').with(body:'to=123&message=you%20have%20not%20made%20enough%20predictions!')
+      before(:each) do
+        stub_const('ENV', {'CLOCKWORK_KEY' => api_key})
+        Clockwork::API.stub(:new).with(api_key).and_return(clockwork_service)
+
+        SmsService.new.perform(hash)
+      end
+
+      it 'should create instance of clockwork with api key' do
+        expect(Clockwork::API).to have_received(:new).with(api_key)
+      end
+
+      it 'should build expected message' do
+        expect(clockwork_service.messages).to have_received(:build).with(expected_hash)
+      end
+
+      it 'should respond with success' do
+        expect(clockwork_service.messages.build).to have_received(:deliver)
+      end
+
+      it 'should respond with success' do
+        expect(clockwork_service.messages.build.deliver).to have_received(:success)
       end
 
     end
