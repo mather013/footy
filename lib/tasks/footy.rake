@@ -39,7 +39,7 @@ namespace :footy do
   end
 
   desc 'Set users paid games for ff'
-  task :users_paid_lms, [:usernames] => :environment do |t, args|
+  task :users_paid_ff, [:usernames] => :environment do |t, args|
     params = {}
     params.merge!(args)
     params.merge!({game_id: 1})
