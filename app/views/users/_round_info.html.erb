@@ -38,7 +38,7 @@
             <%= 'L' %>
             <br>
             <h10 class="kickoff">
-              <%= @lm_bet.fixture.score.to_s %>
+              <%= @lm_bet.fixture.score.to_s if @lm_bet.present?%>
             </h10>
           </div>
       <% end %>

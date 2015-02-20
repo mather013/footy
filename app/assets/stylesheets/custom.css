@@ -155,7 +155,7 @@
 
 .label-default {
     background-color: #999999;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
 }
 
 .label-default[href]:hover,
@@ -174,7 +174,7 @@
 
 .label-success {
     background-color: #5cb85c;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
 }
 
 .label-success[href]:hover,
@@ -184,7 +184,7 @@
 
 .label-info {
     background-color: #5bc0de;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
 }
 
 .label-info[href]:hover,
@@ -194,7 +194,7 @@
 
 .label-warning {
     background-color: #f0ad4e;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
 }
 
 .label-warning[href]:hover,
@@ -204,7 +204,7 @@
 
 .label-danger {
     background-color: #d9534f;
-    margin: 0 0 0 10px;
+    margin: 0 0 0 5px;
 }
 
 .label-danger[href]:hover,
