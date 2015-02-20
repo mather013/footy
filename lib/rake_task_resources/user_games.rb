@@ -3,10 +3,11 @@ module RakeTaskResources
     class << self
 
       def perform args
-        games      = Game.where(id: args[:game_ids].split("-"))
-        user       = User.find_by_username(args[:username])
-        user.games = games
-        user.save
+        game = Game.find(args[:game_id])
+        (args[:usernames].split ' ').each do |username|
+          user = User.find_by_username(username)
+          user.games << game if user.present?
+        end
       end
 
     end
