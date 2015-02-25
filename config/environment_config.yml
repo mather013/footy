@@ -1,16 +1,15 @@
 defaults: &defaults
   round_open_period_in_days: 7
   competition: premier_league
-  knockout_rounds: []
-#  competition: world_cup
-#  knockout_rounds: [4,5,6,7]
-#  teams_in: ['arg','bra', 'ger','net']
+  premier_league:
+    knockout_rounds: []
+  world_cup:
+    knockout_rounds: [4,5,6,7]
+    teams_in: ['arg','bra', 'ger','net']
   days_in_advance_to_sync_fixtures: 7
   feed:
     url: http://football-api.com/api/
     competition_id: 1204
-  toggles:
-    sms_communications: true
 
 development:
   <<: *defaults
@@ -20,5 +19,3 @@ test: &test
 
 production:
   <<: *defaults
-  toggles:
-    sms_communications: true

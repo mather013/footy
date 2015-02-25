@@ -4,6 +4,8 @@ module Jobs
     MESSAGE = "Don't forget to make your predictions!"
 
     def perform
+      return false unless TOGGLES_CONFIG['sms_communications']
+
       @week_current = Week.current
 
       if 12.hours.from_now > @week_current.close_date
@@ -12,7 +14,7 @@ module Jobs
         User.all.each do |user|
           bets = Bet.bets_for_user_and_fixtures(user, @week_current.fixtures.map(&:id))
           if bets.count != fixtures.count
-            create_communication_for user
+            create_communication_for(user) if user.mobile.present?
           end
         end
       end
@@ -21,9 +23,7 @@ module Jobs
     private
 
     def create_communication_for user
-      if ENVIRONMENT_CONFIG['toggles']['sms_communications'] && user.mobile.present?
-        Communications::SmsCommunication.create(status: Communication::Status::PENDING, user_id: user.id, message: message)
-      end
+      Communications::SmsCommunication.create(status: Communication::Status::PENDING, user_id: user.id, message: message)
     end
 
     def message

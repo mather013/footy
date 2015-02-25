@@ -15,3 +15,4 @@ class ConfigLoader
 end
 
 ENVIRONMENT_CONFIG = ConfigLoader.new("#{Rails.root}/config/environment_config.yml").to_hash
+TOGGLES_CONFIG = ConfigLoader.new("#{Rails.root}/config/toggles.yml").to_hash

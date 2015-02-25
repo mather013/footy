@@ -22,7 +22,8 @@ class Fixture < ActiveRecord::Base
   end
 
   def choices
-    knockout_rounds = ENVIRONMENT_CONFIG['knockout_rounds']
+    competition = ENVIRONMENT_CONFIG['competition']
+    knockout_rounds = ENVIRONMENT_CONFIG["#{competition}"]['knockout_rounds']
     knockout_rounds.include?(week_id) ? KNOCKOUT_CHOICES : NORMAL_CHOICES
   end
 

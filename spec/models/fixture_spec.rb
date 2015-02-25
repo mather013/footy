@@ -140,11 +140,11 @@ describe Fixture do
 
     describe '#choices' do
       subject { fixture }
-      its(:choices) { should == [{ name: "Home", value: "H" }, { name: "Draw", value: "D" }, { name: "Away", value: "A" }] }
+      its(:choices) { should == [{ name: 'Home', value: 'H' }, { name: 'Draw', value: 'D' }, { name: 'Away', value: 'A' }] }
     end
 
     describe '#record_score' do
-      let(:score_hash) { { home: 2, away: 1 } }
+      let(:score_hash) { {home: 2, away: 1} }
 
       context 'when fixture already has a score' do
         let!(:score) { Score.create(fixture_id: fixture.id, home: 0, away: 0) }
