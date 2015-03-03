@@ -3,9 +3,4 @@ class Team  < ActiveRecord::Base
 
   has_one :standing
 
-  def self.all_for_choices
-    teams = []
-    Team.all.each { |team| teams << [team.name,team.id] }
-    teams
-  end
 end

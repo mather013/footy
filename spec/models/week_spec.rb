@@ -145,7 +145,7 @@ describe Week do
       let!(:score_two) { Score.create(fixture_id: fixture_two.id, home: 1, away: 0) }
 
       it 'reruns expected hash of results' do
-        expect(week.results_hash).to eq ({ arg: "L", bra: "W", col: "W", den: "L" })
+        expect(week.results_hash).to eq ({arg: 'L', bra: 'W', col: 'W', den: 'L'})
       end
 
     end
@@ -185,5 +185,18 @@ describe Week do
       end
     end
 
+    describe '#fixtures_strict' do
+      let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
+      let!(:week_two) { Week.create(description: 'Week 02', close_date: 5.days.from_now) }
+
+      let!(:fixture_one) { Fixture.create(week_id: week_one.id, kickoff: 1.day.from_now) }
+      let!(:fixture_two) { Fixture.create(week_id: week_one.id, kickoff: 10.days.from_now) }
+      let!(:fixture_three) { Fixture.create(week_id: week_one.id, kickoff: 2.day.from_now) }
+
+      it 'returns fixtures that have not had their kickoff moved outside of their week' do
+        expect(week_one.fixtures_strict).to eq([fixture_one,fixture_three])
+      end
+
+    end
   end
 end

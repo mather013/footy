@@ -1,7 +1,7 @@
-<% fixtures = @fixtures.order('kickoff asc') %>
+<% fixtures = @fixtures %>
 <div data-role="content">
   <ul data-role="listview" id="fix-list">
-    <% (fixtures.count*0.5).to_i.times do |i| %>
+    <% (fixtures.count*0.5).to_f.ceil.times do |i| %>
 
         <% team_names=[] %>
         <% @choices.each { |team| team_names << team[0] } %>
@@ -9,27 +9,31 @@
         <li class="custom-list">
           <div class="ui-grid-b main-font">
             <div class="ui-block-a" align="center" style="width: 50%">
-              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2].home_team.abbreviation}.png", class: 'strip-size' %>
-              <span class="<%= team_names.include?(fixtures[i*2].home_team.name) ? '' : 'disabled-font' %>">
+              <% if fixtures[i*2].present? %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2].home_team.abbreviation}.png", class: 'strip-size' %>
+                  <span class="<%= team_names.include?(fixtures[i*2].home_team.name) ? '' : 'disabled-font' %>">
               <%= fixtures[i*2].home_team.abbreviation.upcase %>
               </span>
-              v
+                  v
               <span class="<%= team_names.include?(fixtures[i*2].away_team.name) ? '' : 'disabled-font' %>">
               <%= fixtures[i*2].away_team.abbreviation.upcase %>
               </span>
-              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2].away_team.abbreviation}.png", class: 'strip-size' %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2].away_team.abbreviation}.png", class: 'strip-size' %>
+              <% end %>
             </div>
 
             <div class="ui-block-b" align="center" style="width: 50%">
-              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2+1].home_team.abbreviation}.png", class: 'strip-size' %>
-              <span class="<%= team_names.include?(fixtures[i*2+1].home_team.name) ? '' : 'disabled-font' %>">
+              <% if fixtures[i*2+1].present? %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2+1].home_team.abbreviation}.png", class: 'strip-size' %>
+                  <span class="<%= team_names.include?(fixtures[i*2+1].home_team.name) ? '' : 'disabled-font' %>">
               <%= fixtures[i*2+1].home_team.abbreviation.upcase %>
               </span>
-              v
+                  v
               <span class="<%= team_names.include?(fixtures[i*2+1].away_team.name) ? '' : 'disabled-font' %>">
               <%= fixtures[i*2+1].away_team.abbreviation.upcase %>
               </span>
-              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2+1].away_team.abbreviation}.png", class: 'strip-size' %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{fixtures[i*2+1].away_team.abbreviation}.png", class: 'strip-size' %>
+              <% end %>
             </div>
           </div>
         </li>

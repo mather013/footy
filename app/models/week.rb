@@ -70,6 +70,16 @@ class Week < ActiveRecord::Base
     self.save
   end
 
+  def fixtures_strict
+    permitted_fixtures = []
+    next_week_start = Week.find(id+1).close_date
+
+    fixtures.each do |fixture|
+      permitted_fixtures << fixture if fixture.kickoff < next_week_start
+    end
+    permitted_fixtures
+  end
+
   private
 
   def can_be_marked_complete?
