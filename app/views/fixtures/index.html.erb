@@ -12,7 +12,7 @@
         <% @fixture = fixture %>
         <li class="custom-list">
           <% @bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
-          <% if @week.open? and not @user.read_only? %>
+          <% if @week.open? and @fixture.kickoff_local_time > DateTime.now and not @user.read_only? %>
               <% if @bet.nil? %>
                   <%= link_to new_fixture_bet_path(@week.id,@fixture.id), :method => :post do %>
                       <%= render 'fixture_info' %>
