@@ -31,12 +31,19 @@ namespace :job do
   end
 
   desc 'Sync scores and mark'
-  task :sync_scores_and_mark, [:force, :date] => :environment do |t, args|
-    #Jobs::SyncScoresOnly.new.perform(args[:date])
-    #RakeTaskResources::MarkWeek.perform week.id
-    #RakeTaskResources::MarkLmBets.perform
-    #RakeTaskResources::RefreshPositions.perform
-    #Jobs::SyncStandings.new.perform
+  task :sync_scores_and_mark, [:date] => :environment do |t, args|
+    weeks_to_mark = Jobs::SyncScoresOnly.new.perform(args[:date])
+    weeks_to_mark.each do |week|
+      RakeTaskResources::MarkWeek.perform week.id
+      week.maybe_mark_complete
+    end
+
+    if weeks_to_mark.present?
+      RakeTaskResources::RefreshPositions.perform
+      RakeTaskResources::MarkFaBets.perform #if TOGGLES_CONFIG['five_alive_marking']
+      RakeTaskResources::MarkLmBets.perform #if TOGGLES_CONFIG['last_man_standing_marking']
+      Jobs::SyncStandings.new.perform
+    end
   end
 
 end
