@@ -16,13 +16,27 @@ namespace :job do
   end
 
   desc 'Sync scores'
-  task :sync_scores, [:force] => :environment do |t, args|
-    Jobs::SyncScores.new.perform args[:force]
+  task :sync_scores, [:date] => :environment do |t, args|
+    Jobs::SyncScores.new.perform args[:date]
   end
 
   desc 'Sync standings'
   task :sync_standings => :environment do
     Jobs::SyncStandings.new.perform
+  end
+
+  desc 'Sync scores only'
+  task :sync_scores_only, [:date] => :environment do |t, args|
+    Jobs::SyncScoresOnly.new.perform(args[:date])
+  end
+
+  desc 'Sync scores and mark'
+  task :sync_scores_and_mark, [:force, :date] => :environment do |t, args|
+    #Jobs::SyncScoresOnly.new.perform(args[:date])
+    #RakeTaskResources::MarkWeek.perform week.id
+    #RakeTaskResources::MarkLmBets.perform
+    #RakeTaskResources::RefreshPositions.perform
+    #Jobs::SyncStandings.new.perform
   end
 
 end
