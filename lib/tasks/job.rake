@@ -40,8 +40,8 @@ namespace :job do
 
     if weeks_to_mark.present?
       RakeTaskResources::RefreshPositions.perform
-      RakeTaskResources::MarkFaBets.perform #if TOGGLES_CONFIG['five_alive_marking']
-      RakeTaskResources::MarkLmBets.perform #if TOGGLES_CONFIG['last_man_standing_marking']
+      RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive_marking']
+      RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing_marking']
       Jobs::SyncStandings.new.perform
     end
   end

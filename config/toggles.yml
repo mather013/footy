@@ -1,5 +1,7 @@
 defaults: &defaults
   sms_communications: true
+  last_man_standing_marking: true
+  five_alive_marking: false
 
 development:
   <<: *defaults
