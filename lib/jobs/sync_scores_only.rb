@@ -4,8 +4,6 @@ module Jobs
     def perform(date=nil)
       return if date.nil? && Fixture.recently_finished.blank?
 
-      date = (date.nil? ? Date.today : Date.parse(date))
-
       weeks_to_mark = []
 
       fixtures_from_feed(date).each do |feed_fixture|
@@ -22,6 +20,7 @@ module Jobs
     private
 
     def fixtures_from_feed date
+      date = (date.nil? ? Date.today : Date.parse(date))
       Feed::FixturesController.new.get_fixtures_for date
     end
 
