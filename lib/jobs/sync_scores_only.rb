@@ -2,9 +2,9 @@ module Jobs
   class SyncScoresOnly
 
     def perform(date=nil)
-      date = (date.nil? ? Date.today : Date.parse(date))
-
       return if date.nil? && Fixture.recently_finished.blank?
+
+      date = (date.nil? ? Date.today : Date.parse(date))
 
       weeks_to_mark = []
 
@@ -16,7 +16,7 @@ module Jobs
           weeks_to_mark << fixture.week
         end
       end
-      weeks_to_mark.uniq.sort
+      weeks_to_mark.uniq
     end
 
     private

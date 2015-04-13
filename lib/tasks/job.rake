@@ -15,10 +15,10 @@ namespace :job do
     Jobs::SyncFixtures.new.perform
   end
 
-  desc 'Sync scores'
-  task :sync_scores, [:date] => :environment do |t, args|
-    Jobs::SyncScores.new.perform args[:date]
-  end
+  #desc 'Sync scores'
+  #task :sync_scores, [:date] => :environment do |t, args|
+  #  Jobs::SyncScores.new.perform args[:date]
+  #end
 
   desc 'Sync standings'
   task :sync_standings => :environment do
