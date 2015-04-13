@@ -192,6 +192,7 @@ describe Week do
       let!(:fixture_one) { Fixture.create(week_id: week_one.id, kickoff: 1.day.from_now) }
       let!(:fixture_two) { Fixture.create(week_id: week_one.id, kickoff: 10.days.from_now) }
       let!(:fixture_three) { Fixture.create(week_id: week_one.id, kickoff: 2.day.from_now) }
+      let!(:fixture_four) { Fixture.create(week_id: week_one.id, kickoff: 1.day.ago) }
 
       it 'returns fixtures that have not had their kickoff moved outside of their week' do
         expect(week_one.fixtures_strict).to eq([fixture_one,fixture_three])
