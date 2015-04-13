@@ -15,9 +15,9 @@ module Feed
       @away_team_goals = hash[:match_ft_score].dup[1..-2].split('-').last.to_i unless hash[:match_ft_score].blank?
       @date = hash[:match_formatted_date]
       @time = hash[:match_time]
-      @events = hash[:match_events]
       @score = hash[:match_ft_score]
       @finished = hash[:match_status] == Status::FULL_TIME
+      @events = Feed::Events.new(hash[:match_events])
     end
 
     def finished?

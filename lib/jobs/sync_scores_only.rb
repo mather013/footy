@@ -26,11 +26,8 @@ module Jobs
 
     def record_events(feed_fixture_events, fixture)
       feed_fixture_events.each do |feed_event|
-        event = fixture.events.find_or_initialize_by_external_id(feed_event[:event_id])
-        event.update_attributes(event_type: feed_event[:event_type],
-                                player_name: feed_event[:event_player],
-                                team: feed_event[:event_team],
-                                minute: feed_event[:event_minute])
+        event = fixture.events.find_or_initialize_by_external_id(feed_event.id)
+        event.update_attributes(feed_event.to_savable_hash)
       end
     end
   end
