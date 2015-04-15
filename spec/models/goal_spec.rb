@@ -29,7 +29,7 @@ describe Goal do
       let!(:goal) { Goal.create(player_id: scorer.id, score_id: 1) }
 
       context 'when a home team player scores' do
-        let!(:scorer)  { Player.create(id: 1, name: 'Pele', team_id: home_team.id) }
+        let!(:scorer)  { Player.create(id: 1, surname: 'Pele', team_id: home_team.id) }
 
         it 'returns the away team as the opposition' do
           expect(goal.opposing_team).to eq away_team
@@ -37,7 +37,7 @@ describe Goal do
       end
 
       context 'when an away team player scores' do
-        let!(:scorer)  { Player.create(id: 2, name: 'Maradona', team_id: away_team.id) }
+        let!(:scorer)  { Player.create(id: 2, surname: 'Maradona', team_id: away_team.id) }
 
         it 'returns the home team as the opposition' do
           expect(goal.opposing_team).to eq home_team

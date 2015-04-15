@@ -60,14 +60,14 @@ describe User do
       let(:user) { User.create(name: 'Guest', username: 'guest', password: 'abc') }
 
       let!(:england) { Team.create(id: 1, name: 'England', abbreviation: 'eng') }
-      let!(:player_1) { Player.create(name: 'S Gerrard', team_id: 1) }
-      let!(:player_2) { Player.create(name: 'W Rooney', team_id: 1) }
+      let!(:player_1) { Player.create(surname: 'Gerrard', team_id: 1) }
+      let!(:player_2) { Player.create(surname: 'Rooney', team_id: 1) }
 
       let!(:brazil) { Team.create(id: 2, name: 'Brazil', abbreviation: 'bra') }
-      let!(:player_3) { Player.create(name: 'Neymar', team_id: 2) }
+      let!(:player_3) { Player.create(surname: 'Neymar', team_id: 2) }
 
       let!(:argentina) { Team.create(id: 3, name: 'Argentina', abbreviation: 'arg') }
-      let!(:player_4) { Player.create(name: 'Messi', team_id: 3) }
+      let!(:player_4) { Player.create(surname: 'Messi', team_id: 3) }
 
       let(:fa_bets) { [FaBet.create(user_id: user.id, player_id: player_1.id),
                        FaBet.create(user_id: user.id, player_id: player_2.id),
