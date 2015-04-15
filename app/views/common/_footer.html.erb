@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<div data-role=footer data-position=fixed>
+  <div data-role=navbar>
+    <ul>
+      <li><a href="<%= weeks_path %>">Footy Forecast</a></li>
+      <% if TOGGLES_CONFIG['last_man_standing'] %>
+          <li><a href="<%= lm_rounds_path %>">Last Man Standing</a></li>
+      <% end %>
+      <% if TOGGLES_CONFIG['five_alive'] %>
+          <li><a href="<%= fa_bets_path %>">5 Alive</a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+</html>
