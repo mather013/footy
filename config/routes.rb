@@ -5,9 +5,9 @@ Footy::Application.routes.draw do
   resources :sessions,  :only => [:new, :create]
   resources :bets,      :only => [:create, :update]
   resources :goals,     :only => [:index]
-  resources :fa_bets,   :only => [:index]
+  resources :fa_bets,   :only => [:index, :create, :new, :edit, :update]
   resources :lm_rounds, :only => [:index]
-  resources :lm_bets,   :only => [:create,:update]
+  resources :lm_bets,   :only => [:create, :update]
   resources :standings, :only => [:index]
 
   get  'sessions'                                 => 'sessions#new'

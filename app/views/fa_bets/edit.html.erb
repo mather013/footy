@@ -1,0 +1,11 @@
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <a href="<%= fa_bets_path %>" data-theme="a" data-rel="">Back</a>
+  <h1><%= "Select Player" %></h1>
+</div>
+
+<form method="PUT" action="<%= fa_bet_path(@bet.id) %>">
+  <%= render 'selection' %>
+</form>
+<%= render 'common/footer' %>
+</html>

@@ -1,0 +1,17 @@
+<div data-role="fieldcontain" align="center">
+  <fieldset data-role="controlgroup" data-mini="true">
+    <input type="hidden" name="dummy_id" id="dummy_id" value="999"/>
+    <% i = 0 %>
+    <% @players.each do |player| %>
+        <% i+=1 %>
+        <% radio_choice = "checked=\"checked" if @bet.player_id == player[:id] || @bet.player_id.nil? && player[:id] == 1 %>
+        <input type="radio" name="player_id" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= player[:id] %>" style="display:none;">
+        <label for="radio-choice-<%= i %>">
+          <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: "strip-size" %>&nbsp
+          <%= player.name %>
+        </label>
+    <% end %>
+  </fieldset>
+  <p>
+  <input type="submit" value="Save"/>
+</div>
