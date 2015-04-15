@@ -6,6 +6,9 @@ defaults: &defaults
   world_cup:
     knockout_rounds: [4,5,6,7]
     teams_in: ['arg','bra', 'ger','net']
+  copa_cup:
+    knockout_rounds: [4,5,6]
+    teams_in: []
   days_in_advance_to_sync_fixtures: 7
   feed:
     url: http://football-api.com/api/
