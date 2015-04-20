@@ -37,7 +37,7 @@ class FaBetsController < ApplicationController
   end
 
   def load_players
-    @players = Player.name_order
+    @players = Player.team_and_surname_order
   end
 
 end
