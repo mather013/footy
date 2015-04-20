@@ -1,6 +1,5 @@
-Score.delete_all
-
 unless TOGGLES_CONFIG['five_alive']
+  Score.delete_all
   Score.create(id: 1, fixture_id: 1, home: 1, away: 0)
   Score.create(id: 2, fixture_id: 2, home: 0, away: 0)
   Score.create(id: 3, fixture_id: 3, home: 3, away: 0)

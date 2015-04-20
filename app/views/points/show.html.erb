@@ -12,13 +12,6 @@
     <% position = 0 %>
     <% previous_score = -10 %>
 
-    <% if @points.empty? %>
-        <div class="ui-grid-a" align="center">
-          <br>
-          Not marked
-        </div>
-    <% end %>
-
     <% @points.each do |point| %>
         <li class="custom-list">
           <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>" class="leaderboard">
