@@ -11,8 +11,9 @@ module Jobs
         let(:sync_fixtures) { Jobs::SyncFixtures.new }
         let(:home_team) { double(Team, id: 1, abbreviation: 'arg') }
         let(:away_team) { double(Team, id: 2, abbreviation: 'bra') }
+        let(:week) { Week.create(id: 13, description: 'Week 13', close_date: '2015-01-01 12:00:00') }
         let(:feed_fixtures) { [double(Feed::Fixture, home_team_id: 1, away_team_id: 2, id: 999, kickoff: kickoff)] }
-        let(:fixture) { double(Fixture, external_id: external_id, kickoff: DateTime.now) }
+        let(:fixture) { Fixture.create(external_id: external_id, kickoff: DateTime.now, week_id: week.id, name: 'ARG-BRA') }
 
         before :each do
           Fixture.stub(:requiring_sync).and_return(fixtures_requiring_sync)
@@ -41,7 +42,6 @@ module Jobs
             context 'and the external_id does not exists' do
 
               before :each do
-                fixture.stub(:update_attributes).with(external_id: 999, kickoff: kickoff)
                 sync_fixtures.perform
               end
 
@@ -54,7 +54,12 @@ module Jobs
               end
 
               it 'updates external_id of the expected fixture' do
-                fixture.should have_received(:update_attributes).with(external_id: 999, kickoff: kickoff)
+                expect(fixture.external_id).to eq(999)
+                expect(fixture.kickoff).to eq(kickoff)
+              end
+
+              it 'updates the week.close_date to correspond with kickoff of first fixture' do
+                expect(Week.find(week.id).close_date).to eq(kickoff)
               end
 
             end
