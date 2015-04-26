@@ -6,7 +6,7 @@ module Feed
     def initialize(hash)
       @id = hash[:stand_team_id].to_i
       @name = hash[:stand_team_name]
-      @form = hash[:stand_recent_form]
+      @form = hash[:stand_recent_form].reverse
       @form_score = calculate_form_score @form
       @points = hash[:stand_points].to_i
       @position = hash[:stand_position].to_i

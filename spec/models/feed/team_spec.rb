@@ -42,7 +42,7 @@ module Feed
         expect(team.id).to eq(9249)
         expect(team.position).to eq(8)
         expect(team.points).to eq(28)
-        expect(team.form).to eq('WWDLD')
+        expect(team.form).to eq('DLDWW')
         expect(team.name).to eq('Liverpool')
         expect(team.form_score).to eq(8)
       end
