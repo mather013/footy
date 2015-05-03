@@ -2,7 +2,7 @@ module Jobs
   class SyncScoresOnly
 
     def perform(date=nil)
-      return if date.nil? && Fixture.recently_finished.blank?
+      return [] if date.nil? && Fixture.recently_finished.blank?
 
       weeks_to_mark = []
 

@@ -62,6 +62,11 @@ module Jobs
               sync_scores.perform date
               expect(sync_scores).to have_received(:fixtures_from_feed)
             end
+
+            it 'does not return any weeks' do
+              expect(sync_scores.perform).to eq([])
+            end
+
           end
         end
 
@@ -80,6 +85,10 @@ module Jobs
 
           context 'and there are no fixtures that should have recently finished' do
             let(:recently_finished) { [] }
+
+            it 'does not return any weeks' do
+              expect(sync_scores.perform).to eq([])
+            end
 
             it 'does not retrieve feed fixtures' do
               sync_scores.perform date
@@ -137,6 +146,10 @@ module Jobs
 
                   expect(Fixture.find(fixture_two.id).events.collect(&:event_type)).to be_empty
                   expect(Fixture.find(fixture_two.id).events.collect(&:player_name)).to be_empty
+                end
+
+                it 'returns expected weeks' do
+                  expect(sync_scores.perform).to eq([week_one,week_two])
                 end
 
               end
