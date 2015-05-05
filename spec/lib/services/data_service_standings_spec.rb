@@ -4,7 +4,7 @@ module Services
   describe DataServiceStandings do
     let(:api_key) { 'SOME_API_KEY' }
     let(:data_service) { DataServiceStandings.new }
-    let(:hash) { { teams: [{ match_id: 123 }] } }
+    let(:hash) { { teams: [{ match_id: 123 }], ERROR: error_message } }
 
     before(:each) do
       stub_const('ENV',{ 'FOOTBALL_API_KEY' => api_key })
@@ -20,9 +20,27 @@ module Services
           let(:url) { "http://football-api.com/api/?Action=standings&APIKey=#{api_key}&comp_id=1204" }
           let(:dates) { [Date.parse('2014-11-19')] }
 
-          it 'returns expected hash' do
-            expect(data_service.perform).to eq(hash[:teams])
+          context 'and there are no errors' do
+            let(:error_message) { 'OK' }
+
+            it 'returns expected hash' do
+              expect(data_service.perform).to eq(hash[:teams])
+            end
+
+            xit 'does not raise any error' do
+              expect(data_service.perform).not_to (raise_error)
+            end
+
           end
+
+          context 'and there are errors' do
+            let(:error_message) { 'something bad happened' }
+
+            xit 'raises expected error' do
+              expect(data_service.perform).not_to raise_error
+            end
+          end
+
         end
 
       end

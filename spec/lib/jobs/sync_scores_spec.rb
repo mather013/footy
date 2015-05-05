@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 module Jobs
-  describe SyncScoresOnly do
+  describe SyncScores do
 
     describe 'instance methods' do
 
       describe '#perform' do
-        let(:sync_scores) { Jobs::SyncScoresOnly.new }
+        let(:sync_scores) { Jobs::SyncScores.new }
         let(:fixtures_finished) { true }
         let(:events_fixture_one) { [Feed::Event.new(id: '19525541', match_id: '1952554', event_type: 'goal',
                                                     minute: '31',

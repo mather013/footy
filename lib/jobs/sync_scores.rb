@@ -1,5 +1,5 @@
 module Jobs
-  class SyncScoresOnly
+  class SyncScores
 
     def perform(date=nil)
       return [] if date.nil? && Fixture.recently_finished.blank?
