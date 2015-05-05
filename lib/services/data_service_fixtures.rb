@@ -8,7 +8,7 @@ module Services
         url = "#{api_url('fixtures')}&from_date=#{dates[0].strftime(DATE_FORMAT)}&to_date=#{dates[1].strftime(DATE_FORMAT)}"
       end
       hash = send_request url
-      raise RuntimeError,"Error: #{hash[:ERROR]}" unless hash[:ERROR] == 'OK'
+      raise RuntimeError, "Error: #{hash[:ERROR]}" unless hash[:ERROR] == 'OK'
       hash[:matches]
     end
 

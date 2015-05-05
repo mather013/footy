@@ -27,8 +27,8 @@ module Services
               expect(data_service.perform).to eq(hash[:teams])
             end
 
-            xit 'does not raise any error' do
-              expect(data_service.perform).not_to (raise_error)
+            it 'does not raise any error' do
+              expect{data_service.perform}.not_to raise_error
             end
 
           end
@@ -36,13 +36,12 @@ module Services
           context 'and there are errors' do
             let(:error_message) { 'something bad happened' }
 
-            xit 'raises expected error' do
-              expect(data_service.perform).not_to raise_error
+            it 'raises expected error' do
+              expect{data_service.perform}.to raise_error(RuntimeError,'Error: something bad happened')
             end
           end
 
         end
-
       end
     end
   end

@@ -4,7 +4,7 @@ module Services
     def perform
       url = "#{api_url('standings')}"
       hash = send_request url
-      raise RuntimeError,"Error: #{hash[:ERROR]}" unless hash[:ERROR] == 'OK'
+      raise RuntimeError, "Error: #{hash[:ERROR]}" unless hash[:ERROR] == 'OK'
       hash[:teams]
     end
 
