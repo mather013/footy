@@ -8,7 +8,7 @@
       </a></li>
       <% if TOGGLES_CONFIG['last_man_standing'] %>
           <li><a href="<%= lm_rounds_path %>">
-            Last Man Standing
+            LMS
             <% if @user.lm_survivor? %>
                 <span class="label label-success">IN</span>
             <% else %>
