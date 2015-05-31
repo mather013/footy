@@ -1,0 +1,22 @@
+<div data-role="fieldcontain" align="center">
+  <fieldset data-role="controlgroup" data-type="horizontal">
+    <input type="hidden" name="fixture_id" id="fixture_id" value="<%= @fixture.id %>"/>
+
+    <select name="home_score">
+      <% (0..9).each do |i| %>
+          <% style = @bet.value.present? && i == @bet.value[0].to_i ? "option selected" : "option" %>
+          <<%= style %>><%= i %>
+      <% end %>
+    </select>
+
+    <select name="away_score" style="padding: 100; margin: 100;">
+      <% (0..9).each do |i| %>
+          <% style = @bet.value.present? && i == @bet.value[4].to_i ? "option selected" : "option" %>
+          <<%= style %>><%= i %>
+      <% end %>
+    </select>
+
+  </fieldset>
+  <br>&nbsp<br>
+  <input type="submit" value="Save"/>
+</div>

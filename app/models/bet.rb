@@ -9,12 +9,30 @@ class Bet < ActiveRecord::Base
 
   def outcome
     return '' if fixture.score.nil?
-    return 'correct' if value == fixture.score.outcome
+
+    if TOGGLES_CONFIG['bet_type_hda']
+      return 'correct' if value == fixture.score.outcome
+    else
+      return 'spot_on' if value == fixture.score.to_s
+      return 'correct' if value_outcome == fixture.score.outcome
+    end
+
     return 'wrong'
   end
 
   def correct?
     fixture.score.present? && value == fixture.score.outcome
+  end
+
+  private
+
+  def value_outcome
+    return nil unless value.length == 5
+    home = value[0]
+    away = value[4]
+    return 'H' if home > away
+    return 'D' if home == away
+    return 'A' if away > home
   end
 
 end

@@ -1,5 +1,6 @@
 class BetsController < ApplicationController
   before_filter :require_login
+  before_filter :fix_params, :only => [:create, :update]
 
   def new
     load_fixture_and_choices
@@ -36,4 +37,12 @@ class BetsController < ApplicationController
     @choices = @fixture.choices
   end
 
+end
+
+private
+
+def fix_params
+  unless TOGGLES_CONFIG['bet_type_hda']
+    params.merge!({bet_value: params['home_score'] + ' - ' + params['away_score']})
+  end
 end

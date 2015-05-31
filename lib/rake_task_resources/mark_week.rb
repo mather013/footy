@@ -22,7 +22,8 @@ module RakeTaskResources
         points = 0
 
         bets.each do |bet|
-          points+=10 if bet.correct?
+          points+=10 if bet.outcome == 'correct'
+          points+=30 if bet.outcome == 'spot_on' unless TOGGLES_CONFIG['bet_type_hda']
         end
 
         point=Point.point_for_user_and_week(user, @week).first
