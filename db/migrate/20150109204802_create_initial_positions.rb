@@ -1,6 +1,6 @@
 class CreateInitialPositions < ActiveRecord::Migration
   def up
-    RakeTaskResources::RefreshPositions.perform
+    Position.delete_all
   end
 
   def down

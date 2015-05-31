@@ -48,15 +48,11 @@ namespace :footy do
 
   desc 'Mark bets for week'
   task :mark_week, [:week_id] => :environment do |t, args|
-    puts '===================='
     RakeTaskResources::MarkWeek.perform args[:week_id]
-    puts '===================='
-    #RakeTaskResources::MarkFaBets.perform
-    #puts "===================="
-    RakeTaskResources::MarkLmBets.perform
-    puts '===================='
     RakeTaskResources::RefreshPositions.perform
-    puts '===================='
+    RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
+    RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
+    Jobs::SyncStandings.new.perform if ENVIRONMENT_CONFIG['competition'] == 'premier_league'
   end
 
 end

@@ -5,13 +5,6 @@
   <h1>Goal scorers</h1>
 </div>
 
-<% if @goals.empty? %>
-    <div class="leaderboard" align="center">
-      <br>
-      No goals
-    </div>
-<% end %>
-
 <div data-role="collapsible-set">
   <div class="player-goals" data-role="listview" data-count-theme="d">
     <% @goals.each do |goals_for_player| %>

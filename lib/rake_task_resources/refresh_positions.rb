@@ -19,7 +19,7 @@ module RakeTaskResources
       end
 
       def record_position(user_id, current)
-        week = Week.previous
+        week = Week.previous || Week.find(1)
         position = Position.find_by_user_id(user_id)
 
         if position.present?
@@ -30,7 +30,7 @@ module RakeTaskResources
             position.update_attributes(current: current)
           end
         else
-          Position.create(user_id: user_id, current: current, previous: current, last_marked_week_id: week.id)
+          Position.create(user_id: user_id, current: current, previous: current, last_marked_week_id: current)
         end
 
       end
