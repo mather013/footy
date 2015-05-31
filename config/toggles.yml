@@ -2,7 +2,7 @@ defaults: &defaults
   sms_communications: true
   last_man_standing: false
   five_alive: true
-  bet_type_hda: false
+  bet_type_hda: true
 
 development:
   <<: *defaults
