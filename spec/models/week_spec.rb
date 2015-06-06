@@ -74,9 +74,10 @@ describe Week do
   end
 
   describe 'instance methods' do
+    let(:week_id) { 1 }
     let(:complete) { false }
     let(:close_date) { 7.days.ago }
-    let(:week) { Week.create(id: 1, close_date: close_date, complete: complete, description: 'Week 99') }
+    let(:week) { Week.create(id: week_id, close_date: close_date, complete: complete, description: 'Week 99') }
 
     describe '#status' do
       context 'week is complete' do
@@ -100,10 +101,23 @@ describe Week do
         end
       end
 
-      context 'week is not open, in play or complete' do
-        let(:close_date) { 21.days.from_now }
-        it "returns 'Pending' " do
-          expect(week.status).to eq 'Pending'
+      context 'week is close date is way in future' do
+
+        context 'and week is first 'do
+          let(:close_date) { 21.days.from_now }
+
+          it "returns 'Open'" do
+            expect(week.status).to eq 'Open'
+          end
+        end
+
+        context 'and week is not first 'do
+          let(:week_id) { 101 }
+          let(:close_date) { 21.days.from_now }
+
+          it "returns 'Pending'" do
+            expect(week.status).to eq 'Pending'
+          end
         end
       end
 

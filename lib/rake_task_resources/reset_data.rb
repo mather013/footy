@@ -15,6 +15,7 @@ module RakeTaskResources
         Standing.delete_all
         Fixture.delete_all
         Communication.delete_all
+        Event.delete_all
       end
     end
   end

@@ -21,7 +21,11 @@ class Bet < ActiveRecord::Base
   end
 
   def correct?
-    fixture.score.present? && value == fixture.score.outcome
+    if TOGGLES_CONFIG['bet_type_hda']
+      fixture.score.present? && value == fixture.score.outcome
+    else
+      fixture.score.present? && value_outcome == fixture.score.outcome
+    end
   end
 
   private

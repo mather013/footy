@@ -13,7 +13,7 @@ class Player < ActiveRecord::Base
   end
 
   def name_and_number
-    "#{name} #{squad_number}".to_s
+    "#{name} ##{squad_number}".to_s
   end
 
 end

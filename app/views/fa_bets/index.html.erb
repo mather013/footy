@@ -18,7 +18,7 @@
                         <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
                       </div>
                       <div class="ui-block-b main-font" style="width:82%">
-                        <%= "#{@bets[i].player.name}" %>
+                        <%= "#{@bets[i].player.name_and_number}" %>
                       </div>
                   <% end %>
               <% else %>
@@ -48,7 +48,7 @@
                     <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: "player-badge-size" %>
                   </div>
                   <div class="ui-block-b" style="width:82%">
-                    <%= "#{player.name}" %>
+                    <%= "#{player.name_and_number}" %>
                   </div>
                   <div class="ui-block-c" align="center" style="width:10%">
                     <%= player.goals.count %>

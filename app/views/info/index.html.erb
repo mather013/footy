@@ -7,13 +7,13 @@
 </div>
 
 <div class="kickoff" data-role="content">
-  <%= "Environment: #{Rails.env}" %> <br>
+  <%= "Environment: #{Rails.env.upcase}" %> <br>
   <%= "User: #{@user.name}" %> <br>
   <%= "#{@week_current.description}: #{@week_current.status}" %> <br>
   <%= "Current time: #{Time.current}" %> <br>
   <p></p>
   <% @users.each do |user| %>
-      <% if user.bets.present? %>
+      <% if user.bets.present? || user.lm_bets.present? || user.fa_bets.present? %>
           <div class="ui-grid-b">
             <div class="ui-block-a" style="width:50%">
               <%= user.name %>

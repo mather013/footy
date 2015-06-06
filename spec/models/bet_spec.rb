@@ -54,8 +54,8 @@ describe Bet do
   end
 
   describe 'instance methods' do
-    let!(:bet_correct) { Bet.create(fixture_id: 1, user_id: 1, value: 'H') }
-    let!(:bet_incorrect) { Bet.create(fixture_id: 1, user_id: 2, value: 'A') }
+    let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'H' : '2 - 0' }
+    let!(:bet) { Bet.create(fixture_id: 1, user_id: 1, value: bet_value) }
     let!(:fixture) { Fixture.create(id: 1) }
 
     describe '#outcome' do
@@ -63,19 +63,34 @@ describe Bet do
       context 'when the score exists' do
         let!(:score) { Score.create(fixture_id: 1, home: 1, away: 0) }
 
-        it 'returns correct when bet is correct' do
-          expect(bet_correct.outcome).to eq 'correct'
+        context 'bet is correct' do
+
+          it "returns 'correct'" do
+            expect(bet.outcome).to eq 'correct'
+          end
         end
 
-        it 'returns wrong when bet is incorrect' do
-          expect(bet_incorrect.outcome).to eq 'wrong'
+        context 'bet is incorrect' do
+          let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'A' : '0 - 1' }
+
+          it "returns 'correct'" do
+            expect(bet.outcome).to eq 'wrong'
+          end
         end
+
+        context "bet is 'spot on'" do
+          let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'H' : '1 - 0' }
+
+          it "returns 'spot on'" do
+            expect(bet.outcome).to eq 'spot_on'
+          end
+        end
+
       end
 
       context 'when the score does no exist' do
-
         it 'returns blank' do
-          expect(bet_correct.outcome).to be_blank
+          expect(bet.outcome).to be_blank
         end
 
       end
@@ -84,12 +99,20 @@ describe Bet do
     describe '#correct?' do
       let!(:score) { Score.create(fixture_id: 1, home: 1, away: 0) }
 
-      it 'returns true when bet is correct' do
-        expect(bet_correct.correct?).to be_true
+      context "bet is correct" do
+        let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'H' : '1 - 0' }
+
+        it 'true' do
+          expect(bet.correct?).to be_true
+        end
       end
 
-      it 'returns false when bet is incorrect' do
-        expect(bet_incorrect.correct?).to be_false
+      context "bet is incorrect" do
+        let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'A' : '0 - 2' }
+
+        it 'true' do
+          expect(bet.correct?).to be_false
+        end
       end
 
     end

@@ -28,7 +28,7 @@ Player.create(id: 63,  team_id: 4, squad_number: 11, forename: 'E', surname: 'Va
 Player.create(id: 64,  team_id: 4, squad_number: 14, forename: 'M', surname: 'Fernandez')
 Player.create(id: 65,  team_id: 4, squad_number: 9,  forename: 'M', surname: 'Pinilla')
 
-#colombia - need numbers
+#colombia
 Player.create(id: 81,  team_id: 5, squad_number: 17, forename: 'C', surname: 'Bacca')
 Player.create(id: 82,  team_id: 5, squad_number: 19, forename: 'T', surname: 'Gutierrez')
 Player.create(id: 83,  team_id: 5, squad_number: 21, forename: 'J', surname: 'Martinez')
@@ -42,12 +42,12 @@ Player.create(id: 103, team_id: 6, squad_number: 0, forename: 'E', surname: 'Val
 Player.create(id: 104, team_id: 6, squad_number: 0, forename: 'J', surname: 'Montero')
 Player.create(id: 105, team_id: 6, squad_number: 0, forename: 'F', surname: 'Martinez')
 
-#jamaica - need numbers
-Player.create(id: 121, team_id: 7, squad_number: 0, forename: 'D', surname: 'Mattocks')
-Player.create(id: 122, team_id: 7, squad_number: 0, forename: 'D', surname: 'Brown')
-Player.create(id: 123, team_id: 7, squad_number: 0, forename: 'R', surname: 'Austin')
-Player.create(id: 124, team_id: 7, squad_number: 0, forename: 'S', surname: 'Dawkins')
-Player.create(id: 125, team_id: 7, squad_number: 0, forename: 'G', surname: 'McCleary')
+#jamaica
+Player.create(id: 121, team_id: 7, squad_number: 11, forename: 'D', surname: 'Mattocks')
+Player.create(id: 122, team_id: 7, squad_number: 6,  forename: 'D', surname: 'Brown')
+Player.create(id: 123, team_id: 7, squad_number: 17, forename: 'R', surname: 'Austin')
+Player.create(id: 124, team_id: 7, squad_number: 18, forename: 'S', surname: 'Dawkins')
+Player.create(id: 125, team_id: 7, squad_number: 22, forename: 'G', surname: 'McCleary')
 
 #mexico
 Player.create(id: 141, team_id: 8, squad_number: 4,  forename: 'R', surname: 'Marquez')
@@ -77,9 +77,9 @@ Player.create(id: 203, team_id: 11, squad_number: 11, forename: 'C', surname: 'S
 Player.create(id: 204, team_id: 11, squad_number: 7,  forename: 'C', surname: 'Rodriguez')
 Player.create(id: 205, team_id: 11, squad_number: 10, forename: 'G de', surname: 'Arrascaeta')
 
-#venezuela - need numbers
-Player.create(id: 221, team_id: 12, squad_number: 0, forename: nil, surname: 'Miku')
-Player.create(id: 222, team_id: 12, squad_number: 0, forename: 'S', surname: 'Rondon')
-Player.create(id: 223, team_id: 12, squad_number: 0, forename: 'J', surname: 'Arango')
-Player.create(id: 224, team_id: 12, squad_number: 0, forename: 'J', surname: 'Martinez')
-Player.create(id: 225, team_id: 12, squad_number: 0, forename: 'C', surname: 'Gonzalez')
+#venezuela
+Player.create(id: 221, team_id: 12, squad_number: 7,  forename: nil, surname: 'Miku')
+Player.create(id: 222, team_id: 12, squad_number: 9,  forename: 'S', surname: 'Rondon')
+Player.create(id: 223, team_id: 12, squad_number: 18, forename: 'J', surname: 'Arango')
+Player.create(id: 224, team_id: 12, squad_number: 17, forename: 'J', surname: 'Martinez')
+Player.create(id: 225, team_id: 12, squad_number: 11, forename: 'C', surname: 'Gonzalez')
