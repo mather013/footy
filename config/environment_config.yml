@@ -1,5 +1,5 @@
 defaults: &defaults
-  round_open_period_in_days: 7
+  round_open_period_in_days: 4
   competition: copa_cup
   premier_league:
     knockout_rounds: []
