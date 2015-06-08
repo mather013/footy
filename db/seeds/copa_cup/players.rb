@@ -7,12 +7,12 @@ Player.create(id: 3,   team_id: 1, squad_number: 7,  forename: 'A di', surname: 
 Player.create(id: 4,   team_id: 1, squad_number: 10, forename: 'L',    surname: 'Messi')
 Player.create(id: 5,   team_id: 1, squad_number: 11, forename: 'C',    surname: 'Tevez')
 
-#bolivia - need numbers
-Player.create(id: 21,  team_id: 2, squad_number: 7, forename: 'J',    surname: 'Arce')
-Player.create(id: 22,  team_id: 2, squad_number: 0, forename: 'R',    surname: 'Pedriel')
-Player.create(id: 23,  team_id: 2, squad_number: 9, forename: 'M',    surname: 'Moreno')
-Player.create(id: 24,  team_id: 2, squad_number: 0, forename: 'P',    surname: 'Escobar')
-Player.create(id: 25,  team_id: 2, squad_number: 0, forename: 'J',    surname: 'Campos')
+#bolivia
+Player.create(id: 21,  team_id: 2, squad_number: 7,  forename: 'A', surname: 'Pena')
+Player.create(id: 22,  team_id: 2, squad_number: 18, forename: 'R', surname: 'Pedriel')
+Player.create(id: 23,  team_id: 2, squad_number: 9,  forename: 'M', surname: 'Moreno')
+Player.create(id: 24,  team_id: 2, squad_number: 10, forename: 'P', surname: 'Escobar')
+Player.create(id: 25,  team_id: 2, squad_number: 20, forename: 'J', surname: 'Campos')
 
 #brazil
 Player.create(id: 41,  team_id: 3, squad_number: 10, forename: nil, surname: 'Neymar Jr')
@@ -35,12 +35,12 @@ Player.create(id: 83,  team_id: 5, squad_number: 21, forename: 'J', surname: 'Ma
 Player.create(id: 84,  team_id: 5, squad_number: 10, forename: 'J', surname: 'Rodriguez')
 Player.create(id: 85,  team_id: 5, squad_number: 9,  forename: 'R', surname: 'Falcao')
 
-#ecuador - need numbers
-Player.create(id: 101, team_id: 6, squad_number: 16, forename: 'A', surname: 'Valencia')
-Player.create(id: 102, team_id: 6, squad_number: 0, forename: 'J', surname: 'Ayovi')
-Player.create(id: 103, team_id: 6, squad_number: 0, forename: 'E', surname: 'Valencia')
-Player.create(id: 104, team_id: 6, squad_number: 0, forename: 'J', surname: 'Montero')
-Player.create(id: 105, team_id: 6, squad_number: 0, forename: 'F', surname: 'Martinez')
+#ecuador
+Player.create(id: 101, team_id: 6, squad_number: 11, forename: 'J', surname: 'Cazares')
+Player.create(id: 102, team_id: 6, squad_number: 17, forename: 'J', surname: 'Ayovi')
+Player.create(id: 103, team_id: 6, squad_number: 13, forename: 'E', surname: 'Valencia')
+Player.create(id: 104, team_id: 6, squad_number: 7,  forename: 'J', surname: 'Montero')
+Player.create(id: 105, team_id: 6, squad_number: 9,  forename: 'F', surname: 'Martinez')
 
 #jamaica
 Player.create(id: 121, team_id: 7, squad_number: 11, forename: 'D', surname: 'Mattocks')
