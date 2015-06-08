@@ -3,6 +3,7 @@ defaults: &defaults
   last_man_standing: false
   five_alive: true
   bet_type_hda: false
+  week_deadline: false
 
 development:
   <<: *defaults

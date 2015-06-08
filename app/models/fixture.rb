@@ -27,8 +27,8 @@ class Fixture < ActiveRecord::Base
     knockout_rounds.include?(week_id) ? KNOCKOUT_CHOICES : NORMAL_CHOICES
   end
 
-  def bet_able?
-    kickoff > Time.now and week.status == 'Open'
+  def betable?
+    TOGGLES_CONFIG['week_deadline'] ? week.open? && kickoff_past? : kickoff_past?
   end
 
   def winning_team
@@ -42,6 +42,12 @@ class Fixture < ActiveRecord::Base
     else
       create_score(hash)
     end
+  end
+
+  private
+
+  def kickoff_past?
+    kickoff_local_time > DateTime.now
   end
 
 end

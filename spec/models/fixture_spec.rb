@@ -64,28 +64,67 @@ describe Fixture do
       end
     end
 
-    describe '#bet_able?' do
-      context 'week has not closed and fixture has not kicked off ' do
-        it 'returns true' do
-          expect(fixture.bet_able?).to be_true
+    describe '#betable?' do
+
+      context 'when week deadline toggle is on' do
+
+        before :each do
+          stub_const('TOGGLES_CONFIG', {'week_deadline' => true})
+        end
+
+        context 'week has not closed and fixture has not kicked off ' do
+          it 'returns true' do
+            expect(fixture.betable?).to be_true
+          end
+        end
+
+        context 'week has closed and fixture has not kicked off' do
+          let(:close_date) { 1.days.ago }
+          let(:kickoff) { 1.days.from_now }
+
+          it 'returns false' do
+            expect(fixture.betable?).to be_false
+          end
+        end
+
+        context 'week has closed and fixture has kicked off' do
+          let(:close_date) { 2.days.ago }
+          let(:kickoff) { 1.days.ago }
+
+          it 'returns false' do
+            expect(fixture.betable?).to be_false
+          end
         end
       end
 
-      context 'week has closed and fixture has not kicked off' do
-        let(:close_date) { 1.days.ago }
-        let(:kickoff) { 1.days.from_now }
+      context 'when week deadline toggle is off' do
 
-        it 'returns false' do
-          expect(fixture.bet_able?).to be_false
+        before :each do
+          stub_const('TOGGLES_CONFIG', {'week_deadline' => false})
         end
-      end
 
-      context 'week has closed and fixture has kicked off' do
-        let(:close_date) { 2.days.ago }
-        let(:kickoff) { 1.days.ago }
+        context 'week has not closed and fixture has not kicked off ' do
+          it 'returns true' do
+            expect(fixture.betable?).to be_true
+          end
+        end
 
-        it 'returns false' do
-          expect(fixture.bet_able?).to be_false
+        context 'week has closed and fixture has not kicked off' do
+          let(:close_date) { 1.days.ago }
+          let(:kickoff) { 1.days.from_now }
+
+          it 'returns false' do
+            expect(fixture.betable?).to be_true
+          end
+        end
+
+        context 'week has closed and fixture has kicked off' do
+          let(:close_date) { 2.days.ago }
+          let(:kickoff) { 1.days.ago }
+
+          it 'returns false' do
+            expect(fixture.betable?).to be_false
+          end
         end
       end
 
@@ -140,7 +179,7 @@ describe Fixture do
 
     describe '#choices' do
       subject { fixture }
-      its(:choices) { should == [{ name: 'Home', value: 'H' }, { name: 'Draw', value: 'D' }, { name: 'Away', value: 'A' }] }
+      its(:choices) { should == [{name: 'Home', value: 'H'}, {name: 'Draw', value: 'D'}, {name: 'Away', value: 'A'}] }
     end
 
     describe '#record_score' do
