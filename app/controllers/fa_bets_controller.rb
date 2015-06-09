@@ -11,8 +11,8 @@ class FaBetsController < ApplicationController
   end
 
   def create
-    bet = FaBet.new(user_id: current_user.id, player_id: params['player_id'])
-    bet.save
+    @bet = FaBet.new(user_id: current_user.id, player_id: params['player_id'])
+    @bet.save
     load_common
     render action: "index"
   end

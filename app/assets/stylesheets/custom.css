@@ -87,6 +87,11 @@
     font-size: 14px;
 }
 
+.error-font {
+    font-size: 14px;
+    color: red;
+}
+
 .event-font {
     font-size: 11px;
 }

@@ -71,9 +71,6 @@
       </div>
     </div>
 <% end %>
-<div class="main-font" align="center">
-  <p></p>
-  <%= 'Sorry, invalid combination chosen' if @bet.present? && @bet.errors.present? %>
-</div>
+<%= render 'error' if @bet.present? && @bet.errors.present? %>
 <%= render 'common/footer' %>
 </html>
