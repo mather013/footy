@@ -13,6 +13,7 @@ defaults: &defaults
   feed:
     url: http://football-api.com/api/
     competition_id: 1204
+  mixpanel_token: '16027af902901654dd96dd7eab86b899'
 
 development:
   <<: *defaults

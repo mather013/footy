@@ -22,6 +22,9 @@ class BetsController < ApplicationController
   end
 
   def update
+    tracker = Mixpanel::Tracker.new(ENVIRONMENT_CONFIG['mixpanel_token'])
+    tracker.track(current_user.username, 'Edited prediction')
+
     bet= Bet.find(params['id'])
     if bet.update_attributes(:value => params['bet_value'])
       redirect_to fixtures_path(bet.fixture.week.id)

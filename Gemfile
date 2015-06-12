@@ -28,6 +28,7 @@ gem 'rspec-rails'
 gem 'rest-client'
 gem 'httparty'
 gem 'clockworksms'
+gem 'mixpanel-ruby', '~> 1.4.0'
 
 group :test do
   gem 'shoulda'
