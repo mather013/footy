@@ -3,7 +3,7 @@ class WeeksController < ApplicationController
 
   def index
     @user = current_user
-    @weeks = Week.sorted_open
+    @weeks = ENVIRONMENT_CONFIG['competition'] == 'premier_league' ? Week.sorted_open : Week.sorted
   end
 
 end
