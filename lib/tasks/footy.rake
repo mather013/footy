@@ -16,7 +16,7 @@ namespace :footy do
   end
 
   desc 'Record scorer for fixture'
-  task :add_goal, [:fixture_name, :player_name, :amount] => :environment do |t, args|
+  task :add_goal, [:fixture_name, :forename, :surname, :amount] => :environment do |t, args|
     RakeTaskResources::AddGoal.perform args
   end
 
@@ -53,6 +53,13 @@ namespace :footy do
     RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
     RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
     Jobs::SyncStandings.new.perform if ENVIRONMENT_CONFIG['competition'] == 'premier_league'
+  end
+
+  desc 'Record goal and goal event for fixture'
+  task :add_goal_and_event, [:fixture_name, :forename, :surname, :minute, :team, :amount] => :environment do |t, args|
+    args.with_defaults(amount:1)
+    RakeTaskResources::AddGoal.perform args
+    RakeTaskResources::AddGoalEvent.perform args
   end
 
 end
