@@ -1,7 +1,7 @@
 defaults: &defaults
   sms_communications: true
-  last_man_standing: false
-  five_alive: true
+  last_man_standing: true
+  five_alive: false
   bet_type_hda: false
   week_deadline: false
 

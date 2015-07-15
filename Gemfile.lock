@@ -193,6 +193,3 @@ DEPENDENCIES
   therubyracer
   uglifier (>= 1.0.3)
   webmock (~> 1.9)
-
-BUNDLED WITH
-   1.10.3

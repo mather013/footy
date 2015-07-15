@@ -1,6 +1,6 @@
 defaults: &defaults
-  round_open_period_in_days: 4
-  competition: copa_cup
+  round_open_period_in_days: 7
+  competition: premier_league
   premier_league:
     knockout_rounds: []
   world_cup:
@@ -9,7 +9,7 @@ defaults: &defaults
   copa_cup:
     knockout_rounds: [4,5,6]
     teams_in: []
-  days_in_advance_to_sync_fixtures: 7
+  days_in_advance_to_sync_fixtures: 8
   feed:
     url: http://football-api.com/api/
     competition_id: 1204
