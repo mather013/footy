@@ -28,7 +28,11 @@ class Fixture < ActiveRecord::Base
   end
 
   def betable?
-    TOGGLES_CONFIG['week_deadline'] ? week.open? && kickoff_past? : kickoff_past?
+    if TOGGLES_CONFIG['week_deadline']
+      week.open? && kickoff_pending?
+    else
+      kickoff_pending? && (week.open? || week.in_play?)
+    end
   end
 
   def winning_team
@@ -46,7 +50,7 @@ class Fixture < ActiveRecord::Base
 
   private
 
-  def kickoff_past?
+  def kickoff_pending?
     kickoff_local_time > DateTime.now
   end
 
