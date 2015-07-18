@@ -8,7 +8,7 @@ defaults: &defaults
   world_cup:
     type: international
     knockout_rounds: [4,5,6,7]
-  copa_cup:
+  america_cup:
     type: international
     knockout_rounds: [4,5,6]
   club:
