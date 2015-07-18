@@ -8,12 +8,9 @@ class BetsController < ApplicationController
   end
 
   def create
-    bet = Bet.new(:fixture_id => params['fixture_id'], :user_id => current_user.id, :value => params['bet_value'])
-    if bet.save!
-      redirect_to fixtures_path(bet.fixture.week.id)
-    else
-      redirect_to root_path
-    end
+    bet = Bet.new(fixture_id: params['fixture_id'], user_id: current_user.id, value: params['bet_value'])
+    bet.save!
+    redirect_to fixtures_path(bet.fixture.week.id)
   end
 
   def edit
@@ -25,12 +22,9 @@ class BetsController < ApplicationController
     tracker = Mixpanel::Tracker.new(ENVIRONMENT_CONFIG['mixpanel_token'])
     tracker.track(current_user.username, 'Edited prediction')
 
-    bet= Bet.find(params['id'])
-    if bet.update_attributes(:value => params['bet_value'])
-      redirect_to fixtures_path(bet.fixture.week.id)
-    else
-      redirect_to root_path
-    end
+    bet = Bet.find(params['id'])
+    bet.update_attributes(value: params['bet_value'])
+    redirect_to fixtures_path(bet.fixture.week.id)
   end
 
   private

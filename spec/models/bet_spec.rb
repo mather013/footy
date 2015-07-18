@@ -4,6 +4,7 @@ describe Bet do
 
   describe 'associations' do
     it { should belong_to :fixture }
+    it { should belong_to :user }
   end
 
   describe 'attributes' do
@@ -78,14 +79,15 @@ describe Bet do
           end
         end
 
-        context "bet is 'spot on'" do
-          let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'H' : '1 - 0' }
+        unless TOGGLES_CONFIG['bet_type_hda']
+          context "bet is 'spot on'" do
+            let(:bet_value) { '1 - 0' }
 
-          it "returns 'spot on'" do
-            expect(bet.outcome).to eq 'spot_on'
+            it "returns 'spot on'" do
+              expect(bet.outcome).to eq('spot_on')
+            end
           end
         end
-
       end
 
       context 'when the score does no exist' do
