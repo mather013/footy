@@ -7,7 +7,8 @@
         <% radio_choice = "checked=\"checked" if @bet.player_id == player[:id] || @bet.player_id.nil? && player[:id] == 1 %>
         <input type="radio" name="player_id" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= player[:id] %>" style="display:none;">
         <label for="radio-choice-<%= i %>">
-          <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: "strip-size" %>&nbsp
+          <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+          <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{player.team.abbreviation}.png", class: "strip-size" %>&nbsp
           <%= player.name %>
         </label>
     <% end %>

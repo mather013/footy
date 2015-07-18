@@ -5,6 +5,8 @@
   <h1>Goal scorers</h1>
 </div>
 
+<% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+
 <div data-role="collapsible-set">
   <div class="player-goals" data-role="listview" data-count-theme="d">
     <% @goals.each do |goals_for_player| %>
@@ -13,7 +15,7 @@
           <h5>
             <div class="ui-grid-b player-goals">
               <div class="ui-block-a" style="width:8%">
-                <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: 'strip-size' %>
+                <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{player.team.abbreviation}.png", class: 'strip-size' %>
               </div>
               <div class="ui-block-b" style="width:82%">
                 <%= player.name %>
@@ -28,7 +30,7 @@
             <div class="ui-block-a" style="width:16%"></div>
             <div class="ui-block-b" style="width:84%">
               <% player.goals.each do |goal| %>
-                  <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{goal.opposing_team.abbreviation}.png", class: 'strip-size' %>&nbsp
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{goal.opposing_team.abbreviation}.png", class: 'strip-size' %>&nbsp
               <% end %>
             </div>
           </div>
