@@ -1,4 +1,4 @@
-class GbBet < ActiveRecord::Migration
+class CreateGbBets < ActiveRecord::Migration
   def change
     create_table :gb_bets do |t|
       t.integer  :id
