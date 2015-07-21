@@ -5,7 +5,7 @@
 </div>
 
 <div class="info-txt" data-role="content">
-  The team that is first to score exactly 11 goals from a series of fixtures is the winner.
+  The team that's first to score exactly 11 goals from a series of fixtures is the winner.
   <p></p>
   When you join, you'll be given a unique team by random from a pot of premiership teams - you cannot choose your team.
   It's £1 to play with £20 jackpot.
@@ -15,7 +15,7 @@
 <p>
   <%= form_for(@bet) do |bet| %>
     <div align="center">
-      <%= bet.submit 'Join', class: 'btn btn-large btn-primary', disabled: @round.open? %>
+      <%= bet.submit 'Join', class: 'btn btn-large btn-primary', disabled: !@round.open? %>
     </div>
 <% end %>
 <p>
