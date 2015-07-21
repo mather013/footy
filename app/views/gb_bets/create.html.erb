@@ -5,14 +5,17 @@
   <h1><%= "Goal Buster" %></h1>
 </div>
 
-<div data-role="content" align="center">
-  <o></o>
-  Congratulations! Your Goal Buster team is...
+<div data-role="content" align="center" class="info-txt">
   <p></p>
+  Your Goal Buster team is...
+  <p></p>
+  &nbsp;
+  <br>
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
   <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@bet.team.abbreviation}.png", class: "badge-size" %>
   <p></p>
   <%= @bet.team.name.upcase %>
+  <p></p>
 </div>
 <%= render 'common/footer' %>
 </html>
