@@ -3,7 +3,7 @@
 <div data-role=footer data-position=fixed>
   <div data-role=navbar>
     <ul>
-      <li><a href="<%= weeks_path %>">Footy Forecast
+      <li><a href="<%= weeks_path %>">H/D/A
         <span class="label label-default"><%= @user.position.current.ordinalize if @user.position.present? %></span>
       </a></li>
       <% if TOGGLES_CONFIG['last_man_standing'] %>
@@ -20,6 +20,12 @@
           <li><a href="<%= fa_bets_path %>">5 Alive
             <span class="label label-default"><%= @user.fa_point.value if @user.fa_point.present? %></span>
           </a></li>
+      <% end %>
+      <% if TOGGLES_CONFIG['goal_buster'] %>
+          <li>
+            <% path = @user.gb_bet.present? ? gb_points_path : new_gb_bet_path %>
+            <a href="<%= path %>">Goal Buster<span class="label label-default"></span></a>
+          </li>
       <% end %>
     </ul>
   </div>

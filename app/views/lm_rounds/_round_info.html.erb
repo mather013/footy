@@ -15,7 +15,8 @@
   <% if @lm_bet.present? %>
       <div class="ui-block-b main-font" style="width:45%">
         <% if @lm_bet.present? %>
-            <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@lm_bet.team.abbreviation}.png", class: 'strip-size' %>
+            <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+            <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{@lm_bet.team.abbreviation}.png", class: "strip-size" %>
             <%= @lm_bet.team.name.upcase %>
         <% end %>
         <br>

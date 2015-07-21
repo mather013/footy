@@ -102,6 +102,11 @@
     background: white;
 }
 
+.info-txt-clear {
+    font-size: .7em;
+    color: #686868;
+}
+
 .points-user {
     font-size: .9em;
 }

@@ -32,4 +32,9 @@ namespace :db do
     end
   end
 
+  desc 'Reset Goal Buster'
+  task :reset_goal_buster, [:starting_week_id] => :environment do |t, args|
+    RakeTaskResources::ResetGoalBuster.perform args[:starting_week_id]
+  end
+
 end

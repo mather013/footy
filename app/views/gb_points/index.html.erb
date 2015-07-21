@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <a href="<%= gb_points_info_path %>" data-theme="a" data-rel="">Rules</a>
+  <h1><%= 'Goal Buster' %></h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+    <% @points.each do |point| %>
+        <li class="custom-list">
+          <div class="ui-grid-b">
+
+            <div class="ui-block-a" style="width:45%">
+              <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{point.team.abbreviation}.png", class: 'strip-size' %>
+              &nbsp
+              <%= point.team.name %>
+            </div>
+
+            <div class="ui-block-b" style="width:45%">
+              <% bet = GbBet.find_by_team_id(point.team.id) %>
+
+              <% if @round.started? %>
+                  <%= bet.present ? bet.user.name : "Nobody" %>
+              <% else %>
+                  <%= bet.present? && bet.user.username == @user.username ? bet.user.name : "? ? ? ? ?" %>
+              <% end %>
+            </div>
+
+            <div class="ui-block-c" align="left" style="width:10%">
+              <%= point.value %>
+            </div>
+
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

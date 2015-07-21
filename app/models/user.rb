@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_one :lm_point
   has_and_belongs_to_many :games
   has_one :position
+  has_one :gb_bet
 
   validates_presence_of :name, :username, :password
 

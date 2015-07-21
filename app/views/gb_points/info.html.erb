@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <a href="<%= gb_points_path %>" data-theme="a" data-rel="">Back</a>
+
+  <h1><%= 'Goal Buster' %></h1>
+</div>
+
+<div class="info-txt" data-role="content">
+  The team that is first to score exactly 11 goals over a series of fixtures.
+
+  <p>
+    Each person has a team that will be chosen at random when you join the competition.
+
+  <p>
+    Teams that score more than 11 goals in a fixture will remain on the number of goals they had before the fixture e.g.
+    If your team has 10 goals and scores 2 goals in their next fixture, they will remain on 10 goals and cannot
+    win until they score just 1 goal in a fixture.
+
+  <p>
+    If more than 1 team scores exactly 11 goals, the winnings will be split amongst the people with these teams.
+
+</div>
+<%= render 'common/footer' %>
+</html>
