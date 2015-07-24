@@ -24,7 +24,7 @@
             </div>
 
             <% if TOGGLES_CONFIG['last_man_standing'] %>
-                <div class="ui-block-c" style="width:20%">
+                <div class="ui-block-c" style="width:10%">
                   <%= LmBet.bets_for_user_and_round(user, @round_current).count if user.lm_survivor? %>
                 </div>
             <% end %>
@@ -32,6 +32,12 @@
             <% if TOGGLES_CONFIG['five_alive'] %>
                 <div class="ui-block-c" style="width:20%">
                   <%= user.fa_bets.count %>
+                </div>
+            <% end %>
+
+            <% if TOGGLES_CONFIG['goal_buster'] %>
+                <div class="ui-block-d" style="width:20%">
+                  <%= user.gb_bet.team.abbreviation.upcase if user.gb_bet.present? %>
                 </div>
             <% end %>
 
