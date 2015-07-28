@@ -18,8 +18,11 @@
               <%= point.team.name %>
             </div>
 
-            <div class="ui-block-b" style="width:45%">
-              <% bet = GbBet.find_by_team_id(point.team.id) %>
+            <% bet = GbBet.find_by_team_id(point.team.id) %>
+
+            <% username_style = (bet.present? && bet.user.id == @current_user.id ?  'ui-block-b current_user' : 'ui-block-b') %>
+
+            <div class="<%=username_style%>" style="width:45%">
 
               <% if @round.started? %>
                   <%= bet.present ? bet.user.name : "Nobody" %>

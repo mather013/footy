@@ -4,6 +4,7 @@ class GbPointsController < ApplicationController
   def index
     @round = GbRound.first
     @points = GbPoint.sorted
+    @current_user = current_user
   end
 
   def info

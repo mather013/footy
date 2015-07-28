@@ -42,7 +42,7 @@ class LmBetsController < ApplicationController
     (permitted_teams - teams_used).each do |team|
       @choices << [team.name, team.id]
     end
-
+    @choices.sort_by! {|i| i.first }
   end
 
 end
