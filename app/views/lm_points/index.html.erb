@@ -3,7 +3,11 @@
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= lm_rounds_path %>" data-theme="a" data-rel="">Back</a>
 
-  <h1><%= 'Last Man Standing' %></h1>
+  <h1>
+    Last Man Standing
+    <span class="jackpot"><%= "Pot: £#{@game.users.count * 5}" %></span>
+  </h1>
+
 </div>
 
 <div class="leaderboard">
@@ -28,7 +32,7 @@
               <div class="ui-block-d <%= style %>" align="left" style="width:50%">
                 <% if user.lm_bets.present? %>
                     <% lm_round = user.lm_bets.last.lm_round %>
-                    <%= lm_round.week.status == 'Open' ? "Round #{lm_round.id}: ? ? ? ? ?" : "Round #{lm_round.id}: #{user.lm_bets.last.team.name}"%>
+                    <%= lm_round.week.status == 'Open' ? "Round #{lm_round.id}: ? ? ? ? ?" : "Round #{lm_round.id}: #{user.lm_bets.last.team.name}" %>
                 <% else %>
                     Round 1: No Selection
                 <% end %>

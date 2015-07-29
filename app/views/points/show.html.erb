@@ -12,6 +12,16 @@
     <% position = 0 %>
     <% previous_score = -10 %>
 
+    <% paying_winners = [] %>
+
+    <% if @week.complete? %>
+        <% winning_value = 0 %>
+        <% @points.each do |p| %>
+            <% paying_winners << p.user if p.user.games.collect(&:name).include?('Footy Forecast') && (paying_winners.empty? || winning_value == p.value) %>
+            <% winning_value = p.value if winning_value == 0 && paying_winners.count == 1 %>
+        <% end %>
+    <% end %>
+
     <% @points.each do |point| %>
         <li class="custom-list">
           <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>" class="leaderboard">
@@ -30,11 +40,20 @@
               <% user = User.find(point.user_id) %>
               <% username_style = (user.id == @current_user.id ?  'ui-block-b current_user' : 'ui-block-b') %>
 
-              <div class="<%=username_style%>" style="width:80%">
+              <div class="<%=username_style%>" style="width:60%">
                 <%= user.name %>
               </div>
 
-              <div class="ui-block-c" align="center" style="width:10%">
+              <div class="ui-block-c payout-icon" align="left" style="width:10%">
+                <%= "$" if point.user.games.collect(&:name).include?('Footy Forecast') %>
+              </div>
+
+              <div class="ui-block-d payout-icon" align="left" style="width:10%">
+                <%= "£10" if paying_winners.count == 1 && point.user.id == paying_winners.first.id %>
+                <%= "+" if paying_winners.count > 1 && paying_winners.collect(&:id).include?(point.user.id) %>
+              </div>
+
+              <div class="ui-block-e" align="center" style="width:10%">
                 <%= "#{point.value}" %>
               </div>
 

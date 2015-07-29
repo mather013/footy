@@ -258,3 +258,8 @@ div.ui-btn, input[type="submit"] {
 .disabled-font {
     color: #979797;
 }
+
+.jackpot {
+    font-size: .8em;
+    margin-left: 10px;
+}
