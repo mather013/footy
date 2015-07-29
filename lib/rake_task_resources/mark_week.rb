@@ -2,8 +2,7 @@ module RakeTaskResources
   class MarkWeek
     class << self
       def perform week_id
-        puts "marking bets round #{week_id}"
-        puts "===================="
+        puts "marking h/d/a round #{week_id}"
         @fixture_ids = get_fixtures_ids_for week_id
         User.all.each do |user|
           bets = Bet.bets_for_user_and_fixtures(user, @fixture_ids)
@@ -28,8 +27,6 @@ module RakeTaskResources
 
         point=Point.point_for_user_and_week(user, @week).first
         point.present? ? point.update_attributes(value: points) : Point.create(user_id: user.id, value: points, week_id: @week.id)
-        puts "#{user.name} points: #{points}"
-
       end
     end
   end

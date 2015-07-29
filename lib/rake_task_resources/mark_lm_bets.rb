@@ -2,8 +2,7 @@ module RakeTaskResources
   class MarkLmBets
     class << self
       def perform
-        puts "marking last man bets"
-        puts "===================="
+        puts "marking last man"
         User.all.each do |user|
           lm_bets = LmBet.find_all_by_user_id(user.id)
           if lm_bets.present?
@@ -25,7 +24,6 @@ module RakeTaskResources
 
       def award_points user, points
         user.lm_point.present? ? user.lm_point.update_attributes(value: points) : LmPoint.create(user_id: user.id, value: points)
-        puts "#{user.name} points: #{points}"
       end
 
     end

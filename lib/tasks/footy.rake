@@ -53,7 +53,7 @@ namespace :footy do
     RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
     RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
     RakeTaskResources::MarkGbBets.perform if TOGGLES_CONFIG['goal_buster']
-    Jobs::SyncStandings.new.perform if ENVIRONMENT_CONFIG['competition'] == 'premier_league'
+    #Jobs::SyncStandings.new.perform if ENVIRONMENT_CONFIG['competition'] == 'premier_league'
   end
 
   desc 'Record goal and goal event for fixture'

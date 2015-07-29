@@ -2,8 +2,7 @@ module RakeTaskResources
   class RefreshPositions
     class << self
       def perform
-        puts 'refresh user positions'
-        puts '===================='
+        puts 'refreshing user positions'
         index = 0
         position = 0
         previous_score = -10
