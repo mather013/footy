@@ -261,5 +261,7 @@ div.ui-btn, input[type="submit"] {
 
 .jackpot {
     font-size: .8em;
-    margin-left: 10px;
+    position: absolute;
+    right: 20px;
+    top: 13px;
 }
