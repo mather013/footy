@@ -130,6 +130,11 @@
     max-height: 12px;
 }
 
+.badge-small {
+    max-width: 32px;
+    max-height: 32px;
+}
+
 .player-badge-size {
     max-width: 16px;
     max-height: 16px;
@@ -264,4 +269,9 @@ div.ui-btn, input[type="submit"] {
     position: absolute;
     right: 20px;
     top: 13px;
+}
+
+.lms_fixture {
+    position: relative;
+    top: 7px;
 }
