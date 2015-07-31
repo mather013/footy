@@ -16,11 +16,11 @@
                 </div>
                 <div class="ui-block-b lms_fixture" style="width: 24%">
                     <span class="<%= team_names.include?(fixtures[i*2].home_team.name) ? '' : 'disabled-font' %>">
-                        <%= fixtures[i*2].home_team.abbreviation.upcase %>
+                        <%= fixtures[i*2].home_team.name %>
                     </span>
-                    v
+                    <br>v<br>
                     <span class="<%= team_names.include?(fixtures[i*2].away_team.name) ? '' : 'disabled-font' %>">
-                        <%= fixtures[i*2].away_team.abbreviation.upcase %>
+                        <%= fixtures[i*2].away_team.name %>
                     </span>
                 </div>
                 <div class="ui-block-c" style="width: 12%">
@@ -38,11 +38,11 @@
                 </div>
                 <div class="ui-block-e lms_fixture" style="width: 24%">
                     <span class="<%= team_names.include?(fixtures[i*2+1].home_team.name) ? '' : 'disabled-font' %>">
-                        <%= fixtures[i*2+1].home_team.abbreviation.upcase %>
+                        <%= fixtures[i*2+1].home_team.name %>
                     </span>
-                    v
+                    <br>v<br>
                     <span class="<%= team_names.include?(fixtures[i*2+1].away_team.name) ? '' : 'disabled-font' %>">
-                        <%= fixtures[i*2+1].away_team.abbreviation.upcase %>
+                        <%= fixtures[i*2+1].away_team.name %>
                     </span>
                 </div>
                 <div class="ui-block-c" style="width: 12%">

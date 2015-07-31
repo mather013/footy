@@ -272,6 +272,7 @@ div.ui-btn, input[type="submit"] {
 }
 
 .lms_fixture {
+    font-size: .7em;
     position: relative;
-    top: 7px;
+    top: -2px;
 }
