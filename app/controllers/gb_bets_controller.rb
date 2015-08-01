@@ -9,6 +9,7 @@ class GbBetsController < ApplicationController
 
   def create
     @bet = GbBet.create(user_id: @user.id, team_id: available_choices.sample)
+    redirect_to new_gb_bet_path unless @bet.valid?
   end
 
   private
