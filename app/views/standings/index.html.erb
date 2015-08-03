@@ -28,7 +28,8 @@
             </div>
 
             <div class="ui-block-b" style="width:40%">
-              <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{standing.team.abbreviation}.png", class: 'strip-size' %>&nbsp
+              <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{standing.team.abbreviation}.png", class: 'strip-size' %>&nbsp
               <%= "#{standing.team.name}" %>
             </div>
 
