@@ -2,7 +2,7 @@
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= gb_points_info_path %>" data-theme="a" data-rel="">Rules</a>
-  
+
   <h1>
     <%= 'Goal Buster' %>
     <span class="jackpot"><%= "Pot: £20" %></span>
@@ -27,12 +27,7 @@
             <% username_style = (bet.present? && bet.user.id == @current_user.id ?  'ui-block-b current_user' : 'ui-block-b') %>
 
             <div class="<%=username_style%>" style="width:45%">
-
-              <% if @round.started? %>
-                  <%= bet.present ? bet.user.name : "Nobody" %>
-              <% else %>
-                  <%= bet.user.name if bet.present? %>
-              <% end %>
+                <%= bet.user.name if bet.present? %>
             </div>
 
             <div class="ui-block-c" align="left" style="width:10%">
