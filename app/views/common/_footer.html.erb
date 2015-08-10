@@ -9,10 +9,10 @@
       <% if TOGGLES_CONFIG['last_man_standing'] %>
           <li><a href="<%= lm_rounds_path %>">
             LMS
-            <% if @user.lm_survivor? %>
-                <span class="label label-success">&nbsp; &nbsp;</span>
-            <% else %>
+            <% if @user.lm_point.value < LmRound.current.id-1 %>
                 <span class="label label-danger">&nbsp; &nbsp;</span>
+            <% else %>
+                <span class="label label-success">&nbsp; &nbsp;</span>
             <% end %>
           </a></li>
       <% end %>
