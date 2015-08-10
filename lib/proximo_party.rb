@@ -1,9 +1,9 @@
   module ProximoParty
     include HTTParty
 
-    PROXIMO = URI.parse(ENV["PROXIMO_URL"])
+    URI = URI.parse(ENV['FIXIE_URL'])
 
-    http_proxy PROXIMO.host, 80, PROXIMO.user, PROXIMO.password
+    http_proxy URI.host, 80, URI.user, URI.password
 
     def get url
       self.class.get url
