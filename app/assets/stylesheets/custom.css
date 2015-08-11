@@ -260,6 +260,11 @@ div.ui-btn, input[type="submit"] {
 .custom-list {
     background: white  !important;
 }
+
+.custom-list-winner {
+    background: #FFF380  !important;
+}
+
 .disabled-font {
     color: #979797;
 }

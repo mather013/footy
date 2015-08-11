@@ -27,7 +27,10 @@
     <% end %>
 
     <% @points.each do |point| %>
-        <li class="custom-list">
+
+        <% list_style = paying_winners.collect(&:id).include?(point.user.id) ? "custom-list-winner" : "custom-list" %>
+
+        <li class="<%= list_style %>">
           <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>" class="leaderboard">
             <div class="ui-grid-b">
               <% position +=1 unless previous_score == point.value %>
@@ -53,8 +56,7 @@
               </div>
 
               <div class="ui-block-d payout-icon" align="left" style="width:10%">
-                <%= "£10" if paying_winners.count == 1 && point.user.id == paying_winners.first.id %>
-                <%= "+" if paying_winners.count > 1 && paying_winners.collect(&:id).include?(point.user.id) %>
+
               </div>
 
               <div class="ui-block-e" align="center" style="width:10%">
