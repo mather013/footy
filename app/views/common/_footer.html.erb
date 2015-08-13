@@ -9,7 +9,7 @@
       <% if TOGGLES_CONFIG['last_man_standing'] %>
           <li><a href="<%= lm_rounds_path %>">
             LMS
-            <% if @user.lm_point.value < LmRound.current.id-1 %>
+            <% if @user.fa_point.nil? || @user.lm_point.value < LmRound.current.id-1 %>
                 <span class="label label-danger">&nbsp; &nbsp;</span>
             <% else %>
                 <span class="label label-success">&nbsp; &nbsp;</span>
