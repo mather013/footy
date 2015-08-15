@@ -30,7 +30,7 @@
         <% position +=1 unless previous_score == point.value %>
         <% index += 1 %>
 
-        <% list_style = position == 1 ? "custom-list-winner" : "custom-list" %>
+        <% list_style = @week.complete? && position == 1 ? "custom-list-winner" : "custom-list" %>
 
         <li class="<%= list_style %>">
           <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>" class="leaderboard">
