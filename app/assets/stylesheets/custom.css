@@ -146,7 +146,7 @@
 }
 
 .payout-icon {
-    color:  #C9960C
+    color: #C9960C
 }
 
 .current_user {
@@ -244,7 +244,7 @@ div.ui-btn, input[type="submit"] {
 
 .custom-li {
     padding: 0 !important;
-    border-width:0 !important;
+    border-width: 0 !important;
 }
 
 .custom-bottom-li {
@@ -254,15 +254,15 @@ div.ui-btn, input[type="submit"] {
 .custom-collapsible {
     margin-left: 0px !important;
     border-width: 0px !important;
-    background-color: white  !important;
+    background-color: white !important;
 }
 
 .custom-list {
-    background: white  !important;
+    background: white !important;
 }
 
 .custom-list-winner {
-    background: #FFF380  !important;
+    background: #FFF380 !important;
 }
 
 .disabled-font {
@@ -280,4 +280,29 @@ div.ui-btn, input[type="submit"] {
     font-size: .7em;
     position: relative;
     top: -2px;
+}
+
+.standings {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    color: #FFF;
+    font-size: .7rem;
+    padding: 0px 0.125em;
+}
+
+.won {
+    background: #060 none repeat scroll 0% 0%;
+}
+
+.draw {
+    background: #999 none repeat scroll 0% 0%;
+}
+
+.lost {
+    background: #C00 none repeat scroll 0% 0%;
 }

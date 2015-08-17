@@ -28,7 +28,7 @@
             <% bet.nil? ? outcome = "" : outcome = bet.outcome%>
 
             <div class="<%= outcome %> ui-block-b main-font" align="center" style="width:10%">
-              <% hidden_value = ENVIRONMENT_CONFIG['bet_type_hda'] ? '?' : '? - ?' %>
+              <% hidden_value = TOGGLES_CONFIG['bet_type_hda'] ? '?' : '? - ?' %>
               <%= bet.nil? || fixture.betable? ? hidden_value : "#{bet.value}" %>
               <br>
               <h10 class="kickoff">
