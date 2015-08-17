@@ -297,13 +297,13 @@ div.ui-btn, input[type="submit"] {
 }
 
 .won {
-    background: #060 none repeat scroll 0% 0%;
+    background: #5cb85c none repeat scroll 0% 0%;
 }
 
 .draw {
-    background: #999 none repeat scroll 0% 0%;
+    background: #999999 none repeat scroll 0% 0%;
 }
 
 .lost {
-    background: #C00 none repeat scroll 0% 0%;
+    background: #d9534f none repeat scroll 0% 0%;
 }
