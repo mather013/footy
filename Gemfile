@@ -45,6 +45,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'rollbar', '~> 2.1.1'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
