@@ -6,6 +6,9 @@ Rollbar.configure do |config|
   config.access_token = ENV['ROLLBAR_ACCESS_TOKEN']
   config.disable_monkey_patch = true
 
+  config.person_id_method = "username"  # default is "id"
+  config.person_username_method = "name"  # default is "username"
+
   # Here we'll disable in 'test':
   if Rails.env.test?
     config.enabled = false
