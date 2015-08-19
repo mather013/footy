@@ -28,7 +28,6 @@ gem 'rspec-rails'
 gem 'rest-client'
 gem 'httparty'
 gem 'clockworksms'
-gem 'mixpanel-ruby', '~> 1.4.0'
 
 group :test do
   gem 'shoulda'
@@ -46,6 +45,7 @@ group :production do
 end
 
 gem 'rollbar', '~> 2.1.1'
+gem 'keen'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

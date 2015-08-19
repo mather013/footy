@@ -19,8 +19,9 @@ class BetsController < ApplicationController
   end
 
   def update
-    #tracker = Mixpanel::Tracker.new(ENVIRONMENT_CONFIG['mixpanel_token'])
-    #tracker.track(current_user.username, 'Edited prediction')
+    Keen.publish(:bet_change, { username: current_user.username,
+                                game: 'hda',
+                                environment: Rails.env })
 
     bet = Bet.find(params['id'])
     bet.update_attributes(value: params['bet_value'])
