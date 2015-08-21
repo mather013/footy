@@ -17,6 +17,10 @@ class LmBetsController < ApplicationController
   end
 
   def update
+    Keen.publish(:bet_change, { username: current_user.username,
+                                game: 'lms',
+                                environment: Rails.env }) if Rails.env.production?
+
     LmBet.find(params['id']).update_attributes(team_id: params['lm_bet']['team_id'])
     redirect_to lm_rounds_path
   end

@@ -21,7 +21,7 @@ class BetsController < ApplicationController
   def update
     Keen.publish(:bet_change, { username: current_user.username,
                                 game: 'hda',
-                                environment: Rails.env })
+                                environment: Rails.env }) if Rails.env.production?
 
     bet = Bet.find(params['id'])
     bet.update_attributes(value: params['bet_value'])
