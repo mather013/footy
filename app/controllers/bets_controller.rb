@@ -9,7 +9,8 @@ class BetsController < ApplicationController
 
   def create
     bet = Bet.new(fixture_id: params['fixture_id'], user_id: current_user.id, value: params['bet_value'])
-    bet.save!
+    success = bet.save!
+    Services::AnalyticsService.publish(:bet_create, params_for_analytics) if success
     redirect_to fixtures_path(bet.fixture.week.id)
   end
 
@@ -19,12 +20,9 @@ class BetsController < ApplicationController
   end
 
   def update
-    Keen.publish(:bet_change, { username: current_user.username,
-                                game: 'hda',
-                                environment: Rails.env }) if Rails.env.production?
-
     bet = Bet.find(params['id'])
-    bet.update_attributes(value: params['bet_value'])
+    success = bet.update_attributes(value: params['bet_value'])
+    Services::AnalyticsService.publish(:bet_change, params_for_analytics) if success
     redirect_to fixtures_path(bet.fixture.week.id)
   end
 
@@ -38,6 +36,10 @@ class BetsController < ApplicationController
 end
 
 private
+
+def params_for_analytics
+  {game: 'hda', username: current_user.username}
+end
 
 def fix_params
   unless TOGGLES_CONFIG['bet_type_hda']
