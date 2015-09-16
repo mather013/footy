@@ -28,7 +28,7 @@
               <% if @user.gb_bet.present? %>
                   <span class="label label-default">&nbsp;<%= @user.gb_bet.team.gb_point.value %>&nbsp;</span>
               <% else %>
-                  <% if GbRound.first.open? && GbBet.count < Team.count %>
+                  <% if GbBet.count < Team.count %>
                       <span class="label label-success">&nbsp; &nbsp;</span>
                   <% else %>
                       <span class="label label-danger">&nbsp; &nbsp;</span>
