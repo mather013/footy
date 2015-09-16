@@ -8,11 +8,11 @@ class GbRound < ActiveRecord::Base
   end
 
   def open?
-    week.close_date > Time.now and week.close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days
+    week.close_date > Time.now && Time.now > open_at
   end
 
   def open_at
-    week.close_date - ENVIRONMENT_CONFIG['round_open_period_in_days'].days
+    DateTime.parse(week.close_date.to_date.to_s + ' 09:00:00')
   end
 
 end
