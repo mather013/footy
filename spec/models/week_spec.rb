@@ -20,14 +20,17 @@ describe Week do
   end
 
   describe 'scopes' do
-    let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.ago, complete: true) }
-    let!(:week_two) { Week.create(description: 'Week 02', close_date: 2.days.from_now) }
-    let!(:week_three) { Week.create(description: 'Week 03', close_date: 3.days.from_now) }
+    let!(:week_01) { Week.create(description: 'Week 01', close_date: 22.days.ago, complete: true) }
+    let!(:week_02) { Week.create(description: 'Week 02', close_date: 15.days.ago, complete: true) }
+    let!(:week_03) { Week.create(description: 'Week 03', close_date: 8.days.ago, complete: true) }
+    let!(:week_04) { Week.create(description: 'Week 04', close_date: 1.days.ago, complete: true) }
+    let!(:week_05) { Week.create(description: 'Week 05', close_date: 6.days.from_now) }
+    let!(:week_06) { Week.create(description: 'Week 06', close_date: 13.days.from_now) }
 
     describe 'ordered' do
 
       it 'weeks by ascending close_date' do
-        Week.sorted.should eq [week_one, week_two, week_three]
+        expect(Week.sorted).to eq [week_01, week_02, week_03, week_04, week_05, week_06]
       end
 
       it 'creates the expected sql for weeks by ascending close_date' do
@@ -38,7 +41,7 @@ describe Week do
     describe 'ordered_open' do
 
       it 'weeks by not complete and ascending close_date' do
-        Week.sorted_open.should eq [week_two, week_three, week_one]
+        expect(Week.sorted_open).to eq [week_05, week_06, week_01, week_02, week_03, week_04]
       end
 
       it 'creates the expected sql for weeks by not complete and ascending close_date' do
@@ -46,28 +49,49 @@ describe Week do
       end
     end
 
+    describe 'sorted_recent' do
+      it 'weeks by not complete and ascending close_date' do
+        expect(Week.sorted_recent).to eq [week_02, week_03, week_04, week_05, week_06]
+      end
+
+      #time cop?
+      xit 'creates the expected sql for weeks by not complete and ascending close_date' do
+        expect(Week.sorted_recent.to_sql.should == "SELECT \"weeks\".* FROM \"weeks\"  WHERE (complete is null or close_date >= '2015-08-26 12:41:54.381913') ORDER BY close_date asc")
+      end
+    end
+
+    describe 'sorted_non_recent' do
+      it 'weeks by not complete and ascending close_date' do
+        Week.sorted_non_recent.should eq [week_01]
+      end
+
+      #time cop?
+      xit 'creates the expected sql for weeks by not complete and ascending close_date' do
+        expect(Week.sorted_non_recent.to_sql.should == "")
+      end
+    end
   end
 
   describe 'class methods' do
 
     describe 'current' do
-      let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
-      let!(:week_two) { Week.create(description: 'Week 02', close_date: 1.days.from_now) }
-      let!(:week_three) { Week.create(description: 'Week 03', close_date: 2.days.from_now) }
+      let!(:week_01) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
+      let!(:week_02) { Week.create(description: 'Week 02', close_date: 1.days.from_now) }
+      let!(:week_03) { Week.create(description: 'Week 03', close_date: 2.days.from_now) }
 
       it 'returns the immediate week' do
-        expect(Week.current).to eq week_two
+        expect(Week.current).to eq week_02
       end
 
     end
 
     describe 'previous' do
-      let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
-      let!(:week_two) { Week.create(description: 'Week 02', close_date: 1.days.from_now) }
-      let!(:week_three) { Week.create(description: 'Week 03', close_date: 2.days.from_now) }
+      let!(:week_01) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
+      let!(:week_02) { Week.create(description: 'Week 02', close_date: 1.days.from_now) }
+      let!(:week_03) { Week.create(description: 'Week 03', close_date: 2.days.from_now) }
 
       it 'returns the immediate week' do
-        expect(Week.previous).to eq week_one
+        expect(Week.previous).to eq week_01
       end
 
     end
@@ -200,16 +224,16 @@ describe Week do
     end
 
     describe '#fixtures_strict' do
-      let!(:week_one) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
-      let!(:week_two) { Week.create(description: 'Week 02', close_date: 5.days.from_now) }
+      let!(:week_01) { Week.create(description: 'Week 01', close_date: 1.days.ago) }
+      let!(:week_02) { Week.create(description: 'Week 02', close_date: 5.days.from_now) }
 
-      let!(:fixture_one) { Fixture.create(week_id: week_one.id, kickoff: 1.day.from_now) }
-      let!(:fixture_two) { Fixture.create(week_id: week_one.id, kickoff: 10.days.from_now) }
-      let!(:fixture_three) { Fixture.create(week_id: week_one.id, kickoff: 2.day.from_now) }
-      let!(:fixture_four) { Fixture.create(week_id: week_one.id, kickoff: 1.day.ago) }
+      let!(:fixture_one) { Fixture.create(week_id: week_01.id, kickoff: 1.day.from_now) }
+      let!(:fixture_two) { Fixture.create(week_id: week_01.id, kickoff: 10.days.from_now) }
+      let!(:fixture_three) { Fixture.create(week_id: week_01.id, kickoff: 2.day.from_now) }
+      let!(:fixture_four) { Fixture.create(week_id: week_01.id, kickoff: 1.day.ago) }
 
       it 'returns fixtures that have not had their kickoff moved outside of their week' do
-        expect(week_one.fixtures_strict).to eq([fixture_one,fixture_three])
+        expect(week_01.fixtures_strict).to eq([fixture_one,fixture_three])
       end
 
     end
