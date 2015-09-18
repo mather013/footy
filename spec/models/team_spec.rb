@@ -18,6 +18,7 @@ describe Team do
   describe 'associations' do
     it { should have_one :standing }
     it { should have_many :players }
+    it { should have_many :events }
   end
 
 end

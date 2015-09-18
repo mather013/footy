@@ -6,18 +6,21 @@ module Jobs
     describe 'instance methods' do
 
       describe '#perform' do
+        let(:team) { 'visitorteam' }
         let(:sync_scores) { Jobs::SyncScores.new }
         let(:fixtures_finished) { true }
-        let(:events_fixture_one) { [Feed::Event.new(id: '19525541', match_id: '1952554', event_type: 'goal',
-                                                    minute: '31',
-                                                    team: 'visitorteam',
-                                                    player_name: 'S. Fletcher'),
-                                    Feed::Event.new(id: '19525543',
-                                                    match_id: '1952554',
+        let(:events_fixture_one) { [Feed::Event.new(event_id: '19525541',
+                                                    event_match_id: '1952554',
+                                                    event_type: 'goal',
+                                                    event_minute: '31',
+                                                    event_team: team,
+                                                    event_player: 'S. Fletcher'),
+                                    Feed::Event.new(event_id: '19525543',
+                                                    event_match_id: '1952554',
                                                     event_type: 'yellowcard',
-                                                    minute: '63',
-                                                    team: 'visitorteam',
-                                                    player_name: 'W. Buckley')] }
+                                                    event_minute: '63',
+                                                    event_team: team,
+                                                    event_player: 'W. Buckley')] }
 
         let(:events_fixture_two) { [] }
 
@@ -136,16 +139,17 @@ module Jobs
                 end
 
                 it 'updates the score for fixture' do
-                  expect(Fixture.find(fixture_one.id).score.home).to eq(3)
-                  expect(Fixture.find(fixture_one.id).score.away).to eq(2)
+                  score = Fixture.find(fixture_one.id).score
+                  expect(score.home).to eq(3)
+                  expect(score.away).to eq(2)
                 end
 
                 it 'updates the events for fixture' do
-                  expect(Fixture.find(fixture_one.id).events.collect(&:event_type)) =~ ['yellowcard', 'goal']
-                  expect(Fixture.find(fixture_one.id).events.collect(&:player_name)) =~ ['W. Buckley', 'S. Fletcher']
+                  events = Fixture.find(fixture_one.id).events
+                  expect(events.collect(&:event_type)) =~ ['yellowcard', 'goal']
+                  expect(events.collect(&:player_name)) =~ ['W. Buckley', 'S. Fletcher']
 
-                  expect(Fixture.find(fixture_two.id).events.collect(&:event_type)).to be_empty
-                  expect(Fixture.find(fixture_two.id).events.collect(&:player_name)).to be_empty
+                  expect(Fixture.find(fixture_two.id).events.count).to eq(0)
                 end
 
                 it 'returns expected weeks' do
@@ -165,18 +169,35 @@ module Jobs
                 end
 
                 it 'creates a new score for fixture' do
-                  expect(Fixture.find(fixture_one.id).score.home).to eq(3)
-                  expect(Fixture.find(fixture_one.id).score.away).to eq(2)
+                  score = Fixture.find(fixture_one.id).score
+                  expect(score.home).to eq(3)
+                  expect(score.away).to eq(2)
                 end
 
-                it 'creates new events for fixture' do
-                  expect(Fixture.find(fixture_one.id).events.collect(&:event_type)) =~ ['yellowcard', 'goal']
-                  expect(Fixture.find(fixture_one.id).events.collect(&:player_name)) =~ ['W. Buckley', 'S. Fletcher']
+                context 'and it is for home team' do
+                  let(:team) { 'localteam' }
 
-                  expect(Fixture.find(fixture_two.id).events.collect(&:event_type)).to be_empty
-                  expect(Fixture.find(fixture_two.id).events.collect(&:player_name)).to be_empty
+                  it 'creates new events for fixture' do
+                    events = Fixture.find(fixture_one.id).events
+                    expect(events.collect(&:event_type)) =~ ['yellowcard', 'goal']
+                    expect(events.collect(&:player_name)) =~ ['W. Buckley', 'S. Fletcher']
+                    expect(events.collect(&:event_team)).to eq([home_team,home_team])
+
+                    expect(Fixture.find(fixture_two.id).events.count).to eq(0)
+                  end
                 end
 
+                context 'and it is for away team' do
+                  it 'creates new events for fixture' do
+                    events = Fixture.find(fixture_one.id).events
+                    expect(events.count).to eq(2)
+                    expect(events.collect(&:event_type)) =~ ['yellowcard', 'goal']
+                    expect(events.collect(&:player_name)) =~ ['W. Buckley', 'S. Fletcher']
+                    expect(events.collect(&:event_team)).to eq([away_team,away_team])
+
+                    expect(Fixture.find(fixture_two.id).events.count).to eq(0)
+                  end
+                end
               end
             end
           end

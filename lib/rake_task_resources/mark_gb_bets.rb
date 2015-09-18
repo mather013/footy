@@ -5,7 +5,7 @@ module RakeTaskResources
       MAX_VALUE = 11
 
       def perform
-        puts "marking goal buster"
+        puts "marking goal buster" unless Rails.env.test?
 
         hash = {}
         (1..Team.count).to_a.each { |team_id| hash[team_id] = 0 }

@@ -4,6 +4,7 @@ class Team  < ActiveRecord::Base
   has_one :standing
   has_one :gb_point
   has_many :players
+  has_many :events
   has_many :home_fixtures, foreign_key: 'home_team_id', class_name: 'Fixture'
   has_many :away_fixtures, foreign_key: 'away_team_id', class_name: 'Fixture'
 
