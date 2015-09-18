@@ -3,12 +3,8 @@ class GbRound < ActiveRecord::Base
 
   belongs_to :week, foreign_key: 'starting_week_id', class_name: 'Week'
 
-  def started?
-    self.week.close_date < DateTime.now
-  end
-
   def open?
-    week.close_date > Time.now && Time.now > open_at
+    Time.now > open_at
   end
 
   def open_at
