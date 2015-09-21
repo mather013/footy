@@ -3,6 +3,6 @@ class GbPoint < ActiveRecord::Base
 
   belongs_to :team
 
-  scope :sorted, order('value desc, id asc')
+  scope :sorted, order('value desc, team_id asc')
 
 end

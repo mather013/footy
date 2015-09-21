@@ -1,4 +1,4 @@
-Week.delete_all
+#Week.delete_all
 
 Week.find_or_create_by_id(id: 1,  description: 'Week 01', close_date: DateTime.parse('08-08-2015 14:00:00'))
 Week.find_or_create_by_id(id: 2,  description: 'Week 02', close_date: DateTime.parse('15-08-2015 14:00:00'))
@@ -10,11 +10,11 @@ Week.find_or_create_by_id(id: 7,  description: 'Week 07', close_date: DateTime.p
 Week.find_or_create_by_id(id: 8,  description: 'Week 08', close_date: DateTime.parse('03-10-2015 14:00:00'))
 Week.find_or_create_by_id(id: 9,  description: 'Week 09', close_date: DateTime.parse('17-10-2015 14:00:00'))
 Week.find_or_create_by_id(id: 10, description: 'Week 10', close_date: DateTime.parse('24-10-2015 14:00:00'))
-#Week.find_or_create_by_id(id: 11, description: 'Week 11', close_date: DateTime.parse('31-10-2015 15:00:00'))
-#Week.find_or_create_by_id(id: 12, description: 'Week 12', close_date: DateTime.parse('07-11-2015 15:00:00'))
-#Week.find_or_create_by_id(id: 13, description: 'Week 13', close_date: DateTime.parse('21-11-2015 15:00:00'))
-#Week.find_or_create_by_id(id: 14, description: 'Week 14', close_date: DateTime.parse('28-11-2015 15:00:00'))
-#Week.find_or_create_by_id(id: 15, description: 'Week 15', close_date: DateTime.parse('05-12-2015 15:00:00'))
+Week.find_or_create_by_id(id: 11, description: 'Week 11', close_date: DateTime.parse('31-10-2015 15:00:00'))
+Week.find_or_create_by_id(id: 12, description: 'Week 12', close_date: DateTime.parse('07-11-2015 15:00:00'))
+Week.find_or_create_by_id(id: 13, description: 'Week 13', close_date: DateTime.parse('21-11-2015 15:00:00'))
+Week.find_or_create_by_id(id: 14, description: 'Week 14', close_date: DateTime.parse('28-11-2015 15:00:00'))
+Week.find_or_create_by_id(id: 15, description: 'Week 15', close_date: DateTime.parse('05-12-2015 15:00:00'))
 #Week.find_or_create_by_id(id: 16, description: 'Week 16', close_date: DateTime.parse('12-12-2015 15:00:00'))
 #Week.find_or_create_by_id(id: 17, description: 'Week 17', close_date: DateTime.parse('19-12-2015 15:00:00'))
 #Week.find_or_create_by_id(id: 18, description: 'Week 18', close_date: DateTime.parse('26-12-2015 15:00:00'))
