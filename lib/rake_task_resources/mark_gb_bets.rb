@@ -19,11 +19,19 @@ module RakeTaskResources
           end
         end
 
-        hash.each { |k, v| GbPoint.find_by_team_id(k).update_attributes(value: v) }
+        hash.each do |k, v|
+          event = last_goal_event(Team.find(k))
+          minute = event.present? ? event.minute : nil
+          GbPoint.find_by_team_id(k).update_attributes(value: v, minute: minute)
+        end
       end
 
       def weeks
         Week.where('id >= ?', GbRound.first.starting_week_id)
+      end
+
+      def last_goal_event team
+        team.events.where(event_type:['goal','owngoal']).order('id desc').first
       end
 
     end

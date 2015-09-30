@@ -10,7 +10,7 @@ Rollbar.configure do |config|
   config.person_username_method = "name"  # default is "username"
 
   # Here we'll disable in 'test':
-  if Rails.env.test?
+  if Rails.env.test? || Rails.env.development?
     config.enabled = false
   end
 
