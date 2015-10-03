@@ -30,8 +30,9 @@
 
               <div class="ui-block-d <%= style %>" align="left" style="width:50%">
                 <% if user.lm_bets.present? %>
-                    <% lm_round = user.lm_bets.last.lm_round %>
-                    <%= lm_round.week.status == 'Open' ? "Round #{lm_round.id}: ? ? ? ? ?" : "Round #{lm_round.id}: #{user.lm_bets.last.team.name}" %>
+                    <% user_latest_bet = user.lm_bets.order('created_at DESC').first %>
+                    <% lm_round = user_latest_bet.lm_round %>
+                    <%= lm_round.week.status == 'Open' ? "Round #{lm_round.id}: ? ? ? ? ?" : "Round #{lm_round.id}: #{user_latest_bet.team.name}" %>
                 <% else %>
                     Round 1: No Selection
                 <% end %>
