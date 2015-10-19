@@ -3,7 +3,7 @@
 <div data-role="header" data-position="fixed" data-backbtn="false">
   <a href="<%= weeks_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
 
-  <h1><%= 'Recent Form' %></h1>
+  <h1><%= 'Recent Form <' %></h1>
   <% if @user.admin? %>
       <a href="<%= info_path %>" class="ui-btn-right" data-theme="a" data-rel="">Info</a>
   <% end %>
@@ -15,11 +15,11 @@
         <li class="custom-list">
           <div class="ui-grid-b">
 
-            <div class="ui-block-a" style="width:25%">
+            <div class="ui-block-a" style="width:20%">
               <%= standing.position.ordinalize %>
             </div>
 
-            <div class="ui-block-b" style="width:40%">
+            <div class="ui-block-b" style="width:45%">
               <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
               <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{standing.team.abbreviation}.png", class: 'strip-size' %>
               &nbsp
