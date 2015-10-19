@@ -15,7 +15,7 @@
         <li class="custom-list">
           <div class="ui-grid-b">
 
-            <div class="ui-block-a" style="width:20%">
+            <div class="ui-block-a" style="width:25%">
               <%= standing.position.ordinalize %>
             </div>
 
@@ -26,7 +26,7 @@
               <%= "#{standing.team.name}" %>
             </div>
 
-            <div class="ui-block-b" style="width:40%">
+            <div class="ui-block-b" align="center" style="width:35%">
               <% standing.form.upcase.split("").each do |char| %>
                   <% style = (char == 'W' ? 'won' : (char == 'L' ? 'lost' : 'draw')) %>
                   <span class="standings <%= style %>"><%= char %></span>
