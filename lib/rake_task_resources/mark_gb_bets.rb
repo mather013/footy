@@ -20,7 +20,7 @@ module RakeTaskResources
         end
 
         hash.each do |k, v|
-          event = last_goal_event(Team.find(k))
+          event = v > 0 ? last_goal_event(Team.find(k)) : nil
           minute = event.present? ? event.minute : nil
           GbPoint.find_by_team_id(k).update_attributes(value: v, minute: minute)
         end
