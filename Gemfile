@@ -33,6 +33,7 @@ group :test do
   gem 'shoulda'
   gem 'rspec-spies'
   gem 'webmock', '~>1.9'
+  gem 'timecop'
 end
 
 group :development, :test do
