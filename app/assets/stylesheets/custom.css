@@ -307,3 +307,80 @@ div.ui-btn, input[type="submit"] {
 .lost {
     background: #d9534f none repeat scroll 0% 0%;
 }
+
+.points_100 {
+    background: #ff4000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_90 {
+    background: #ff4000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_80 {
+    background: #ff5000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_70 {
+    background: #ff6000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_60 {
+    background: #ff7000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_50 {
+    background: #ff8000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_40 {
+    background: #ff9000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_30 {
+    background: #ffa000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_20 {
+    background: #ffb000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_10 {
+    background: #ffc000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_0 {
+    background: #ffd000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}

@@ -50,24 +50,16 @@ describe Week do
     end
 
     describe 'sorted_recent' do
-      it 'weeks by not complete and ascending close_date' do
-        expect(Week.sorted_recent).to eq [week_02, week_03, week_04, week_05, week_06]
-      end
 
-      #time cop?
-      xit 'creates the expected sql for weeks by not complete and ascending close_date' do
-        expect(Week.sorted_recent.to_sql.should == "SELECT \"weeks\".* FROM \"weeks\"  WHERE (complete is null or close_date >= '2015-08-26 12:41:54.381913') ORDER BY close_date asc")
+      it 'weeks by not complete and close_date' do
+        expect(Week.sorted_recent).to eq [week_02, week_03, week_04, week_05, week_06]
       end
     end
 
     describe 'sorted_non_recent' do
-      it 'weeks by not complete and ascending close_date' do
-        Week.sorted_non_recent.should eq [week_01]
-      end
 
-      #time cop?
-      xit 'creates the expected sql for weeks by not complete and ascending close_date' do
-        expect(Week.sorted_non_recent.to_sql.should == "")
+      it 'weeks by complete and close_date' do
+        Week.sorted_non_recent.should eq [week_01]
       end
     end
   end

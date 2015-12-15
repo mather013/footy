@@ -37,11 +37,15 @@
                 </h10>
               </div>
 
-              <div class="ui-block-c points_sml" style="width:10%">
-                <% point= Point.point_for_user_and_week(User.find(@user), week).first %>
-                <%= point.value if point.present? %>
+              <div class=ui-block-c" style="width:8%">
+                <% point = Point.point_for_user_and_week(User.find(@user), week).first %>
+                <% if point.present? %>
+                    <% points_style = point.present? ? point.value : 0 %>
+                    <div class="<%= "label points_#{points_style}" %>">
+                      <%= point.value if point.present? %>
+                    </div>
+                <% end %>
               </div>
-
             </div>
           </a>
         </li>
