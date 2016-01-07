@@ -1,25 +1,32 @@
 Player.delete_all
 
 #1 - albania
-Player.create(id: 1,   team_id: 2,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 2,   team_id: 2,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 3,   team_id: 2,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 4,   team_id: 2,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 5,   team_id: 2,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 1,   team_id: 1,  squad_number: 10, forename: 'A', surname: 'Sadiku')
+Player.create(id: 2,   team_id: 1,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 3,   team_id: 1,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 4,   team_id: 1,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 5,   team_id: 1,  squad_number: 0, forename: '', surname: '')
 
 #2 - austria
-Player.create(id: 6,   team_id: 3,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 7,   team_id: 3,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 8,   team_id: 3,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 9,   team_id: 3,  squad_number: 0, forename: '', surname: '')
-Player.create(id: 10,  team_id: 3,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 6,   team_id: 2,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 7,   team_id: 2,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 8,   team_id: 2,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 9,   team_id: 2,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 10,  team_id: 2,  squad_number: 0, forename: '', surname: '')
 
-#4 - belgium
-Player.create(id: 11,  team_id: 4,  squad_number: 9,  forename: 'R', surname: 'Lukaku')
-Player.create(id: 12,  team_id: 4,  squad_number: 20, forename: 'C', surname: 'Benteke')
-Player.create(id: 13,  team_id: 4,  squad_number: 10, forename: 'E', surname: 'Hazard')
-Player.create(id: 14,  team_id: 4,  squad_number: 11, forename: 'K', surname: 'Mirallas')
-Player.create(id: 15,  team_id: 4,  squad_number: 7,  forename: 'K', surname: 'De Bruyne')
+#3 - belgium
+Player.create(id: 11,  team_id: 3,  squad_number: 9,  forename: 'R', surname: 'Lukaku')
+Player.create(id: 12,  team_id: 3,  squad_number: 20, forename: 'C', surname: 'Benteke')
+Player.create(id: 13,  team_id: 3,  squad_number: 10, forename: 'E', surname: 'Hazard')
+Player.create(id: 14,  team_id: 3,  squad_number: 11, forename: 'K', surname: 'Mirallas')
+Player.create(id: 15,  team_id: 3,  squad_number: 7,  forename: 'K', surname: 'De Bruyne')
+
+#4 - croatia
+Player.create(id: 6,   team_id: 4,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 7,   team_id: 4,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 8,   team_id: 4,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 9,   team_id: 4,  squad_number: 0, forename: '', surname: '')
+Player.create(id: 10,  team_id: 4,  squad_number: 0, forename: '', surname: '')
 
 #5 - czech republic
 Player.create(id: 16,  team_id: 5,  squad_number: 0, forename: '', surname: '')
