@@ -7,6 +7,8 @@
   <a href="<%= fa_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>
 
+<% strip_path = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type']]['strip_path'] %>
+
 <% unless @competition_started %>
     <div data-role="content">
       <ul data-role="listview">
@@ -15,7 +17,7 @@
               <% if @bets[i].present? %>
                   <%= link_to edit_fa_bet_path(@bets[i].id) do %>
                       <div class="ui-block-a main-font" style="width:8%">
-                        <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
+                        <%= image_tag "#{strip_path}/#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
                       </div>
                       <div class="ui-block-b main-font" style="width:82%">
                         <%= "#{@bets[i].player.name_and_number}" %>
@@ -24,7 +26,7 @@
               <% else %>
                   <%= link_to new_fa_bet_path do %>
                       <div class="ui-block-a main-font" style="width:8%">
-                        <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/tba.png", class: "player-badge-size" %>
+                        <%= image_tag "#{strip_path}/tba.png", class: "player-badge-size" %>
                       </div>
                       <div class="ui-block-b main-font" style="width:82%">
                         Select Player
@@ -45,7 +47,7 @@
               <h5>
                 <div class="ui-grid-b player-goals">
                   <div class="ui-block-a" style="width:8%">
-                    <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{player.team.abbreviation}.png", class: "player-badge-size" %>
+                    <%= image_tag "#{strip_path}/#{player.team.abbreviation}.png", class: "player-badge-size" %>
                   </div>
                   <div class="ui-block-b" style="width:82%">
                     <%= "#{player.name_and_number}" %>
@@ -61,7 +63,7 @@
                 <div class="ui-block-b" style="width:84%">
                   <%= "no goals" if player.goals.empty? %>
                   <% player.goals.each do |goal| %>
-                      <%= image_tag "#{ENVIRONMENT_CONFIG['competition']}/strip/#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>
+                      <%= image_tag "#{strip_path}/#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>
                       &nbsp
                   <% end %>
                 </div>
