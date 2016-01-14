@@ -26,8 +26,10 @@ module RakeTaskResources
         end
       end
 
+      private
+      
       def weeks
-        Week.where('id >= ?', GbRound.first.starting_week_id)
+        Week.where('id >= ?', GbRound.first.starting_week_id).order('close_date asc')
       end
 
       def last_goal_event team

@@ -4,10 +4,28 @@ module RakeTaskResources
   describe MarkGbBets do
 
     describe ".perform" do
-      let(:expected_hash) { {1 => 0, 2 => 6, 3 => 9, 4 => 1, 5 => 3, 6 => 11} }
+      let(:expected_hash) { {1 => 0, 2 => 7, 3 => 9, 4 => 1, 5 => 3, 6 => 11} }
       let(:expected_minute_hash) { {1 => nil, 2 => 24, 3 => 34, 4 => 41, 5 => 51, 6 => 63} }
 
       let(:team_hash) { { arg: 1, bra: 2, col: 3, den: 4, eng: 5, fra: 6 } }
+
+      let(:week_three_ko) { 1.days.ago }
+      let!(:week_three) { Week.create(id: 3, close_date: week_three_ko, description: 'Week 03') }
+      let!(:fixture_7) { week_three.fixtures.create(id:7, kickoff: week_three_ko, home_team_id: 1, away_team_id: 4) }
+      let!(:fixture_7_score) { fixture_7.create_score(home:0, away:0) }
+
+      let!(:fixture_8) { week_three.fixtures.create(id:8, kickoff: week_three_ko, home_team_id: 2, away_team_id: 5) }
+      let!(:fixture_8_score) { fixture_8.create_score(home:1, away:0) }
+      let!(:fixture_8_events) { [fixture_8.events.create(event_type: 'goal', minute: 18, team_id: 2)] }
+
+      let!(:fixture_9) { week_three.fixtures.create(id:9, kickoff: week_three_ko, home_team_id: 3, away_team_id: 6) }
+      let!(:fixture_9_score) { fixture_9.create_score(home:6, away:0) }
+      let!(:fixture_9_events) { [fixture_9.events.create(event_type: 'goal', minute: 14, team_id: 3)] }
+      let!(:fixture_9_events) { [fixture_9.events.create(event_type: 'goal', minute: 15, team_id: 3)] }
+      let!(:fixture_9_events) { [fixture_9.events.create(event_type: 'goal', minute: 16, team_id: 3)] }
+      let!(:fixture_9_events) { [fixture_9.events.create(event_type: 'goal', minute: 17, team_id: 3)] }
+      let!(:fixture_9_events) { [fixture_9.events.create(event_type: 'goal', minute: 18, team_id: 3)] }
+      let!(:fixture_9_events) { [fixture_9.events.create(event_type: 'goal', minute: 19, team_id: 3)] }
 
       let(:week_one_ko) { 14.days.ago }
       let!(:week_one) { Week.create(id: 1, close_date: week_one_ko, description: 'Week 01') }
