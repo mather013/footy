@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @week = Week.find(params[:week_id])
     redirect_to root_url if @week.status == 'Open'
 
-    @fixtures = @week.fixtures
+    @fixtures = @week.fixtures.sorted
     @view_user = User.find(params[:user_id])
   end
 

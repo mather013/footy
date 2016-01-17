@@ -27,7 +27,7 @@ module RakeTaskResources
       end
 
       private
-      
+
       def weeks
         Week.where('id >= ?', GbRound.first.starting_week_id).order('close_date asc')
       end
