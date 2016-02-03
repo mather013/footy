@@ -16,19 +16,26 @@
             <li class="custom-list">
               <% if @bets[i].present? %>
                   <%= link_to edit_fa_bet_path(@bets[i].id) do %>
-                      <div class="ui-block-a main-font" style="width:8%">
+                      <div class="ui-block-a main-font" style="width:10%">
                         <%= image_tag "#{strip_path}/#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
                       </div>
-                      <div class="ui-block-b main-font" style="width:82%">
-                        <%= "#{@bets[i].player.name_and_number}" %>
+                      <% player = @bets[i].player %>
+                      <div class="ui-block-b main-font" style="width:12%">
+                        <%= "##{player.squad_number}" %>
+                      </div>
+                      <div class="ui-block-c main-font" style="width:78%">
+                        <%= "#{player.name}" %>
                       </div>
                   <% end %>
               <% else %>
                   <%= link_to new_fa_bet_path do %>
-                      <div class="ui-block-a main-font" style="width:8%">
+                      <div class="ui-block-a main-font" style="width:10%">
                         <%= image_tag "#{strip_path}/tba.png", class: "player-badge-size" %>
                       </div>
-                      <div class="ui-block-b main-font" style="width:82%">
+                      <div class="ui-block-b main-font" style="width:12%">
+
+                      </div>
+                      <div class="ui-block-c main-font" style="width:78%">
                         Select Player
                       </div>
                   <% end %>
@@ -49,10 +56,13 @@
                   <div class="ui-block-a" style="width:8%">
                     <%= image_tag "#{strip_path}/#{player.team.abbreviation}.png", class: "player-badge-size" %>
                   </div>
-                  <div class="ui-block-b" style="width:82%">
-                    <%= "#{player.name_and_number}" %>
+                  <div class="ui-block-b" style="width:12%">
+                    <%= "##{player.squad_number}" %>
                   </div>
-                  <div class="ui-block-c" align="center" style="width:10%">
+                  <div class="ui-block-c" style="width:70%">
+                    <%= "#{player.name}" %>
+                  </div>
+                  <div class="ui-block-d" align="center" style="width:10%">
                     <%= player.goals.count %>
                   </div>
                 </div>

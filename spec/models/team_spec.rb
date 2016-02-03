@@ -21,4 +21,12 @@ describe Team do
     it { should have_many :events }
   end
 
+  describe 'scopes' do
+
+    xit 'sorted' do
+
+    end
+
+  end
+
 end

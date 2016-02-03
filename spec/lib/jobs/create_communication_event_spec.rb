@@ -14,6 +14,7 @@ module Jobs
           Week.stub(:current).and_return(current_week)
           User.stub(:all).and_return(users)
           Bet.stub(:bets_for_user_and_fixtures).and_return(bets)
+          TOGGLES_CONFIG.stub(:[]).with("sms_communications").and_return(true)
 
           Jobs::CreateCommunicationEvent.new.perform
         end

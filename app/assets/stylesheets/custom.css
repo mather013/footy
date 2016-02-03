@@ -240,6 +240,7 @@ div.ui-btn, input[type="submit"] {
     width: 180px !important;
     border: 0px;
     border-color: lightgrey !important;
+    margin: 0 auto; !important;
 }
 
 .custom-li {
@@ -383,4 +384,33 @@ div.ui-btn, input[type="submit"] {
     font-size: .7em;
     position: relative;
     top: 5px;
+}
+
+.fa_team {
+    font-size: .7em;
+    position: relative;
+    top: 1px;
+}
+
+.fa_flag {
+    /*max-width: 8px;*/
+    max-height: 8px;
+    position: relative;
+    top: -1px;
+}
+
+.fa_player {
+    font-size: .7em;
+}
+
+.ui-radio input{
+
+}
+
+.radio-toolbar input[type="radio"] {
+
+}
+
+.radio-toolbar label {
+    margin: 2px;
 }

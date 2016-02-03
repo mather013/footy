@@ -21,6 +21,18 @@ describe Player do
     end
   end
 
+  describe 'scopes' do
+
+    xit 'team_and_surname_order' do
+
+    end
+
+    xit 'by_surname' do
+
+    end
+
+  end
+
   describe 'validation' do
 
     before :each do
