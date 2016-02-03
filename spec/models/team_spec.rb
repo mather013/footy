@@ -22,11 +22,16 @@ describe Team do
   end
 
   describe 'scopes' do
-
-    xit 'sorted' do
-
+    before :each do
+      ['Colombia','TBA','Argentina','Brazil'].each { |team_name| Team.create(name: team_name)  }
     end
 
-  end
+    describe 'sorted' do
+      let(:expected_result) { ['Argentina','Brazil','Colombia'] }
 
+      it 'returns ordered by team' do
+        expect(Team.sorted.collect(&:name)).to eq(expected_result)
+      end
+    end
+  end
 end

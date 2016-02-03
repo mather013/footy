@@ -22,15 +22,31 @@ describe Player do
   end
 
   describe 'scopes' do
+    before :each do
+      @team1 = Team.create(id: 3, name: 'Colombia')
+      @team2 = Team.create(id: 1, name: 'Argentina')
+      @team3 = Team.create(id: 2, name: 'Brazil')
 
-    xit 'team_and_surname_order' do
-
+      ['James', 'Falco', 'Valderrama'].each { |surname| @team1.players.create(surname: surname)  }
+      ['Messi', 'Batistuta', 'Maradona'].each { |surname| @team2.players.create(surname: surname)  }
+      ['Pele', 'Zico', 'Neymar'].each { |surname| @team3.players.create(surname: surname)  }
     end
 
-    xit 'by_surname' do
+    describe 'team_and_surname_order' do
+      let(:expected_result) { ['Batistuta','Maradona','Messi','Neymar','Pele','Zico','Falco','James','Valderrama'] }
 
+      it 'returns players ordered by team and surname' do
+        expect(Player.team_and_surname_order.collect(&:surname)).to eq(expected_result)
+      end
     end
 
+    describe 'by_surname' do
+      let(:expected_result) { ['Batistuta','Falco','James','Maradona','Messi','Neymar','Pele','Valderrama','Zico'] }
+
+      it 'returns players ordered by surname' do
+        expect(Player.by_surname.collect(&:surname)).to eq(expected_result)
+      end
+    end
   end
 
   describe 'validation' do
