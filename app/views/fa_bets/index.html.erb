@@ -7,8 +7,6 @@
   <a href="<%= fa_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>
 
-<% strip_path = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type']]['strip_path'] %>
-
 <% unless @competition_started %>
     <div data-role="content">
       <ul data-role="listview">
@@ -17,7 +15,7 @@
               <% if @bets[i].present? %>
                   <%= link_to edit_fa_bet_path(@bets[i].id) do %>
                       <div class="ui-block-a main-font" style="width:10%">
-                        <%= image_tag "#{strip_path}/#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
+                        <%= image_tag "#{BADGE_PATH}/#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
                       </div>
                       <% player = @bets[i].player %>
                       <div class="ui-block-b main-font" style="width:12%">
@@ -30,7 +28,7 @@
               <% else %>
                   <%= link_to new_fa_bet_path do %>
                       <div class="ui-block-a main-font" style="width:10%">
-                        <%= image_tag "#{strip_path}/tba.png", class: "player-badge-size" %>
+                        <%= image_tag "#{BADGE_PATH}/tba.png", class: "player-badge-size" %>
                       </div>
                       <div class="ui-block-b main-font" style="width:12%">
 
@@ -44,41 +42,12 @@
         <% end %>
       </ul>
     </div>
-
 <% else %>
     <div data-role="collapsible-set">
       <div class="player-goals" data-role="listview" data-count-theme="d">
         <% @bets.each do |bet| %>
-            <% player = bet.player %>
-            <div data-role="collapsible" class="custom-collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-              <h5>
-                <div class="ui-grid-b player-goals">
-                  <div class="ui-block-a" style="width:8%">
-                    <%= image_tag "#{strip_path}/#{player.team.abbreviation}.png", class: "player-badge-size" %>
-                  </div>
-                  <div class="ui-block-b" style="width:12%">
-                    <%= "##{player.squad_number}" %>
-                  </div>
-                  <div class="ui-block-c" style="width:70%">
-                    <%= "#{player.name}" %>
-                  </div>
-                  <div class="ui-block-d" align="center" style="width:10%">
-                    <%= player.goals.count %>
-                  </div>
-                </div>
-              </h5>
-
-              <div class="ui-grid-b info-txt">
-                <div class="ui-block-a" style="width:16%"></div>
-                <div class="ui-block-b" style="width:84%">
-                  <%= "no goals" if player.goals.empty? %>
-                  <% player.goals.each do |goal| %>
-                      <%= image_tag "#{strip_path}/#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>
-                      &nbsp
-                  <% end %>
-                </div>
-              </div>
-            </div>
+            <% @player = bet.player %>
+            <%= render 'players' %>
         <% end %>
       </div>
     </div>

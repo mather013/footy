@@ -386,6 +386,12 @@ div.ui-btn, input[type="submit"] {
     top: 5px;
 }
 
+.fa_opposing_team {
+    font-size: .7em;
+    position: relative;
+    top: 2px;
+}
+
 .fa_team {
     font-size: .7em;
     position: relative;
