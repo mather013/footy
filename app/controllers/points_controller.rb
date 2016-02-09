@@ -12,7 +12,7 @@ class PointsController < ApplicationController
     @current_user = current_user
     @game = game
     @week = Week.find(params[:week_id])
-    @points = Point.sorted.find_all_by_week_id(params[:week_id])
+    @points = @week.points.sorted
   end
 
   private
