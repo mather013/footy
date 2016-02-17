@@ -2,7 +2,7 @@ module Feed
   class Fixtures
 
     def initialize(hash)
-      @fixtures = hash.collect { |fixture| Feed::Fixture.new(fixture) } if hash.present?
+      @fixtures = hash.collect { |fixture| Feed::FootballApi::Fixture.new(fixture) } if hash.present?
     end
 
     def each(&block)

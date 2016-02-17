@@ -2,7 +2,7 @@ module Feed
   class Teams
 
     def initialize(hash)
-      @teams = hash.collect { |team| Feed::Team.new(team) } if hash.present?
+      @teams = hash.collect { |team| Feed::FootballApi::Team.new(team) } if hash.present?
     end
 
     def each(&block)

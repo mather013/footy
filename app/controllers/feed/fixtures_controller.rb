@@ -12,7 +12,7 @@ module Feed
     private
 
     def data_service
-      @data_service ||= Services::DataServiceFixtures.new
+      @data_service ||= Services::FootballApi::DataServiceFixtures.new
     end
 
   end

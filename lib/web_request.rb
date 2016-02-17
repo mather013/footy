@@ -1,4 +1,4 @@
-module ProximoParty
+module WebRequest
   include HTTParty
 
   URI = URI.parse(ENV['FIXIE_URL'])

@@ -8,7 +8,7 @@ module Feed
     private
 
     def data_service
-      @data_service ||= Services::DataServiceStandings.new
+      @data_service ||= Services::FootballApi::DataServiceStandings.new
     end
 
   end
