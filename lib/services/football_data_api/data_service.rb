@@ -15,8 +15,7 @@ module Services
       end
 
       def headers
-        #todo add x-auth-token value to env vars
-        {'X-Auth-Token' => 'd082942324d94ecaa631887e0f11fd97'}
+        {'X-Auth-Token' => ENV['FOOTBALL_DATA_API_TOKEN']}
       end
 
     end
