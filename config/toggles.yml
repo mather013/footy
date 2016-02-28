@@ -5,6 +5,8 @@ defaults: &defaults
   goal_buster: true
   bet_type_hda: true
   week_deadline: false
+#  feed: football_api
+  feed: football_data_api
 
 development:
   <<: *defaults

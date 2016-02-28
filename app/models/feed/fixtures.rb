@@ -2,7 +2,9 @@ module Feed
   class Fixtures
 
     def initialize(hash)
-      @fixtures = hash.collect { |fixture| Feed::FootballApi::Fixture.new(fixture) } if hash.present?
+      feed_service = TOGGLES_CONFIG['feed'].camelize.to_s
+      feed_fixture_model = "Feed::#{feed_service}::Fixture".constantize
+      @fixtures = hash.collect { |fixture| feed_fixture_model.new(fixture) } if hash.present?
     end
 
     def each(&block)

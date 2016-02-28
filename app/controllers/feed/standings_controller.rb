@@ -8,7 +8,9 @@ module Feed
     private
 
     def data_service
-      @data_service ||= Services::FootballApi::DataServiceStandings.new
+      feed_service = TOGGLES_CONFIG['feed'].camelize.to_s
+      data_service = "Services::#{feed_service}::DataServiceStandings".constantize
+      @data_service ||= data_service.new
     end
 
   end

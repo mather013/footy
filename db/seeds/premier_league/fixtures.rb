@@ -52,7 +52,7 @@ Fixture.find_or_create_by_id(id: 46,  kickoff: DateTime.parse('12-09-2015 14:00:
 Fixture.find_or_create_by_id(id: 47,  kickoff: DateTime.parse('12-09-2015 14:00:00'), name: 'SUN-TOT', home_team_id: 15, away_team_id: 17, week_id: 5)
 Fixture.find_or_create_by_id(id: 48,  kickoff: DateTime.parse('12-09-2015 14:00:00'), name: 'WAT-SWA', home_team_id: 18, away_team_id: 16, week_id: 5)
 Fixture.find_or_create_by_id(id: 49,  kickoff: DateTime.parse('12-09-2015 14:00:00'), name: 'WBR-SOU', home_team_id: 19, away_team_id: 13, week_id: 5)
-Fixture.find_or_create_by_id(id: 50,  kickoff: DateTime.parse('12-09-2015 14:00:00'), name: 'WHA-AST', home_team_id: 20, away_team_id: 2,  week_id: 5)
+Fixture.find_or_create_by_id(id: 50,  kickoff: DateTime.parse('12-09-2015 14:00:00'), name: 'WHA-NEW', home_team_id: 20, away_team_id: 11,  week_id: 5)
 
 Fixture.find_or_create_by_id(id: 51,  kickoff: DateTime.parse('19-09-2015 14:00:00'), name: 'AST-WBR', home_team_id: 2,  away_team_id: 19, week_id: 6)
 Fixture.find_or_create_by_id(id: 52,  kickoff: DateTime.parse('19-09-2015 14:00:00'), name: 'BOU-SUN', home_team_id: 3,  away_team_id: 15, week_id: 6)
@@ -290,7 +290,7 @@ Fixture.find_or_create_by_id(id: 262, kickoff: DateTime.parse('27-02-2016 15:00:
 Fixture.find_or_create_by_id(id: 263, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'MUN-ARS', home_team_id: 10, away_team_id: 1,  week_id: 27)
 Fixture.find_or_create_by_id(id: 264, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'NEW-MCI', home_team_id: 11, away_team_id: 9,  week_id: 27)
 Fixture.find_or_create_by_id(id: 265, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'SOU-CHE', home_team_id: 13, away_team_id: 4,  week_id: 27)
-Fixture.find_or_create_by_id(id: 266, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'STO-AST', home_team_id: 14, away_team_id: 1,  week_id: 27)
+Fixture.find_or_create_by_id(id: 266, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'STO-AST', home_team_id: 14, away_team_id: 2,  week_id: 27)
 Fixture.find_or_create_by_id(id: 267, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'TOT-SWA', home_team_id: 17, away_team_id: 16, week_id: 27)
 Fixture.find_or_create_by_id(id: 268, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'WAT-BOU', home_team_id: 18, away_team_id: 3,  week_id: 27)
 Fixture.find_or_create_by_id(id: 269, kickoff: DateTime.parse('27-02-2016 15:00:00'), name: 'WBR-CRY', home_team_id: 19, away_team_id: 5,  week_id: 27)

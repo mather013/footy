@@ -11,6 +11,9 @@ defaults: &defaults
   america_cup:
     type: international
     knockout_rounds: [4,5,6]
+  euro_cup:
+    type: international
+    knockout_rounds: [4,5,6,7]
   club:
     strip_path: 'club/strip/'
     badge_path: 'club/badge/'
@@ -18,9 +21,12 @@ defaults: &defaults
     strip_path: 'international/flag/'
     badge_path: 'international/flag/'
   feed:
-    url: http://football-api.com/api/
-    competition_id: 1204
-  mixpanel_token: '16027af902901654dd96dd7eab86b899'
+    football_data_api:
+      url: http://api.football-data.org
+      competition_id: 398 #424
+    football_api:
+      url: http://football-api.com/api/
+      competition_id: 1204
 
 development:
   <<: *defaults

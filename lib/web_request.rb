@@ -5,7 +5,7 @@ module WebRequest
 
   http_proxy URI.host, 80, URI.user, URI.password
 
-  def get url
-    self.class.get url
+  def get(url, args)
+    self.class.get(url, args)
   end
 end

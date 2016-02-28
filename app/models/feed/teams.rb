@@ -2,7 +2,9 @@ module Feed
   class Teams
 
     def initialize(hash)
-      @teams = hash.collect { |team| Feed::FootballApi::Team.new(team) } if hash.present?
+      feed_service = TOGGLES_CONFIG['feed'].camelize.to_s
+      feed_team_model = "Feed::#{feed_service}::Team".constantize
+      @teams = hash.collect { |team| feed_team_model.new(team) } if hash.present?
     end
 
     def each(&block)

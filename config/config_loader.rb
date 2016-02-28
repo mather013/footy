@@ -19,3 +19,4 @@ TOGGLES_CONFIG = ConfigLoader.new("#{Rails.root}/config/toggles.yml").to_hash
 
 BADGE_PATH = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type']]['badge_path']
 STRIP_PATH = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type']]['strip_path']
+FEED_CONFIG = ENVIRONMENT_CONFIG['feed'][TOGGLES_CONFIG['feed']]
