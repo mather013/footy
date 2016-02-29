@@ -4,18 +4,20 @@ module Jobs
   describe SyncScores do
 
     describe 'instance methods' do
+      let(:fixture_feed_service) { "Feed::#{TOGGLES_CONFIG['feed'].camelize.to_s}::Fixture".constantize }
 
       describe '#perform' do
         let(:team) { 'visitorteam' }
         let(:sync_scores) { Jobs::SyncScores.new }
         let(:fixtures_finished) { true }
-        let(:events_fixture_one) { [Feed::Event.new(event_id: '19525541',
+        #todo - event feed for football_data_api
+        let(:events_fixture_one) { [Feed::FootballApi::Event.new(event_id: '19525541',
                                                     event_match_id: '1952554',
                                                     event_type: 'goal',
                                                     event_minute: '31',
                                                     event_team: team,
                                                     event_player: 'S. Fletcher'),
-                                    Feed::Event.new(event_id: '19525543',
+                                    Feed::FootballApi::Event.new(event_id: '19525543',
                                                     event_match_id: '1952554',
                                                     event_type: 'yellowcard',
                                                     event_minute: '63',
@@ -24,14 +26,14 @@ module Jobs
 
         let(:events_fixture_two) { [] }
 
-        let(:feed_fixtures) { [double(Feed::Fixture, id: 111,
+        let(:feed_fixtures) { [double(fixture_feed_service, id: 111,
                                       home_team_id: 1,
                                       away_team_id: 2,
                                       home_team_goals: 3,
                                       away_team_goals: 2,
                                       finished?: fixtures_finished,
                                       events: events_fixture_one),
-                               double(Feed::Fixture, id: 222,
+                               double(fixture_feed_service, id: 222,
                                       home_team_id: 2,
                                       away_team_id: 1,
                                       home_team_goals: 0,

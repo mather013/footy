@@ -4,6 +4,7 @@ module Jobs
   describe SyncFixtures do
 
     describe 'instance methods' do
+      let(:fixture_feed_service) { "Feed::#{TOGGLES_CONFIG['feed'].camelize.to_s}::Fixture".constantize }
 
       describe '#perform' do
         let(:external_id) { nil }
@@ -12,7 +13,7 @@ module Jobs
         let(:home_team) { double(Team, id: 1, abbreviation: 'arg') }
         let(:away_team) { double(Team, id: 2, abbreviation: 'bra') }
         let(:week) { Week.create(id: 13, description: 'Week 13', close_date: '2015-01-01 12:00:00') }
-        let(:feed_fixtures) { [double(Feed::Fixture, home_team_id: 1, away_team_id: 2, id: 999, kickoff: kickoff)] }
+        let(:feed_fixtures) { [double(fixture_feed_service, home_team_id: 1, away_team_id: 2, id: 999, kickoff: kickoff)] }
         let(:fixture) { Fixture.create(external_id: external_id, kickoff: DateTime.now, week_id: week.id, name: 'ARG-BRA') }
 
         before :each do

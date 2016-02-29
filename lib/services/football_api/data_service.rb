@@ -8,7 +8,7 @@ module Services
       private
 
       def api_url action
-        "#{ENVIRONMENT_CONFIG['feed']['url']}?Action=#{action}&APIKey=#{ENV['FOOTBALL_API_KEY']}&comp_id=#{ENVIRONMENT_CONFIG['feed']['competition_id']}"
+        "#{FEED_CONFIG['url']}?Action=#{action}&APIKey=#{ENV['FOOTBALL_API_KEY']}&comp_id=#{FEED_CONFIG['competition_id']}"
       end
 
       def send_request url

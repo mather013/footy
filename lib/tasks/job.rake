@@ -39,6 +39,10 @@ namespace :job do
       RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
       RakeTaskResources::MarkGbBets.perform if TOGGLES_CONFIG['goal_buster']
       Jobs::SyncStandings.new.perform
+    #elsif Week.current.points.empty?
+    #  RakeTaskResources::MarkWeek.perform Week.current.id
+    #  RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
+    #  RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
     end
   end
 

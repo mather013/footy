@@ -6,7 +6,7 @@ module Feed
 
     describe 'instance methods' do
       let(:controller) { FixturesController.new }
-      let(:data_service) { Services::DataServiceFixtures.new }
+      let(:data_service) { "Services::#{TOGGLES_CONFIG['feed'].camelize.to_s}::DataServiceFixtures".constantize.new }
       let(:fixtures) { [double(Fixture)] }
 
       before :each do

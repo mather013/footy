@@ -4,12 +4,13 @@ module Jobs
   describe SyncStandings do
 
     describe 'instance methods' do
+      let(:team_feed_service) { "Feed::#{TOGGLES_CONFIG['feed'].camelize.to_s}::Team".constantize }
 
       describe '#perform' do
         let(:sync_standings) { Jobs::SyncStandings.new }
-        let(:feed_standings) { [double(Feed::Team, id: 9002, position: 1, form: 'WWWWW', form_score: 15, points: 30),
-                                double(Feed::Team, id: 9008, position: 2, form: 'WWWWL', form_score: 12, points: 27),
-                                double(Feed::Team, id: 9072, position: 3, form: 'WWWLL', form_score: 9, points: 24)] }
+        let(:feed_standings) { [double(team_feed_service, id: 9002, position: 1, form: 'WWWWW', form_score: 15, points: 30),
+                                double(team_feed_service, id: 9008, position: 2, form: 'WWWWL', form_score: 12, points: 27),
+                                double(team_feed_service, id: 9072, position: 3, form: 'WWWLL', form_score: 9, points: 24)] }
 
         before :each do
           Standing.stub(:delete_all)

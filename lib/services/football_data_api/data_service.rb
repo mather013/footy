@@ -18,6 +18,11 @@ module Services
         {'X-Auth-Token' => ENV['FOOTBALL_DATA_API_TOKEN']}
       end
 
+      def time_frame date
+        days_diff = (date - Date.today).to_i
+        days_diff > 0 ? "n#{days_diff}" : "p#{days_diff*-1}"
+      end
+
     end
   end
 end

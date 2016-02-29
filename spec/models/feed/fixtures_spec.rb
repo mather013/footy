@@ -47,6 +47,7 @@ module Feed
 
       describe "#each" do
         before :each do
+          stub_const("TOGGLES_CONFIG", { "feed" => 'football_api' })
           @fixtures =  Feed::Fixtures.new(hash).each
         end
 
