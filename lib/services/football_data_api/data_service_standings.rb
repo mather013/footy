@@ -5,7 +5,7 @@ module Services
       def perform
         url = api_url + 'leagueTable'
         hash = send_request url
-        raise RuntimeError, 'Error: Problem returning standings' unless hash[:standing].present?
+        raise RuntimeError, 'Error: problem returning standings' unless hash[:standing].present?
         hash[:standing]
       end
 
