@@ -20,8 +20,7 @@ module Services
 
       def time_frame datetime
         days_diff = (datetime.to_date - Date.today).to_i
-        days_diff = 1 if days_diff == 0
-        days_diff < 0 ? "p#{(days_diff*-1)}" : "n#{days_diff}"
+        days_diff < 0 ? "p#{(days_diff*-1)}" : "n#{days_diff+1}"
       end
 
     end

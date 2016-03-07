@@ -17,7 +17,7 @@ module Services
         describe '#perform' do
 
           context 'when there are errors' do
-            let(:url) { "football_data_api/v1/soccerseasons/398/fixtures?timeFrame=n7" }
+            let(:url) { "football_data_api/v1/soccerseasons/398/fixtures?timeFrame=n8" }
             let(:dates) { [7.days.from_now.to_date] }
             let(:hash) { {fixtures: []} }
 
@@ -29,7 +29,7 @@ module Services
           context 'when there are no errors' do
 
             context 'and a single date in the future is supplied' do
-              let(:url) { "football_data_api/v1/soccerseasons/398/fixtures?timeFrame=n7" }
+              let(:url) { "football_data_api/v1/soccerseasons/398/fixtures?timeFrame=n8" }
               let(:dates) { [7.days.from_now.to_date] }
 
               it 'does not raise any error' do
@@ -42,7 +42,7 @@ module Services
             end
 
             context 'when a range of dates in the future is supplied' do
-              let(:url) { "football_data_api/v1/soccerseasons/398/fixtures?timeFrame=n14" }
+              let(:url) { "football_data_api/v1/soccerseasons/398/fixtures?timeFrame=n15" }
               let(:dates) { [Date.today, 14.days.from_now.to_date] }
 
               it 'returns expected hash' do
