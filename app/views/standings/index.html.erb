@@ -26,17 +26,24 @@
               <%= "#{standing.team.name}" %>
             </div>
 
-            <div class="ui-block-b" align="center" style="width:30%">
-              <% if standing.form.present? %>
+            <% if standing.form.present? %>
+                <div class="ui-block-b" align="center" style="width:30%">
                   <% standing.form.upcase.split("").each do |char| %>
                       <% style = (char == 'W' ? 'won' : (char == 'L' ? 'lost' : 'draw')) %>
                       <span class="standings <%= style %>"><%= char %></span>
                   <% end %>
-              <% end %>
-            </div>
+                </div>
+            <% else %>
+                <div class="ui-block-b" align="center" style="width:15%">
+                  <%= "#{standing.played}" %>
+                </div>
+                <div class="ui-block-c" align="center" style="width:15%">
+                  <%= "#{standing.goal_difference}" %>
+                </div>
+            <% end %>
 
-            <div class="ui-block-c" align="right" style="width:15%">
-            <%= standing.points %>
+            <div class="ui-block-d" align="right" style="width:15%">
+              <%= standing.points %>
             </div>
 
           </div>

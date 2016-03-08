@@ -46,6 +46,8 @@ module Feed
           expect(team.form).to eq('DLDWW')
           expect(team.name).to eq('Liverpool')
           expect(team.form_score).to eq(8)
+          expect(team.played).to eq(19)
+          expect(team.goals).to eq({for: 26, against: 25, difference: 1})
         end
       end
 

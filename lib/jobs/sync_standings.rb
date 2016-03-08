@@ -9,7 +9,9 @@ module Jobs
                         position: feed_team.position,
                         form: feed_team.form,
                         points: feed_team.points,
-                        form_score: feed_team.form_score) if team.present?
+                        form_score: feed_team.form_score,
+                        played: feed_team.played,
+                        goal_difference: feed_team.goals[:difference]) if team.present?
       end
     end
 

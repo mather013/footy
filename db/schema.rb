@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150922173635) do
+ActiveRecord::Schema.define(:version => 20160306201009) do
 
   create_table "bets", :force => true do |t|
     t.integer  "fixture_id", :null => false
@@ -168,8 +168,10 @@ ActiveRecord::Schema.define(:version => 20150922173635) do
     t.string   "form"
     t.integer  "form_score"
     t.integer  "points"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "played"
+    t.integer  "goal_difference"
   end
 
   create_table "teams", :force => true do |t|

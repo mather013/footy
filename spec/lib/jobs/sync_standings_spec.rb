@@ -8,9 +8,9 @@ module Jobs
 
       describe '#perform' do
         let(:sync_standings) { Jobs::SyncStandings.new }
-        let(:feed_standings) { [double(team_feed_service, id: 9002, position: 1, form: 'WWWWW', form_score: 15, points: 30),
-                                double(team_feed_service, id: 9008, position: 2, form: 'WWWWL', form_score: 12, points: 27),
-                                double(team_feed_service, id: 9072, position: 3, form: 'WWWLL', form_score: 9, points: 24)] }
+        let(:feed_standings) { [double(team_feed_service, id: 9002, position: 1, form: 'WWWWW', form_score: 15, points: 30, played: 13, goals: { for: 25, against: 8, difference: 17 }),
+                                double(team_feed_service, id: 9008, position: 2, form: 'WWWWL', form_score: 12, points: 27, played: 14, goals: { for: 13, against: 2, difference: 11 } ),
+                                double(team_feed_service, id: 9072, position: 3, form: 'WWWLL', form_score: 9,  points: 24, played: 15, goals: { for: 19, against: 9, difference: 10 })] }
 
         before :each do
           Standing.stub(:delete_all)
