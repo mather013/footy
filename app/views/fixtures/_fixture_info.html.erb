@@ -7,6 +7,9 @@
     <br>
     <h10 class="fixture-kickoff">
       <%= DateTime.parse(@fixture.kickoff_local_time.to_s).strftime('%A %e %B %H:%M') %>
+      <% if @fixture.status == Fixture::Status::POSTPONED %>
+          <span class="label label-danger">Postponed</span>
+      <% end %>
     </h10>
   </div>
 
