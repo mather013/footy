@@ -78,7 +78,9 @@ class Week < ActiveRecord::Base
     next_week_start = Week.find(id+1).close_date
 
     fixtures.sorted.each do |fixture|
-      permitted_fixtures << fixture if fixture.kickoff < next_week_start && fixture.kickoff > DateTime.now
+      if fixture.status != Fixture::Status::POSTPONED && fixture.kickoff < next_week_start && fixture.kickoff > DateTime.now
+        permitted_fixtures << fixture
+      end
     end
     permitted_fixtures
   end

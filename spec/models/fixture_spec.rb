@@ -96,6 +96,17 @@ describe Fixture do
             expect(fixture.betable?).to be_false
           end
         end
+
+        context 'week has closed and fixture has not kicked off but is postponed' do
+          let(:close_date) { 2.days.ago }
+          let(:kickoff) { 1.days.ago }
+
+          it 'returns false' do
+            fixture.update_attributes(status: Fixture::Status::POSTPONED)
+            expect(fixture.betable?).to be_false
+          end
+        end
+
       end
 
       context 'when week deadline toggle is off' do
@@ -127,6 +138,17 @@ describe Fixture do
             expect(fixture.betable?).to be_false
           end
         end
+
+        context 'week has closed and fixture has been postponed' do
+          let(:close_date) { 2.days.ago }
+          let(:kickoff) { 1.days.ago }
+
+          it 'returns true' do
+            fixture.update_attributes(status: Fixture::Status::POSTPONED)
+            expect(fixture.betable?).to be_true
+          end
+        end
+
       end
 
     end

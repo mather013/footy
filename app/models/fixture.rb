@@ -39,7 +39,7 @@ class Fixture < ActiveRecord::Base
     if TOGGLES_CONFIG['week_deadline']
       week.open? && kickoff_pending?
     else
-      kickoff_pending? && (week.open? || week.in_play?)
+      (kickoff_pending? || status == Fixture::Status::POSTPONED) && (week.open? || week.in_play?)
     end
   end
 
