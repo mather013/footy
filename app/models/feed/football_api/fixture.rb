@@ -2,7 +2,7 @@ module Feed
   module FootballApi
     class Fixture
 
-      attr_accessor :id, :home_team_id, :away_team_id, :events, :score, :home_team_goals, :away_team_goals
+      attr_accessor :id, :home_team_id, :away_team_id, :events, :score, :home_team_goals, :away_team_goals, :status
 
       module Status
         FULL_TIME = 'FT'
@@ -17,6 +17,7 @@ module Feed
         @date = hash[:match_formatted_date]
         @time = hash[:match_time]
         @score = hash[:match_ft_score]
+        @status = hash[:match_status]
         @finished = hash[:match_status] == Status::FULL_TIME
         @events = Feed::Events.new(hash[:match_events])
       end

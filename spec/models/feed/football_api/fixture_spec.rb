@@ -54,6 +54,7 @@ module Feed
           expect(fixture.score).to eq('[1-3]')
           expect(fixture.home_team_goals).to eq(1)
           expect(fixture.away_team_goals).to eq(3)
+          expect(fixture.status).to eq('FT')
         end
       end
 
