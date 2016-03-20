@@ -19,10 +19,10 @@ module RakeTaskResources
           end
         end
 
-        hash.each do |k, v|
-          event = v > 0 ? last_goal_event(Team.find(k)) : nil
+        hash.each do |team_id, goals|
+          event = goals > 0 ? last_goal_event(Team.find(team_id)) : nil
           minute = event.present? ? event.minute : nil
-          GbPoint.find_by_team_id(k).update_attributes(value: v, minute: minute)
+          GbPoint.find_by_team_id(team_id).update_attributes(value: goals, minute: minute)
         end
       end
 
@@ -33,7 +33,9 @@ module RakeTaskResources
       end
 
       def last_goal_event team
-        team.events.where(event_type:['goal','owngoal']).order('id desc').first
+        #team.events.where(event_type:['goal','owngoal']).order('id desc').first
+        #team.events.where('event_type in (?) and created_at >= ?', ['goal','owngoal'],weeks.first.close_date).order('id desc').first
+        nil
       end
 
     end
