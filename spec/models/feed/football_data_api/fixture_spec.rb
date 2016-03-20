@@ -4,7 +4,6 @@ module Feed
   module FootballDataApi
 
     describe Fixture do
-      let(:status) { "FINISHED" }
       let(:fixture) { Feed::FootballDataApi::Fixture.new(hash) }
       let(:hash) { {:_links =>
                         {:self => {:href => "some_url/v1/fixtures/147075"},
@@ -19,29 +18,92 @@ module Feed
                     :result => {:goalsHomeTeam => 1, :goalsAwayTeam => 0}} }
 
       describe 'attributes' do
-        it 'has the expected values' do
-          expect(fixture.id).to eq(147075)
-          expect(fixture.home_team_id).to eq(66)
-          expect(fixture.away_team_id).to eq(73)
-          expect(fixture.score).to eq('[1-0]')
-          expect(fixture.home_team_goals).to eq(1)
-          expect(fixture.away_team_goals).to eq(0)
-          expect(fixture.status).to eq('FINISHED')
+
+        context 'fixture has finished' do
+          let(:status) { Fixture::Status::FINISHED}
+
+          it 'has the expected values' do
+            expect(fixture.id).to eq(147075)
+            expect(fixture.home_team_id).to eq(66)
+            expect(fixture.away_team_id).to eq(73)
+            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.home_team_goals).to eq(1)
+            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.status).to eq(::Fixture::Status::FINISHED)
+          end
+        end
+
+        context 'fixture has been postponed' do
+          let(:status) { Fixture::Status::POSTPONED}
+
+          it 'has the expected values' do
+            expect(fixture.id).to eq(147075)
+            expect(fixture.home_team_id).to eq(66)
+            expect(fixture.away_team_id).to eq(73)
+            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.home_team_goals).to eq(1)
+            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.status).to eq(::Fixture::Status::POSTPONED)
+          end
+        end
+
+        context 'fixture has been timed' do
+          let(:status) { Fixture::Status::TIMED}
+
+          it 'has the expected values' do
+            expect(fixture.id).to eq(147075)
+            expect(fixture.home_team_id).to eq(66)
+            expect(fixture.away_team_id).to eq(73)
+            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.home_team_goals).to eq(1)
+            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.status).to eq(::Fixture::Status::SCHEDULED)
+          end
+        end
+
+        context 'fixture is in play' do
+          let(:status) { Fixture::Status::IN_PLAY}
+
+          it 'has the expected values' do
+            expect(fixture.id).to eq(147075)
+            expect(fixture.home_team_id).to eq(66)
+            expect(fixture.away_team_id).to eq(73)
+            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.home_team_goals).to eq(1)
+            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.status).to eq(::Fixture::Status::IN_PLAY)
+          end
         end
       end
 
       describe 'instance methods' do
+        let(:status) { Fixture::Status::FINISHED}
 
         describe '#finished?' do
 
           context 'when fixture has a status of full time' do
+
             it 'returns true' do
               expect(fixture.finished?).to be_true
             end
           end
 
           context 'when fixture does not have a status of full time' do
-            let(:status) { "TIMED" }
+            let(:status) { Fixture::Status::TIMED }
+            it 'returns false' do
+              expect(fixture.finished?).to be_false
+            end
+          end
+
+          context 'when fixture does not have a status of full time' do
+            let(:status) { Fixture::Status::POSTPONED }
+            it 'returns false' do
+              expect(fixture.finished?).to be_false
+            end
+          end
+
+          context 'when fixture does not have a status of full time' do
+            let(:status) { Fixture::Status::IN_PLAY }
             it 'returns false' do
               expect(fixture.finished?).to be_false
             end

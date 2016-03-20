@@ -6,7 +6,8 @@ module Feed
 
       module Status
         TIMED = 'TIMED'
-        FULL_TIME = 'FINISHED'
+        IN_PLAY = 'IN_PLAY'
+        FINISHED = 'FINISHED'
         POSTPONED = 'POSTPONED'
       end
 
@@ -19,9 +20,9 @@ module Feed
         @date = Date.parse(hash[:date])
         @time = Time.parse(hash[:date])
         @score = "[#{hash[:result][:goalsHomeTeam]}-#{hash[:result][:goalsAwayTeam]}]"
-        @finished = hash[:status] == Status::FULL_TIME
+        @finished = hash[:status] == Status::FINISHED
         @events = []
-        @status = hash[:status]
+        @status = common_status hash[:status]
       end
 
       def finished?
@@ -30,6 +31,15 @@ module Feed
 
       def kickoff
         DateTime.parse("#{@date} #{@time}")
+      end
+
+      private
+
+      def common_status feed_status
+        return ::Fixture::Status::SCHEDULED if feed_status== Status::TIMED
+        return ::Fixture::Status::IN_PLAY if feed_status== Status::IN_PLAY
+        return ::Fixture::Status::FINISHED if feed_status == Status::FINISHED
+        ::Fixture::Status::POSTPONED if feed_status == Status::POSTPONED
       end
 
     end

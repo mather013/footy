@@ -369,7 +369,7 @@ Fixture.find_or_create_by_id(id: 334, kickoff: DateTime.parse('16-04-2016 14:00:
 Fixture.find_or_create_by_id(id: 335, kickoff: DateTime.parse('16-04-2016 14:00:00'), name: 'LEI-WHA', home_team_id: 7,  away_team_id: 20, week_id: 34)
 Fixture.find_or_create_by_id(id: 336, kickoff: DateTime.parse('16-04-2016 14:00:00'), name: 'MUN-AST', home_team_id: 10, away_team_id: 2,  week_id: 34)
 Fixture.find_or_create_by_id(id: 337, kickoff: DateTime.parse('16-04-2016 14:00:00'), name: 'NEW-SWA', home_team_id: 11, away_team_id: 16, week_id: 34)
-Fixture.find_or_create_by_id(id: 338, kickoff: DateTime.parse('16-04-2016 14:00:00'), name: 'NOR-SUN', home_team_id: 12, away_team_id: 0,  week_id: 34)
+Fixture.find_or_create_by_id(id: 338, kickoff: DateTime.parse('16-04-2016 14:00:00'), name: 'NOR-SUN', home_team_id: 12, away_team_id: 15, week_id: 34)
 Fixture.find_or_create_by_id(id: 339, kickoff: DateTime.parse('16-04-2016 14:00:00'), name: 'STO-TOT', home_team_id: 14, away_team_id: 17, week_id: 34)
 Fixture.find_or_create_by_id(id: 340, kickoff: DateTime.parse('16-04-2016 14:00:00'), name: 'WBR-WAT', home_team_id: 19, away_team_id: 18, week_id: 34)
 

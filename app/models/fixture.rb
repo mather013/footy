@@ -17,6 +17,7 @@ class Fixture < ActiveRecord::Base
   module Status
     DEFINED   = 'defined'
     SCHEDULED = 'scheduled'
+    IN_PLAY = 'in_play'
     POSTPONED = 'postponed'
     FINISHED  = 'finished'
   end
