@@ -11,8 +11,10 @@ module Jobs
         away_team = Team.find_by_external_id(feed_fixture.away_team_id)
         fixture   = Fixture.find_by_name("#{home_team.abbreviation.upcase}-#{away_team.abbreviation.upcase}")
 
-        if fixture.present?
-          fixture.update_attributes(external_id: feed_fixture.id, kickoff: feed_fixture.kickoff) if fixture.external_id.nil?
+        if fixture.present? && fixture.external_id.nil?
+          fixture.update_attributes(kickoff: feed_fixture.kickoff,
+                                    status: feed_fixture.status,
+                                    external_id: feed_fixture.id)
           weeks_to_update << fixture.week
         end
       end
