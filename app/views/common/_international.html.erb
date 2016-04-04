@@ -1,0 +1,18 @@
+<% if TOGGLES_CONFIG['five_alive'] %>
+    <li><a href="<%= fa_bets_path %>">5 Alive
+      <span class="label label-default"><%= @user.fa_point.value if @user.fa_point.present? %></span>
+    </a></li>
+<% end %>
+
+<% if TOGGLES_CONFIG['sweep'] %>
+    <li>
+      <% path = @user.sweep_bet.present? ? sweep_bets_path : new_sweep_bet_path %>
+      <a href="<%= path %>">Sweep
+        <% if true %>
+            <span class="label label-success">&nbsp; &nbsp;</span>
+        <% else %>
+            <span class="label label-danger">&nbsp; &nbsp;</span>
+        <% end %>
+      </a>
+    </li>
+<% end %>

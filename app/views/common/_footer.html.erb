@@ -6,36 +6,10 @@
       <li><a href="<%= weeks_path %>">H/D/A
         <span class="label label-default"><%= @user.position.current.ordinalize if @user.position.present? %></span>
       </a></li>
-      <% if TOGGLES_CONFIG['last_man_standing'] %>
-          <li><a href="<%= lm_rounds_path %>">
-            LMS
-            <% unless @user.lm_survivor? %>
-                <span class="label label-danger">&nbsp; &nbsp;</span>
-            <% else %>
-                <span class="label label-success">&nbsp; &nbsp;</span>
-            <% end %>
-          </a></li>
-      <% end %>
-      <% if TOGGLES_CONFIG['five_alive'] %>
-          <li><a href="<%= fa_bets_path %>">5 Alive
-            <span class="label label-default"><%= @user.fa_point.value if @user.fa_point.present? %></span>
-          </a></li>
-      <% end %>
-      <% if TOGGLES_CONFIG['goal_buster'] %>
-          <li>
-            <% path = @user.gb_bet.present? ? gb_points_path : new_gb_bet_path %>
-            <a href="<%= path %>">Goal Buster
-              <% if @user.gb_bet.present? %>
-                  <span class="label label-default">&nbsp;<%= @user.gb_bet.team.gb_point.value %>&nbsp;</span>
-              <% else %>
-                  <% if GbBet.count < Team.count %>
-                      <span class="label label-success">&nbsp; &nbsp;</span>
-                  <% else %>
-                      <span class="label label-danger">&nbsp; &nbsp;</span>
-                  <% end %>
-              <% end %>
-            </a></li>
-      <% end %>
+
+      <% partial = ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type'] == 'club' ? 'common/club' : 'common/international' %>
+      <%= render partial %>
+
     </ul>
   </div>
 </div>
