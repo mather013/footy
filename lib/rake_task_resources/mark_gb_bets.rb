@@ -10,12 +10,10 @@ module RakeTaskResources
         hash = {}
         (1..Team.count).to_a.each { |team_id| hash[team_id] = 0 }
 
-        weeks.each do |week|
-          week.fixtures.each do |fixture|
-            if fixture.score.present?
-              hash[fixture.home_team_id] += fixture.score.home unless (hash[fixture.home_team_id] + fixture.score.home) > MAX_VALUE
-              hash[fixture.away_team_id] += fixture.score.away unless (hash[fixture.away_team_id] + fixture.score.away) > MAX_VALUE
-            end
+        fixtures.each do |fixture|
+          if fixture.score.present?
+            hash[fixture.home_team_id] += fixture.score.home unless (hash[fixture.home_team_id] + fixture.score.home) > MAX_VALUE
+            hash[fixture.away_team_id] += fixture.score.away unless (hash[fixture.away_team_id] + fixture.score.away) > MAX_VALUE
           end
         end
 
@@ -28,8 +26,8 @@ module RakeTaskResources
 
       private
 
-      def weeks
-        Week.where('id >= ?', GbRound.first.starting_week_id).order('close_date asc')
+      def fixtures
+        Fixture.where('kickoff >= ?',GbRound.first.week.close_date).order('kickoff asc')
       end
 
       def last_goal_event team

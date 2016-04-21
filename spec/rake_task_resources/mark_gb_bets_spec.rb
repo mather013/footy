@@ -4,9 +4,6 @@ module RakeTaskResources
   describe MarkGbBets do
 
     describe ".perform" do
-      let(:expected_hash) { {1 => 0, 2 => 7, 3 => 9, 4 => 1, 5 => 3, 6 => 11} }
-      let(:expected_minute_hash) { {1 => nil, 2 => 24, 3 => 34, 4 => 41, 5 => 51, 6 => 63} }
-
       let(:team_hash) { { arg: 1, bra: 2, col: 3, den: 4, eng: 5, fra: 6 } }
 
       let(:week_three_ko) { 1.days.ago }
@@ -43,7 +40,7 @@ module RakeTaskResources
                                  fixture_2.events.create(event_type: 'goal', minute: 35, team_id: 3),
                                  fixture_2.events.create(event_type: 'goal', minute: 41, team_id: 4)] }
 
-      let!(:fixture_3) { week_one.fixtures.create(id:3, kickoff: week_one_ko, home_team_id: 5, away_team_id: 6) }
+      let!(:fixture_3) { week_one.fixtures.create(id:3, kickoff: week_three_ko, home_team_id: 5, away_team_id: 6) }
       let!(:fixture_3_score) { fixture_3.create_score(home:2, away:8) }
       let!(:fixture_3_events) { [fixture_3.events.create(event_type: 'goal', minute: 51, team_id: 5),
                                  fixture_3.events.create(event_type: 'goal', minute: 52, team_id: 5),
@@ -79,27 +76,54 @@ module RakeTaskResources
                                  fixture_6.events.create(event_type: 'goal', minute: 63, team_id: 6),
                                  fixture_6.events.create(event_type: 'owngoal', minute: 51, team_id: 5)] }
 
-      let!(:round) { GbRound.create(starting_week_id: 1) }
-
       before :each do
         team_hash.each { |k,v| Team.create(id: v, name: k.to_s) }
         Team.all.each { |team| GbPoint.create(team_id: team.id, value: 0) }
       end
 
-      it 'creates the expected points' do
-        RakeTaskResources::MarkGbBets.perform
+      context 'when goal buster round is week 1' do
+        let!(:round) { GbRound.create(starting_week_id: 1) }
+        let(:expected_hash) { {1 => 0, 2 => 7, 3 => 9, 4 => 1, 5 => 3, 6 => 11} }
+        let(:expected_minute_hash) { {1 => nil, 2 => 24, 3 => 34, 4 => 41, 5 => 51, 6 => 63} }
 
-        expected_hash.each do |k, v|
-          expect(GbPoint.find_by_team_id(k).value).to eq(v)
+        it 'creates the expected points' do
+          RakeTaskResources::MarkGbBets.perform
+
+          expected_hash.each do |k, v|
+            expect(GbPoint.find_by_team_id(k).value).to eq(v)
+          end
+        end
+
+        it 'creates the expected minutes' do
+          RakeTaskResources::MarkGbBets.perform
+
+          expected_minute_hash.each do |k, v|
+            #expect(GbPoint.find_by_team_id(k).minute).to eq(v)
+            expect(GbPoint.find_by_team_id(k).minute).to eq(nil)
+          end
         end
       end
 
-      it 'creates the expected minutes' do
-        RakeTaskResources::MarkGbBets.perform
+      context 'when goal buster round is week 2' do
+        let!(:round) { GbRound.create(starting_week_id: 2) }
+        let(:expected_hash) { {1 => 0, 2 => 5, 3 => 10, 4 => 0, 5 => 3, 6 => 11} }
+        let(:expected_minute_hash) { {1 => nil, 2 => 24, 3 => 34, 4 => 41, 5 => 51, 6 => 63} }
 
-        expected_minute_hash.each do |k, v|
-          #expect(GbPoint.find_by_team_id(k).minute).to eq(v)
-          expect(GbPoint.find_by_team_id(k).minute).to eq(nil)
+        it 'creates the expected points' do
+          RakeTaskResources::MarkGbBets.perform
+
+          expected_hash.each do |k, v|
+            expect(GbPoint.find_by_team_id(k).value).to eq(v)
+          end
+        end
+
+        it 'creates the expected minutes' do
+          RakeTaskResources::MarkGbBets.perform
+
+          expected_minute_hash.each do |k, v|
+            #expect(GbPoint.find_by_team_id(k).minute).to eq(v)
+            expect(GbPoint.find_by_team_id(k).minute).to eq(nil)
+          end
         end
       end
 

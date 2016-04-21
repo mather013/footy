@@ -4,7 +4,7 @@
   <a href="<%= gb_points_info_path %>" data-theme="a" data-rel="">Rules</a>
 
   <h1>
-    <%= 'Goal Buster' %>
+    <%= "Goal Buster #{@round.week.close_date.strftime('[%d %b]')}" %>
     <span class="jackpot"><%= "Pot: £20" %></span>
   </h1>
 </div>
