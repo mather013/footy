@@ -2,7 +2,7 @@ defaults: &defaults
   sms_communications: true
   last_man_standing: true
   five_alive: false
-  goal_buster: true
+  goal_buster: false
   bet_type_hda: true
   week_deadline: false
 #  feed: football_api
