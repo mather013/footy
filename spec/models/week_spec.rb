@@ -120,7 +120,7 @@ describe Week do
 
       context 'week is close date is way in future' do
 
-        context 'and week is first 'do
+        context 'and week is first ' do
           let(:close_date) { 21.days.from_now }
 
           it "returns 'Open'" do
@@ -128,7 +128,7 @@ describe Week do
           end
         end
 
-        context 'and week is not first 'do
+        context 'and week is not first ' do
           let(:week_id) { 101 }
           let(:close_date) { 21.days.from_now }
 
@@ -225,9 +225,11 @@ describe Week do
       let!(:fixture_three) { Fixture.create(week_id: week_01.id, kickoff: 2.day.from_now) }
       let!(:fixture_four) { Fixture.create(week_id: week_01.id, kickoff: 1.day.ago) }
       let!(:fixture_five) { Fixture.create(week_id: week_01.id, kickoff: 2.day.ago, status: Fixture::Status::POSTPONED) }
+      let!(:fixture_six) { Fixture.create(week_id: week_02.id, kickoff: 1.day.from_now) }
 
       it 'returns fixtures that have not had their kickoff moved outside of their week or postponed' do
         expect(week_01.fixtures_strict).to eq([fixture_one,fixture_three])
+        expect(week_02.fixtures_strict).to eq([fixture_six])
       end
 
     end
