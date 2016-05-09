@@ -7,7 +7,9 @@ class LmBetsController < ApplicationController
   end
 
   def create
-    LmBet.create(lm_round_id: params['lm_bet']['lm_round'], user_id: current_user.id, team_id: params['lm_bet']['team_id'])
+    params = {lm_round_id: params['lm_bet']['lm_round'], user_id: current_user.id, team_id: params['lm_bet']['team_id']}
+    success = LmBet.create(params)
+    Services::AnalyticsService.publish(:bet_create, params_for_analytics) if success
     redirect_to lm_rounds_path
   end
 
@@ -17,11 +19,8 @@ class LmBetsController < ApplicationController
   end
 
   def update
-    Keen.publish(:bet_change, { username: current_user.username,
-                                game: 'lms',
-                                environment: Rails.env }) if Rails.env.production?
-
-    LmBet.find(params['id']).update_attributes(team_id: params['lm_bet']['team_id'])
+    success = LmBet.find(params['id']).update_attributes(team_id: params['lm_bet']['team_id'])
+    Services::AnalyticsService.publish(:bet_change, params_for_analytics) if success
     redirect_to lm_rounds_path
   end
 
@@ -46,7 +45,11 @@ class LmBetsController < ApplicationController
     (permitted_teams - teams_used).each do |team|
       @choices << [team.name, team.id]
     end
-    @choices.sort_by! {|i| i.first }
+    @choices.sort_by! { |i| i.first }
+  end
+
+  def params_for_analytics
+    {game: 'lms', username: current_user.username}
   end
 
 end
