@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <a href="<%= gb_points_path %>" data-theme="a" data-rel="">Back</a>
+
+  <h1>
+    <%= @team.name %>
+    <span class="jackpot"><%= "Total: #{@point.value}" %></span>
+  </h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview" id="fix-list">
+    <% @fixtures.each do |fixture| %>
+
+        <li class="custom-list">
+          <div class="ui-grid-b main-font" align="center">
+
+            <div class="ui-block-a gb-fixture" align="left" style="width:30%">
+              <%= fixture.kickoff_local_time.strftime('%e %B') %>
+            </div>
+
+            <div class="ui-block-b" style="width:10%">
+              <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.home_team.abbreviation}.png", class: 'badge-small' %>
+            </div>
+
+            <div class="ui-block-b gb-fixture-score" style="width:20%">
+              <%= fixture.score.present? ? fixture.score.to_s : " - "%>
+            </div>
+
+            <div class="ui-block-c" style="width:10%">
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.away_team.abbreviation}.png", class: 'badge-small' %>
+            </div>
+
+            <div class="ui-block-d" style="width:30%">
+
+            </div>
+
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

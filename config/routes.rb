@@ -10,7 +10,7 @@ Footy::Application.routes.draw do
   resources :lm_bets,      :only => [:create, :update]
   resources :standings,    :only => [:index]
   resources :gb_bets,      :only => [:index, :create, :new]
-  resources :gb_points,    :only => [:index]
+  resources :gb_points,    :only => [:index, :show]
   resources :sweep_bets,   :only => [:index, :create, :new]
   resources :sweep_points, :only => [:index]
 

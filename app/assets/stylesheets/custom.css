@@ -282,6 +282,20 @@ div.ui-btn, input[type="submit"] {
     top: -2px;
 }
 
+.gb-fixture {
+    left: 16px;
+    /*color: #979797;*/
+    font-size: .8em;
+    position: relative;
+    top: 8px;
+}
+
+.gb-fixture-score {
+    font-size: 1em;
+    position: relative;
+    top: 8px;
+}
+
 .standings {
     display: inline-block;
     width: 1.1em;
