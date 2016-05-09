@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <h1>
+    <%= 'Sweep' %>
+  </h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+    <% @points.each do |point| %>
+        <li class="custom-list">
+          <div class="ui-grid-b">
+
+            <% style = 'disabled-font' unless team.in_sweep? %>
+
+            <div class="ui-block-a <%= style %>" style="width:43%">
+              <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{point.team.abbreviation}.png", class: 'strip-size' %>
+              &nbsp
+              <%= point.team.name.upcase %>
+            </div>
+
+            <% bet = SweepBet.find_by_team_id(point.team.id) %>
+
+            <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+
+            <div class="<%= username_style %> <%= style %>" style="width:42%">
+              <%= bet.user.name if bet.present? %>
+            </div>
+
+            <div class="ui-block-c <%= style %>" align="left" style="width:10%">
+
+            </div>
+
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

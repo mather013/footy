@@ -111,5 +111,42 @@ describe User do
       end
 
     end
+
+    describe '#in_sweep?' do
+      let(:user) { User.create(name: 'Bruce', username: 'brucew', password: 'abc') }
+
+      before :each do
+        user.stub(:sweep_bet).and_return(sweep_bet)
+      end
+
+      context 'when user has a sweep bet' do
+        let(:team) { double(Team, name: 'Brazil', in_sweep?: in_sweep) }
+        let(:sweep_bet) { double(SweepBet, team: team) }
+
+        context 'the team is still in competition' do
+          let(:in_sweep) { true }
+
+          it 'returns true' do
+            expect(user.in_sweep?).to eq(true)
+          end
+        end
+
+        context 'the team is no longer in competition' do
+          let(:in_sweep) { false }
+
+          it 'returns false' do
+            expect(user.in_sweep?).to eq(false)
+          end
+        end
+      end
+
+      context 'when user does not have a sweep bet' do
+        let(:sweep_bet) { nil }
+
+        it 'returns false' do
+          expect(user.in_sweep?).to eq(false)
+        end
+      end
+    end
   end
 end

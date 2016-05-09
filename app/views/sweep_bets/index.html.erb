@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <h1>
+    <%= 'Sweep' %>
+  </h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+    <% @bets.each_with_index do |bet, i| %>
+        <li class="custom-list">
+          <div class="ui-grid-b">
+
+            <div class="ui-block-a" style="width:10%">
+              <%= "#{i+1}." %>
+            </div>
+
+            <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+
+            <div class="<%= username_style %>" style="width:42%">
+              <%= bet.user.name %>
+            </div>
+
+            <div class="ui-block-c" style="width:48%">
+              <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{bet.team.abbreviation}.png", class: 'strip-size' %>
+              &nbsp
+              <%= bet.team.name.upcase %>
+            </div>
+
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

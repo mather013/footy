@@ -1,16 +1,18 @@
 Footy::Application.routes.draw do
   root :to => 'sessions#index'
 
-  resources :weeks,     :only => [:index]
-  resources :sessions,  :only => [:new, :create]
-  resources :bets,      :only => [:create, :update]
-  resources :goals,     :only => [:index]
-  resources :fa_bets,   :only => [:index, :create, :new, :edit, :update]
-  resources :lm_rounds, :only => [:index]
-  resources :lm_bets,   :only => [:create, :update]
-  resources :standings, :only => [:index]
-  resources :gb_bets,   :only => [:index, :create, :new]
-  resources :gb_points, :only => [:index]
+  resources :weeks,        :only => [:index]
+  resources :sessions,     :only => [:new, :create]
+  resources :bets,         :only => [:create, :update]
+  resources :goals,        :only => [:index]
+  resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
+  resources :lm_rounds,    :only => [:index]
+  resources :lm_bets,      :only => [:create, :update]
+  resources :standings,    :only => [:index]
+  resources :gb_bets,      :only => [:index, :create, :new]
+  resources :gb_points,    :only => [:index]
+  resources :sweep_bets,   :only => [:index, :create, :new]
+  resources :sweep_points, :only => [:index]
 
   get  'sessions'                                 => 'sessions#new'
   get  'weeks/:week_id/fixtures'                  => 'fixtures#index',  :as => 'fixtures'

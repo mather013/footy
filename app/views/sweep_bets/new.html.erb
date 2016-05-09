@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false">
+  <a href="<%= gb_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">todo</a>
+
+  <h1><%= "Sweep" %></h1>
+</div>
+
+<div class="info-txt" data-role="content">
+  £5 an envelope. Each contains a random team. First come, first served. Payouts:
+  <p></p>
+
+  <div class="ui-grid-b">
+    <div class="ui-block-a" style="width:10%">
+      1st<br>2nd<br>3rd<br>4th<br>Last
+    </div>
+    <div class="ui-block-b" style="width:90%">
+      £50<br>£30<br>£20<br>£10<br>£10 (team on fewest points/goal difference)
+    </div>
+  </div>
+  <p></p>
+  Remaining envelopes: <%= @number_of_teams_available %>
+</div>
+<p>
+  <%= form_for(@bet) do |bet| %>
+    <div align="center">
+      <%= bet.submit 'Join', class: 'btn btn-large btn-primary', disabled: @number_of_teams_available == 0 %>
+    </div>
+<% end %>
+<p>
+  <%= render 'common/footer' %>
+</html>

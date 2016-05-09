@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :games
   has_one :position
   has_one :gb_bet
+  has_one :sweep_bet
 
   validates_presence_of :name, :username, :password
 
@@ -37,6 +38,10 @@ class User < ActiveRecord::Base
       correct_count +=1 if bet.correct?
     end
     correct_count == LmRound.all.count-1
+  end
+
+  def in_sweep?
+    sweep_bet.present? && sweep_bet.team.in_sweep?
   end
 
 end

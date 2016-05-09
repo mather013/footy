@@ -6,9 +6,13 @@
 
 <% if TOGGLES_CONFIG['sweep'] %>
     <li>
-      <% path = @user.sweep_bet.present? ? sweep_bets_path : new_sweep_bet_path %>
+      <% if Week.find(1).close_date > DateTime.now %>
+          <% path = @user.sweep_bet.present? ? sweep_bets_path : new_sweep_bet_path %>
+      <% else %>
+          <% path = sweep_points_path %>
+      <% end %>
       <a href="<%= path %>">Sweep
-        <% if true %>
+        <% if @user.in_sweep? || SweepBet.available? %>
             <span class="label label-success">&nbsp; &nbsp;</span>
         <% else %>
             <span class="label label-danger">&nbsp; &nbsp;</span>
