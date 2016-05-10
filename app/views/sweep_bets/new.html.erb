@@ -7,19 +7,27 @@
 </div>
 
 <div class="info-txt" data-role="content">
-  £5 an envelope. Each contains a random team. First come, first served. Payouts:
+  Rules:
+  <ul type="square">
+    <li>£5 an envelope</li>
+    <li>Each envelope contains a random team</li>
+    <li>First come, first served</li>
+  </ul>
   <p></p>
 
-  <div class="ui-grid-b">
-    <div class="ui-block-a" style="width:10%">
-      1st<br>2nd<br>3rd<br>4th<br>Last
-    </div>
-    <div class="ui-block-b" style="width:90%">
-      £50<br>£30<br>£20<br>£10<br>£10 (team on fewest points/goal difference)
-    </div>
-  </div>
+  Payouts:
   <p></p>
+  <ul type="square">
+    <li>£50 - 1st (Final Winner)</li>
+    <li>£30 - 2nd (Final Runner Up)</li>
+    <li>£15 - 3rd (Both Semi Final Runners Up)</li>
+    <li>£10 - Last (fewest points, worst goal difference)</li>
+  </ul>
+  <p></p>
+  <br>
   Remaining envelopes: <%= @number_of_teams_available %>
+  <p></p>
+  <br>
 </div>
 <p>
   <%= form_for(@bet) do |bet| %>

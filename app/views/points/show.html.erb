@@ -6,7 +6,10 @@
 
   <h1>
     <%= @week.description %>
-    <span class="jackpot"><%= "Pot: £10" %></span>
+    <% competition_type = ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type'] %>
+    <% if competition_type == 'club' %>
+        <span class="jackpot"><%= "Pot: £10" %></span>
+    <% end %>
   </h1>
 </div>
 
@@ -30,7 +33,7 @@
         <% position +=1 unless previous_score == point.value %>
         <% index += 1 %>
 
-        <% list_style = @week.complete? && position == 1 ? "custom-list-winner" : "custom-list" %>
+        <% list_style = position == 1 && competition_type == 'club' && @week.complete? ? "custom-list-winner" : "custom-list" %>
 
         <li class="<%= list_style %>">
           <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>" class="leaderboard">
@@ -56,7 +59,7 @@
               </div>
 
               <div class="ui-block-d payout-icon" align="left" style="width:10%">
-                <%= "£10" if paying_winners.count == 1 && paying_winners.collect(&:id).include?(point.user.id) %>
+                <%= "£10" if competition_type == 'club' && paying_winners.count == 1 && paying_winners.collect(&:id).include?(point.user.id) %>
               </div>
 
               <div class="ui-block-e" align="center" style="width:10%">
