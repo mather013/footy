@@ -8,6 +8,9 @@ module RakeTaskResources
         FaBet.delete_all
         FaPoint.delete_all
         Fixture.delete_all
+        GbBet.delete_all
+        GbPoint.delete_all
+        GbRound.delete_all
         Goal.delete_all
         LmBet.delete_all
         LmPoint.delete_all
@@ -17,6 +20,8 @@ module RakeTaskResources
         Position.delete_all
         Score.delete_all
         Standing.delete_all
+        SweepBet.delete_all
+        SweepPoint.delete_all
         Team.delete_all
         Week.delete_all
       end
