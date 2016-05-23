@@ -12,19 +12,21 @@ class FaBetsController < ApplicationController
 
   def create
     @bet = FaBet.new(user_id: current_user.id, player_id: params['player_id'])
-    @bet.save
+    success = @bet.save!
+    Services::AnalyticsService.publish(:bet_create, params_for_analytics) if success
     load_common
     render action: "index"
   end
 
   def edit
     load_players
-    @bet = FaBet.where('id = ? and user_id = ?',params['id'],current_user.id).first
+    @bet = FaBet.where('id = ? and user_id = ?', params['id'], current_user.id).first
   end
 
   def update
-    @bet = FaBet.where('id = ? and user_id = ?',params['id'],current_user.id).first
-    @bet.update_attributes(player_id: params['player_id'])
+    @bet = FaBet.where('id = ? and user_id = ?', params['id'], current_user.id).first
+    success = @bet.update_attributes(player_id: params['player_id'])
+    Services::AnalyticsService.publish(:bet_change, params_for_analytics) if success
     load_common
     render action: "index"
   end
@@ -38,6 +40,10 @@ class FaBetsController < ApplicationController
 
   def load_players
     @players = Player.team_and_surname_order
+  end
+
+  def params_for_analytics
+    {game: 'five_alive', username: current_user.username}
   end
 
 end
