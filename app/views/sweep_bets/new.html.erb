@@ -38,3 +38,11 @@
 <p>
   <%= render 'common/footer' %>
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('form').submit(function () {
+            $('input[type=submit]').attr("disabled", "disabled");
+        });
+    });
+</script>
