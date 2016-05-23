@@ -61,7 +61,8 @@ class Week < ActiveRecord::Base
   end
 
   def open?
-    (close_date > Time.now and close_date < Time.now + ENVIRONMENT_CONFIG['round_open_period_in_days'].days || id == 1 && close_date > Time.now)
+    open_period = ENVIRONMENT_CONFIG['round_open_period_in_days']
+    close_date > Time.now and close_date < Time.now + open_period.days || id == 1 && close_date < Time.now + (open_period.days*2)
   end
 
   def maybe_mark_complete

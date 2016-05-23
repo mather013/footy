@@ -11,6 +11,7 @@
   <ul type="square">
     <li>£5 a ball</li>
     <li>Each ball contains a random team</li>
+    <li>Draw will take place 28 May 20:30</li>
     <li>First come, first served</li>
   </ul>
   <p></p>
@@ -29,13 +30,22 @@
   <p></p>
   <br>
 </div>
+
+<% open_date_time = (Week.find(1).close_date - (ENVIRONMENT_CONFIG['round_open_period_in_days']*2).days) %>
+
 <p>
   <%= form_for(@bet) do |bet| %>
     <div align="center">
-      <%= bet.submit 'Join', class: 'btn btn-large btn-primary', disabled: @number_of_teams_available == 0 %>
+      <%= bet.submit 'Join', class: 'btn btn-large btn-primary', disabled: @number_of_teams_available == 0 || DateTime.now < open_date_time %>
     </div>
 <% end %>
 <p>
+  <% if DateTime.now < open_date_time %>
+    <div class="info-txt-clear" align="center">
+      Available from <%= open_date_time.in_time_zone('London').strftime('%e %B %H:%M') %>
+    </div>
+<% end %>
+
   <%= render 'common/footer' %>
 </html>
 

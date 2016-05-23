@@ -34,7 +34,9 @@ class FaBetsController < ApplicationController
   private
 
   def load_common
-    @competition_started = Week.find(1).close_date < DateTime.now
+    open_period = ENVIRONMENT_CONFIG['round_open_period_in_days']
+    week_one_close_date = Week.find(1).close_date
+    @competition_started = week_one_close_date < Time.now || week_one_close_date > Time.now + (open_period.days*2)
     @bets = current_user.fa_bets.sorted
   end
 
