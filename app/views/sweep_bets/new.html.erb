@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false">
-  <a href="<%= gb_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">todo</a>
+  <a href="<%= sweep_bets_path %>" class="ui-btn-right" data-theme="a" data-rel="">Points</a>
 
   <h1><%= "Sweep" %></h1>
 </div>
@@ -9,8 +9,8 @@
 <div class="info-txt" data-role="content">
   Rules:
   <ul type="square">
-    <li>£5 an envelope</li>
-    <li>Each envelope contains a random team</li>
+    <li>£5 a ball</li>
+    <li>Each ball contains a random team</li>
     <li>First come, first served</li>
   </ul>
   <p></p>
@@ -25,7 +25,7 @@
   </ul>
   <p></p>
   <br>
-  Remaining envelopes: <%= @number_of_teams_available %>
+  Remaining spaces: <%= @number_of_teams_available %>
   <p></p>
   <br>
 </div>

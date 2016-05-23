@@ -22,8 +22,4 @@ class SweepBetsController < ApplicationController
     (Team.count - SweepBet.count) -1
   end
 
-  def available_choices
-    Team.all.collect(&:id) - GbBet.all.collect(&:team_id)
-  end
-
 end

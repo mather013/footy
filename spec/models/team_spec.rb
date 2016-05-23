@@ -41,22 +41,27 @@ describe Team do
     describe 'in_sweep?' do
       let(:team) { Team.create(name: 'Argentina', abbreviation: 'arg') }
 
+      before :each do
+        Week.stub(:count).and_return(7)
+      end
+
       context 'when team is still in competition' do
         it 'returns true' do
-          team.create_sweep_point(value: 1)
+          team.create_sweep_point(value: 8)
 
           expect(team.in_sweep?).to eq(true)
         end
       end
 
       context 'when team has been knocked out competition' do
-
         it 'returns false' do
-          team.create_sweep_point(value: 0)
+          team.create_sweep_point(value: 6)
 
           expect(team.in_sweep?).to eq(false)
         end
+      end
 
+      context 'when a team is not in sweep at all' do
         it 'returns false' do
           expect(team.in_sweep?).to eq(false)
         end

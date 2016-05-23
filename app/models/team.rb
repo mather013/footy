@@ -12,7 +12,7 @@ class Team < ActiveRecord::Base
   scope :sorted, where("name != 'TBA'").order('name asc')
 
   def in_sweep?
-    sweep_point.present? && sweep_point.value > 0
+    sweep_point.present? && sweep_point.value == maximum_sweep_points
   end
 
   def fixtures
@@ -23,6 +23,12 @@ class Team < ActiveRecord::Base
     result=[]
     fixtures.each { |f| result << f if f.kickoff >= date }
     result
+  end
+
+private
+
+  def maximum_sweep_points
+    Week.count+1
   end
 
 end
