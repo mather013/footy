@@ -230,5 +230,10 @@ describe Fixture do
         end
       end
     end
+
+    describe '#teams' do
+      subject { fixture }
+      its(:teams) { should =~ [home_team,away_team] }
+    end
   end
 end

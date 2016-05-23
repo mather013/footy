@@ -57,6 +57,10 @@ class Fixture < ActiveRecord::Base
     end
   end
 
+  def teams
+    [home_team,away_team]
+  end
+
   private
 
   def kickoff_pending?
