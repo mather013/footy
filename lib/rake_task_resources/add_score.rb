@@ -8,6 +8,7 @@ module RakeTaskResources
 
         fixture = Fixture.find_by_name(args[:fixture_name])
         score   = Score.new(fixture_id: fixture.id, home: home_goals, away: away_goals)
+        fixture.update_attributes(status: Fixture::Status::FINISHED)
         score.save
       end
     end
