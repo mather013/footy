@@ -25,20 +25,20 @@
 
             <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
 
-            <div class="<%= username_style %> <%= style %>" style="width:42%">
+            <div class="<%= username_style %> <%= style %>" style="width:44%">
               <%= bet.user.name if bet.present? %>
             </div>
 
-            <div class="ui-block-c <%= style %>" align="left" style="width:10%">
-              <%= "Last" if point.value == -1 %>
+            <div class="ui-block-c <%= style %>" align="right" style="width:10%">
+              <%= "£10" if point.value == -1 %>
               <% if Week.sorted.last.complete? %>
                 <% case i %>
                 <% when 0 %>
-                  Winner
+                  £50
                 <% when 1 %>
-                  Runner up
+                  £30
                 <% when 2, 3 %>
-                  Third place
+                  £15
                 <% end %>
               <% end %>
             </div>
