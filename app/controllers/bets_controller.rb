@@ -26,6 +26,15 @@ class BetsController < ApplicationController
     redirect_to fixtures_path(bet.fixture.week.id)
   end
 
+  def index
+    redirect_to weeks_path
+  end
+
+  def show
+    bet = Bet.find(params['id'])
+    redirect_to fixtures_path(bet.fixture.week.id)
+  end
+
   private
 
   def load_fixture_and_choices

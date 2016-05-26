@@ -3,7 +3,7 @@ Footy::Application.routes.draw do
 
   resources :weeks,        :only => [:index]
   resources :sessions,     :only => [:new, :create]
-  resources :bets,         :only => [:create, :update]
+  resources :bets,         :only => [:create, :update, :index, :show]
   resources :goals,        :only => [:index]
   resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
   resources :lm_rounds,    :only => [:index]
