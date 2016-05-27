@@ -15,7 +15,7 @@
               <% if @bets[i].present? %>
                   <%= link_to edit_fa_bet_path(@bets[i].id) do %>
                       <div class="ui-block-a main-font" style="width:10%">
-                        <%= image_tag "#{BADGE_PATH}/#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
+                        <%= image_tag "#{STRIP_PATH}#{@bets[i].player.team.abbreviation}.png", class: "player-badge-size" %>
                       </div>
                       <% player = @bets[i].player %>
                       <div class="ui-block-b main-font" style="width:12%">
@@ -28,7 +28,7 @@
               <% else %>
                   <%= link_to new_fa_bet_path do %>
                       <div class="ui-block-a main-font" style="width:10%">
-                        <%= image_tag "#{BADGE_PATH}/tba.png", class: "player-badge-size" %>
+                        <%= image_tag "#{STRIP_PATH}tba.png", class: "player-badge-size" %>
                       </div>
                       <div class="ui-block-b main-font" style="width:12%">
 

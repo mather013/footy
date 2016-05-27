@@ -39,7 +39,7 @@
 
             <div class="ui-block-d" align="left" style="width:32%">
               <% user.fa_teams.shuffle.each do |team| %>
-                  <%= image_tag "#{BADGE_PATH}/#{team.abbreviation}.png", class: "strip-size" %>
+                  <%= image_tag "#{STRIP_PATH}#{team.abbreviation}.png", class: "strip-size" %>
               <% end %>
             </div>
 
