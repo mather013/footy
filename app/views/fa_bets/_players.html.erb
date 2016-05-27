@@ -2,7 +2,7 @@
   <h5>
     <div class="ui-grid-b main-font">
       <div class="ui-block-a" style="width:8%">
-        <%= image_tag "#{BADGE_PATH}/#{@player.team.abbreviation}.png", class: "player-badge-size" %>
+        <%= image_tag "#{STRIP_PATH}#{@player.team.abbreviation}.png", class: "player-badge-size" %>
       </div>
       <div class="ui-block-b" style="width:12%">
         <%= "##{@player.squad_number}" %>
@@ -20,7 +20,7 @@
     <% @player.goals.each do |goal| %>
         <div class="ui-block-a" style="width:26%"></div>
         <div class="ui-block-b" style="width:6%">
-          <%= image_tag "#{BADGE_PATH}/#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>
+          <%= image_tag "#{STRIP_PATH}#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>
         </div>
         <div class="ui-block-c fa_opposing_team" style="width:30%">
           <%="#{goal.opposing_team.name.upcase}" %>

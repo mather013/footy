@@ -1,4 +1,3 @@
-<% strip_path = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type']]['strip_path'] %>
 <% i=0 %>
 
 <div data-role="collapsible-set">
@@ -8,7 +7,7 @@
           <h5>
             <div class="ui-grid-a fa_team">
               <div class="ui-block-a" align="centre" style="width:10%">
-                <%= image_tag "#{strip_path}/#{team.abbreviation}.png", class: "player-badge-size" %>
+                <%= image_tag "#{STRIP_PATH}#{team.abbreviation}.png", class: "player-badge-size" %>
               </div>
               <div class="ui-block-b" style="width:90%">
                 <%= team.name %>
@@ -25,7 +24,7 @@
                     <input type="radio" name="player_id" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= player.id %>">
                     <label for="radio-choice-<%= i %>">
                       <div class="ui-block-a fa_flag" style="width:10%">
-                        <%= image_tag "#{strip_path}/#{player.team.abbreviation}.png", class: "player-badge-size" %>
+                        <%= image_tag "#{STRIP_PATH}#{player.team.abbreviation}.png", class: "player-badge-size" %>
                       </div>
                       <div class="ui-block-b fa_player" style="width:10%">
                         <%= "##{player.squad_number}" %>
