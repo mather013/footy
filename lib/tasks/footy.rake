@@ -16,7 +16,8 @@ namespace :footy do
   end
 
   desc 'Record scorer for fixture'
-  task :add_goal, [:fixture_name, :forename, :surname, :amount] => :environment do |t, args|
+  #task :add_goal, [:fixture_name, :forename, :surname, :amount] => :environment do |t, args|
+  task :add_goal, [:fixture_name, :player_id, :amount] => :environment do |t, args|
     RakeTaskResources::AddGoal.perform args
   end
 
@@ -30,11 +31,19 @@ namespace :footy do
     RakeTaskResources::AddLmRound.perform
   end
 
+  desc 'Set users paid games for fa'
+  task :users_paid_fa, [:usernames] => :environment do |t, args|
+    params = {}
+    params.merge!(args)
+    params.merge!({game_id: 2})
+    RakeTaskResources::UserGames.perform params
+  end
+
   desc 'Set users paid games for lms'
   task :users_paid_lms, [:usernames] => :environment do |t, args|
     params = {}
     params.merge!(args)
-    params.merge!({game_id: 4})
+    params.merge!({game_id: 3})
     RakeTaskResources::UserGames.perform params
   end
 
