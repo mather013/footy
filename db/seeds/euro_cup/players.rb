@@ -146,6 +146,7 @@ Player.create(id: 184, team_id: 19, squad_number: 6,  forename: 'A', surname: 'I
 Player.create(id: 185, team_id: 19, squad_number: 21, forename: 'D', surname: 'Silva')
 Player.create(id: 186, team_id: 19, squad_number: 8,  forename: '',  surname: 'Koke')
 Player.create(id: 187, team_id: 19, squad_number: 9,  forename: 'L', surname: 'Vázquez')
+Player.create(id: 188, team_id: 19, squad_number: 22, forename: '', surname: 'Nolito')
 
 #20 - sweden
 Player.create(id: 191, team_id: 20, squad_number: 10, forename: 'Z', surname: 'Ibrahimović')
