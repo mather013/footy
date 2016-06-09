@@ -25,7 +25,11 @@
 
             <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
 
-            <div class="<%= username_style %> <%= style %>" style="width:44%">
+            <div class="ui-block-b payout-icon" style="width:10%">
+              <%= "$" if bet.present? && bet.user.games.include?(@game) %>
+            </div>
+
+            <div class="<%= username_style %> <%= style %>" style="width:34%">
               <%= bet.user.name if bet.present? %>
             </div>
 
