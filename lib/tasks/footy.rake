@@ -18,6 +18,7 @@ namespace :footy do
   desc 'Record scorer for fixture'
   #task :add_goal, [:fixture_name, :forename, :surname, :amount] => :environment do |t, args|
   task :add_goal, [:fixture_name, :player_id, :amount] => :environment do |t, args|
+    args.with_defaults(amount:1)
     RakeTaskResources::AddGoal.perform args
   end
 
@@ -70,6 +71,11 @@ namespace :footy do
     args.with_defaults(amount:1)
     RakeTaskResources::AddGoal.perform args
     RakeTaskResources::AddGoalEvent.perform args
+  end
+
+  desc 'Add player'
+  task :add_player, [:id, :forename, :surname, :squad_number, :team_abbreviation] => :environment do |t, args|
+    RakeTaskResources::AddPlayer.perform args
   end
 
 end

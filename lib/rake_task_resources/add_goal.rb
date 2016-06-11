@@ -4,7 +4,7 @@ module RakeTaskResources
       def perform args
         score = Fixture.find_by_name(args[:fixture_name]).score
         #player = Player.where(forename: args[:forename].gsub("_", " "), surname: args[:surname].gsub("_", " ")).first
-        player = Player.find(:player_id)
+        player = Player.find(args[:player_id])
 
         args[:amount].to_i.times { score.goals.create(player_id: player.id) } if score.present? && player.present?
       end
