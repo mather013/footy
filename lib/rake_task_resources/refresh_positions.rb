@@ -22,7 +22,7 @@ module RakeTaskResources
         position = Position.find_by_user_id(user_id)
 
         if position.present?
-          if position.last_marked_week_id < week.id
+          if ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] == 'international' || position.last_marked_week_id < week.id
             previous=position.current
             position.update_attributes(current: current, previous: previous, last_marked_week_id: week.id)
           else
