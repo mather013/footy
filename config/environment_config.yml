@@ -23,7 +23,7 @@ defaults: &defaults
   feed:
     football_data_api:
       url: http://api.football-data.org
-      competition_id: 398 #424
+      competition_id: 424 #398
     football_api:
       url: http://football-api.com/api/
       competition_id: 1204
