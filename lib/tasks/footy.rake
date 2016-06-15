@@ -66,6 +66,11 @@ namespace :footy do
     #Jobs::SyncStandings.new.perform if ENVIRONMENT_CONFIG['competition'] == 'premier_league'
   end
 
+  desc 'Mark 5 Alive bets only'
+  task :mark_fa => :environment do |t, args|
+    RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
+  end
+
   desc 'Record goal and goal event for fixture'
   task :add_goal_and_event, [:fixture_name, :forename, :surname, :minute, :team, :amount] => :environment do |t, args|
     args.with_defaults(amount:1)
