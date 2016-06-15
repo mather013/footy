@@ -1,5 +1,5 @@
 defaults: &defaults
-  round_open_period_in_days: 7
+  round_open_period_in_days: 4
   days_in_advance_to_sync_fixtures: 8
   competition: euro_cup
   premier_league:
