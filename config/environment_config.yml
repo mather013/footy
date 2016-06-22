@@ -13,7 +13,7 @@ defaults: &defaults
     knockout_rounds: [4,5,6]
   euro_cup:
     type: international
-    knockout_rounds: [4,5,6,7]
+    knockout_rounds: []
   club:
     strip_path: 'club/strip/'
     badge_path: 'club/badge/'
