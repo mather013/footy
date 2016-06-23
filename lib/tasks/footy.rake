@@ -83,4 +83,9 @@ namespace :footy do
     RakeTaskResources::AddPlayer.perform args
   end
 
+  desc 'Set teams for fixture'
+  task :set_teams, [:id, :fixture_name] => :environment do |t, args|
+    RakeTaskResources::SetTeams.perform args
+  end
+
 end
