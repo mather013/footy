@@ -1,7 +1,7 @@
 defaults: &defaults
   round_open_period_in_days: 4
   days_in_advance_to_sync_fixtures: 8
-  competition: euro_cup
+  competition: premier_league
   premier_league:
     type: club
     knockout_rounds: []
@@ -23,7 +23,7 @@ defaults: &defaults
   feed:
     football_data_api:
       url: http://api.football-data.org
-      competition_id: 424 #398
+      competition_id: 398 #424
     football_api:
       url: http://football-api.com/api/
       competition_id: 1204
