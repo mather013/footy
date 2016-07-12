@@ -53,14 +53,14 @@ Fixture.find_or_create_by_id(id: 43, kickoff: DateTime.parse('2016-06-27 16:00:0
 Fixture.find_or_create_by_id(id: 44, kickoff: DateTime.parse('2016-06-27 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 4)
 
 #Quarter final knockout
-Fixture.find_or_create_by_id(id: 45, kickoff: DateTime.parse('2016-06-30 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 5)
-Fixture.find_or_create_by_id(id: 46, kickoff: DateTime.parse('2016-07-01 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 5)
-Fixture.find_or_create_by_id(id: 47, kickoff: DateTime.parse('2016-07-02 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 5)
-Fixture.find_or_create_by_id(id: 48, kickoff: DateTime.parse('2016-07-03 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 5)
+Fixture.find_or_create_by_id(id: 45, kickoff: DateTime.parse('2016-06-30 19:00:00'), name: 'POL-POR', home_team_id: 13, away_team_id: 14, week_id: 5)
+Fixture.find_or_create_by_id(id: 46, kickoff: DateTime.parse('2016-07-01 19:00:00'), name: 'WAL-BEL', home_team_id: 24, away_team_id: 3,  week_id: 5)
+Fixture.find_or_create_by_id(id: 47, kickoff: DateTime.parse('2016-07-02 19:00:00'), name: 'GER-ITA', home_team_id: 8,  away_team_id: 11, week_id: 5)
+Fixture.find_or_create_by_id(id: 48, kickoff: DateTime.parse('2016-07-03 19:00:00'), name: 'FRA-ICE', home_team_id: 7,  away_team_id: 10, week_id: 5)
 
 #Semi final knockout
-Fixture.find_or_create_by_id(id: 49, kickoff: DateTime.parse('2016-07-06 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 6)
-Fixture.find_or_create_by_id(id: 50, kickoff: DateTime.parse('2016-07-07 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 6)
+Fixture.find_or_create_by_id(id: 49, kickoff: DateTime.parse('2016-07-06 19:00:00'), name: 'POR-WAL', home_team_id: 14, away_team_id: 24, week_id: 6)
+Fixture.find_or_create_by_id(id: 50, kickoff: DateTime.parse('2016-07-07 19:00:00'), name: 'GER-FRA', home_team_id: 8,  away_team_id: 7,  week_id: 6)
 
 #Final knockout
-Fixture.find_or_create_by_id(id: 51, kickoff: DateTime.parse('2016-07-10 19:00:00'), name: 'TBA-TBA', home_team_id: 25, away_team_id: 25, week_id: 7)
+Fixture.find_or_create_by_id(id: 51, kickoff: DateTime.parse('2016-07-10 19:00:00'), name: 'POR-FRA', home_team_id: 14, away_team_id: 7,  week_id: 7)
