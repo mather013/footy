@@ -43,6 +43,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'unicorn'
 end
 
 gem 'rollbar', '~> 2.1.1'
