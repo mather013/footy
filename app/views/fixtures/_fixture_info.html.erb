@@ -24,7 +24,7 @@
   <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
   <% bet.nil? ? outcome = '' : outcome = bet.outcome %>
 
-  <div class="<%= outcome %> ui-block-f fixture-teams" align="center" style="width:10%">
-    <%= bet.nil? ? '' : "#{bet.value}" %>
+  <div class="<%= outcome %> ui-block-f fixture-bet" align="center" style="width:10%">
+    <%= bet.value if bet.present? %>
   </div>
 </div>
