@@ -13,9 +13,19 @@
   <a href="<%= points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>
 
+<% month = nil %>
+
 <div data-role="content">
   <ul data-role="listview" id="fix-list">
     <% @weeks.each do |week| %>
+
+        <% unless month == week.close_date.month %>
+            <% month = week.close_date.month %>
+            <li class="custom-list-header fixture-date">
+              <%= week.close_date.strftime('%B %Y') %>
+            </li>
+        <% end %>
+
         <li>
           <a href="<%= fixtures_path(week.id) %>">
             <div class="ui-grid-b">
@@ -33,7 +43,7 @@
 
                 <br>
                 <h10 class="kickoff">
-                  <%= "#{DateTime.parse(week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+                  <%= "#{DateTime.parse(week.close_date_local_time.to_s).strftime("%A #{week.close_date_local_time.day.ordinalize} %H:%M")}" %>
                 </h10>
               </div>
 
