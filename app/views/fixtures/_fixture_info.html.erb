@@ -1,27 +1,30 @@
 <div class="ui-grid-b">
-  <div class="ui-block-a main-font" style="width:90%">
-    <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
-    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{@fixture.home_team.abbreviation}.png", class: 'strip-size' %>
-    <%= @fixture.to_s %>
-    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['strip_path']}#{@fixture.away_team.abbreviation}.png", class: 'strip-size' %>
-    <br>
-    <h10 class="fixture-kickoff">
-      <%= DateTime.parse(@fixture.kickoff_local_time.to_s).strftime('%A %e %B %H:%M') %>
-      <% if @fixture.status == Fixture::Status::POSTPONED %>
-          <span class="label label-danger">Postponed</span>
-      <% end %>
-    </h10>
+  <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+
+  <div class="ui-block-a fixture-teams" align="right" style="width:30%">
+    <%= @fixture.home_team.abbreviation.upcase %>
+  </div>
+
+  <div class="ui-block-b" align="right" style="width:10%">
+    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.home_team.abbreviation}.png", class: 'badge-smallest' %>
+  </div>
+
+  <div class="ui-block-c fixture-score" align="center" style="width:20%">
+    <%= @fixture.score.present? ? "#{@fixture.score.home} - #{@fixture.score.away}" : @fixture.kickoff_local_time.strftime('%H:%M') %>
+  </div>
+
+  <div class="ui-block-d" align="left" style="width:10%">
+    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.away_team.abbreviation}.png", class: 'badge-smallest' %>
+  </div>
+
+  <div class="ui-block-e fixture-teams" align="left" style="width:20%">
+    <%= @fixture.away_team.abbreviation.upcase %>
   </div>
 
   <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
   <% bet.nil? ? outcome = '' : outcome = bet.outcome %>
 
-  <div class="<%= outcome %> ui-block-b main-font" align="center" style="width:10%">
+  <div class="<%= outcome %> ui-block-f fixture-teams" align="center" style="width:10%">
     <%= bet.nil? ? '' : "#{bet.value}" %>
-    <br>
-    <h10 class="kickoff">
-      <%= "#{@fixture.score.home} - #{@fixture.score.away}" if @fixture.score.present? %>
-    </h10>
-    </br>
   </div>
 </div>
