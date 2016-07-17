@@ -1,30 +1,41 @@
 <div class="ui-grid-b">
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
 
-  <div class="ui-block-a fixture-teams" align="right" style="width:30%">
-    <%= @fixture.home_team.abbreviation.upcase %>
+  <div class="ui-block-a fixture-teams" align="right" style="width:35%">
+    <%= @fixture.home_team.name.upcase %>
   </div>
 
-  <div class="ui-block-b" align="right" style="width:10%">
+  <div class="ui-block-b" align="center" style="width:10%">
     <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.home_team.abbreviation}.png", class: 'badge-smallest' %>
   </div>
 
-  <div class="ui-block-c fixture-score" align="center" style="width:20%">
+  <div class="ui-block-c fixture-score" align="center" style="width:10%">
     <%= @fixture.score.present? ? "#{@fixture.score.home} - #{@fixture.score.away}" : @fixture.kickoff_local_time.strftime('%H:%M') %>
   </div>
 
-  <div class="ui-block-d" align="left" style="width:10%">
+  <div class="ui-block-d" align="center" style="width:10%">
     <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.away_team.abbreviation}.png", class: 'badge-smallest' %>
   </div>
 
-  <div class="ui-block-e fixture-teams" align="left" style="width:20%">
-    <%= @fixture.away_team.abbreviation.upcase %>
+  <div class="ui-block-e fixture-teams" align="left" style="width:28%">
+    <%= @fixture.away_team.name.upcase %>
   </div>
 
   <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
-  <% bet.nil? ? outcome = '' : outcome = bet.outcome %>
 
-  <div class="<%= outcome %> ui-block-f fixture-bet" align="center" style="width:10%">
-    <%= bet.value if bet.present? %>
+  <div class="ui-block-f fixture-bet" align="right" style="width:7%">
+    <% if bet.present? %>
+        <% case bet.outcome %>
+        <% when 'correct' %>
+            <% label = 'success' %>
+        <% when 'wrong' %>
+            <% label = 'danger' %>
+        <% when '' %>
+            <% label = 'default' %>
+        <% end %>
+        <span class="label label-<%= label %> ">
+            <%= bet.value %>
+        </span>
+    <% end %>
   </div>
 </div>

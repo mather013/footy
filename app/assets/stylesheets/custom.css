@@ -85,14 +85,16 @@
 }
 
 .fixture-teams {
-    font-size: 12px;
-    font-weight: bold !important;
+    font-size: 10px;
+    /*font-weight: bold !important;*/
+    color: #404040;
     position: relative;
-    top: 4px;
+    top: 7px;
 }
 
 .fixture-bet {
-    font-size: 12px;
+    font-size: 14px;
+    color: #404040;
     position: relative;
     top: 4px;
 }
@@ -100,7 +102,7 @@
 .fixture-score {
     font-size: 12px;
     position: relative;
-    top: 4px;
+    top: 6px;
 }
 
 .error-font {

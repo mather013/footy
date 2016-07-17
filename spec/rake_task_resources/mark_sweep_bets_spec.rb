@@ -4,6 +4,11 @@ module RakeTaskResources
   describe MarkSweepBets do
 
     describe ".perform" do
+      before :each do
+        stub_const('ENVIRONMENT_CONFIG', {'competition' => 'euro_cup',
+                                          'euro_cup' => {'knockout_rounds' => [4, 5, 6, 7]}})
+      end
+
       let(:team_hash) { {arg: 1, bra: 2, col: 3, den: 4, eng: 5, fra: 6, ger: 7, hol: 8} }
 
       let(:week_5_ko) { 21.days.ago }

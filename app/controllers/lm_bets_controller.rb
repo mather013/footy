@@ -7,8 +7,8 @@ class LmBetsController < ApplicationController
   end
 
   def create
-    params = {lm_round_id: params['lm_bet']['lm_round'], user_id: current_user.id, team_id: params['lm_bet']['team_id']}
-    success = LmBet.create(params)
+    bet_params = {lm_round_id: params['lm_bet']['lm_round'], user_id: current_user.id, team_id: params['lm_bet']['team_id']}
+    success = LmBet.create(bet_params)
     Services::AnalyticsService.publish(:bet_create, params_for_analytics) if success
     redirect_to lm_rounds_path
   end
