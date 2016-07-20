@@ -31,5 +31,5 @@ Footy::Application.routes.draw do
   get  'users/:user_id/lm_rounds'                 => 'users#show',      :as => 'user_lm_rounds'
   get  'weeks/:week_id/fixtures/:fixture_id/events' => 'events#index',  :as => 'fixture_events'
   get  'gb_points_info'                           => 'gb_points#info',  :as => 'gb_points_info'
-  match '*a', :to => 'errors#routing'
+  #match '*a', :to => 'errors#routing'
 end

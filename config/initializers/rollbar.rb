@@ -37,6 +37,17 @@ Rollbar.configure do |config|
   # You can also specify a callable, which will be called with the exception instance.
   # config.exception_level_filters.merge!('MyCriticalException' => lambda { |e| 'critical' })
 
+  # Ignore the typical "attacks..."
+  config.exception_level_filters.merge!('ActionController::RoutingError' => lambda { |e|
+    e.message =~ %r(No route matches \[[A-Z]+\] "/(.+)")
+    case $1.split("/").first.to_s.downcase
+      when *%w(myadmin phpmyadmin w00tw00t pma cgi-bin xmlrpc.php wp wordpress cfide)
+        'ignore'
+      else
+        'warning'
+    end
+  })
+
   # Enable asynchronous reporting (uses girl_friday or Threading if girl_friday
   # is not installed)
   # config.use_async = true
