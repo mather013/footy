@@ -11,12 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160404121519) do
+ActiveRecord::Schema.define(:version => 20160717194814) do
 
   create_table "bets", :force => true do |t|
     t.integer  "fixture_id", :null => false
     t.integer  "user_id",    :null => false
     t.string   "value",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "bonuses", :force => true do |t|
+    t.integer  "point_id"
+    t.integer  "fixture_id"
+    t.integer  "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
