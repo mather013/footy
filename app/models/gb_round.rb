@@ -8,7 +8,7 @@ class GbRound < ActiveRecord::Base
   end
 
   def open_at
-    DateTime.parse(week.close_date.to_date.to_s + ' 10:00:00')
+    DateTime.parse(week.close_date.to_date.to_s + ' 09:00:00')
   end
 
 end

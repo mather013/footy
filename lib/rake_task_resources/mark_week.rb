@@ -18,7 +18,7 @@ module RakeTaskResources
         points = 0
 
         point = @points.select { |point| point[:user_id] == user.id }.first
-        point.present? ? point.update_attributes(value: points) : Point.create(user_id: user.id, value: 0, week_id: @week.id)
+        point.present? ? point.update_attributes(value: points) : point = Point.create(user_id: user.id, value: 0, week_id: @week.id)
 
         bets.each do |bet|
           points+=10 if bet.outcome == 'correct'
@@ -31,7 +31,6 @@ module RakeTaskResources
 
         point.update_attributes(value: points)
       end
-
 
       def adjust_bonus(point,bet)
         bonus = point.bonuses.where(fixture_id: bet.fixture.id).first
