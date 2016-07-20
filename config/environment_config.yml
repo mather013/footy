@@ -1,5 +1,5 @@
 defaults: &defaults
-  round_open_period_in_days: 4
+  round_open_period_in_days: 7
   days_in_advance_to_sync_fixtures: 8
   competition: premier_league
   week_jackpot:
@@ -24,7 +24,7 @@ defaults: &defaults
   feed:
     football_data_api:
       url: http://api.football-data.org
-      competition_id: 398 #424
+      competition_id: 426
     football_api:
       url: http://football-api.com/api/
       competition_id: 1204
