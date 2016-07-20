@@ -2,6 +2,7 @@ defaults: &defaults
   round_open_period_in_days: 4
   days_in_advance_to_sync_fixtures: 8
   competition: premier_league
+  week_jackpot:
   premier_league:
     type: club
     knockout_rounds: []

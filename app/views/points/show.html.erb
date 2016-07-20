@@ -7,8 +7,8 @@
   <h1>
     <%= @week.description %>
     <% competition_type = ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type'] %>
-    <% if competition_type == 'club' %>
-        <span class="jackpot"><%= "Pot: £10" %></span>
+    <% if competition_type == 'club' && ENVIRONMENT_CONFIG['week_jackpot'].present? %>
+        <span class="jackpot"><%= "Pot #{ENVIRONMENT_CONFIG['week_jackpot']}" %></span>
     <% end %>
   </h1>
 </div>
@@ -48,9 +48,9 @@
               </div>
 
               <% user = User.find(point.user_id) %>
-              <% username_style = (user.id == @current_user.id ?  'ui-block-b current_user' : 'ui-block-b') %>
+              <% username_style = (user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
 
-              <div class="<%=username_style%>" style="width:60%">
+              <div class="<%= username_style %>" style="width:60%">
                 <%= user.name %>
               </div>
 
@@ -58,12 +58,18 @@
                 <%= "$" if point.user.games.collect(&:name).include?('Footy Forecast') %>
               </div>
 
-              <div class="ui-block-d payout-icon" align="left" style="width:10%">
-                <%= "£10" if competition_type == 'club' && paying_winners.count == 1 && paying_winners.collect(&:id).include?(point.user.id) %>
+              <!--<div class="ui-block-d payout-icon" align="left" style="width:10%">-->
+                <!--<%= "£10" if competition_type == 'club' && paying_winners.count == 1 && paying_winners.collect(&:id).include?(point.user.id) %>-->
+              <!--</div>-->
+
+              <div class="ui-block-d" align="right" style="width:10%">
+                <%= "#{point.value}" %>
               </div>
 
-              <div class="ui-block-e" align="center" style="width:10%">
-                <%= "#{point.value}" %>
+              <div class="ui-block-e" align="right" style="width:10%">
+                <% if TOGGLES_CONFIG['bonus_points'] && point.bonus.to_i > 0 %>
+                    <%= "+#{point.bonus}" %>
+                <% end %>
               </div>
 
             </div>

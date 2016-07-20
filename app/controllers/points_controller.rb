@@ -4,15 +4,14 @@ class PointsController < ApplicationController
   def index
     @current_user = current_user
     @game = game
-    #@total_points=Point.select("user_id, sum(value) as value").group("user_id").order("value DESC")
-    @total_points = Point.find(:all, :select => 'user_id, count(*) as count, sum(value) as value', :group => 'user_id', :order => 'value DESC' )
+    @total_points = total_points
   end
 
   def show
     @current_user = current_user
     @game = game
     @week = Week.find(params[:week_id])
-    @points = @week.points.sorted
+    @points = @week.points.sorted_with_bonus
   end
 
   private
@@ -20,4 +19,7 @@ class PointsController < ApplicationController
     Game.find_by_name('Footy Forecast')
   end
 
+  def total_points
+    TOGGLES_CONFIG['bonus_points'] ? Point.total_points_with_bonus : Point.total_points
+  end
 end

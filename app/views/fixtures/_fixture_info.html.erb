@@ -1,7 +1,16 @@
 <div class="ui-grid-b">
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
 
-  <div class="ui-block-a fixture-teams" align="right" style="width:35%">
+  <div class="ui-block-a fixture-bet" align="left" style="width:10%">
+    <% bonus = @user.points.where(week_id: @fixture.week_id).first.bonuses.where(fixture_id: @fixture.id).first %>
+    <% if bonus.present? %>
+        <span class="label bonus-points">
+            <%= bonus.value %>
+        </span>
+    <% end %>
+  </div>
+
+  <div class="ui-block-b fixture-teams" align="right" style="width:25%">
     <%= @fixture.home_team.name.upcase %>
   </div>
 
@@ -23,7 +32,7 @@
 
   <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
 
-  <div class="ui-block-f fixture-bet" align="right" style="width:7%">
+  <div class="ui-block-e fixture-bet" align="right" style="width:7%">
     <% if bet.present? %>
         <% case bet.outcome %>
         <% when 'correct' %>

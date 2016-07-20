@@ -427,6 +427,11 @@ div.ui-btn, input[type="submit"] {
     top: 5px;
 }
 
+.bonus-points {
+    background: #ffa000;
+    font-size: .7em;
+}
+
 .fa_opposing_team {
     font-size: .7em;
     position: relative;

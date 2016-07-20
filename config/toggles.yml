@@ -6,6 +6,7 @@ defaults: &defaults
   sweep: false
   week_deadline: false
   sms_communications: true
+  bonus_points: true
   feed: football_data_api #football_api
 
 development:
