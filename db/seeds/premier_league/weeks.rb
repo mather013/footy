@@ -1,6 +1,6 @@
 #Week.delete_all
 
-Week.find_or_create_by_id(id: 1,  description: 'Week 01', close_date: DateTime.parse('13-08-2016 12:30:00'))
+Week.find_or_create_by_id(id: 1,  description: 'Week 01', close_date: DateTime.parse('13-08-2016 11:30:00'))
 Week.find_or_create_by_id(id: 2,  description: 'Week 02', close_date: DateTime.parse('20-08-2016 14:00:00'))
 Week.find_or_create_by_id(id: 3,  description: 'Week 03', close_date: DateTime.parse('27-08-2016 14:00:00'))
 Week.find_or_create_by_id(id: 4,  description: 'Week 04', close_date: DateTime.parse('10-09-2016 14:00:00'))
