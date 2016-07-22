@@ -3,6 +3,6 @@ class Standing  < ActiveRecord::Base
 
   belongs_to :team
 
-  scope :sorted, order('form_score desc, position asc')
+  scope :sorted, order('form_score desc, position asc, goal_difference asc, team_id asc')
 
 end

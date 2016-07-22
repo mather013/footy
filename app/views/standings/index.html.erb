@@ -3,7 +3,7 @@
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
   <a href="<%= weeks_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
 
-  <h1><%= 'Recent Form <' %></h1>
+  <h1><%= 'League Table' %></h1>
   <% if @user.admin? %>
       <a href="<%= info_path %>" class="ui-btn-right" data-theme="a" data-rel="">Info</a>
   <% end %>
@@ -11,6 +11,21 @@
 
 <div class="leaderboard">
   <ul data-role="listview">
+    <li class="custom-list-header fixture-date">
+      <div class="ui-grid-b">
+        <div class="ui-block-a" align="left" style="width:15%"></div>
+        <div class="ui-block-b" align="left" style="width:40%"></div>
+        <div class="ui-block-c" align="center" style="width:15%">Played</div>
+        <div class="ui-block-d" align="center" style="width:15%">Goals</div>
+        <div class="ui-block-e" align="right" style="width:15%">Points</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+
     <% @standings.each do |standing| %>
         <li class="custom-list">
           <div class="ui-grid-b">

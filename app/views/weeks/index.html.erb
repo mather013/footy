@@ -3,7 +3,7 @@
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
   <% if ENVIRONMENT_CONFIG['competition'] == 'premier_league' %>
-      <a href="<%= standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">Form</a>
+      <a href="<%= standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">Leag.</a>
   <% else %>
       <% if @user.admin? %>
           <a href="<%= info_path %>" class="ui-btn-left" data-theme="a" data-rel="">Info</a>
