@@ -9,6 +9,10 @@ module Feed
       Feed::Fixtures.new(data_service.perform([from_date,to_date]))
     end
 
+    def get_all_fixtures
+      Feed::Fixtures.new(data_service.perform)
+    end
+
     private
 
     def data_service

@@ -28,6 +28,19 @@ module Services
 
           context 'when there are no errors' do
 
+            context 'and no date supplied' do
+              let(:url) { "football_data_api/v1/soccerseasons/398/fixtures" }
+              let(:dates) { nil }
+
+              it 'does not raise any error' do
+                expect { data_service.perform(dates) }.not_to raise_error
+              end
+
+              it 'returns expected hash' do
+                expect(data_service.perform(dates)).to eq(hash[:fixtures])
+              end
+            end
+
             context 'and a single date in the future is supplied' do
               let(:url) { "football_data_api/v1/soccerseasons/398/fixtures?timeFrame=n8" }
               let(:dates) { [7.days.from_now.to_date] }
