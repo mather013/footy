@@ -15,6 +15,11 @@ namespace :job do
     Jobs::SyncFixtures.new.perform
   end
 
+  desc 'Sync fixtures refresh'
+  task :sync_fixtures_all => :environment do
+    Jobs::SyncFixturesRefresh.new.perform
+  end
+
   desc 'Sync standings'
   task :sync_standings => :environment do
     Jobs::SyncStandings.new.perform
