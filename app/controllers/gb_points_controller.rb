@@ -8,7 +8,7 @@ class GbPointsController < ApplicationController
   end
 
   def show
-    @point = GbPoint.find(params['id'])
+    @point = GbPoint.find_by_team_id(params['id'])
     @team = @point.team
     @fixtures = @team.fixtures_from(GbRound.first.week.close_date)
   end
