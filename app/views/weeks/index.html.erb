@@ -14,12 +14,11 @@
 </div>
 
 <% month = nil %>
+<% points = @user.points %>
 
 <div data-role="content">
   <ul data-role="listview" id="fix-list">
     <% @weeks.each do |week| %>
-
-        <% user_weekly_points = Point.user_weekly_with_bonus.select {|points| points[:user_id] == @user.id } %>
 
         <% unless month == week.close_date.month %>
             <% month = week.close_date.month %>
@@ -50,13 +49,13 @@
               </div>
 
               <div class=ui-block-c" style="width:8%">
-                <% point = user_weekly_points.select{|point| point[:week_id] == week.id }.first %>
+                <% point = points.select{|point| point[:week_id] == week.id }.first %>
                 <% if point.present? %>
                     <% if TOGGLES_CONFIG['bonus_points'] %>
-                        <% points_style = point.present? ? (point.total).to_i : 0 %>
-                        <% points_style = "100" if point.total.to_i > 100 %>
+                        <% points_style = point.present? ? (point.value).to_i : 0 %>
+                        <% points_style = "100" if point.value.to_i > 100 %>
                         <div class="<%= "label points_#{points_style}" %>">
-                          <%= point.total.to_i if point.present? %>
+                          <%= point.value.to_i if point.present? %>
                         </div>
                     <% else %>
                         <% points_style = point.present? ? point.value : 0 %>

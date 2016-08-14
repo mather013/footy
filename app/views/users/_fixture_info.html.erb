@@ -43,7 +43,7 @@
             <% label = 'default' %>
         <% end %>
         <span class="label label-<%= label %> ">
-            <%= bet.value %>
+            <%= @fixture.betable? ? '?' : "#{bet.value}" %>
         </span>
     <% end %>
   </div>

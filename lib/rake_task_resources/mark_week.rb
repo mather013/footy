@@ -16,6 +16,7 @@ module RakeTaskResources
 
       def mark_footy_forecast user, bets
         points = 0
+        bonus_val = 0
 
         point = @points.select { |point| point[:user_id] == user.id }.first
         point.present? ? point.update_attributes(value: points) : point = Point.create(user_id: user.id, value: 0, week_id: @week.id)
@@ -25,11 +26,11 @@ module RakeTaskResources
           points+=30 if bet.outcome == 'spot_on' unless TOGGLES_CONFIG['bet_type_hda']
 
           if TOGGLES_CONFIG['bonus_points'] && (bet.outcome == 'correct' || bet.outcome == 'spot_on')
-            adjust_bonus(point,bet)
+            bonus_val += adjust_bonus(point,bet)
           end
         end
 
-        point.update_attributes(value: points)
+        point.update_attributes(value: points+bonus_val, bonus: bonus_val)
       end
 
       def adjust_bonus(point,bet)
@@ -41,6 +42,7 @@ module RakeTaskResources
         else
           bonus.delete if bonus.present?
         end
+        bonus_val
       end
 
       def calculate_bonus(bet)
@@ -51,10 +53,6 @@ module RakeTaskResources
         case
           when percentage < 15
             bonus = 10
-          #when percentage < 30
-          #  bonus = 10
-          #when percentage < 40
-          #  bonus = 10
           else
             bonus = 0
         end
