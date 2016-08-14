@@ -49,12 +49,12 @@ module RakeTaskResources
         percentage = (correct_count.to_f / bets.count.to_f)*100
 
         case
-          when percentage < 20
-            bonus = 30
-          when percentage < 30
-            bonus = 20
-          when percentage < 40
+          when percentage < 15
             bonus = 10
+          #when percentage < 30
+          #  bonus = 10
+          #when percentage < 40
+          #  bonus = 10
           else
             bonus = 0
         end
