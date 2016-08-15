@@ -8,6 +8,11 @@ class FixturesController < ApplicationController
     @user = current_user
   end
 
+  def bets_info
+    @week = Week.find(params[:week_id])
+    @fixture = Fixture.find(params[:fixture_id])
+  end
+
   private
 
   def bonuses_for_user_and_week

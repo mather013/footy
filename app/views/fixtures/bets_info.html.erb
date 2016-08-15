@@ -1,0 +1,51 @@
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
+  <a href="<%= fixtures_path(@fixture.week_id) %>" data-theme="a" data-rel="">Back</a>
+
+  <h1><%= "Fixture #{@fixture.id.to_s.rjust(3, "0")}" %></h1>
+</div>
+
+<div class="ui-grid-b" style=padding:30px>
+  <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+  <p>
+
+  <div class="ui-block-a" style="width:45%" align="center">
+    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.home_team.abbreviation}.png", class: "badge-size" %>
+    <br>
+    <%= @fixture.home_team.name.upcase %>
+  </div>
+  <div class="ui-block-b" style="width:10%" align="center">
+    <h8 class="bet-versus">
+      VS
+    </h8>
+  </div>
+  <div class="ui-block-c" style="width:45%" align="center">
+    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.away_team.abbreviation}.png", class: "badge-size" %>
+    <br>
+    <%= @fixture.away_team.name.upcase %>
+  </div>
+</div>
+
+<div class="ui-grid-c" style="padding:10px" align="center">
+  <% bets = @fixture.bets %>
+  <% number_of_bets = bets.count %>
+
+  <%= "H: #{(((bets.select { |bet| bet[:value] == 'H' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
+  <p></p>
+  <%= "D: #{(((bets.select { |bet| bet[:value] == 'D' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
+  <p></p>
+  <%= "A: #{(((bets.select { |bet| bet[:value] == 'A' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
+  <p></p>
+
+</div>
+
+<%= render 'common/footer' %>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('form').submit(function () {
+            $('input[type=submit]').attr("disabled", "disabled");
+        });
+    });
+</script>
