@@ -20,7 +20,9 @@
         <% end %>
 
         <li class="custom-list">
-          <%= render 'fixture_info' %>
+          <%= link_to fixture_bets_info_path(@week.id, @fixture.id), :method => :get do %>
+              <%= render 'fixture_info' %>
+          <% end %>
         </li>
     <% end %>
   </ul>
