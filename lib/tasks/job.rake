@@ -27,12 +27,12 @@ namespace :job do
 
   desc 'Sync scores'
   task :sync_scores, [:date] => :environment do |t, args|
-    Jobs::SyncScores.new.perform(args[:date])
+    Jobs::SyncScores.new.perform
   end
 
   desc 'Sync scores and mark'
   task :sync_scores_and_mark, [:date] => :environment do |t, args|
-    weeks_to_mark = Jobs::SyncScores.new.perform(args[:date])
+    weeks_to_mark = Jobs::SyncScores.new.perform
     weeks_to_mark.each do |week|
       RakeTaskResources::MarkWeek.perform week.id
       week.maybe_mark_complete

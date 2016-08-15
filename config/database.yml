@@ -2,24 +2,22 @@ defaults: &defaults
   adapter: postgresql
   encoding: utf8
   host: localhost
+  username: developer
+  password: password
   port: 15432
   pool: 5
 
 development:
-  database: footy_development
-  username: developer
-  password: password
   <<: *defaults
+  database: footy_development
 
 test: &test
-  database: footy_test
-  username: developer
-  password: password
   <<: *defaults
+  database: footy_test
 
 production:
-  database: footy_production
-  username: developer
-  password: password
-  port: 5432
   <<: *defaults
+  database: footy_production
+  username: hidden
+  password: hidden
+  port: 5432

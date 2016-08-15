@@ -49,6 +49,19 @@ describe Fixture do
       end
     end
 
+    describe 'requiring_score' do
+      let!(:fixture_one) { Fixture.create(kickoff: 12.hours.ago, external_id: nil) }
+      let!(:fixture_two) { Fixture.create(kickoff: 120.minutes.ago, external_id: nil) }
+      let!(:fixture_three) { Fixture.create(kickoff: 124.minutes.ago, external_id: nil) }
+      let!(:fixture_four) { Fixture.create(kickoff: 60.minutes.ago, external_id: nil) }
+      let!(:fixture_five) { Fixture.create(kickoff: 2.days.ago, external_id: nil) }
+      let!(:fixture_six) { Fixture.create(kickoff: 8.days.ago, external_id: nil) }
+
+      it 'returns the expected fixtures' do
+        fixture_three.create_score(home: 1, away: 2)
+        Fixture.requiring_score.should eq [fixture_one, fixture_two, fixture_five]
+      end
+    end
   end
 
   describe 'instance methods' do
@@ -233,7 +246,7 @@ describe Fixture do
 
     describe '#teams' do
       subject { fixture }
-      its(:teams) { should =~ [home_team,away_team] }
+      its(:teams) { should =~ [home_team, away_team] }
     end
   end
 end

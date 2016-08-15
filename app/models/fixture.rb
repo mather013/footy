@@ -14,6 +14,7 @@ class Fixture < ActiveRecord::Base
   scope :sorted, order('kickoff asc, name asc')
   scope :requiring_sync, lambda { where('external_id is null and kickoff between ? and ?', DateTime.now, ENVIRONMENT_CONFIG['days_in_advance_to_sync_fixtures'].days.from_now) }
   scope :recently_finished, lambda { where('kickoff between ? and ?', 155.minutes.ago, 95.minutes.ago) }
+  scope :requiring_score, lambda { where('kickoff between ? and ?', 7.days.ago, 105.minutes.ago).includes(:score).where(:scores => { :fixture_id => nil } ) }
 
   module Status
     DEFINED   = 'defined'
