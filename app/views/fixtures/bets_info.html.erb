@@ -27,25 +27,25 @@
 </div>
 
 <div class="ui-grid-c" style="padding:10px" align="center">
-  <% bets = @fixture.bets %>
-  <% number_of_bets = bets.count %>
+  <% unless @fixture.betable? %>
+      <% bets = @fixture.bets %>
+      <% number_of_bets = bets.count %>
 
-  <%= "H: #{(((bets.select { |bet| bet[:value] == 'H' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
-  <p></p>
-  <%= "D: #{(((bets.select { |bet| bet[:value] == 'D' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
-  <p></p>
-  <%= "A: #{(((bets.select { |bet| bet[:value] == 'A' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
-  <p></p>
-
+      <%= "H: #{(((bets.select { |bet| bet[:value] == 'H' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
+      <p></p>
+      <%= "D: #{(((bets.select { |bet| bet[:value] == 'D' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
+      <p></p>
+      <%= "A: #{(((bets.select { |bet| bet[:value] == 'A' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
+      <p></p>
+  <% else %>
+      H: TBA
+      <p></p>
+      D: TBA
+      <p></p>
+      A: TBA
+      <p></p>
+  <% end %>
 </div>
 
 <%= render 'common/footer' %>
 </html>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('form').submit(function () {
-            $('input[type=submit]').attr("disabled", "disabled");
-        });
-    });
-</script>
