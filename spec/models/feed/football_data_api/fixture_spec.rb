@@ -15,7 +15,10 @@ module Feed
                     :matchday => 1,
                     :homeTeamName => "Manchester United FC",
                     :awayTeamName => "Tottenham Hotspur FC",
-                    :result => {:goalsHomeTeam => 1, :goalsAwayTeam => 0}} }
+                    :result => {:goalsHomeTeam => 1, :goalsAwayTeam => 1,
+                                :halfTime => {:goalsHomeTeam => 0, :goalsAwayTeam => 0},
+                                :extraTime => {:goalsHomeTeam => 2, :goalsAwayTeam => 2},
+                                :penaltyShootout => {:goalsHomeTeam => 6, :goalsAwayTeam => 5}}} }
 
       describe 'attributes' do
 
@@ -26,9 +29,12 @@ module Feed
             expect(fixture.id).to eq(147075)
             expect(fixture.home_team_id).to eq(66)
             expect(fixture.away_team_id).to eq(73)
-            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.score).to eq('[1-1]')
+            expect(fixture.ht_score).to eq('[0-0]')
+            expect(fixture.et_score).to eq('[2-2]')
+            expect(fixture.ps_score).to eq('[6-5]')
             expect(fixture.home_team_goals).to eq(1)
-            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.away_team_goals).to eq(1)
             expect(fixture.status).to eq(::Fixture::Status::FINISHED)
           end
         end
@@ -40,9 +46,12 @@ module Feed
             expect(fixture.id).to eq(147075)
             expect(fixture.home_team_id).to eq(66)
             expect(fixture.away_team_id).to eq(73)
-            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.score).to eq('[1-1]')
+            expect(fixture.ht_score).to eq('[0-0]')
+            expect(fixture.et_score).to eq('[2-2]')
+            expect(fixture.ps_score).to eq('[6-5]')
             expect(fixture.home_team_goals).to eq(1)
-            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.away_team_goals).to eq(1)
             expect(fixture.status).to eq(::Fixture::Status::POSTPONED)
           end
         end
@@ -54,9 +63,12 @@ module Feed
             expect(fixture.id).to eq(147075)
             expect(fixture.home_team_id).to eq(66)
             expect(fixture.away_team_id).to eq(73)
-            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.score).to eq('[1-1]')
+            expect(fixture.ht_score).to eq('[0-0]')
+            expect(fixture.et_score).to eq('[2-2]')
+            expect(fixture.ps_score).to eq('[6-5]')
             expect(fixture.home_team_goals).to eq(1)
-            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.away_team_goals).to eq(1)
             expect(fixture.status).to eq(::Fixture::Status::SCHEDULED)
           end
         end
@@ -68,9 +80,12 @@ module Feed
             expect(fixture.id).to eq(147075)
             expect(fixture.home_team_id).to eq(66)
             expect(fixture.away_team_id).to eq(73)
-            expect(fixture.score).to eq('[1-0]')
+            expect(fixture.score).to eq('[1-1]')
+            expect(fixture.ht_score).to eq('[0-0]')
+            expect(fixture.et_score).to eq('[2-2]')
+            expect(fixture.ps_score).to eq('[6-5]')
             expect(fixture.home_team_goals).to eq(1)
-            expect(fixture.away_team_goals).to eq(0)
+            expect(fixture.away_team_goals).to eq(1)
             expect(fixture.status).to eq(::Fixture::Status::IN_PLAY)
           end
         end
