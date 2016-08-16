@@ -5,7 +5,7 @@
   <h1><%= "Fixture #{@fixture.id.to_s.rjust(3, "0")}" %></h1>
 </div>
 
-<div class="ui-grid-b" style=padding:30px>
+<div class="ui-grid-a" style=padding:30px>
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
   <p>
 
@@ -26,26 +26,28 @@
   </div>
 </div>
 
-<div class="ui-grid-c" style="padding:10px" align="center">
-  <% unless @fixture.betable? %>
-      <% bets = @fixture.bets %>
-      <% number_of_bets = bets.count %>
+<% fixture_betable = @fixture.betable? %>
+<% unless fixture_betable %>
+    <% bets = @fixture.bets %>
+    <% number_of_bets = bets.count %>
+<% end %>
 
-      <%= "H: #{(((bets.select { |bet| bet[:value] == 'H' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
-      <p></p>
-      <%= "D: #{(((bets.select { |bet| bet[:value] == 'D' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
-      <p></p>
-      <%= "A: #{(((bets.select { |bet| bet[:value] == 'A' }.count.to_f)/number_of_bets.to_f)*100).round(2)}%" %>
-      <p></p>
-  <% else %>
-      H: TBA
-      <p></p>
-      D: TBA
-      <p></p>
-      A: TBA
-      <p></p>
-  <% end %>
-</div>
+<% ['H', 'D', 'A'].each do |value| %>
+    <div class="ui-grid-c" style="padding:10px" align="center">
+
+      <div class="ui-block-a" style="width:42%" align="right">
+        <%= "#{value}:" %>
+      </div>
+
+      <div class="ui-block-b" style="width:4%" align="right">
+        &nbsp;
+      </div>
+
+      <div class="ui-block-c" style="width:16%" align="right">
+        <%= fixture_betable ? "TBA%" : "#{(((bets.select { |bet| bet[:value] == value }.count.to_f)/number_of_bets.to_f)*100).round(1)}%" %>
+      </div>
+    </div>
+<% end %>
 
 <%= render 'common/footer' %>
 </html>
