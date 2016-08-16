@@ -248,5 +248,49 @@ describe Fixture do
       subject { fixture }
       its(:teams) { should =~ [home_team, away_team] }
     end
+
+    describe '#bonus_available?' do
+
+      before :each do
+        fixture.stub(:score).and_return(score)
+      end
+
+      context 'when fixture does not have a score' do
+        let(:score) { nil }
+
+        it 'returns false' do
+          expect(fixture.bonus_available?).to eq(false)
+        end
+      end
+
+      context 'when fixture has a score' do
+        let(:score) { double(Score, outcome: 'D') }
+        let(:bets) { [double(Bet, value: 'D'),
+                      double(Bet, value: 'H'), double(Bet, value: 'H'), double(Bet, value: 'H'), double(Bet, value: 'H'), double(Bet, value: 'H'),
+                      double(Bet, value: 'A'), double(Bet, value: 'A'), double(Bet, value: 'A'), double(Bet, value: 'A')] }
+
+        before :each do
+          fixture.stub(:bets).and_return(bets)
+        end
+
+        context 'and no bet value exists below the bonus threshold' do
+
+          it 'returns false' do
+            stub_const('ENVIRONMENT_CONFIG', { 'bonus_threshold' => 10 })
+            expect(fixture.bonus_available?).to eq(false)
+          end
+        end
+
+        context 'and a bet value exists below the bonus threshold' do
+
+          it 'returns true' do
+            stub_const('ENVIRONMENT_CONFIG', { 'bonus_threshold' => 15 })
+            expect(fixture.bonus_available?).to eq(true)
+          end
+        end
+
+      end
+    end
+
   end
 end

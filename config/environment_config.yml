@@ -28,6 +28,7 @@ defaults: &defaults
     football_api:
       url: http://football-api.com/api/
       competition_id: 1204
+  bonus_threshold: 15
 
 development:
   <<: *defaults

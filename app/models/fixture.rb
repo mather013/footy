@@ -63,6 +63,16 @@ class Fixture < ActiveRecord::Base
     [home_team,away_team]
   end
 
+  def bonus_available?
+    return false if TOGGLES_CONFIG['bonus_points'] == false || score.nil?
+    result = score.outcome
+    bet_values = bets.collect(&:value)
+    correct_count = bet_values.count(result)
+    percentage = (correct_count.to_f / bet_values.count.to_f)*100
+
+    percentage < ENVIRONMENT_CONFIG['bonus_threshold']
+  end
+
   private
 
   def kickoff_pending?

@@ -3,9 +3,9 @@
   <div class="ui-block-a main-font" style="<%= block_a_style %>">
     <%= "Round #{@round.id.to_s.rjust(2, '0')}" %>
     <% if @round.week.status == 'In play' %>
-        <span class="label label-warning">In play</span>
+        <span class="label label-warning">in play</span>
     <% elsif @round.week.status == 'Open' %>
-        <span class="label label-success">Open</span>
+        <span class="label label-success">open</span>
     <% end %>
     <br>
     <h10 class="kickoff">

@@ -5,7 +5,11 @@
     <% bonus = @bonuses.select { |b| b[:fixture_id] == @fixture.id }.first if @bonuses.present? %>
     <% if bonus.present? %>
         <span class="label bonus-points">
-            <%= bonus.value.to_i %>
+            bonus
+        </span>
+    <% elsif @fixture.bonus_available? %>
+            <span class="label label-primary">
+            miss
         </span>
     <% end %>
   </div>
