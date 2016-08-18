@@ -77,11 +77,13 @@
 
 .main-font {
     font-size: 14px;
+    text-shadow: none; !important;
 }
 
 .fixture-date {
     font-size: 12px;
     color: #979797;
+    text-shadow: none !important;
 }
 
 .fixture-teams {
@@ -283,6 +285,14 @@ div.ui-btn, input[type="submit"] {
 
 .custom-list {
     background: white !important;
+}
+
+.custom-list-correct {
+    background: #ccffcc !important;
+}
+
+.custom-list-wrong {
+    background: #ffcccc !important;
 }
 
 .custom-list-header {
