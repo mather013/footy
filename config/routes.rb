@@ -13,6 +13,7 @@ Footy::Application.routes.draw do
   resources :gb_points,    :only => [:index, :show]
   resources :sweep_bets,   :only => [:index, :create, :new]
   resources :sweep_points, :only => [:index]
+  resources :winners,      :only => [:index]
 
   get  'sessions'                                 => 'sessions#new'
   get  'weeks/:week_id/fixtures'                  => 'fixtures#index',  :as => 'fixtures'
