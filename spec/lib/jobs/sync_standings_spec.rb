@@ -38,6 +38,10 @@ module Jobs
             Standing.count.should eq(3)
           end
 
+          xit 'form' do
+            Standing.count.should eq(3)
+          end
+
         end
 
         context 'when teams do not exists' do

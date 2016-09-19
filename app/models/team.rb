@@ -25,7 +25,33 @@ class Team < ActiveRecord::Base
     result
   end
 
-private
+  def calc_form
+    result = []
+
+    form_fixtures.each do |fixture|
+      is_home_team = fixture.home_team_id == id
+
+      case fixture.score.outcome
+        when 'D'
+          result << 'D'
+        when 'H'
+          is_home_team ? result << 'W' : result << 'L'
+        when 'A'
+          is_home_team ? result << 'L' : result << 'W'
+      end
+    end
+    result.reverse
+  end
+
+  def form_fixtures
+    Fixture.where('id in (?)',(home_fixtures.joins(:score) + away_fixtures.joins(:score)).collect(&:id)).order('kickoff desc').limit(5)
+  end
+
+  def form
+    standing.form
+  end
+
+  private
 
   def maximum_sweep_points
     Week.count+1

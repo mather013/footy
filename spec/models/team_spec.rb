@@ -80,5 +80,23 @@ describe Team do
       end
     end
 
+    describe 'calc_form' do
+      xit '' do
+
+      end
+    end
+
+    describe 'form_fixtures' do
+      xit '' do
+
+      end
+    end
+
+    describe 'form' do
+      xit '' do
+
+      end
+    end
+
   end
 end
