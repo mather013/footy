@@ -336,7 +336,7 @@ div.ui-btn, input[type="submit"] {
 
 .standings {
     display: inline-block;
-    width: 1.1em;
+    width: 0.2em;
     height: 1.5em;
     line-height: 1.5em;
     text-align: center;
@@ -344,10 +344,10 @@ div.ui-btn, input[type="submit"] {
     text-transform: uppercase;
     color: #FFFFFF;
     font-size: .7rem;
-    padding: 0px 0.125em;
+    padding: 0px 0.1em;
     text-shadow: 0px 0px 0px #4d4d4d;
 }
-
+    
 .won {
     background: #5cb85c none repeat scroll 0% 0%;
 }
