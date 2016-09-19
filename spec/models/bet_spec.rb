@@ -35,6 +35,61 @@ describe Bet do
         Bet.new(fixture_id: 2, user_id: 1, value: 'H').should be_valid
       end
     end
+
+    describe 'check_permitted' do
+      let(:user) { User.create(name: 'User 1', username: 'user_1', password: 'password') }
+      let(:home_team) { Team.create(name: 'Liverpool', abbreviation: 'liv') }
+      let(:away_team) { Team.create(name: 'Everton', abbreviation: 'eve') }
+      let(:fixture) { Fixture.create(home_team_id: home_team.id, away_team_id: away_team.id, kickoff: kickoff, name: 'LIV-EVE') }
+
+      context 'when creating bet' do
+
+        context 'when fixture has not yet kickoff' do
+          let(:kickoff) { 1.day.from_now }
+
+          it 'allows the bet to be created' do
+            bet = user.bets.create(fixture_id: fixture.id, value: 'H')
+            expect(Bet.count).to eq 1
+          end
+        end
+
+        context 'when fixture has kicked off' do
+          let(:kickoff) { 1.day.ago }
+
+          it 'does not allow the bet to be created' do
+            bet = user.bets.create(fixture_id: fixture.id, value: 'H')
+            expect(bet.errors.messages).to eq ({:fixture_id => ["fixture has already kicked off"]})
+            expect(Bet.count).to eq 0
+          end
+        end
+      end
+
+      context 'when updating bet' do
+        let(:kickoff) { 1.day.from_now }
+        let!(:bet) { user.bets.create(fixture_id: fixture.id, value: 'H') }
+
+        context 'when fixture has not yet kickoff' do
+
+          it 'allows the bet to be updated' do
+            bet.update_attributes(value: 'D')
+            expect(Bet.count).to eq 1
+          end
+        end
+
+        context 'when fixture has kicked off' do
+
+          it 'does not allow the bet to be updated' do
+            fixture.update_attributes(kickoff: 1.day.ago)
+            bet.fixture.reload
+            bet.update_attributes(value: 'D')
+            bet.reload
+            expect(bet.errors.messages).to eq ({:fixture_id => ["fixture has already kicked off"]})
+            expect(Bet.count).to eq 1
+            expect(bet.value).to eq 'H'
+          end
+        end
+      end
+    end
   end
 
   describe 'scopes' do

@@ -5,7 +5,7 @@ class Bet < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, :uniqueness => {:scope => :fixture_id}
-  #before_save :check_permitted
+  validate :check_permitted
 
   scope :bets_for_user_and_fixtures, lambda { |user, fixture_ids| where('user_id = ? and fixture_id in (?)', user.id, fixture_ids) }
 
@@ -41,13 +41,14 @@ class Bet < ActiveRecord::Base
     return 'A' if away > home
   end
 
-  #def check_permitted
-  #  fixture.week.fixtures.each do |fixture|
-  #    if Bet.bets_for_user_and_fixtures(user, fixture.id).collect(&:value).count(value) > 0
-  #      errors.add(:user_id, 'Sorry, score already chosen')
-  #      return false
-  #    end
-  #  end
-  #end
+  def check_permitted
+    #fixture.week.fixtures.each do |fixture|
+    #  if Bet.bets_for_user_and_fixtures(user, fixture.id).collect(&:value).count(value) > 0
+    #    errors.add(:user_id, 'Sorry, score already chosen')
+    #    return false
+    #  end
+    #end
+    errors.add(:fixture_id, "fixture has already kicked off") if fixture.kickoff < DateTime.now
+  end
 
 end
