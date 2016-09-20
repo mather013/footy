@@ -14,11 +14,11 @@
     <li class="custom-list-header fixture-date">
       <div class="ui-grid-b">
         <div class="ui-block-a" align="left" style="width:12%"></div>
-        <div class="ui-block-b" align="left" style="width:38%"></div>
-        <div class="ui-block-c" align="center" style="width:10%">P</div>
-        <div class="ui-block-c" align="center" style="width:10%">GD</div>
+        <div class="ui-block-b" align="left" style="width:44%"></div>
+        <div class="ui-block-c" align="center" style="width:8%">P</div>
+        <div class="ui-block-c" align="center" style="width:8%">GD</div>
         <div class="ui-block-c" align="right" style="width:10%">PTS</div>
-        <div class="ui-block-d" align="right" style="width:20%">Form</div>
+        <div class="ui-block-d" align="right" style="width:18%">Form</div>
       </div>
     </li>
   </ul>
@@ -28,24 +28,24 @@
   <ul data-role="listview">
 
     <% @standings.each do |standing| %>
-        <li class="custom-list">
+        <li class="custom-list standings-text">
           <div class="ui-grid-b">
 
             <div class="ui-block-a" style="width:12%">
               <%= standing.position.ordinalize %>
             </div>
 
-            <div class="ui-block-b" style="width:38%">
+            <div class="ui-block-b" style="width:44%">
               <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
-              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{standing.team.abbreviation}.png", class: 'strip-size' %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{standing.team.abbreviation}.png", class: 'standings-badge' %>
               &nbsp
-              <%= "#{standing.team.name}" %>
+              <%= "#{standing.team.name.upcase}" %>
             </div>
 
-            <div class="ui-block-c" align="center" style="width:10%">
+            <div class="ui-block-c" align="center" style="width:8%">
               <%= "#{standing.played}" %>
             </div>
-            <div class="ui-block-c" align="center" style="width:10%">
+            <div class="ui-block-c" align="center" style="width:8%">
               <%= "#{standing.goal_difference}" %>
             </div>
 
@@ -53,12 +53,12 @@
               <%= standing.points %>
             </div>
 
-            <div class="ui-block-d" align="right" style="width:20%">
+            <div class="ui-block-d" align="right" style="width:18%">
               <% if standing.form.present? %>
                   <% standing.form.upcase.split("").each do |char| %>
                       <% style = (char == 'W' ? 'won' : (char == 'L' ? 'lost' : 'draw')) %>
                       <!--<span class="standings <%= style %>"><%= char %></span>-->
-                      <span class="standings <%= style %>"></span>
+                      <span class="standings-form <%= style %>"></span>
                   <% end %>
               <% else %>
               N/A
