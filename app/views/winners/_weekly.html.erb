@@ -1,0 +1,30 @@
+<div data-role="content">
+  <ul data-role="listview" id="fix-list">
+    <% @weeks.each do |week| %>
+        <% winners = @winners.where(number: week.id) %>
+
+        <% if winners.empty? %>
+            <li class="custom-list">
+              <div class="ui-grid-b event-font">
+                <div class="ui-block-a" style="width:20%"><%= week.description %></div>
+                <div class="ui-block-b" style="width:32%">-</div>
+                <div class="ui-block-c" align="right" style="width:14%">-</div>
+                <div class="ui-block-c payout-icon" align="right" style="width:14%">-</div>
+                <div class="ui-block-d" align="right" style="width:20%">-</div>
+              </div>
+            </li>
+        <% else %>
+            <% winners.each do |winner| %>
+                <li class="custom-list">
+                  <div class="ui-grid-b event-font">
+                    <div class="ui-block-a" style="width:30%"><%= week.description %></div>
+                    <div class="ui-block-b" style="width:32%"><%= winner.user.name %></div>
+                    <div class="ui-block-c" align="right" style="width:18%"><%= winner.total %></div>
+                    <div class="ui-block-c payout-icon" align="right" style="width:20%"><%= "£#{10/winners.count}" %></div>
+                  </div>
+                </li>
+            <% end %>
+        <% end %>
+    <% end %>
+  </ul>
+</div>

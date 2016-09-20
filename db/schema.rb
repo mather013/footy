@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160814183833) do
+ActiveRecord::Schema.define(:version => 20160824124047) do
 
   create_table "bets", :force => true do |t|
     t.integer  "fixture_id", :null => false
@@ -147,10 +147,10 @@ ActiveRecord::Schema.define(:version => 20160814183833) do
   end
 
   create_table "points", :force => true do |t|
-    t.integer  "week_id",    :null => false
-    t.integer  "user_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "week_id",                   :null => false
+    t.integer  "user_id",                   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "value"
     t.integer  "bonus",      :default => 0
   end
@@ -221,6 +221,15 @@ ActiveRecord::Schema.define(:version => 20160814183833) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.boolean  "complete"
+  end
+
+  create_table "winners", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.integer  "total"
+    t.integer  "number"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

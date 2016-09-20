@@ -7,69 +7,11 @@
   <h1>Winners</h1>
 </div>
 
-<div data-role="content">
-  <ul data-role="listview" id="fix-list">
-    <% @week_ids_by_month.each do |month_id, week_ids| %>
-        <% if @weeks.where('complete = true and id in (?)', week_ids).count == week_ids.count %>
-            <% monthly_points = Point.total_points_for_weeks(week_ids) %>
-            <% highest_score = monthly_points.first.total unless monthly_points==[] %>
-
-            <% monthly_points.each do |point| %>
-                <% if highest_score.to_i == point.total.to_i %>
-                    <li class="custom-list">
-                      <div class="ui-grid-b event-font">
-
-                        <div class="ui-block-a" style="width:20%">
-                          <%= "#{DateTime.parse("1900-#{month_id}-01").strftime('%b').upcase}" %>
-                        </div>
-
-                        <div class="ui-block-b" style="width:32%">
-                          <%= User.find(point.user_id).name %>
-                        </div>
-
-                        <div class="ui-block-c" align="right" style="width:14%">
-                          <%= point.total.to_i %>
-                        </div>
-
-                        <div class="ui-block-c payout-icon" align="right"  style="width:14%">
-                          £30
-                        </div>
-
-                        <div class="ui-block-d" align="right" style="width:20%">
-                          <%= "#{week_ids.count} weeks" %>
-                        </div>
-
-                      </div>
-                    </li>
-                <% end %>
-            <% end %>
-        <% else %>
-            <li class="custom-list">
-              <div class="ui-grid-b event-font ">
-                <div class="ui-block-a" style="width:20%">
-                  <%= "#{DateTime.parse("1900-#{month_id}-01").strftime('%b').upcase}" %>
-                </div>
-
-                <div class="ui-block-b" style="width:32%">
-                  -
-                </div>
-
-                <div class="ui-block-c" align="right" style="width:14%">
-                  -
-                </div>
-
-                <div class="ui-block-c" align="right" style="width:14%">
-                  -
-                </div>
-
-                <div class="ui-block-d" align="right" style="width:20%">
-                  <%= "#{week_ids.count} weeks" %>
-                </div>
-              </div>
-            </li>
-        <% end %>
-    <% end %>
-  </ul>
-</div>
+<% if ENVIRONMENT_CONFIG['winners_frequency'] == Winner::Frequency::WEEKLY %>
+    <%= render 'weekly' %>
+<% else %>
+    <%= render 'monthly' %>
+<% end %>
 <%= render 'common/footer' %>
+
 </html>
