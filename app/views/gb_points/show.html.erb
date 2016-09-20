@@ -22,7 +22,7 @@
 
             <div class="ui-block-b" style="width:10%">
               <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
-              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.home_team.abbreviation}.png", class: 'badge-small' %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.home_team.abbreviation}.png", class: 'badge-big' %>
             </div>
 
             <div class="ui-block-b gb-fixture-score" style="width:20%">
@@ -30,7 +30,7 @@
             </div>
 
             <div class="ui-block-c" style="width:10%">
-              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.away_team.abbreviation}.png", class: 'badge-small' %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.away_team.abbreviation}.png", class: 'badge-big' %>
             </div>
 
             <div class="ui-block-d" style="width:30%">

@@ -14,29 +14,32 @@
     <% @points.each do |point| %>
         <li class="custom-list">
           <%= link_to gb_point_path(point.team_id), :method => :get do %>
-              <div class="ui-grid-b main-font">
-                <div class="ui-block-a" style="width:43%">
+              <div class="ui-grid-b standings-text">
+                <div class="ui-block-a " style="width:8%">
                   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
-                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{point.team.abbreviation}.png", class: 'strip-size' %>
-                  &nbsp
-                  <%= point.team.name %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{point.team.abbreviation}.png", class: 'badge-small' %>
+                </div>
+
+                <div class="ui-block-b" style="width:40%">
+                  <%= point.team.name.upcase %>
                 </div>
 
                 <% bet = GbBet.find_by_team_id(point.team.id) %>
 
-                <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+                <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-c current_user' : 'ui-block-c') %>
 
-                <div class="<%= username_style %>" style="width:42%">
+                <div class="<%= username_style %>" style="width:34%">
                   <%= bet.user.name if bet.present? %>
                 </div>
 
-                <div class="ui-block-c" align="left" style="width:10%">
+                <div class="ui-block-d kickoff" align="left" style="width:10%">
+                  <%= "#{point.minute}'" if point.minute.present? %>
+                </div>
+
+                <div class="ui-block-e" align="left" style="width:4%">
                   <%= point.value %>
                 </div>
 
-                <div class="ui-block-d kickoff" align="left" style="width:5%">
-                  <%= "#{point.minute}'" if point.minute.present? %>
-                </div>
               </div>
           <% end %>
         </li>

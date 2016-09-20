@@ -150,14 +150,19 @@
     max-height: 12px;
 }
 
-.badge-small {
+.badge-big {
     max-width: 32px;
     max-height: 32px;
 }
 
-.badge-smallest {
+.badge-medium {
     max-width: 24px;
     max-height: 24px;
+}
+
+.badge-small {
+    max-width: 12px;
+    max-height: 12px;
 }
 
 .player-badge-size {
@@ -349,12 +354,7 @@ div.ui-btn, input[type="submit"] {
 }
 
 .standings-text {
-    font-size: .9em;
-}
-
-.standings-badge {
-    max-width: 12px;
-    max-height: 12px;
+    font-size: 11px;
 }
 
 .won {

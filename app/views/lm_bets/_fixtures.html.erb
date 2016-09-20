@@ -12,7 +12,7 @@
 
             <% if fixtures[i*2].present? %>
                 <div class="ui-block-a" style="width: 12%">
-                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2].home_team.abbreviation}.png", class: 'badge-small' %>
+                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2].home_team.abbreviation}.png", class: 'badge-big' %>
                 </div>
                 <div class="ui-block-b lms_fixture" style="width: 24%">
                     <span class="<%= team_names.include?(fixtures[i*2].home_team.name) ? '' : 'disabled-font' %>">
@@ -24,7 +24,7 @@
                     </span>
                 </div>
                 <div class="ui-block-c" style="width: 12%">
-                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2].away_team.abbreviation}.png", class: 'badge-small' %>
+                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2].away_team.abbreviation}.png", class: 'badge-big' %>
                 </div>
             <% end %>
 
@@ -34,7 +34,7 @@
 
             <% if fixtures[i*2+1].present? %>
                 <div class="ui-block-d" style="width: 12%">
-                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2+1].home_team.abbreviation}.png", class: 'badge-small' %>
+                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2+1].home_team.abbreviation}.png", class: 'badge-big' %>
                 </div>
                 <div class="ui-block-e lms_fixture" style="width: 24%">
                     <span class="<%= team_names.include?(fixtures[i*2+1].home_team.name) ? '' : 'disabled-font' %>">
@@ -46,7 +46,7 @@
                     </span>
                 </div>
                 <div class="ui-block-c" style="width: 12%">
-                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2+1].away_team.abbreviation}.png", class: 'badge-small' %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2+1].away_team.abbreviation}.png", class: 'badge-big' %>
                 </div>
             <% end %>
           </div>

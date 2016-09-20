@@ -23,7 +23,7 @@
   <% if @lm_bet.present? %>
       <div class="ui-block-b main-font" align="center" style="width:14%">
         <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
-        <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@lm_bet.team.abbreviation}.png", class: "badge-smallest" %>
+        <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@lm_bet.team.abbreviation}.png", class: "badge-medium" %>
       </div>
 
       <div class="ui-block-c main-font" style="<%= block_c_style %>">
