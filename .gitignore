@@ -22,3 +22,5 @@ db/schema.rb
 
 #Ignore vendor bundle
 vendor/bundle
+
+config/secrets.yml
