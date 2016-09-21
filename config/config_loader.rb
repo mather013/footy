@@ -14,6 +14,7 @@ class ConfigLoader
   end
 end
 
+PRODUCTION_CONFIG = ConfigLoader.new("#{Rails.root}/config/secrets.yml").to_hash
 ENVIRONMENT_CONFIG = ConfigLoader.new("#{Rails.root}/config/environment_config.yml").to_hash
 TOGGLES_CONFIG = ConfigLoader.new("#{Rails.root}/config/toggles.yml").to_hash
 
