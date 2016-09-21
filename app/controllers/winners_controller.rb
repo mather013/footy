@@ -2,11 +2,25 @@ class WinnersController < ApplicationController
   before_filter :require_login
 
   def index
+    set_common
+    @week_ids_by_month = @hash
+  end
+
+  def show
+    @month_id = params['id'].to_i
+    set_common
+    @week_ids_for_month = @hash[@month_id]
+  end
+
+  private
+
+  def set_common
+    @hash = {}
     @points = Point.total_points_by_week
-    hash = {}
     @weeks = Week.sorted
-    @weeks.each { |w| hash[w.close_date.month].nil? ? hash[w.close_date.month] = [w.id] : hash[w.close_date.month] << w.id }
-    @week_ids_by_month = hash
+    @weeks.each do |w|
+      @hash[w.close_date.month].nil? ? @hash[w.close_date.month] = [w.id] : @hash[w.close_date.month] << w.id
+    end
   end
 
 end

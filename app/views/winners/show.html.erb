@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= winners_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+
+  <h1><%= "#{DateTime.parse("1900-#{@month_id}-01").strftime('%b').upcase}" %></h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+    <% monthly_points = Point.total_points_for_weeks(@week_ids_for_month) %>
+    <% monthly_points.each do |point| %>
+        <li class="custom-list">
+          <div class="ui-grid-b">
+
+            <div class="ui-block-a" style="width:20%">
+
+            </div>
+
+            <div class="ui-block-b" style="width:40%">
+              <%= User.find(point.user_id).name %>
+            </div>
+
+            <div class="ui-block-c" align="right" style="width:14%">
+              <%= point.total.to_i %>
+            </div>
+
+            <div class="ui-block-c payout-icon" align="right" style="width:14%">
+
+            </div>
+
+            <div class="ui-block-d" align="right" style="width:12%">
+
+            </div>
+
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>
