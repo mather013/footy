@@ -11,6 +11,7 @@
         <span class="jackpot"><%= "Pot #{ENVIRONMENT_CONFIG['week_jackpot']}" %></span>
     <% end %>
   </h1>
+  <a href="<%= winner_path(@week.close_date.month) %>" class="ui-btn-right" data-theme="a" data-rel="">Month</a>
 </div>
 
 <div class="leaderboard">

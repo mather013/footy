@@ -2,9 +2,9 @@
 <html>
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
-  <a href="<%= winners_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <a href="" class="ui-btn-left" data-theme="a" data-rel="back">Back</a>
 
-  <h1><%= "#{DateTime.parse("1900-#{@month_id}-01").strftime('%b').upcase}" %></h1>
+  <h1><%= "#{DateTime.parse("1900-#{@month_id}-01").strftime('%B').upcase}" %></h1>
 </div>
 
 <div class="leaderboard">
