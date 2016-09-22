@@ -18,8 +18,11 @@
 
             </div>
 
-            <div class="ui-block-b" style="width:40%">
-              <%= User.find(point.user_id).name %>
+            <% user = User.find(point.user_id) %>
+
+            <% username_style = (user.id == @current_user.id ? "ui-block-b current_user" : "ui-block-b") %>
+            <div class="<%= username_style %>" style="width:40%">
+              <%= user.name %>
             </div>
 
             <div class="ui-block-c" align="right" style="width:14%">

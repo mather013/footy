@@ -8,6 +8,7 @@ class WinnersController < ApplicationController
 
   def show
     @month_id = params['id'].to_i
+    @current_user = current_user
     set_common
     @week_ids_for_month = @hash[@month_id]
   end
