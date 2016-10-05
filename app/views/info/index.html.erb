@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
-  <a href="<%= weeks_path %>" data-theme="a" data-rel="">Back</a>
+  <a href="<%= weeks_path %>" data-theme="a" data-rel="">Home</a>
 
   <h1><%= 'Information' %></h1>
+  <% if @user.admin? %>
+      <a href="<%= jobs_path %>" class="ui-btn-right" data-theme="a" data-rel="">Jobs</a>
+  <% end %>
 </div>
 
 <div class="kickoff" data-role="content">
