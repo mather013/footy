@@ -36,4 +36,9 @@ Footy::Application.routes.draw do
   get  'gb_points_info'                           => 'gb_points#info',  :as => 'gb_points_info'
   match 'jobs/perform/:job_name'                  => 'jobs#perform',    :as => 'jobs_perform', :via => :post
   #match '*a', :to => 'errors#routing'
+
+  namespace :api do
+    post 'fixtures/add_score'  => 'fixtures#add_score', :as => 'new_fixture_score'
+  end
+
 end
