@@ -25,10 +25,50 @@ class Team < ActiveRecord::Base
     result
   end
 
+  def home_results
+    calc_results(finished_home_fixtures)
+  end
+
+  def away_results
+    calc_results(finished_away_fixtures)
+  end
+
+  def results
+    calc_results(finished_fixtures)
+  end
+
   def calc_form
+    results.last(5)
+  end
+
+  def form
+    standing.form
+  end
+
+  def league_stats
+    gf = goals_for
+    ga = goals_against
+
+    hash = {pld: 0, pts: 0, gf: gf, ga: ga, gd: gf-ga}
+
+    self.results.each do |result|
+      hash[:pts] += 1 if result == 'D'
+      hash[:pts] += 3 if result == 'W'
+      hash[:pld] += 1
+    end
+    hash
+  end
+
+  def goals
+    {for: goals_for, against: goals_against, home: home_goals, away: away_goals}
+  end
+
+  private
+
+  def calc_results(fixtures)
     result = []
 
-    form_fixtures.each do |fixture|
+    fixtures.order(:kickoff).each do |fixture|
       is_home_team = fixture.home_team_id == id
 
       case fixture.score.outcome
@@ -40,21 +80,41 @@ class Team < ActiveRecord::Base
           is_home_team ? result << 'L' : result << 'W'
       end
     end
-    result.reverse
+    result
   end
 
-  def form_fixtures
-    Fixture.where('id in (?)',(home_fixtures.joins(:score) + away_fixtures.joins(:score)).collect(&:id)).order('kickoff desc').limit(5)
+  def goals_for
+    home_goals[:goals_for]+away_goals[:goals_for]
   end
 
-  def form
-    standing.form
+  def goals_against
+    home_goals[:goals_against]+away_goals[:goals_against]
   end
 
-  private
+  def home_goals
+    scores = home_fixtures.joins(:score).collect(&:score)
+    {goals_for: scores.collect(&:home).sum, goals_against: scores.collect(&:away).sum}
+  end
+
+  def away_goals
+    scores = away_fixtures.joins(:score).collect(&:score)
+    {goals_for: scores.collect(&:away).sum, goals_against: scores.collect(&:home).sum}
+  end
 
   def maximum_sweep_points
     Week.count+1
+  end
+
+  def finished_fixtures
+    Fixture.joins(:score).where('home_team_id = ? OR away_team_id = ?', self.id, self.id)
+  end
+
+  def finished_home_fixtures
+    Fixture.joins(:score).where(home_team_id: self.id)
+  end
+
+  def finished_away_fixtures
+    Fixture.joins(:score).where(away_team_id: self.id)
   end
 
 end

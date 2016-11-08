@@ -92,7 +92,43 @@ describe Team do
       end
     end
 
+    describe 'home_results' do
+      xit '' do
+
+      end
+    end
+
+    describe 'away_results' do
+      xit '' do
+
+      end
+    end
+
+    describe 'results' do
+      xit '' do
+
+      end
+    end
+
+    describe 'calc_form' do
+      xit '' do
+
+      end
+    end
+
     describe 'form' do
+      xit '' do
+
+      end
+    end
+
+    describe 'league_stats' do
+      xit '' do
+
+      end
+    end
+
+    describe 'goals' do
       xit '' do
 
       end
