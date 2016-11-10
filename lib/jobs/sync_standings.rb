@@ -6,11 +6,10 @@ module Jobs
       Standing.delete_all
       standings_from_feed.each do |feed_team|
         team = Team.find_by_external_id(feed_team.id)
-        form = team.calc_form if feed_team.form.nil?
         Standing.create(id: i+=1,
                         team_id: team.id,
                         position: feed_team.position,
-                        form: form.join(""),
+                        form: feed_team.form ||= team.calc_form.join(''),
                         points: feed_team.points,
                         form_score: feed_team.form_score,
                         played: feed_team.played,
