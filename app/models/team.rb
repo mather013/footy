@@ -25,13 +25,17 @@ class Team < ActiveRecord::Base
     result
   end
 
-  def home_results
-    calc_results(finished_home_fixtures)
-  end
+  #def home_results
+  #  calc_results(finished_home_fixtures)
+  #end
+  #
+  #def away_results
+  #  calc_results(finished_away_fixtures)
+  #end
 
-  def away_results
-    calc_results(finished_away_fixtures)
-  end
+  #def goals
+  #  {for: goals_for, against: goals_against, home: home_goals, away: away_goals}
+  #end
 
   def results
     calc_results(finished_fixtures)
@@ -48,19 +52,16 @@ class Team < ActiveRecord::Base
   def league_stats
     gf = goals_for
     ga = goals_against
+    team_results = results
 
-    hash = {pld: 0, pts: 0, gf: gf, ga: ga, gd: gf-ga}
+    hash = {pld: 0, pts: 0, gf: gf, ga: ga, gd: gf-ga, form: team_results.last(5).join('')}
 
-    self.results.each do |result|
+    team_results.each do |result|
       hash[:pts] += 1 if result == 'D'
       hash[:pts] += 3 if result == 'W'
       hash[:pld] += 1
     end
     hash
-  end
-
-  def goals
-    {for: goals_for, against: goals_against, home: home_goals, away: away_goals}
   end
 
   private
@@ -109,12 +110,12 @@ class Team < ActiveRecord::Base
     Fixture.joins(:score).where('home_team_id = ? OR away_team_id = ?', self.id, self.id)
   end
 
-  def finished_home_fixtures
-    Fixture.joins(:score).where(home_team_id: self.id)
-  end
-
-  def finished_away_fixtures
-    Fixture.joins(:score).where(away_team_id: self.id)
-  end
+  #def finished_home_fixtures
+  #  Fixture.joins(:score).where(home_team_id: self.id)
+  #end
+  #
+  #def finished_away_fixtures
+  #  Fixture.joins(:score).where(away_team_id: self.id)
+  #end
 
 end

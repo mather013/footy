@@ -48,7 +48,7 @@ class Bet < ActiveRecord::Base
     #    return false
     #  end
     #end
-    errors.add(:fixture_id, "fixture has already kicked off") if fixture.kickoff < DateTime.now
+    errors.add(:fixture_id, 'fixture has already kicked off') if fixture.kickoff < DateTime.now
   end
 
 end
