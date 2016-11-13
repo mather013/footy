@@ -40,6 +40,10 @@ class BetsController < ApplicationController
   def load_fixture_and_choices
     @fixture = Fixture.find(params['fixture_id'])
     @choices = @fixture.choices
+    if TOGGLES_CONFIG['form_for_bets']
+      @home_team_form = @fixture.home_team.results.last(5).join
+      @away_team_form = @fixture.away_team.results.last(5).join
+    end
   end
 
 end

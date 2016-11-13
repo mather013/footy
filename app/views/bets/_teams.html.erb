@@ -5,6 +5,15 @@
     <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.home_team.abbreviation}.png", class: "badge-size" %>
     <br>
     <%= @fixture.home_team.name.upcase %>
+    <p></p>
+
+    <% if @home_team_form.present? %>
+        <% @home_team_form.upcase.split("").each do |char| %>
+            <% style = (char == 'W' ? 'won' : (char == 'L' ? 'lost' : 'draw')) %>
+            <span class="bet-form <%= style %>"><%= char %></span>
+        <% end %>
+    <% end %>
+
   </div>
   <div class="ui-block-b" style="width:10%" align="center">
     <h8 class="bet-versus">
@@ -15,5 +24,14 @@
     <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.away_team.abbreviation}.png", class: "badge-size" %>
     <br>
     <%= @fixture.away_team.name.upcase %>
+    <p></p>
+
+    <% if @away_team_form.present? %>
+        <% @away_team_form.upcase.split("").each do |char| %>
+            <% style = (char == 'W' ? 'won' : (char == 'L' ? 'lost' : 'draw')) %>
+            <span class="bet-form <%= style %>"><%= char %></span>
+        <% end %>
+    <% end %>
+
   </div>
 </div>

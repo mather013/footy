@@ -8,6 +8,7 @@ defaults: &defaults
   sms_communications: true
   bonus_points: true
   feed: football_data_api #football_api
+  form_for_bets: false
 
 development:
   <<: *defaults
