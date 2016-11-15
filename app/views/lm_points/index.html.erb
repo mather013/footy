@@ -24,14 +24,14 @@
               </div>
 
               <div class="ui-block-c payout-icon" style="width:10%">
-                <%= "$" if user.games.include?(@game) %>
+                <%= '$' if user.games.include?(@game) %>
               </div>
 
               <div class="ui-block-d <%= style %>" align="left" style="width:50%">
                 <% if user.lm_bets.present? %>
                     <% user_latest_bet = user.lm_bets.order('created_at DESC').first %>
                     <% lm_round = user_latest_bet.lm_round %>
-                    <%= lm_round.week.status == 'Open' ? "Round #{lm_round.id}: ? ? ? ? ?" : "Round #{lm_round.id}: #{user_latest_bet.team.name}" %>
+                    <%= lm_round.week.status == 'Open' ? "Round #{lm_round.id}: ? ? ? ? ?" : "Round #{lm_round.id}: #{user_latest_bet.team.name.upcase}" %>
                 <% else %>
                     Round 1: No Selection
                 <% end %>

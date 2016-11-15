@@ -15,7 +15,7 @@ class GbBetsController < ApplicationController
   private
 
   def available_choices
-    Team.all.collect(&:id) - GbBet.all.collect(&:team_id)
+    GbRound.available_choices
   end
 
 end

@@ -1,27 +1,38 @@
 <% if TOGGLES_CONFIG['last_man_standing'] %>
-    <li><a href="<%= lm_rounds_path %>">
-      LMS
-      <% if @user.lm_survivor? %>
-          <span class="label label-success">&nbsp; &nbsp;</span>
-      <% else %>
-          <span class="label label-danger">&nbsp; &nbsp;</span>
-      <% end %>
+    <% lm_survivor = @user.lm_point.value >= (LmRound.current.id-1) %>
+
+    <% if lm_survivor %>
+        <% lm_path = lm_rounds_path %>
+        <% lm_label_style = LmRound.last.week.open? ? 'label-success' : 'label-warning' %>
+    <% else %>
+        <% lm_path = lm_points_path %>
+        <% lm_label_style = 'label-danger' %>
+    <% end %>
+
+    <li><a href="<%= lm_path %>">LMS
+      <span class="label <%= lm_label_style %>">&nbsp; &nbsp;</span>
     </a></li>
 <% end %>
 
 <% if TOGGLES_CONFIG['goal_buster'] %>
-    <li>
-      <% path = @user.gb_bet.present? ? gb_points_path : new_gb_bet_path %>
-      <a href="<%= path %>">Buster
-        <% if @user.gb_bet.present? %>
-            <span class="label label-default">&nbsp;<%= @user.gb_bet.team.gb_point.value %>&nbsp;</span>
+    <% user_has_gb_bet = @user.gb_bet.present? %>
+
+    <% if user_has_gb_bet %>
+        <% gb_path = gb_points_path %>
+        <% gb_label_style = 'label-warning' %>
+        <% gb_score = @user.gb_bet.team.gb_point.value %>
+    <% else %>
+        <% gb_score = 'NA' %>
+        <% if GbRound.available_choices.count > 0 %>
+            <% gb_path = new_gb_bet_path %>
+            <% gb_label_style = 'label-success' %>
         <% else %>
-            <% if GbBet.count < Team.count %>
-                <span class="label label-success">&nbsp; &nbsp;</span>
-            <% else %>
-                <span class="label label-danger">&nbsp; &nbsp;</span>
-            <% end %>
+            <% gb_path = gb_points_path %>
+            <% gb_label_style = 'label-danger' %>
         <% end %>
-      </a>
-    </li>
+    <% end %>
+
+    <li><a href="<%= gb_path %>">Buster
+      <span class="label <%= gb_label_style %>">&nbsp;<%= gb_score %>&nbsp;</span>
+    </a></li>
 <% end %>

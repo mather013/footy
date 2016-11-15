@@ -17,6 +17,21 @@ describe GbRound do
     end
   end
 
+  describe 'class methods' do
+
+    describe '.available_choices' do
+      let(:expected_result) { [1, 4] }
+      let(:teams) { [double(Team, id: 1), double(Team, id: 2), double(Team, id: 3), double(Team, id: 4)] }
+      let(:bets) { [double(GbBet, team_id: 2), double(GbBet, team_id: 3)] }
+
+      it 'returns expected choices' do
+        Team.stub(:all).and_return(teams)
+        GbBet.stub(:all).and_return(bets)
+        expect(GbRound.available_choices).to eq(expected_result)
+      end
+    end
+  end
+
   describe 'instance methods' do
     let(:week) { Week.create(id: 4, close_date: DateTime.parse('2015-08-30 18:30:00'), description: 'Week 04') }
     let(:gb_round) { GbRound.create(id: 1, starting_week_id: week.id) }

@@ -8,6 +8,7 @@ Footy::Application.routes.draw do
   resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
   resources :lm_rounds,    :only => [:index]
   resources :lm_bets,      :only => [:create, :update]
+  resources :lm_points,    :only => [:index]
   resources :standings,    :only => [:index]
   resources :gb_bets,      :only => [:index, :create, :new]
   resources :gb_points,    :only => [:index, :show]
@@ -28,7 +29,6 @@ Footy::Application.routes.draw do
   get  'fa_points'                                => 'fa_points#index', :as => 'fa_points'
   post 'lm_rounds/:lm_round_id/lm_bets'           => 'lm_bets#new',     :as => 'new_lm_bet'
   get  'lm_rounds/:lm_round_id/lm_bets'           => 'lm_bets#edit',    :as => 'edit_lm_bet'
-  get  'lm_points'                                => 'lm_points#index', :as => 'lm_points'
   get  'lm_rounds_info'                           => 'lm_rounds#info',  :as => 'lm_rounds_info'
   get  'users/:user_id/weeks/:week_id/fixtures'   => 'users#index',     :as => 'user_week_fixtures'
   get  'users/:user_id/lm_rounds'                 => 'users#show',      :as => 'user_lm_rounds'

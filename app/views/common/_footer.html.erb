@@ -4,7 +4,7 @@
   <div data-role=navbar>
     <ul>
       <li><a href="<%= weeks_path %>">H/D/A
-        <span class="label label-default"><%= @user.position.current.ordinalize if @user.position.present? %></span>
+        <span class="label label-warning"><%= @user.position.current.ordinalize if @user.position.present? %></span>
       </a></li>
 
       <% partial = ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type'] == 'club' ? 'common/club' : 'common/international' %>
