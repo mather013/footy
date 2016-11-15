@@ -1,5 +1,6 @@
 <% if TOGGLES_CONFIG['last_man_standing'] %>
-    <% lm_survivor = @user.lm_point.value >= (LmRound.current.id-1) %>
+    <% lm_points = @user.lm_point.present? ? @user.lm_point.value : 0 %>
+    <% lm_survivor = lm_points >= (LmRound.current.id-1) %>
 
     <% if lm_survivor %>
         <% lm_path = lm_rounds_path %>
