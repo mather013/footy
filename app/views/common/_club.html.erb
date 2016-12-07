@@ -23,7 +23,7 @@
         <% gb_label_style = 'label-warning' %>
         <% gb_score = @user.gb_bet.team.gb_point.value %>
     <% else %>
-        <% gb_score = 'NA' %>
+        <% gb_score = '-' %>
         <% if GbRound.available_choices.count > 0 %>
             <% gb_path = new_gb_bet_path %>
             <% gb_label_style = 'label-success' %>

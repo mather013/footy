@@ -18,27 +18,28 @@
         <li class="<%= list_style %>">
           <%= link_to gb_point_path(point.team_id), :method => :get do %>
               <div class="ui-grid-b standings-text">
-                <div class="ui-block-a " style="width:8%">
-                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{point.team.abbreviation}.png", class: 'badge-small' %>
-                </div>
-
-                <div class="ui-block-b" style="width:40%">
-                  <%= point.team.name.upcase %>
-                </div>
 
                 <% bet = GbBet.find_by_team_id(point.team.id) %>
 
-                <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-c current_user' : 'ui-block-c') %>
+                <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-a current_user' : 'ui-block-a') %>
 
-                <div class="<%= username_style %>" style="width:34%">
+                <div class="<%= username_style %>" style="width:36%">
                   <%= bet.user.name if bet.present? %>
+                </div>
+
+                <div class="ui-block-b" style="width:8%">
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{point.team.abbreviation}.png", class: 'badge-small' %>
+                </div>
+
+                <div class="ui-block-c" style="width:36%">
+                  <%= point.team.name.upcase %>
                 </div>
 
                 <div class="ui-block-d kickoff" align="left" style="width:10%">
                   <%= "#{point.minute}'" if point.minute.present? %>
                 </div>
 
-                <div class="ui-block-e" align="left" style="width:4%">
+                <div class="ui-block-e gb-points" align="left" style="width:10%">
                   <%= point.value %>
                 </div>
 
