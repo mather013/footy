@@ -1,6 +1,6 @@
 module Jobs
   def self.all
-    [SyncStandings,SyncFixtures,SyncScores].collect do |job|
+    [SyncFixtures,SyncScores,MarkWeek].collect do |job|
       job.to_s.gsub('Jobs::', '').underscore
     end
 
