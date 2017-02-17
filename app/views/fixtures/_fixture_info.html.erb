@@ -23,7 +23,11 @@
   </div>
 
   <div class="ui-block-c fixture-score" align="center" style="width:14%">
-    <%= @fixture.score.present? ? "#{@fixture.score.home} - #{@fixture.score.away}" : @fixture.kickoff_local_time.strftime('%H:%M') %>
+    <% if @fixture.status == Fixture::Status::POSTPONED %>
+        P - P
+    <% else %>
+        <%= @fixture.score.present? ? "#{@fixture.score.home} - #{@fixture.score.away}" : @fixture.kickoff_local_time.strftime('%H:%M') %>
+    <% end %>
   </div>
 
   <div class="ui-block-d" align="center" style="width:12%">
