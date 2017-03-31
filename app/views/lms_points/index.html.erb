@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
+  <a href="<%= lms_rounds_path %>" data-theme="a" data-rel="">Back</a>
+
+  <h1>
+    Last Man Standing
+  </h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+    <% @total_points.each do |point| %>
+        <li class="custom-list">
+          <a href="<%= user_lms_rounds_path(point.user_id) %>" class="leaderboard">
+            <div class="ui-grid-b">
+
+              <% knocked_out = point.value < @max_round.id-1 %>
+              <% style = 'disabled-font' if knocked_out %>
+              <% user = User.find(point.user_id) %>
+
+              <div class="ui-block-b <%= style %>" style="width:40%">
+                <%= user.name %>
+              </div>
+
+              <div class="ui-block-c payout-icon" style="width:10%">
+                <%= '$' if user.games.include?(@game) %>
+              </div>
+
+              <div class="ui-block-d <%= style %>" align="left" style="width:50%">
+                <% if user.lms_bets.present? %>
+                    <% user_last_lm_bet = user.lms_bets.order('created_at DESC').first %>
+                    <% lm_round = user_last_lm_bet.lms_round %>
+
+                    <% case lm_round.week.status %>
+                    <% when 'Open' %>
+                        <span class="label label-success"><%= "#{lm_round.id}" %></span>
+                        &nbsp;
+                        ? ? ? ? ? ?
+                    <% when 'In play' %>
+                        <span class="label label-warning"><%= "#{lm_round.id}" %></span>
+                        &nbsp;
+                        <%= user_last_lm_bet.team.name.upcase %>
+                    <% when 'Complete' %>
+                        <% if knocked_out %>
+                            <span class="label label-default"><%= "#{lm_round.id}" %></span>
+                        <% else %>
+                            <span class="label label-warning"><%= "#{lm_round.id}" %></span>
+                        <% end %>
+                        &nbsp;
+                        <%= user_last_lm_bet.team.name.upcase %>
+                    <% end %>
+                <% else %>
+                    <span class="label label-default">1</span>
+                    No Selection
+                <% end %>
+              </div>
+
+            </div>
+          </a>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

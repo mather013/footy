@@ -10,7 +10,7 @@ module RakeTaskResources
             teams = fixture.teams
             teams.delete(fixture.winning_team)
             losing_team = teams.first
-            SweepPoint.find_by_team_id(losing_team.id).update_attributes(value: fixture.week_id)
+            Points::SweepPoint.find_by_team_id(losing_team.id).update_attributes(value: fixture.week_id)
           end
         end
       end

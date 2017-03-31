@@ -78,11 +78,11 @@ module RakeTaskResources
 
       before :each do
         team_hash.each { |k,v| Team.create(id: v, name: k.to_s) }
-        Team.all.each { |team| GbPoint.create(team_id: team.id, value: 0) }
+        Team.all.each { |team| Points::GbPoint.create(team_id: team.id, value: 0) }
       end
 
       context 'when goal buster round is week 1' do
-        let!(:round) { GbRound.create(starting_week_id: 1) }
+        let!(:round) { Rounds::GbRound.create(starting_week_id: 1) }
         let(:expected_hash) { {1 => 0, 2 => 7, 3 => 9, 4 => 1, 5 => 3, 6 => 11} }
         let(:expected_minute_hash) { {1 => nil, 2 => 24, 3 => 34, 4 => 41, 5 => 51, 6 => 63} }
 
@@ -90,7 +90,7 @@ module RakeTaskResources
           RakeTaskResources::MarkGbBets.perform
 
           expected_hash.each do |k, v|
-            expect(GbPoint.find_by_team_id(k).value).to eq(v)
+            expect(Points::GbPoint.find_by_team_id(k).value).to eq(v)
           end
         end
 
@@ -99,13 +99,13 @@ module RakeTaskResources
 
           expected_minute_hash.each do |k, v|
             #expect(GbPoint.find_by_team_id(k).minute).to eq(v)
-            expect(GbPoint.find_by_team_id(k).minute).to eq(nil)
+            expect(Points::GbPoint.find_by_team_id(k).minute).to eq(nil)
           end
         end
       end
 
       context 'when goal buster round is week 2' do
-        let!(:round) { GbRound.create(starting_week_id: 2) }
+        let!(:round) { Rounds::GbRound.create(starting_week_id: 2) }
         let(:expected_hash) { {1 => 0, 2 => 5, 3 => 10, 4 => 0, 5 => 3, 6 => 11} }
         let(:expected_minute_hash) { {1 => nil, 2 => 24, 3 => 34, 4 => 41, 5 => 51, 6 => 63} }
 
@@ -113,7 +113,7 @@ module RakeTaskResources
           RakeTaskResources::MarkGbBets.perform
 
           expected_hash.each do |k, v|
-            expect(GbPoint.find_by_team_id(k).value).to eq(v)
+            expect(Points::GbPoint.find_by_team_id(k).value).to eq(v)
           end
         end
 
@@ -122,7 +122,7 @@ module RakeTaskResources
 
           expected_minute_hash.each do |k, v|
             #expect(GbPoint.find_by_team_id(k).minute).to eq(v)
-            expect(GbPoint.find_by_team_id(k).minute).to eq(nil)
+            expect(Points::GbPoint.find_by_team_id(k).minute).to eq(nil)
           end
         end
       end

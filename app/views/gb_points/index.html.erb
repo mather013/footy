@@ -19,7 +19,7 @@
           <%= link_to gb_point_path(point.team_id), :method => :get do %>
               <div class="ui-grid-b standings-text">
 
-                <% bet = GbBet.find_by_team_id(point.team.id) %>
+                <% bet = Bets::GbBet.find_by_team_id(point.team.id) %>
 
                 <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-a current_user' : 'ui-block-a') %>
 

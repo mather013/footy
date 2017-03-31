@@ -11,7 +11,7 @@
   <ul data-role="listview" id="fix-list">
     <% @week_ids_by_month.each do |month_id, week_ids| %>
         <% if @weeks.where('complete = true and id in (?)', week_ids).count == week_ids.count %>
-            <% monthly_points = Point.total_points_for_weeks(week_ids) %>
+            <% monthly_points = Points::HdaPoint.total_points_for_weeks(week_ids) %>
             <% highest_score = monthly_points.first.total unless monthly_points==[] %>
 
             <% monthly_points.each do |point| %>

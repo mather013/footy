@@ -21,7 +21,7 @@
               <%= point.team.name.upcase %>
             </div>
 
-            <% bet = SweepBet.find_by_team_id(point.team.id) %>
+            <% bet = Bets::SweepBet.find_by_team_id(point.team.id) %>
 
             <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
 

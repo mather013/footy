@@ -36,7 +36,7 @@ module RakeTaskResources
 
       before :each do
         team_hash.each { |k, v| Team.create(id: v, name: k.to_s) }
-        Team.all.each { |team| SweepPoint.create(team_id: team.id, value: 8) }
+        Team.all.each { |team| Points::SweepPoint.create(team_id: team.id, value: 8) }
       end
 
       let(:expected_hash) { {1 => 6, 2 => 8, 3 => 7, 4 => 6, 5 => 5, 6 => 5, 7 => 5, 8 => 5} }
@@ -45,7 +45,7 @@ module RakeTaskResources
         RakeTaskResources::MarkSweepBets.perform
 
         expected_hash.each do |k, v|
-          expect(SweepPoint.find_by_team_id(k).value).to eq(v)
+          expect(Points::SweepPoint.find_by_team_id(k).value).to eq(v)
         end
       end
     end

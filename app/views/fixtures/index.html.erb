@@ -20,16 +20,16 @@
             </li>
         <% end %>
 
-        <% @bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
+        <% @bet=Bets::HdaBet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
 
         <li class="custom-list">
           <% if fixture.betable? && !@user.read_only? %>
               <% if @bet.nil? %>
-                  <%= link_to new_fixture_bet_path(@week.id, @fixture.id), :method => :post do %>
+                  <%= link_to new_fixture_hda_bet_path(@week.id, @fixture.id), :method => :post do %>
                       <%= render 'fixture_info' %>
                   <% end %>
               <% else %>
-                  <%= link_to edit_fixture_bet_path(@week.id, @fixture.id), :method => :get do %>
+                  <%= link_to edit_fixture_hda_bet_path(@week.id, @fixture.id), :method => :get do %>
                       <%= render 'fixture_info' %>
                   <% end %>
               <% end %>
@@ -39,7 +39,7 @@
                       <%= render 'fixture_info' %>
                   <% end %>
               <% else %>
-                  <%= link_to fixture_bets_info_path(@week.id, @fixture.id), :method => :get do %>
+                  <%= link_to fixture_hda_bets_info_path(@week.id, @fixture.id), :method => :get do %>
                       <%= render 'fixture_info' %>
                   <% end %>
               <% end %>

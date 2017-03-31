@@ -1,17 +1,19 @@
 class User < ActiveRecord::Base
   attr_accessible :id, :name, :username, :password, :mobile
 
-  has_many :bets
-  has_many :fa_bets
-  has_many :lm_bets
-  has_many :points
+  has_many :hda_bets, class_name: 'Bets::HdaBet'
+  has_many :fa_bets, class_name: 'Bets::FaBet'
+  has_many :lms_bets, class_name: 'Bets::LmsBet'
+  has_one :gb_bet, class_name: 'Bets::GbBet'
+  has_one :sweep_bet, class_name: 'Bets::SweepBet'
+
+  has_many :hda_points, class_name: 'Points::HdaPoint'
+  has_one :fa_point, class_name: 'Points::FaPoint'
+  has_one :lms_point, class_name: 'Points::LmsPoint'
+
   has_many :communications
-  has_one :fa_point
-  has_one :lm_point
   has_and_belongs_to_many :games
   has_one :position
-  has_one :gb_bet
-  has_one :sweep_bet
 
   validates_presence_of :name, :username, :password
 
@@ -34,10 +36,10 @@ class User < ActiveRecord::Base
   def lm_survivor?
     return false if read_only?
     correct_count = 0
-    lm_bets.each do |bet|
+    lms_bets.each do |bet|
       correct_count +=1 if bet.correct?
     end
-    correct_count == LmRound.all.count-1
+    correct_count == Rounds::LmsRound.all.count-1
   end
 
   def in_sweep?

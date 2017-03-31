@@ -3,13 +3,13 @@ require 'spec_helper'
 describe User do
 
   describe 'associations' do
-    it { should have_many :bets }
+    it { should have_many :hda_bets }
     it { should have_many :fa_bets }
-    it { should have_many :lm_bets }
-    it { should have_many :points }
+    it { should have_many :lms_bets }
+    it { should have_many :hda_points }
     it { should have_many :communications }
     it { should have_one :fa_point }
-    it { should have_one :lm_point }
+    it { should have_one :lms_point }
     it { should have_one :position }
     it { should have_and_belong_to_many :games }
   end
@@ -69,9 +69,9 @@ describe User do
       let!(:argentina) { Team.create(id: 3, name: 'Argentina', abbreviation: 'arg') }
       let!(:player_4) { Player.create(surname: 'Messi', team_id: 3) }
 
-      let(:fa_bets) { [FaBet.create(user_id: user.id, player_id: player_1.id),
-                       FaBet.create(user_id: user.id, player_id: player_2.id),
-                       FaBet.create(user_id: user.id, player_id: player_3.id)]}
+      let(:fa_bets) { [Bets::FaBet.create(user_id: user.id, player_id: player_1.id),
+                       Bets::FaBet.create(user_id: user.id, player_id: player_2.id),
+                       Bets::FaBet.create(user_id: user.id, player_id: player_3.id)]}
 
       before (:each) do
         user.fa_bets << fa_bets
@@ -84,19 +84,19 @@ describe User do
 
     describe '#lm_survivor?' do
       let!(:user) { User.create(name: 'Guest', username: 'guest', password: 'abc') }
-      let!(:lm_round) { LmRound.create(week_id: 1) }
-      let!(:bet)  { LmBet.create(lm_round_id: lm_round.id, user_id: user.id, team_id: 1) }
+      let!(:lm_round) { Rounds::LmsRound.create(week_id: 1) }
+      let!(:bet)  { Bets::LmsBet.create(lms_round_id: lm_round.id, user_id: user.id, team_id: 1) }
 
       before :each do
         user.stub(:read_only?).and_return(false)
-        LmBet.any_instance.stub(:correct?).and_return(true)
-        LmRound.create(week_id: 2)
+        Bets::LmsBet.any_instance.stub(:correct?).and_return(true)
+        Rounds::LmsRound.create(week_id: 2)
       end
 
       context 'when user is not a lms survivor' do
 
         before :each do
-          LmRound.create(week_id: 3)
+          Rounds::LmsRound.create(week_id: 3)
         end
 
         it 'returns false' do
@@ -121,7 +121,7 @@ describe User do
 
       context 'when user has a sweep bet' do
         let(:team) { double(Team, name: 'Brazil', in_sweep?: in_sweep) }
-        let(:sweep_bet) { double(SweepBet, team: team) }
+        let(:sweep_bet) { double(Bets::SweepBet, team: team) }
 
         context 'the team is still in competition' do
           let(:in_sweep) { true }

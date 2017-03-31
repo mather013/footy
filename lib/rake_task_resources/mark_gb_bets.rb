@@ -20,14 +20,14 @@ module RakeTaskResources
         hash.each do |team_id, goals|
           event = goals > 0 ? last_goal_event(Team.find(team_id)) : nil
           minute = event.present? ? event.minute : nil
-          GbPoint.find_by_team_id(team_id).update_attributes(value: goals, minute: minute)
+          Points::GbPoint.find_by_team_id(team_id).update_attributes(value: goals, minute: minute)
         end
       end
 
       private
 
       def fixtures
-        Fixture.where('kickoff >= ?',GbRound.first.week.close_date).order('kickoff asc')
+        Fixture.where('kickoff >= ?', Rounds::GbRound.first.week.close_date).order('kickoff asc')
       end
 
       def last_goal_event team

@@ -1,12 +1,12 @@
 <% if TOGGLES_CONFIG['last_man_standing'] %>
-    <% lm_points = @user.lm_point.present? ? @user.lm_point.value : 0 %>
-    <% lm_survivor = lm_points >= (LmRound.current.id-1) %>
+    <% lms_points = @user.lms_point.present? ? @user.lms_point.value : 0 %>
+    <% lms_survivor = lms_points >= (Rounds::LmsRound.current.id-1) %>
 
-    <% if lm_survivor %>
+    <% if lms_survivor %>
         <% lm_path = lm_rounds_path %>
-        <% lm_label_style = LmRound.last.week.open? ? 'label-success' : 'label-warning' %>
+        <% lm_label_style = Rounds::LmsRound.last.week.open? ? 'label-success' : 'label-warning' %>
     <% else %>
-        <% lm_path = lm_points_path %>
+        <% lm_path = lms_points_path %>
         <% lm_label_style = 'label-danger' %>
     <% end %>
 
@@ -24,7 +24,7 @@
         <% gb_score = @user.gb_bet.team.gb_point.value %>
     <% else %>
         <% gb_score = '-' %>
-        <% if GbRound.available_choices.count > 0 %>
+        <% if Rounds::GbRound.available_choices.count > 0 %>
             <% gb_path = new_gb_bet_path %>
             <% gb_label_style = 'label-success' %>
         <% else %>

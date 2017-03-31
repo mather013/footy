@@ -2,7 +2,7 @@ module RakeTaskResources
   class AddFaBets
     class << self
       def perform
-        FaBet.delete_all
+        Bets::FaBet.delete_all
         bets = [{ user_id: User.find_by_username('markm').id,  player_names: ['K Benzema', 'L Messi',     'Neymar Jr',   'J Rodriguez',  'L Suarez'   ] },
                 { user_id: User.find_by_username('andyb').id,  player_names: ['S Aguero',  'Fred',        'L Messi',     'Neymar Jr',    'C Ronaldo'  ] },
                 { user_id: User.find_by_username('ryans').id,  player_names: ['L Messi',   'Neymar Jr',   'W Rooney',    'C Ronaldo',    'F Torres'   ] },
@@ -31,7 +31,7 @@ module RakeTaskResources
 
         bets.each do |bet|
           bet[:player_names].each do |player_name|
-            FaBet.create(user_id: bet[:user_id], player_id: Player.find_by_name(player_name).id)
+            Bets::FaBet.create(user_id: bet[:user_id], player_id: Player.find_by_name(player_name).id)
           end
         end
       end

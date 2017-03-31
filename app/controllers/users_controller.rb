@@ -12,14 +12,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @rounds = LmRound.sorted
+    @rounds = Rounds::LmsRound.sorted
     @view_user = User.find(params[:user_id])
   end
 
   private
 
   def bonuses_for_user_and_week
-    point = @view_user.points.where(week_id: @week.id).first
+    point = @view_user.hda_points.where(week_id: @week.id).first
     point.present? ? point.bonuses : []
   end
 

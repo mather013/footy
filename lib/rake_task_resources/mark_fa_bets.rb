@@ -5,7 +5,7 @@ module RakeTaskResources
         puts "marking 5 alive bets"
         puts "===================="
         User.all.each do |user|
-          fa_bets = FaBet.find_all_by_user_id(user.id)
+          fa_bets = Bets::FaBet.find_all_by_user_id(user.id)
           mark_5_alive user, fa_bets unless fa_bets.empty?
         end
       end

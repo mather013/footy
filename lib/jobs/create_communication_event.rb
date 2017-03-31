@@ -12,7 +12,7 @@ module Jobs
         fixtures = @week_current.fixtures
 
         User.all.each do |user|
-          bets = Bet.bets_for_user_and_fixtures(user, @week_current.fixtures.map(&:id))
+          bets = Bets::HdaBet.bets_for_user_and_fixtures(user, @week_current.fixtures.map(&:id))
           if bets.count != fixtures.count
             create_communication_for(user) if user.mobile.present?
           end

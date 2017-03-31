@@ -4,7 +4,7 @@ describe Week do
 
   describe 'associations' do
     it { should have_many :fixtures }
-    it { should have_many :points }
+    it { should have_many :hda_points }
   end
 
   describe 'attributes' do

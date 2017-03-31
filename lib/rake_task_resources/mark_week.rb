@@ -7,7 +7,7 @@ module RakeTaskResources
         @fixture_ids = @week.fixtures.collect { |fixture| fixture.id }.flatten
         @points = @week.points
         User.all.each do |user|
-          bets = Bet.bets_for_user_and_fixtures(user, @fixture_ids)
+          bets = Bets::HdaBet.bets_for_user_and_fixtures(user, @fixture_ids)
           mark_footy_forecast user, bets unless bets.empty?
         end
       end

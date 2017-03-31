@@ -2,8 +2,8 @@ class Team < ActiveRecord::Base
   attr_accessible :id, :name, :abbreviation, :external_id
 
   has_one :standing
-  has_one :gb_point
-  has_one :sweep_point
+  has_one :gb_point, class_name: 'Points::GbPoint'
+  has_one :sweep_point, class_name: 'Points::SweepPoint'
   has_many :players
   has_many :events
   has_many :home_fixtures, foreign_key: 'home_team_id', class_name: 'Fixture'

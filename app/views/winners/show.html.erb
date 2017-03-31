@@ -9,7 +9,7 @@
 
 <div class="leaderboard">
   <ul data-role="listview">
-    <% monthly_points = Point.total_points_for_weeks(@week_ids_for_month) %>
+    <% monthly_points = Points::HdaPoint.total_points_for_weeks(@week_ids_for_month) %>
     <% monthly_points.each do |point| %>
         <li class="custom-list">
           <div class="ui-grid-b">

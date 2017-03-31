@@ -11,22 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160814183833) do
-
-  create_table "bets", :force => true do |t|
-    t.integer  "fixture_id", :null => false
-    t.integer  "user_id",    :null => false
-    t.string   "value",      :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20170330155449) do
 
   create_table "bonuses", :force => true do |t|
-    t.integer  "point_id"
+    t.integer  "hda_point_id"
     t.integer  "fixture_id"
     t.integer  "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "communications", :force => true do |t|
@@ -116,22 +108,39 @@ ActiveRecord::Schema.define(:version => 20160814183833) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "lm_bets", :force => true do |t|
-    t.integer  "lm_round_id", :null => false
-    t.integer  "user_id",     :null => false
-    t.integer  "team_id",     :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "hda_bets", :force => true do |t|
+    t.integer  "fixture_id", :null => false
+    t.integer  "user_id",    :null => false
+    t.string   "value",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table "lm_points", :force => true do |t|
+  create_table "hda_points", :force => true do |t|
+    t.integer  "week_id",                   :null => false
+    t.integer  "user_id",                   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "value"
+    t.integer  "bonus",      :default => 0
+  end
+
+  create_table "lms_bets", :force => true do |t|
+    t.integer  "lms_round_id", :null => false
+    t.integer  "user_id",      :null => false
+    t.integer  "team_id",      :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "lms_points", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "value",      :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "lm_rounds", :force => true do |t|
+  create_table "lms_rounds", :force => true do |t|
     t.integer  "week_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -144,15 +153,6 @@ ActiveRecord::Schema.define(:version => 20160814183833) do
     t.string   "surname"
     t.string   "forename"
     t.integer  "squad_number"
-  end
-
-  create_table "points", :force => true do |t|
-    t.integer  "week_id",    :null => false
-    t.integer  "user_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "value"
-    t.integer  "bonus",      :default => 0
   end
 
   create_table "positions", :force => true do |t|

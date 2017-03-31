@@ -2,26 +2,29 @@ module RakeTaskResources
   class ResetData
     class << self
       def perform
-        Bet.delete_all
+        Bets::HdaBet.delete_all
+        Bets::LmsBet.delete_all
+        Bets::FaBet.delete_all
+        Bets::GbBet.delete_all
+        Bets::SweepBet.delete_all
+
+        Points::HdaPoint.delete_all
+        Points::LmsPoint.delete_all
+        Points::FaPoint.delete_all
+        Points::GbPoint.delete_all
+        Points::SweepPoint.delete_all
+
+        Rounds::LmsRound.delete_all
+        Rounds::GbRound.delete_all
+
         Communication.delete_all
         Event.delete_all
-        FaBet.delete_all
-        FaPoint.delete_all
         Fixture.delete_all
-        GbBet.delete_all
-        GbPoint.delete_all
-        GbRound.delete_all
         Goal.delete_all
-        LmBet.delete_all
-        LmPoint.delete_all
-        LmRound.delete_all
         Player.delete_all
-        Point.delete_all
         Position.delete_all
         Score.delete_all
         Standing.delete_all
-        SweepBet.delete_all
-        SweepPoint.delete_all
         Team.delete_all
         Week.delete_all
       end

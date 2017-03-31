@@ -17,7 +17,7 @@ class WinnersController < ApplicationController
 
   def set_common
     @hash = {}
-    @points = Point.total_points_by_week
+    @points = Points::HdaPoint.total_points_by_week
     @weeks = Week.sorted
     @weeks.each do |w|
       @hash[w.close_date.month].nil? ? @hash[w.close_date.month] = [w.id] : @hash[w.close_date.month] << w.id

@@ -13,7 +13,7 @@ module Jobs
           User.create(name: 'Mr Test', username: 'tester', password: 'abc', mobile: '123456789')
           Week.stub(:current).and_return(current_week)
           User.stub(:all).and_return(users)
-          Bet.stub(:bets_for_user_and_fixtures).and_return(bets)
+          Bets::HdaBet.stub(:bets_for_user_and_fixtures).and_return(bets)
           TOGGLES_CONFIG.stub(:[]).with("sms_communications").and_return(true)
 
           Jobs::CreateCommunicationEvent.new.perform
@@ -63,7 +63,7 @@ module Jobs
             let(:close_date) { 13.hours.from_now }
             let(:current_week) { double(Week, description: 'Week 08', close_date: close_date, fixtures: fixtures) }
             let(:mobile_number) { '123456789' }
-            let(:bets) { [double(Bet), double(Bet)] }
+            let(:bets) { [double(Bets::HdaBet), double(Bets::HdaBet)] }
 
             it 'does not create a sms communication record' do
               expect(Communications::SmsCommunication.count).to eq(0)

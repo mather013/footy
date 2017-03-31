@@ -2,7 +2,7 @@ class Week < ActiveRecord::Base
   attr_accessible :id, :close_date, :description, :complete
 
   has_many :fixtures
-  has_many :points
+  has_many :hda_points, class_name: 'Points::HdaPoint'
 
   scope :sorted, order('close_date asc')
   scope :sorted_open, order('complete desc, close_date asc')

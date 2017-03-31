@@ -2,7 +2,7 @@
 <html>
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed">
-  <a href="<%= lm_points_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <a href="<%= lms_points_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
   <h1><%= "#{@view_user.name} LMS" %></h1>
 </div>
 
@@ -11,7 +11,7 @@
     <% @rounds.each do |round| %>
         <% @round = round %>
         <li class="custom-list">
-          <% @lm_bet = LmBet.bets_for_user_and_round(@view_user, round).first %>
+          <% @lm_bet = Bets::LmsBet.bets_for_user_and_round(@view_user, round).first %>
           <%= render 'round_info' %>
         </li>
     <% end %>

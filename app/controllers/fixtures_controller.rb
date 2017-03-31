@@ -8,7 +8,7 @@ class FixturesController < ApplicationController
     @user = current_user
   end
 
-  def bets_info
+  def hda_bets_info
     @week = Week.find(params[:week_id])
     @fixture = Fixture.find(params[:fixture_id])
   end
@@ -16,7 +16,7 @@ class FixturesController < ApplicationController
   private
 
   def bonuses_for_user_and_week
-    point = @user.points.where(week_id: @week.id).first
+    point = @user.hda_points.where(week_id: @week.id).first
     point.present? ? point.bonuses : []
   end
 
