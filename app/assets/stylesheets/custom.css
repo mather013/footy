@@ -469,6 +469,47 @@ div.ui-btn, input[type="submit"] {
     font-size: .7em;
 }
 
+.ft-score {
+    background: #fde05c;
+    font-size: 1em;
+    color: #000000;
+    /*padding: 1em .4em .4em;*/
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    /*width: 1em;*/
+    height: 1.2em;
+    line-height: 1.4em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.in-play-score {
+    background: #4a71e9;
+    font-size: 1em;
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    height: 1.2em;
+    line-height: 1.4em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pending-score {
+    background: #e6e6e6;
+    font-size: 1em;
+    color: #000000;
+    /*padding: 1em .4em .4em;*/
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    height: 1.2em;
+    line-height: 1.4em;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .fa_opposing_team {
     font-size: .7em;
     position: relative;
