@@ -7,7 +7,7 @@ module Jobs
 
       dates.each do |date|
         fixtures_from_feed(date).each do |feed_fixture|
-          if feed_fixture.finished?
+          if [Fixture::Status::IN_PLAY, Fixture::Status::FINISHED].include?(feed_fixture.status)
             fixture = Fixture.find_by_external_id(feed_fixture.id)
             fixture.update_attributes(status: feed_fixture.status)
             fixture.record_score({home: feed_fixture.home_team_goals, away: feed_fixture.away_team_goals})
