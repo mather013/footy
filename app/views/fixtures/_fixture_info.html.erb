@@ -2,15 +2,17 @@
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
 
   <div class="ui-block-a fixture-bet" align="left" style="width:10%">
-    <% bonus = @bonuses.select { |b| b[:fixture_id] == @fixture.id }.first if @bonuses.present? %>
-    <% if bonus.present? %>
-        <span class="label bonus-points">
-            bonus
-        </span>
-    <% elsif @fixture.bonus_available? %>
-            <span class="label label-primary">
-            miss
-        </span>
+    <% if @fixture.status == Fixture::Status::FINISHED %>
+        <% bonus = @bonuses.select { |b| b[:fixture_id] == @fixture.id }.first if @bonuses.present? %>
+        <% if bonus.present? %>
+            <span class="label bonus-points">
+                bonus
+            </span>
+        <% elsif @fixture.bonus_available? %>
+                <span class="label label-primary">
+                miss
+            </span>
+        <% end %>
     <% end %>
   </div>
 

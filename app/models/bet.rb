@@ -10,7 +10,7 @@ class Bet < ActiveRecord::Base
   scope :bets_for_user_and_fixtures, lambda { |user, fixture_ids| where('user_id = ? and fixture_id in (?)', user.id, fixture_ids) }
 
   def outcome
-    return '' if fixture.score.nil?
+    return '' if fixture.status != Fixture::Status::FINISHED || fixture.score.nil?
 
     if TOGGLES_CONFIG['bet_type_hda']
       return 'correct' if value == fixture.score.outcome

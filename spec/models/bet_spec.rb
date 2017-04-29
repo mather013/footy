@@ -120,51 +120,62 @@ describe Bet do
   describe 'instance methods' do
     let(:home_team) { Team.create(name: 'Argentina') }
     let(:away_team) { Team.create(name: 'Brazil') }
-    let!(:fixture) { Fixture.create(id: 1, kickoff: 1.day.from_now, home_team_id: home_team.id, away_team_id: away_team.id) }
+    let!(:fixture) { Fixture.create(id: 1, status: status, kickoff: 1.day.from_now, home_team_id: home_team.id, away_team_id: away_team.id) }
     let!(:bet) { Bet.create(fixture_id: 1, user_id: 1, value: bet_value) }
 
     let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'H' : '2 - 0' }
 
     describe '#outcome' do
 
-      context 'when the score exists' do
-        let!(:score) { Score.create(fixture_id: 1, home: 1, away: 0) }
+      context 'fixture is finished' do
+        let(:status) { Fixture::Status::FINISHED }
 
-        context 'bet is correct' do
+        context 'when the score exists' do
+          let!(:score) { Score.create(fixture_id: 1, home: 1, away: 0) }
 
-          it 'returns correct' do
-            expect(bet.outcome).to eq 'correct'
-          end
-        end
-
-        context 'bet is incorrect' do
-          let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'A' : '0 - 1' }
-
-          it 'returns correct' do
-            expect(bet.outcome).to eq 'wrong'
-          end
-        end
-
-        unless TOGGLES_CONFIG['bet_type_hda']
-          context 'bet is spot on' do
-            let(:bet_value) { '1 - 0' }
-
-            it 'returns spot on' do
-              expect(bet.outcome).to eq('spot_on')
+          context 'bet is correct' do
+            it 'returns correct' do
+              expect(bet.outcome).to eq 'correct'
             end
+          end
+
+          context 'bet is incorrect' do
+            let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'A' : '0 - 1' }
+
+            it 'returns correct' do
+              expect(bet.outcome).to eq 'wrong'
+            end
+          end
+
+          unless TOGGLES_CONFIG['bet_type_hda']
+            context 'bet is spot on' do
+              let(:bet_value) { '1 - 0' }
+
+              it 'returns spot on' do
+                expect(bet.outcome).to eq('spot_on')
+              end
+            end
+          end
+        end
+
+        context 'when the score does no exist' do
+          it 'returns blank' do
+            expect(bet.outcome).to be_blank
           end
         end
       end
 
-      context 'when the score does no exist' do
-        it 'returns blank' do
-          expect(bet.outcome).to be_blank
-        end
+      context 'fixture is not finished' do
+        let(:status) { Fixture::Status::IN_PLAY }
 
+        it 'returns default - wip' do
+          expect(bet.outcome).to eq ''
+        end
       end
     end
 
     describe '#correct?' do
+      let(:status) { Fixture::Status::FINISHED }
       let!(:score) { Score.create(fixture_id: 1, home: 1, away: 0) }
 
       context 'bet is correct' do
