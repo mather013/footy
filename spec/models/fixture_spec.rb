@@ -62,6 +62,19 @@ describe Fixture do
         Fixture.requiring_score.should eq [fixture_one, fixture_two, fixture_five]
       end
     end
+
+    describe 'recent_not_finished' do
+      let!(:fixture_one) { Fixture.create(kickoff: 12.hours.ago, status: 'finished', external_id: nil) }
+      let!(:fixture_two) { Fixture.create(kickoff: 120.minutes.ago, status: 'in_play', external_id: nil) }
+      let!(:fixture_three) { Fixture.create(kickoff: 124.minutes.ago, status: 'in_play', external_id: nil) }
+      let!(:fixture_four) { Fixture.create(kickoff: 60.minutes.ago, status: 'in_play', external_id: nil) }
+      let!(:fixture_five) { Fixture.create(kickoff: 2.days.ago, status: 'finished', external_id: nil) }
+      let!(:fixture_six) { Fixture.create(kickoff: 8.days.ago, status: 'in_play', external_id: nil) }
+
+      it 'returns the expected fixtures' do
+        Fixture.recent_not_finished.should eq [fixture_two, fixture_three, fixture_four]
+      end
+    end
   end
 
   describe 'instance methods' do

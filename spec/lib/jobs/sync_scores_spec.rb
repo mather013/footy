@@ -58,7 +58,7 @@ module Jobs
           let(:feed_fixture_status) { ::Fixture::Status::FINISHED }
 
           it 'does not fetch fixtures from feed and does not return any weeks to mark' do
-            Fixture.stub(:requiring_score).and_return(fixtures_requiring_scores)
+            Fixture.stub(:recent_not_finished).and_return(fixtures_requiring_scores)
             expect(sync_scores.perform).to eq([])
             expect(sync_scores).to_not have_received(:fixtures_from_feed)
           end
@@ -71,9 +71,9 @@ module Jobs
             let(:feed_fixture_status) { ::Fixture::Status::FINISHED }
 
             it 'fetches fixtures from feed, using kickoff, update fixtures status and returns weeks to mark' do
-              Fixture.stub(:requiring_score).and_return(fixtures_requiring_scores)
+              Fixture.stub(:recent_not_finished).and_return(fixtures_requiring_scores)
               expect(sync_scores.perform).to eq([week_one, week_two])
-              expect(Fixture).to have_received(:requiring_score)
+              expect(Fixture).to have_received(:recent_not_finished)
               expect(sync_scores).to have_received(:fixtures_from_feed).with(1.day.ago.to_date)
               expect(sync_scores).to have_received(:fixtures_from_feed).with(2.days.ago.to_date)
 
@@ -90,17 +90,19 @@ module Jobs
             let(:fixtures_finished) { false }
             let(:feed_fixture_status) { ::Fixture::Status::IN_PLAY }
 
-            it 'fetches fixtures from feed but does not update fixtures status nor return any weeks to mark' do
-              Fixture.stub(:requiring_score).and_return(fixtures_requiring_scores)
+            it 'fetches fixtures from feed and updates fixtures status but does not return any weeks to mark' do
+              Fixture.stub(:recent_not_finished).and_return(fixtures_requiring_scores)
               expect(sync_scores.perform).to eq([])
-              expect(Fixture).to have_received(:requiring_score)
+              expect(Fixture).to have_received(:recent_not_finished)
               expect(sync_scores).to have_received(:fixtures_from_feed).with(1.day.ago.to_date)
               expect(sync_scores).to have_received(:fixtures_from_feed).with(2.days.ago.to_date)
 
-              expect(fixture_one.reload.status).to eq('scheduled')
-              expect(fixture_one.score).to eq nil
-              expect(fixture_two.reload.status).to eq('scheduled')
-              expect(fixture_two.score).to eq nil
+              expect(fixture_one.reload.status).to eq('in_play')
+              expect(fixture_one.score.home).to eq(3)
+              expect(fixture_one.score.away).to eq(2)
+              expect(fixture_two.reload.status).to eq('in_play')
+              expect(fixture_two.score.home).to eq(0)
+              expect(fixture_two.score.away).to eq(2)
             end
           end
 

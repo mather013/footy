@@ -2,7 +2,7 @@ module Jobs
   class SyncScores
 
     def perform
-      dates = Fixture.requiring_score.collect(&:kickoff).map(&:to_date).uniq
+      dates = Fixture.recent_not_finished.collect(&:kickoff).map(&:to_date).uniq
       weeks_to_mark = []
 
       dates.each do |date|
@@ -12,7 +12,7 @@ module Jobs
             fixture.update_attributes(status: feed_fixture.status)
             fixture.record_score({home: feed_fixture.home_team_goals, away: feed_fixture.away_team_goals})
             #record_events(feed_fixture.events, fixture)
-            weeks_to_mark << fixture.week
+            weeks_to_mark << fixture.week if fixture.status == Fixture::Status::FINISHED
           end
         end
       end
