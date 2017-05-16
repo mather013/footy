@@ -13,10 +13,10 @@ module RakeTaskResources
 
       let(:week_5_ko) { 21.days.ago }
       let!(:week_5) { Week.create(id: 5, close_date: week_5_ko, description: 'Quarter-Final') }
-      let!(:fixture_1) { week_5.fixtures.create(id: 1, kickoff: week_5_ko, home_team_id: 1, away_team_id: 5) }
-      let!(:fixture_2) { week_5.fixtures.create(id: 2, kickoff: week_5_ko, home_team_id: 2, away_team_id: 6) }
-      let!(:fixture_3) { week_5.fixtures.create(id: 3, kickoff: week_5_ko, home_team_id: 3, away_team_id: 7) }
-      let!(:fixture_4) { week_5.fixtures.create(id: 4, kickoff: week_5_ko, home_team_id: 4, away_team_id: 8) }
+      let!(:fixture_1) { week_5.fixtures.create(id: 1, kickoff: week_5_ko, status: Fixture::Status::FINISHED, home_team_id: 1, away_team_id: 5) }
+      let!(:fixture_2) { week_5.fixtures.create(id: 2, kickoff: week_5_ko, status: Fixture::Status::FINISHED, home_team_id: 2, away_team_id: 6) }
+      let!(:fixture_3) { week_5.fixtures.create(id: 3, kickoff: week_5_ko, status: Fixture::Status::FINISHED, home_team_id: 3, away_team_id: 7) }
+      let!(:fixture_4) { week_5.fixtures.create(id: 4, kickoff: week_5_ko, status: Fixture::Status::FINISHED, home_team_id: 4, away_team_id: 8) }
       let!(:fixture_1_score) { fixture_1.create_score(home: 1, away: 0) }
       let!(:fixture_2_score) { fixture_2.create_score(home: 2, away: 1) }
       let!(:fixture_3_score) { fixture_3.create_score(home: 3, away: 1) }
@@ -24,14 +24,14 @@ module RakeTaskResources
 
       let(:week_6_ko) { 14.days.ago }
       let!(:week_6) { Week.create(id: 6, close_date: week_6_ko, description: 'Semi-Final') }
-      let!(:fixture_5) { week_6.fixtures.create(id: 5, kickoff: week_6_ko, home_team_id: 1, away_team_id: 2) }
-      let!(:fixture_6) { week_6.fixtures.create(id: 6, kickoff: week_6_ko, home_team_id: 3, away_team_id: 4) }
+      let!(:fixture_5) { week_6.fixtures.create(id: 5, kickoff: week_6_ko, status: Fixture::Status::FINISHED, home_team_id: 1, away_team_id: 2) }
+      let!(:fixture_6) { week_6.fixtures.create(id: 6, kickoff: week_6_ko, status: Fixture::Status::FINISHED, home_team_id: 3, away_team_id: 4) }
       let!(:fixture_5_score) { fixture_5.create_score(home: 0, away: 2) }
       let!(:fixture_6_score) { fixture_6.create_score(home: 5, away: 1) }
 
       let(:week_7_ko) { 1.day.ago }
       let!(:week_7) { Week.create(id: 7, close_date: week_7_ko, description: 'Final') }
-      let!(:fixture_7) { week_7.fixtures.create(id: 7, kickoff: week_7_ko, home_team_id: 2, away_team_id: 3) }
+      let!(:fixture_7) { week_7.fixtures.create(id: 7, kickoff: week_7_ko, status: Fixture::Status::FINISHED, home_team_id: 2, away_team_id: 3) }
       let!(:fixture_7_score) { fixture_7.create_score(home: 4, away: 0) }
 
       before :each do

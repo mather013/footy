@@ -11,7 +11,7 @@ module RakeTaskResources
         (1..Team.count).to_a.each { |team_id| hash[team_id] = 0 }
 
         fixtures.each do |fixture|
-          if fixture.score.present?
+          if fixture.finished? && fixture.score.present?
             hash[fixture.home_team_id] += fixture.score.home unless (hash[fixture.home_team_id] + fixture.score.home) > MAX_VALUE
             hash[fixture.away_team_id] += fixture.score.away unless (hash[fixture.away_team_id] + fixture.score.away) > MAX_VALUE
           end

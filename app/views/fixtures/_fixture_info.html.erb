@@ -2,7 +2,7 @@
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
 
   <div class="ui-block-a fixture-bet" align="left" style="width:10%">
-    <% if @fixture.status == Fixture::Status::FINISHED %>
+    <% if @fixture.finished? %>
         <% bonus = @bonuses.select { |b| b[:fixture_id] == @fixture.id }.first if @bonuses.present? %>
         <% if bonus.present? %>
             <span class="label bonus-points">
@@ -25,11 +25,11 @@
   </div>
 
   <div class="ui-block-c fixture-score" align="center" style="width:14%">
-    <% if @fixture.status == Fixture::Status::POSTPONED %>
+    <% if @fixture.postponed? %>
         <span class="label pending-score">P - P</span>
     <% elsif @fixture.score.present? %>
-        <% score_theme = 'label ft-score' if @fixture.status == Fixture::Status::FINISHED %>
-        <% score_theme = 'label in-play-score' if @fixture.status == Fixture::Status::IN_PLAY %>
+        <% score_theme = 'label ft-score' if @fixture.finished? %>
+        <% score_theme = 'label in-play-score' if @fixture.in_play? %>
         <% if score_theme.present? %>
             <span class= '<%=score_theme%>'><%= @fixture.score.home %></span>
             <span class= '<%=score_theme%>'><%= @fixture.score.away %></span>

@@ -12,7 +12,7 @@ module Jobs
             fixture.update_attributes(status: feed_fixture.status)
             fixture.record_score({home: feed_fixture.home_team_goals, away: feed_fixture.away_team_goals})
             #record_events(feed_fixture.events, fixture)
-            weeks_to_mark << fixture.week if fixture.status == Fixture::Status::FINISHED
+            weeks_to_mark << fixture.week if fixture.finished?
           end
         end
       end

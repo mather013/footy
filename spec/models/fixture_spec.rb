@@ -189,28 +189,65 @@ describe Fixture do
 
       context 'score exists for fixture' do
 
-        context 'and the result is a draw' do
-          let!(:score) { Score.create(fixture_id: fixture.id, home: 1, away: 1) }
+        before :each do
+          fixture.update_attributes(status: status)
+        end
 
-          it 'returns nil' do
-            expect(fixture.winning_team).to be_nil
+        context 'fixture has finished' do
+          let(:status) { Fixture::Status::FINISHED }
+
+          context 'and the result is a draw' do
+            let!(:score) { Score.create(fixture_id: fixture.id, home: 1, away: 1) }
+
+            it 'returns nil' do
+              expect(fixture.winning_team).to be_nil
+            end
+          end
+
+          context 'and the home team won' do
+            let!(:score) { Score.create(fixture_id: fixture.id, home: 1, away: 0) }
+
+            it 'returns home team' do
+              expect(fixture.winning_team).to eq home_team
+            end
+          end
+
+          context 'and the away team won' do
+            let!(:score) { Score.create(fixture_id: fixture.id, home: 0, away: 1) }
+
+            it 'returns away team' do
+              expect(fixture.winning_team).to eq away_team
+            end
           end
         end
 
-        context 'and the home team won' do
-          let!(:score) { Score.create(fixture_id: fixture.id, home: 1, away: 0) }
+        context 'fixture has not finished' do
+          let(:status) { Fixture::Status::IN_PLAY }
 
-          it 'returns home team' do
-            expect(fixture.winning_team).to eq home_team
+          context 'and the score is a draw' do
+            let!(:score) { Score.create(fixture_id: fixture.id, home: 1, away: 1) }
+
+            it 'returns nil' do
+              expect(fixture.winning_team).to be_nil
+            end
           end
-        end
 
-        context 'and the away team won' do
-          let!(:score) { Score.create(fixture_id: fixture.id, home: 0, away: 1) }
+          context 'and the home team is wining' do
+            let!(:score) { Score.create(fixture_id: fixture.id, home: 1, away: 0) }
 
-          it 'returns away team' do
-            expect(fixture.winning_team).to eq away_team
+            it 'returns nil' do
+              expect(fixture.winning_team).to be_nil
+            end
           end
+
+          context 'and the away is winning' do
+            let!(:score) { Score.create(fixture_id: fixture.id, home: 0, away: 1) }
+
+            it 'returns nil' do
+              expect(fixture.winning_team).to be_nil
+            end
+          end
+
         end
 
       end
@@ -302,6 +339,66 @@ describe Fixture do
           end
         end
 
+      end
+    end
+
+    describe '#finished?' do
+      let(:fixture) { Fixture.new(status: status) }
+
+      context 'when a fixture has finished' do
+        let(:status) { Fixture::Status::FINISHED }
+
+        it 'returns true' do
+          expect(fixture.finished?).to eq(true)
+        end
+      end
+
+      context 'when a fixture has not finished' do
+        let(:status) { Fixture::Status::IN_PLAY }
+
+        it 'returns false' do
+          expect(fixture.finished?).to eq(false)
+        end
+      end
+    end
+
+    describe '#in_play?' do
+      let(:fixture) { Fixture.new(status: status) }
+
+      context 'when a fixture is in_play' do
+        let(:status) { Fixture::Status::IN_PLAY }
+
+        it 'returns true' do
+          expect(fixture.in_play?).to eq(true)
+        end
+      end
+
+      context 'when a fixture has not in_play' do
+        let(:status) { Fixture::Status::DEFINED }
+
+        it 'returns false' do
+          expect(fixture.in_play?).to eq(false)
+        end
+      end
+    end
+
+    describe '#postponed?' do
+      let(:fixture) { Fixture.new(status: status) }
+
+      context 'when a fixture is postponed' do
+        let(:status) { Fixture::Status::POSTPONED }
+
+        it 'returns true' do
+          expect(fixture.postponed?).to eq(true)
+        end
+      end
+
+      context 'when a fixture is not postponed' do
+        let(:status) { Fixture::Status::FINISHED }
+
+        it 'returns false' do
+          expect(fixture.postponed?).to eq(false)
+        end
       end
     end
 

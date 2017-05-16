@@ -154,8 +154,8 @@ describe Week do
       let(:team_two) { Team.create(id: 2, name: 'Brazil') }
       let(:team_three) { Team.create(id: 3, name: 'Colombia') }
       let(:team_four) { Team.create(id: 4, name: 'Denmark') }
-      let!(:fixture_one) { Fixture.create(week_id: week.id, home_team_id: team_one.id, away_team_id: team_two.id) }
-      let!(:fixture_two) { Fixture.create(week_id: week.id, home_team_id: team_three.id, away_team_id: team_four.id) }
+      let!(:fixture_one) { Fixture.create(week_id: week.id, status: Fixture::Status::FINISHED, home_team_id: team_one.id, away_team_id: team_two.id) }
+      let!(:fixture_two) { Fixture.create(week_id: week.id, status: Fixture::Status::FINISHED, home_team_id: team_three.id, away_team_id: team_four.id) }
       let!(:score_one) { Score.create(fixture_id: fixture_one.id, home: 0, away: 1) }
       let!(:score_two) { Score.create(fixture_id: fixture_two.id, home: 1, away: 0) }
 

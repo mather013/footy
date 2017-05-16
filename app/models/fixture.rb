@@ -43,12 +43,12 @@ class Fixture < ActiveRecord::Base
     if TOGGLES_CONFIG['week_deadline']
       week.open? && kickoff_pending?
     else
-      (kickoff_pending? || status == Fixture::Status::POSTPONED) && (week.open? || week.in_play?)
+      (kickoff_pending? || postponed?) && (week.open? || week.in_play?)
     end
   end
 
   def winning_team
-    return nil if score.nil? || score.home == score.away
+    return nil if !finished? || score.nil? || score.home == score.away
     return score.home > score.away ? home_team : away_team
   end
 
@@ -72,6 +72,18 @@ class Fixture < ActiveRecord::Base
     percentage = (correct_count.to_f / bet_values.count.to_f)*100
 
     percentage < ENVIRONMENT_CONFIG['bonus_threshold']
+  end
+
+  def finished?
+    status == Fixture::Status::FINISHED
+  end
+
+  def in_play?
+    status == Fixture::Status::IN_PLAY
+  end
+
+  def postponed?
+    status == Fixture::Status::POSTPONED
   end
 
   private

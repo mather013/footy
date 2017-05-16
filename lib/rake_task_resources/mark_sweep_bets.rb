@@ -6,7 +6,7 @@ module RakeTaskResources
         puts "marking sweepstake" unless Rails.env.test?
 
         fixtures.each do |fixture|
-          if fixture.score.present?
+          if fixture.finished? && fixture.score.present?
             teams = fixture.teams
             teams.delete(fixture.winning_team)
             losing_team = teams.first
