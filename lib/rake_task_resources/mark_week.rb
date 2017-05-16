@@ -10,6 +10,7 @@ module RakeTaskResources
           bets = Bet.bets_for_user_and_fixtures(user, @fixture_ids)
           mark_footy_forecast user, bets unless bets.empty?
         end
+        @week.maybe_mark_complete
       end
 
       private

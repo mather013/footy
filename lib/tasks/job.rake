@@ -33,10 +33,7 @@ namespace :job do
   desc 'Sync scores and mark'
   task :sync_scores_and_mark, [:date] => :environment do |t, args|
     weeks_to_mark = Jobs::SyncScores.new.perform
-    weeks_to_mark.each do |week|
-      RakeTaskResources::MarkWeek.perform week.id
-      week.maybe_mark_complete
-    end
+    weeks_to_mark.each { |week| RakeTaskResources::MarkWeek.perform week.id }
 
     if weeks_to_mark.present?
       RakeTaskResources::RefreshPositions.perform
