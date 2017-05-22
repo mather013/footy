@@ -1,5 +1,5 @@
 class StandingsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   def index
     Standing.refresh unless Standing.up_to_date?

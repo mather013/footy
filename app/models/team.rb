@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-  attr_accessible :id, :name, :abbreviation, :external_id
+  #attr_accessible :id, :name, :abbreviation, :external_id
 
   has_one :standing
   has_one :gb_point
@@ -9,7 +9,7 @@ class Team < ActiveRecord::Base
   has_many :home_fixtures, foreign_key: 'home_team_id', class_name: 'Fixture'
   has_many :away_fixtures, foreign_key: 'away_team_id', class_name: 'Fixture'
 
-  scope :sorted, where("name != 'TBA'").order('name asc')
+  scope :sorted, -> { where("name != 'TBA'").order('name asc') }
 
   def in_sweep?
     sweep_point.present? && sweep_point.value == maximum_sweep_points

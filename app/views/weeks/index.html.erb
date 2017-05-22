@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
+<div class="ui-title" data-theme="a" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
   <% if ENVIRONMENT_CONFIG['competition'] == 'premier_league' %>
-      <a href="<%= standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">Leag.</a>
+      <a href="<%= standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">League</a>
   <% else %>
       <% if @user.admin? %>
           <a href="<%= info_path %>" class="ui-btn-left" data-theme="a" data-rel="">Info</a>
@@ -17,7 +17,7 @@
 <% points = @user.points %>
 
 <div data-role="content">
-  <ul data-role="listview" id="fix-list">
+  <ul data-role="listview">
     <% @weeks.each do |week| %>
 
         <% unless month == week.close_date.month %>

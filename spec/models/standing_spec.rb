@@ -10,12 +10,6 @@ describe Standing do
     it { should respond_to(:points) }
   end
 
-  describe 'mass assignment' do
-    [:id, :team_id, :position, :form, :points].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'associations' do
     it { should belong_to :team }
   end
@@ -24,7 +18,7 @@ describe Standing do
 
     before :each do
       Standing.delete_all
-      Fixture.stub(:joins).with(:score).and_return([double(Fixture), double(Fixture)])
+      allow(Fixture).to receive(:joins).with(:score).and_return([double(Fixture), double(Fixture)])
     end
 
     context 'when standings are up to date' do
@@ -55,7 +49,7 @@ describe Standing do
     end
 
     it 'creates expected standings data' do
-      Team.stub(:all).and_return([team_1, team_2, team_3, team_4])
+      allow(Team).to receive(:all).and_return([team_1, team_2, team_3, team_4])
 
       Standing.refresh
 

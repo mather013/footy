@@ -12,9 +12,4 @@ describe Game do
     it { should respond_to(:description) }
   end
 
-  describe 'mass assignment' do
-    [:id, :name, :description].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
 end

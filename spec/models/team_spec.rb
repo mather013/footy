@@ -9,12 +9,6 @@ describe Team do
     it { should respond_to(:external_id) }
   end
 
-  describe 'mass assignment' do
-    [:id, :name, :abbreviation, :external_id].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'associations' do
     it { should have_one :standing }
     it { should have_many :players }
@@ -42,7 +36,7 @@ describe Team do
       let(:team) { Team.create(name: 'Argentina', abbreviation: 'arg') }
 
       before :each do
-        Week.stub(:count).and_return(7)
+        allow(Week).to receive(:count).and_return(7)
       end
 
       context 'when team is still in competition' do

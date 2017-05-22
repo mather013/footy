@@ -1,7 +1,5 @@
 class Score < ActiveRecord::Base
 
-  attr_accessible :id, :fixture_id, :home, :away
-
   belongs_to :fixture
   has_many   :goals
 

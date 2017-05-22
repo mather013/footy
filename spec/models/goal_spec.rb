@@ -13,12 +13,6 @@ describe Goal do
     it { should respond_to(:score_id) }
   end
 
-  describe 'mass assignment' do
-    [:id, :player_id, :score_id].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'instance methods' do
 
     describe '#opposing_team' do

@@ -14,12 +14,6 @@ describe Bet do
     it { should respond_to(:value) }
   end
 
-  describe 'mass assignment' do
-    [:id, :fixture_id, :user_id, :value].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'validation' do
     let(:home_team) { Team.create(name: 'Argentina') }
     let(:away_team) { Team.create(name: 'Brazil') }
@@ -29,7 +23,7 @@ describe Bet do
     context 'when user has already created a bet for this fixture' do
       it 'is an invalid bet' do
         Bet.create(fixture_id: 1, user_id: 1, value: 'H')
-        Bet.new(fixture_id: 1, user_id: 1, value: 'H').should_not be_valid
+        expect(Bet.new(fixture_id: 1, user_id: 1, value: 'H')).to_not be_valid
       end
     end
 
@@ -38,7 +32,7 @@ describe Bet do
 
       it 'is a valid bet' do
         Bet.create(fixture_id: 1, user_id: 1, value: 'H')
-        Bet.new(fixture_id: 2, user_id: 1, value: 'H').should be_valid
+        expect(Bet.new(fixture_id: 2, user_id: 1, value: 'H')).to be_valid
       end
     end
 
@@ -109,11 +103,11 @@ describe Bet do
     let!(:bet_two) { Bet.create(user_id: 2, fixture_id: fixture_2.id, value: 'H') }
 
     it 'points by descending value' do
-      Bet.bets_for_user_and_fixtures(user_one, [1, 2]).should eq [bet_one]
+      expect(Bet.bets_for_user_and_fixtures(user_one, [1, 2])).to eq [bet_one]
     end
 
     it 'creates the expected sql for returning bets for user and fixtures' do
-      expect(Bet.bets_for_user_and_fixtures(user_one, [1, 2, 3]).to_sql.should == "SELECT \"bets\".* FROM \"bets\"  WHERE (user_id = 1 and fixture_id in (1,2,3))")
+      expect(Bet.bets_for_user_and_fixtures(user_one, [1, 2, 3]).to_sql).to eq("SELECT \"bets\".* FROM \"bets\" WHERE (user_id = 1 and fixture_id in (1,2,3))")
     end
   end
 
@@ -182,7 +176,7 @@ describe Bet do
         let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'H' : '1 - 0' }
 
         it 'true' do
-          expect(bet.correct?).to be_true
+          expect(bet.correct?).to be_truthy
         end
       end
 
@@ -190,7 +184,7 @@ describe Bet do
         let(:bet_value) { TOGGLES_CONFIG['bet_type_hda'] ? 'A' : '0 - 2' }
 
         it 'true' do
-          expect(bet.correct?).to be_false
+          expect(bet.correct?).to be_falsey
         end
       end
 

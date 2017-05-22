@@ -10,12 +10,6 @@ describe Position do
     it { should respond_to(:last_marked_week_id) }
   end
 
-  describe 'mass assignment' do
-    [:id, :user_id, :current, :previous, :last_marked_week_id].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'associations' do
     it { should belong_to :user }
   end

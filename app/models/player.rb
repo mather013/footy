@@ -1,11 +1,10 @@
 class Player < ActiveRecord::Base
-  attr_accessible :id, :surname, :forename, :team_id, :squad_number
 
   belongs_to :team
   has_many :goals
 
-  scope :team_and_surname_order, order('team_id asc, surname asc')
-  scope :by_surname, order('surname asc')
+  scope :team_and_surname_order, -> { order('team_id asc, surname asc') }
+  scope :by_surname, -> { order('surname asc') }
 
   validates :surname, :uniqueness => {:scope => :forename}
 

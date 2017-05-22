@@ -1,4 +1,4 @@
-class RemoveValueFromPoints < ActiveRecord::Migration
+class RemoveValueFromPoints < ActiveRecord::Migration[5.0]
   def self.up
     remove_column :points, :value
   end

@@ -1,5 +1,5 @@
 class LmRoundsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   def index
     @rounds = LmRound.sorted

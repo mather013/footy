@@ -1,4 +1,4 @@
-class RemovePayoutUserFromUsers < ActiveRecord::Migration
+class RemovePayoutUserFromUsers < ActiveRecord::Migration[5.0]
   def self.up
     remove_column :users, :payout_user
   end

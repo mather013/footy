@@ -1,7 +1,6 @@
-class CreatePositions < ActiveRecord::Migration
+class CreatePositions < ActiveRecord::Migration[5.0]
   def change
     create_table :positions do |t|
-      t.integer  :id
       t.integer  :user_id
       t.integer  :previous
       t.integer  :current

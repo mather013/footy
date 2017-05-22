@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ::ActionController::Cookies
   protect_from_forgery
 
   def current_user

@@ -1,7 +1,6 @@
-class CreatePlayers < ActiveRecord::Migration
+class CreatePlayers < ActiveRecord::Migration[5.0]
   def change
     create_table :players do |t|
-      t.integer :id,      :null => false
       t.string  :name,    :null => false
       t.integer :team_id, :null => false
       t.timestamps

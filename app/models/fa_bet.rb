@@ -1,15 +1,14 @@
 class FaBet < ActiveRecord::Base
-  attr_accessible :id, :user_id, :player_id
 
   belongs_to :user
   belongs_to :player
 
-  scope :sorted, order('id asc')
+  scope :sorted, -> { order('id asc') }
 
   validates :user_id, :uniqueness => {:scope => :player_id}
-  before_save :check_combination_unique
+  validate :combination_unique
 
-  def check_combination_unique
+  def combination_unique
     users_selections = User.find_by_id(user_id).fa_bets.map(&:player_id).sort
     return true if player_id_was.present? and users_selections.count < 5
 
@@ -25,10 +24,8 @@ class FaBet < ActiveRecord::Base
       rival_selections = User.find_by_id(rival_user_id).fa_bets.map(&:player_id)
       if users_selections.count == 5 && rival_selections.sort == users_selections.sort
         errors.add(:player_id, 'Sorry, invalid combination chosen')
-        return false
       end
     end
-    true
   end
 
 end

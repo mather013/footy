@@ -1,5 +1,4 @@
 class GbRound < ActiveRecord::Base
-  attr_accessible :id, :starting_week_id
 
   belongs_to :week, foreign_key: 'starting_week_id', class_name: 'Week'
 

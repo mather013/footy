@@ -1,5 +1,4 @@
 class Fixture < ActiveRecord::Base
-  attr_accessible :id, :away_team_id, :home_team_id, :kickoff, :week_id, :name, :external_id, :status
 
   belongs_to :week
   belongs_to :home_team, :foreign_key => 'home_team_id', :class_name => 'Team'
@@ -11,11 +10,11 @@ class Fixture < ActiveRecord::Base
   NORMAL_CHOICES   = [{ name: 'Home', value: 'H' }, { name: 'Draw', value: 'D' }, { name: 'Away', value: 'A' }]
   KNOCKOUT_CHOICES = [{ name: 'Home', value: 'H' }, { name: 'Away', value: 'A' }]
 
-  scope :sorted, order('kickoff asc, name asc')
-  scope :requiring_sync, lambda { where('external_id is null and kickoff between ? and ?', DateTime.now, ENVIRONMENT_CONFIG['days_in_advance_to_sync_fixtures'].days.from_now) }
-  scope :recently_finished, lambda { where('kickoff between ? and ?', 155.minutes.ago, 95.minutes.ago) }
-  scope :requiring_score, lambda { where('kickoff between ? and ?', 7.days.ago, 105.minutes.ago).includes(:score).where(:scores => { :fixture_id => nil } ) }
-  scope :recent_not_finished, lambda { where("status != 'finished' and kickoff between ? and ?", 7.days.ago, 1.minutes.ago) }
+  scope :sorted, -> { order('kickoff asc, name asc') }
+  scope :requiring_sync, -> { where('external_id is null and kickoff between ? and ?', DateTime.now, ENVIRONMENT_CONFIG['days_in_advance_to_sync_fixtures'].days.from_now) }
+  scope :recently_finished, -> { where('kickoff between ? and ?', 155.minutes.ago, 95.minutes.ago) }
+  scope :requiring_score, -> { where('kickoff between ? and ?', 7.days.ago, 105.minutes.ago).includes(:score).where(:scores => { :fixture_id => nil } ) }
+  scope :recent_not_finished, -> { where("status != 'finished' and kickoff between ? and ?", 7.days.ago, 1.minutes.ago) }
 
   module Status
     DEFINED   = 'defined'
@@ -49,7 +48,7 @@ class Fixture < ActiveRecord::Base
 
   def winning_team
     return nil if !finished? || score.nil? || score.home == score.away
-    return score.home > score.away ? home_team : away_team
+    score.home > score.away ? home_team : away_team
   end
 
   def record_score hash
@@ -61,7 +60,7 @@ class Fixture < ActiveRecord::Base
   end
 
   def teams
-    [home_team,away_team]
+    [home_team, away_team]
   end
 
   def bonus_available?

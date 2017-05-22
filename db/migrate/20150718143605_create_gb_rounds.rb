@@ -1,7 +1,6 @@
-class CreateGbRounds < ActiveRecord::Migration
+class CreateGbRounds < ActiveRecord::Migration[5.0]
   def change
     create_table :gb_rounds do |t|
-      t.integer  :id
       t.integer  :starting_week_id
       t.timestamps
     end

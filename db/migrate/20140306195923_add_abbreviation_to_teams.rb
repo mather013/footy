@@ -1,4 +1,4 @@
-class AddAbbreviationToTeams < ActiveRecord::Migration
+class AddAbbreviationToTeams < ActiveRecord::Migration[5.0]
   def change
     add_column :teams, :abbreviation, :string
   end

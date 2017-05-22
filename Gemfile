@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
-gem "rake", "0.8.7"
+gem 'rails', '5.1.0'
+gem 'rake'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -11,13 +11,13 @@ gem 'pg'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails'
+  gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
 gem 'pry'
@@ -31,14 +31,14 @@ gem 'clockworksms'
 
 group :test do
   gem 'shoulda'
-  gem 'rspec-spies'
-  gem 'webmock', '~>1.9'
+  #gem 'rspec-spies'
+  gem 'webmock'
   gem 'timecop'
 end
 
 group :development, :test do
-  gem 'dotenv'
-  gem 'dotenv-deployment'
+  #gem 'dotenv'
+  #gem 'dotenv-deployment'
 end
 
 group :production do
@@ -46,7 +46,7 @@ group :production do
   gem 'unicorn'
 end
 
-gem 'rollbar', '~> 2.1.1'
+gem 'rollbar'
 gem 'keen'
 
 # To use ActiveModel has_secure_password

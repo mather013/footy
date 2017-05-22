@@ -1,7 +1,6 @@
-class CreateBonus < ActiveRecord::Migration
+class CreateBonus < ActiveRecord::Migration[5.0]
   def change
     create_table :bonuses do |t|
-      t.integer :id
       t.integer :point_id
       t.integer :fixture_id
       t.integer :value

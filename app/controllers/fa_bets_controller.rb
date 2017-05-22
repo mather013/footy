@@ -1,5 +1,5 @@
 class FaBetsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   def index
     load_common

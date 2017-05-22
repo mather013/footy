@@ -10,11 +10,11 @@ describe Point do
     describe 'ordered' do
 
       it 'points by descending value' do
-        Point.sorted.should eq [point_two, point_one, point_three]
+        expect(Point.sorted).to eq [point_two, point_one, point_three]
       end
 
       it 'creates the expected sql for points by descending value' do
-        expect(Point.sorted.to_sql.should == "SELECT \"points\".* FROM \"points\"  ORDER BY value DESC")
+        expect(Point.sorted.to_sql).to eq("SELECT \"points\".* FROM \"points\" ORDER BY value DESC")
       end
 
     end
@@ -24,11 +24,11 @@ describe Point do
       let!(:week) { double(Week, id: 1) }
 
       xit 'points for user and week' do
-        Point.point_for_user_and_week(user,week).should eq [point_one]
+        expect(Point.point_for_user_and_week(user,week)).to eq [point_one]
       end
 
       xit 'creates the expected sql for points user and week' do
-        expect(Point.point_for_user_and_week(user,week).to_sql.should == "SELECT \"points\".* FROM \"points\"  WHERE (user_id = 1 and week_id = 1)")
+        expect(Point.point_for_user_and_week(user,week).to_sql).to eq("SELECT \"points\".* FROM \"points\" WHERE (user_id = 1 and week_id = 1)")
       end
     end
 

@@ -1,6 +1,6 @@
 class BetsController < ApplicationController
-  before_filter :require_login
-  before_filter :fix_params, :only => [:create, :update]
+  before_action :require_login
+  before_action :fix_params, :only => [:create, :update]
 
   def new
     load_fixture_and_choices
@@ -16,7 +16,7 @@ class BetsController < ApplicationController
 
   def edit
     load_fixture_and_choices
-    @bet = Bet.find(:all, :conditions => ['fixture_id = ? AND user_id = ?', params['fixture_id'], current_user.id]).first
+    @bet = Bet.find_by(fixture_id: params['fixture_id'].to_i, user_id: current_user.id)
   end
 
   def update

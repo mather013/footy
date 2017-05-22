@@ -1,4 +1,4 @@
-class CreateInitialPositions < ActiveRecord::Migration
+class CreateInitialPositions < ActiveRecord::Migration[5.0]
   def up
     Position.delete_all
   end

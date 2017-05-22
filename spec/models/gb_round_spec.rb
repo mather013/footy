@@ -11,12 +11,6 @@ describe GbRound do
     it { should respond_to(:starting_week_id) }
   end
 
-  describe 'mass assignment' do
-    [:id, :starting_week_id].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'class methods' do
 
     describe '.available_choices' do
@@ -25,8 +19,8 @@ describe GbRound do
       let(:bets) { [double(GbBet, team_id: 2), double(GbBet, team_id: 3)] }
 
       it 'returns expected choices' do
-        Team.stub(:all).and_return(teams)
-        GbBet.stub(:all).and_return(bets)
+        expect(Team).to receive(:all).and_return(teams)
+        expect(GbBet).to receive(:all).and_return(bets)
         expect(GbRound.available_choices).to eq(expected_result)
       end
     end
@@ -50,7 +44,7 @@ describe GbRound do
         let(:date_time) { DateTime.parse('2015-08-30 09:30:00') }
 
         it "returns false" do
-          expect(gb_round.open?).to be_false
+          expect(gb_round.open?).to be_falsey
         end
       end
 
@@ -58,7 +52,7 @@ describe GbRound do
         let(:date_time) { DateTime.parse('2015-08-30 10:30:00') }
 
         it "returns true" do
-          expect(gb_round.open?).to be_true
+          expect(gb_round.open?).to be_truthy
         end
       end
     end

@@ -1,7 +1,6 @@
-class CreateStandings < ActiveRecord::Migration
+class CreateStandings < ActiveRecord::Migration[5.0]
   def change
     create_table :standings do |t|
-      t.integer  :id
       t.integer  :position
       t.integer  :team_id
       t.string   :form

@@ -21,12 +21,6 @@ describe User do
     it { should respond_to(:mobile) }
   end
 
-  describe 'mass assignment' do
-    [:id, :name, :username, :password, :mobile].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'validations' do
     [:name, :username, :password].each do |attribute|
       it { should validate_presence_of(attribute) }
@@ -42,7 +36,7 @@ describe User do
 
         subject { user.read_only? }
 
-        it { should be_true }
+        it { should be_truthy }
       end
 
       context 'user is not a read only user' do
@@ -50,7 +44,7 @@ describe User do
 
         subject { user.read_only? }
 
-        it { should be_false }
+        it { should be_falsey }
       end
 
     end
@@ -88,8 +82,8 @@ describe User do
       let!(:bet)  { LmBet.create(lm_round_id: lm_round.id, user_id: user.id, team_id: 1) }
 
       before :each do
-        user.stub(:read_only?).and_return(false)
-        LmBet.any_instance.stub(:correct?).and_return(true)
+        allow(user).to receive(:read_only?).and_return(false)
+        allow_any_instance_of(LmBet).to receive(:correct?).and_return(true)
         LmRound.create(week_id: 2)
       end
 
@@ -100,13 +94,13 @@ describe User do
         end
 
         it 'returns false' do
-          expect(user.lm_survivor?).to be_false
+          expect(user.lm_survivor?).to be_falsey
         end
       end
 
       context 'when user is a lms survivor' do
         it 'returns true' do
-          expect(user.lm_survivor?).to be_true
+          expect(user.lm_survivor?).to be_truthy
         end
       end
 
@@ -116,7 +110,7 @@ describe User do
       let(:user) { User.create(name: 'Bruce', username: 'brucew', password: 'abc') }
 
       before :each do
-        user.stub(:sweep_bet).and_return(sweep_bet)
+        allow(user).to receive(:sweep_bet).and_return(sweep_bet)
       end
 
       context 'when user has a sweep bet' do

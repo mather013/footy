@@ -13,18 +13,12 @@ describe SweepBet do
     it { should respond_to(:team_id) }
   end
 
-  describe 'mass assignment' do
-    [:id, :user_id, :team_id].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'validations' do
 
     context 'when user has already has a sweep bet' do
       it 'is an invalid bet' do
         SweepBet.create(user_id: 1, team_id: 1)
-        SweepBet.new(user_id: 1, team_id: 2).should_not be_valid
+        expect(SweepBet.new(user_id: 1, team_id: 2)).not_to be_valid
       end
     end
   end

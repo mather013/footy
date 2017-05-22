@@ -1,5 +1,5 @@
 class GbPointsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   def index
     @round = GbRound.first

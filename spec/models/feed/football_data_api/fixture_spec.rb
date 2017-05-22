@@ -99,28 +99,28 @@ module Feed
           context 'when fixture has a status of full time' do
 
             it 'returns true' do
-              expect(fixture.finished?).to be_true
+              expect(fixture.finished?).to be_truthy
             end
           end
 
           context 'when fixture does not have a status of full time' do
             let(:status) { Fixture::Status::TIMED }
             it 'returns false' do
-              expect(fixture.finished?).to be_false
+              expect(fixture.finished?).to be_falsey
             end
           end
 
           context 'when fixture does not have a status of full time' do
             let(:status) { Fixture::Status::POSTPONED }
             it 'returns false' do
-              expect(fixture.finished?).to be_false
+              expect(fixture.finished?).to be_falsey
             end
           end
 
           context 'when fixture does not have a status of full time' do
             let(:status) { Fixture::Status::IN_PLAY }
             it 'returns false' do
-              expect(fixture.finished?).to be_false
+              expect(fixture.finished?).to be_falsey
             end
           end
         end

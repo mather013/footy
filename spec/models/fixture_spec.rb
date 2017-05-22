@@ -21,12 +21,6 @@ describe Fixture do
     it { should respond_to(:status) }
   end
 
-  describe 'mass assignment' do
-    [:id, :home_team_id, :away_team_id, :kickoff, :week_id, :name, :external_id, :status].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'scopes' do
     describe 'requiring_sync' do
       let!(:fixture_one) { Fixture.create(kickoff: 2.days.from_now, external_id: nil) }
@@ -34,7 +28,7 @@ describe Fixture do
       let!(:fixture_three) { Fixture.create(kickoff: 10.days.from_now, external_id: nil) }
 
       it 'returns the expected fixtures' do
-        Fixture.requiring_sync.should eq [fixture_one, fixture_two]
+        expect(Fixture.requiring_sync).to eq [fixture_one, fixture_two]
       end
     end
 
@@ -45,7 +39,7 @@ describe Fixture do
       let!(:fixture_four) { Fixture.create(kickoff: 60.minutes.ago, external_id: nil) }
 
       it 'returns the expected fixtures' do
-        Fixture.recently_finished.should eq [fixture_two, fixture_three]
+        expect(Fixture.recently_finished).to eq [fixture_two, fixture_three]
       end
     end
 
@@ -59,7 +53,7 @@ describe Fixture do
 
       it 'returns the expected fixtures' do
         fixture_three.create_score(home: 1, away: 2)
-        Fixture.requiring_score.should eq [fixture_one, fixture_two, fixture_five]
+        expect(Fixture.requiring_score).to eq [fixture_one, fixture_two, fixture_five]
       end
     end
 
@@ -72,7 +66,7 @@ describe Fixture do
       let!(:fixture_six) { Fixture.create(kickoff: 8.days.ago, status: 'in_play', external_id: nil) }
 
       it 'returns the expected fixtures' do
-        Fixture.recent_not_finished.should eq [fixture_two, fixture_three, fixture_four]
+        expect(Fixture.recent_not_finished).to eq [fixture_two, fixture_three, fixture_four]
       end
     end
   end
@@ -101,7 +95,7 @@ describe Fixture do
 
         context 'week has not closed and fixture has not kicked off ' do
           it 'returns true' do
-            expect(fixture.betable?).to be_true
+            expect(fixture.betable?).to be_truthy
           end
         end
 
@@ -110,7 +104,7 @@ describe Fixture do
           let(:kickoff) { 1.days.from_now }
 
           it 'returns false' do
-            expect(fixture.betable?).to be_false
+            expect(fixture.betable?).to be_falsey
           end
         end
 
@@ -119,7 +113,7 @@ describe Fixture do
           let(:kickoff) { 1.days.ago }
 
           it 'returns false' do
-            expect(fixture.betable?).to be_false
+            expect(fixture.betable?).to be_falsey
           end
         end
 
@@ -129,7 +123,7 @@ describe Fixture do
 
           it 'returns false' do
             fixture.update_attributes(status: Fixture::Status::POSTPONED)
-            expect(fixture.betable?).to be_false
+            expect(fixture.betable?).to be_falsey
           end
         end
 
@@ -143,7 +137,7 @@ describe Fixture do
 
         context 'week has not closed and fixture has not kicked off ' do
           it 'returns true' do
-            expect(fixture.betable?).to be_true
+            expect(fixture.betable?).to be_truthy
           end
         end
 
@@ -152,7 +146,7 @@ describe Fixture do
           let(:kickoff) { 1.days.from_now }
 
           it 'returns false' do
-            expect(fixture.betable?).to be_true
+            expect(fixture.betable?).to be_truthy
           end
         end
 
@@ -161,7 +155,7 @@ describe Fixture do
           let(:kickoff) { 1.days.ago }
 
           it 'returns false' do
-            expect(fixture.betable?).to be_false
+            expect(fixture.betable?).to be_falsey
           end
         end
 
@@ -171,7 +165,7 @@ describe Fixture do
 
           it 'returns true' do
             fixture.update_attributes(status: Fixture::Status::POSTPONED)
-            expect(fixture.betable?).to be_true
+            expect(fixture.betable?).to be_truthy
           end
         end
 
@@ -257,15 +251,16 @@ describe Fixture do
       let(:kickoff) { 1.days.from_now }
 
       it "calls time zone with 'London' parameter" do
-        fixture.should_receive(:kickoff).and_return(kickoff)
-        kickoff.should_receive(:in_time_zone).with('London')
+        expect(fixture).to receive(:kickoff).and_return(kickoff)
+        expect(kickoff).to receive(:in_time_zone).with('London')
         fixture.kickoff_local_time
       end
     end
 
     describe '#choices' do
-      subject { fixture }
-      its(:choices) { should == [{name: 'Home', value: 'H'}, {name: 'Draw', value: 'D'}, {name: 'Away', value: 'A'}] }
+      it 'returns expected choices' do
+        expect(fixture.choices).to eq([{name: 'Home', value: 'H'}, {name: 'Draw', value: 'D'}, {name: 'Away', value: 'A'}])
+      end
     end
 
     describe '#record_score' do
@@ -277,8 +272,8 @@ describe Fixture do
         it 'updates the score' do
           fixture.record_score(score_hash)
 
-          fixture.score.home.should eq(2)
-          fixture.score.away.should eq(1)
+          expect(fixture.score.home).to eq(2)
+          expect(fixture.score.away).to eq(1)
         end
       end
 
@@ -288,21 +283,22 @@ describe Fixture do
         it 'creates the score' do
           fixture.record_score(score_hash)
 
-          fixture.score.home.should eq(2)
-          fixture.score.away.should eq(1)
+          expect(fixture.score.home).to eq(2)
+          expect(fixture.score.away).to eq(1)
         end
       end
     end
 
     describe '#teams' do
-      subject { fixture }
-      its(:teams) { should =~ [home_team, away_team] }
+      it 'returns the expected teams' do
+        expect(fixture.teams).to eq([home_team, away_team])
+      end
     end
 
     describe '#bonus_available?' do
 
       before :each do
-        fixture.stub(:score).and_return(score)
+        allow(fixture).to receive(:score).and_return(score)
       end
 
       context 'when fixture does not have a score' do
@@ -320,13 +316,13 @@ describe Fixture do
                       double(Bet, value: 'A'), double(Bet, value: 'A'), double(Bet, value: 'A'), double(Bet, value: 'A')] }
 
         before :each do
-          fixture.stub(:bets).and_return(bets)
+          allow(fixture).to receive(:bets).and_return(bets)
         end
 
         context 'and no bet value exists below the bonus threshold' do
 
           it 'returns false' do
-            stub_const('ENVIRONMENT_CONFIG', { 'bonus_threshold' => 10 })
+            stub_const('ENVIRONMENT_CONFIG', {'bonus_threshold' => 10})
             expect(fixture.bonus_available?).to eq(false)
           end
         end
@@ -334,7 +330,7 @@ describe Fixture do
         context 'and a bet value exists below the bonus threshold' do
 
           it 'returns true' do
-            stub_const('ENVIRONMENT_CONFIG', { 'bonus_threshold' => 15 })
+            stub_const('ENVIRONMENT_CONFIG', {'bonus_threshold' => 20})
             expect(fixture.bonus_available?).to eq(true)
           end
         end

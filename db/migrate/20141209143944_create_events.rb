@@ -1,7 +1,6 @@
-class CreateEvents < ActiveRecord::Migration
+class CreateEvents < ActiveRecord::Migration[5.0]
   def change
     create_table :events do |t|
-      t.integer  :id
       t.string   :type
       t.string   :team
       t.string   :player_name

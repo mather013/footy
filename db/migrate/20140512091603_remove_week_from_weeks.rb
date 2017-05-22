@@ -1,4 +1,4 @@
-class RemoveWeekFromWeeks < ActiveRecord::Migration
+class RemoveWeekFromWeeks < ActiveRecord::Migration[5.0]
   def self.up
     remove_column :weeks, :week
   end

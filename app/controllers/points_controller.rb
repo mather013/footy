@@ -1,5 +1,5 @@
 class PointsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   def index
     @current_user = current_user

@@ -1,5 +1,4 @@
 class Communication < ActiveRecord::Base
-  attr_accessible :type, :status, :user_id, :message
 
   module Status
     PENDING = 'pending'
@@ -14,7 +13,7 @@ class Communication < ActiveRecord::Base
 
   belongs_to :user
 
-  scope :pending, where(status: Status::PENDING)
+  scope :pending, -> { where(status: Status::PENDING) }
 
   def mark_sent
     self.status = Status::SENT

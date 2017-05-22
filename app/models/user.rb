@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :id, :name, :username, :password, :mobile
 
   has_many :bets
   has_many :fa_bets

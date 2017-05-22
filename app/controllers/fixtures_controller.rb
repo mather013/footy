@@ -1,5 +1,5 @@
 class FixturesController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   def index
     @week = Week.find(params[:week_id])

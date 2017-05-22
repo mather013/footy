@@ -5,7 +5,7 @@
     <% @choices.each do |choice| %>
         <% i+=1 %>
         <% radio_choice = "checked=\"checked" if @bet.value == choice[:value] || @bet.value.nil? && choice[:value] == "H" %>
-        <input type="radio" name="bet_value" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= choice[:value] %>" style="display:none;"/>
+        <input type="radio" class="differentbutton" name="bet_value" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= choice[:value] %>" style="display:none;"/>
         <label for="radio-choice-<%= i %>"> <%= choice[:name] %></label>
     <% end %>
   </fieldset>

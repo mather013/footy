@@ -3,7 +3,7 @@ require 'spec_helper'
 module Feed
   module FootballApi
     describe Fixture do
-      let(:status) { "FT" }
+      let(:status) { 'FT' }
       let(:fixture) { Feed::FootballApi::Fixture.new(hash) }
       let(:hash) { {:match_id => "1952554",
                     :match_static_id => "1755666",
@@ -64,14 +64,14 @@ module Feed
 
           context 'when fixture has a status of full time' do
             it 'returns true' do
-              expect(fixture.finished?).to be_true
+              expect(fixture.finished?).to be_truthy
             end
           end
 
           context 'when fixture does not have a status of full time' do
-            let(:status) { "HT" }
+            let(:status) { 'HT' }
             it 'returns false' do
-              expect(fixture.finished?).to be_false
+              expect(fixture.finished?).to be_falsey
             end
           end
         end

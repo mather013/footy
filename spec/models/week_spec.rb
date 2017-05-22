@@ -14,12 +14,6 @@ describe Week do
     it { should respond_to(:complete) }
   end
 
-  describe 'mass assignment' do
-    [:id, :close_date, :description, :complete].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'scopes' do
     let!(:week_01) { Week.create(description: 'Week 01', close_date: 22.days.ago, complete: true) }
     let!(:week_02) { Week.create(description: 'Week 02', close_date: 15.days.ago, complete: true) }
@@ -35,7 +29,7 @@ describe Week do
       end
 
       it 'creates the expected sql for weeks by ascending close_date' do
-        expect(Week.sorted.to_sql.should == "SELECT \"weeks\".* FROM \"weeks\"  ORDER BY close_date asc")
+        expect(Week.sorted.to_sql).to eq("SELECT \"weeks\".* FROM \"weeks\" ORDER BY close_date asc")
       end
     end
 
@@ -46,7 +40,7 @@ describe Week do
       end
 
       it 'creates the expected sql for weeks by not complete and ascending close_date' do
-        expect(Week.sorted_open.to_sql.should == "SELECT \"weeks\".* FROM \"weeks\"  ORDER BY complete desc, close_date asc")
+        expect(Week.sorted_open.to_sql).to eq("SELECT \"weeks\".* FROM \"weeks\" ORDER BY complete desc, close_date asc")
       end
     end
 
@@ -60,7 +54,7 @@ describe Week do
     describe 'sorted_non_recent' do
 
       it 'weeks by complete and close_date' do
-        Week.sorted_non_recent.should eq [week_01]
+        expect(Week.sorted_non_recent).to eq [week_01]
       end
     end
   end
@@ -143,8 +137,8 @@ describe Week do
       let(:close_date) { 1.days.from_now }
 
       it "calls time zone with 'London' parameter" do
-        week.should_receive(:close_date).and_return(close_date)
-        close_date.should_receive(:in_time_zone).with('London')
+        expect(week).to receive(:close_date).and_return(close_date)
+        expect(close_date).to receive(:in_time_zone).with('London')
         week.close_date_local_time
       end
     end

@@ -19,7 +19,7 @@ Footy::Application.routes.draw do
 
   get  'sessions'                                 => 'sessions#new'
   get  'weeks/:week_id/fixtures'                  => 'fixtures#index',  :as => 'fixtures'
-  put  'weeks/:week_id/fixtures'                  => 'fixtures#index',  :as => 'fixtures'
+  put  'weeks/:week_id/fixtures'                  => 'fixtures#index'
   post 'weeks/:week_id/fixtures/:fixture_id/bets' => 'bets#new',        :as => 'new_fixture_bet'
   get  'weeks/:week_id/fixtures/:fixture_id/bets' => 'bets#edit',       :as => 'edit_fixture_bet'
   get  'weeks/:week_id/fixtures/:fixture_id/bets_info' => 'fixtures#bets_info',  :as => 'fixture_bets_info'
@@ -38,7 +38,7 @@ Footy::Application.routes.draw do
   #match '*a', :to => 'errors#routing'
 
   namespace :api do
-    post 'fixtures/add_score'  => 'fixtures#add_score', :as => 'new_fixture_score'
+    post 'fixtures/add_score'  => 'fixtures#add_score'
   end
 
 end

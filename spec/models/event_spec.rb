@@ -18,9 +18,4 @@ describe Event do
     it { should respond_to(:team_id) }
   end
 
-  describe 'mass assignment' do
-    [:id, :event_type, :team, :player_name, :minute, :fixture_id, :external_id, :team_id].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
 end

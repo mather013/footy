@@ -14,12 +14,6 @@ describe Score do
     it { should respond_to(:away) }
   end
 
-  describe 'mass assignment' do
-    [:id, :fixture_id, :home, :away].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'validations' do
 
   end

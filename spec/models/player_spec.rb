@@ -15,12 +15,6 @@ describe Player do
     it { should respond_to(:squad_number) }
   end
 
-  describe 'mass assignment' do
-    [:id, :forename, :surname, :team_id, :squad_number].each do |attribute|
-      it { should allow_mass_assignment_of(attribute) }
-    end
-  end
-
   describe 'scopes' do
     before :each do
       @team1 = Team.create(id: 3, name: 'Colombia')
@@ -57,13 +51,13 @@ describe Player do
 
     context 'when player exists with this forename and surname' do
       it 'is an invalid player' do
-        Player.new(forename: 'L', surname: 'Messi', team_id: 2).should_not be_valid
+        expect(Player.new(forename: 'L', surname: 'Messi', team_id: 2)).not_to be_valid
       end
     end
 
     context 'when player does not exist with this forename and surname' do
       it 'is a valid player' do
-        Player.new(forename: 'R', surname: 'Messi', team_id: 2).should be_valid
+        expect(Player.new(forename: 'R', surname: 'Messi', team_id: 2)).to be_valid
       end
     end
   end
