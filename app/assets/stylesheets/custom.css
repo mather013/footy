@@ -304,8 +304,6 @@ div.ui-btn, input[type="submit"] {
 
 .custom-list {
     background: white !important;
-    margin-left: -1px !important;
-
 }
 
 .custom-list-correct {
@@ -318,7 +316,6 @@ div.ui-btn, input[type="submit"] {
 
 .custom-list-header {
     background: #ecf0f1 !important;
-    margin-left: 2px !important;
 }
 
 .custom-list-winner {

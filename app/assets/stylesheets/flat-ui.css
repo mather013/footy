@@ -3,13 +3,13 @@
     border-color: lightgrey !important;
     border:0 !important;
     text-shadow: none !important;
-    color: white !important;
+    /*color: white !important;*/
 }
 
 .ui-page .ui-header .ui-btn {
     background:transparent;
-    color: white !important;
-    height: 14px;
+    /*color: white !important;*/
+    /*height: 14px;*/
 }
 
 .ui-page .ui-header .ui-btn-active {
@@ -25,7 +25,7 @@
 
 .ui-page .ui-footer .ui-btn {
     background:transparent;
-    color: white !important;
+    /*color: white !important;*/
 }
 
 .ui-page .ui-footer .ui-btn-active {
@@ -37,6 +37,7 @@
     border:1 !important;
     border-color: lightgrey;
     text-shadow: none !important;
+    border-radius:0 !important;
 }
 
 * {
@@ -52,22 +53,22 @@
 
 .ui-btn-active {
     background: #34495e !important;
-    border-color: #34495e !important;
+    /*border-color: #34495e !important;*/
 }
-
-.ui-page .ui-btn {
-    padding-top: .6em !important;
-    padding-bottom: .6em  !important;
-}
-
+/**/
+/*.ui-page .ui-btn {*/
+    /*padding-top: .6em !important;*/
+    /*padding-bottom: .6em  !important;*/
+/*}*/
+/**/
 .ui-btn-icon-right {
     background: white !important;
     margin-left: -1px !important;
     color: black !important;
 }
-
-.ui-btn-icon-left {
-    background: white !important;
-    margin-left: -1px !important;
-    color: black !important;
-}
+/**/
+/*.ui-btn-icon-left {*/
+    /*background: white !important;*/
+    /*margin-left: -1px !important;*/
+    /*color: black !important;*/
+/*}*/
