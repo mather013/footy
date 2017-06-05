@@ -3,6 +3,7 @@ module RakeTaskResources
     class << self
       def perform
         Bet.delete_all
+        Bonus.delete_all
         Communication.delete_all
         Event.delete_all
         FaBet.delete_all
