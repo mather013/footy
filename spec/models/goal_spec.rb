@@ -13,6 +13,17 @@ describe Goal do
     it { should respond_to(:score_id) }
   end
 
+  describe 'scopes' do
+
+    describe 'all_player_grouped_total_ordered' do
+      let(:expected_sql) { "SELECT player_id, count(*) as count FROM \"goals\" GROUP BY \"goals\".\"player_id\" ORDER BY count desc" }
+
+      it 'returns expected sql' do
+        expect(Goal.all_player_grouped_total_ordered.to_sql).to eq(expected_sql)
+      end
+    end
+  end
+
   describe 'instance methods' do
 
     describe '#opposing_team' do
