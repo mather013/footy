@@ -14,7 +14,7 @@ module Jobs
                                      away_team_id: away_team.id,
                                      kickoff: feed_fixture.kickoff,
                                      status: feed_fixture.status,
-                                     external_id: feed_fixture.id)
+                                     external_id: nil)
           weeks_to_update << fixture.week
         end
       end
