@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-tap-toggle="false">
+  <h1>5 Alive</h1>
+</div>
+
+<div data-role="content">
+  <%= form_for(@teams) do |team| %>
+      <fieldset>
+        <div class="control-group" align="center">
+          <%= bet.hidden_field :mmather, value: team.id %>
+          <%= bet.select :team_id, options_for_select(@teams.map(&:name)) %>
+          <%= bet.submit 'Save', class: 'btn btn-large btn-primary' %>
+        </div>
+      </fieldset>
+  <% end %>
+</div>
+
+<%= render 'common/footer' %>
+</html>

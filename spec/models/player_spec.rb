@@ -17,9 +17,9 @@ describe Player do
 
   describe 'scopes' do
     before :each do
-      @team1 = Team.create(id: 3, name: 'Colombia')
-      @team2 = Team.create(id: 1, name: 'Argentina')
-      @team3 = Team.create(id: 2, name: 'Brazil')
+      @team1 = Team.create(id: 3, name: 'Colombia', abbreviation: 'col')
+      @team2 = Team.create(id: 1, name: 'Argentina', abbreviation: 'arg')
+      @team3 = Team.create(id: 2, name: 'Brazil', abbreviation: 'bra')
 
       ['James', 'Falco', 'Valderrama'].each { |surname| @team1.players.create(surname: surname)  }
       ['Messi', 'Batistuta', 'Maradona'].each { |surname| @team2.players.create(surname: surname)  }
@@ -46,6 +46,7 @@ describe Player do
   describe 'validation' do
 
     before :each do
+      Team.create(id: 1, name: 'Brazil', abbreviation: 'bra')
       Player.create(forename: 'L', surname: 'Messi', team_id: 1)
     end
 
@@ -62,8 +63,28 @@ describe Player do
     end
   end
 
+  describe 'callbacks' do
+    let!(:team_1) { Team.create(id: 1, name: 'Argentina', abbreviation: 'arg') }
+    let!(:team_2) { Team.create(id: 2, name: 'Belgium', abbreviation: 'bel') }
+
+    describe 'before_save' do
+      it 'generates and saves the expected reference' do
+        player = Player.create(forename: 'Mark', surname: 'Mather', squad_number: 10, team_id: team_1.id)
+        expect(player.reload.reference).to eq('ARG10')
+
+        player.squad_number = 19
+        player.save
+        expect(player.reload.reference).to eq('ARG19')
+
+        player.update_attributes(team_id: 2)
+        expect(player.reload.reference).to eq('BEL19')
+      end
+    end
+  end
+
   describe 'instance methods' do
-    let(:player) { Player.new(forename: 'Mark', surname: 'Mather', squad_number: 10, team_id: 1) }
+    let(:team) { Team.create(id: 1, name: 'Brazil', abbreviation: 'bra') }
+    let(:player) { Player.new(forename: 'Mark', surname: 'Mather', squad_number: 10, team_id: team.id) }
 
     describe 'name' do
       it 'returns player forename and surname as string' do
@@ -74,6 +95,12 @@ describe Player do
     describe 'name_and_number' do
       it 'returns player forename, surname and squad number as string' do
         expect(player.name_and_number).to eq('Mark Mather #10')
+      end
+    end
+
+    describe 'generate_reference' do
+      it 'creates player reference from team abbreviation and squad number' do
+        expect(player.generate_reference).to eq('BRA10')
       end
     end
 

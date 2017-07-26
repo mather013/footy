@@ -7,6 +7,9 @@ class Player < ActiveRecord::Base
   scope :by_surname, -> { order('surname asc') }
 
   validates :surname, :uniqueness => {:scope => :forename}
+  validates :reference, uniqueness: true
+
+  before_save :generate_reference
 
   def name
     "#{forename} #{surname}".to_s
@@ -14,6 +17,10 @@ class Player < ActiveRecord::Base
 
   def name_and_number
     "#{name} ##{squad_number}".to_s
+  end
+
+  def generate_reference
+    self.reference = team.abbreviation.upcase + squad_number.to_s
   end
 
 end
