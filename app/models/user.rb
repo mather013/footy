@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_one :position
   has_one :gb_bet
   has_one :sweep_bet
+  has_one :fat_selection
+  has_many :fat_bets
 
   validates_presence_of :name, :username, :password
 

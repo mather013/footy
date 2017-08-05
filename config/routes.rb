@@ -5,7 +5,7 @@ Footy::Application.routes.draw do
   resources :sessions,     :only => [:new, :create]
   resources :bets,         :only => [:create, :update, :index, :show]
   resources :goals,        :only => [:index]
-  resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
+  # resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
   resources :lm_rounds,    :only => [:index]
   resources :lm_bets,      :only => [:create, :update]
   resources :lm_points,    :only => [:index]
@@ -16,6 +16,9 @@ Footy::Application.routes.draw do
   resources :sweep_points, :only => [:index]
   resources :winners,      :only => [:index, :show]
   resources :jobs,         :only => [:index]
+  resources :fat_selections,   :only => [:index, :create, :new, :edit, :update, :show]
+  resources :fat_rounds,       :only => [:index]
+  # resources :fat_bets,         :only => [:index]
 
   get  'sessions'                                 => 'sessions#new'
   get  'weeks/:week_id/fixtures'                  => 'fixtures#index',  :as => 'fixtures'
@@ -36,9 +39,12 @@ Footy::Application.routes.draw do
   get  'gb_points_info'                           => 'gb_points#info',  :as => 'gb_points_info'
   match 'jobs/perform/:job_name'                  => 'jobs#perform',    :as => 'jobs_perform', :via => :post
   #match '*a', :to => 'errors#routing'
+  get  'fat_rounds/:fat_round_id/fat_bets'        => 'fat_bets#index',  :as => 'fat_bets'
+  # post 'fat_selection' => 'fat_selections#new',        :as => 'new_fat_selections'
 
   namespace :api do
     post 'fixtures/add_score'  => 'fixtures#add_score'
+    post 'fixtures/add_goal'  => 'fixtures#add_goal'
   end
 
 end

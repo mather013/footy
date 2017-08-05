@@ -37,3 +37,9 @@
       <span class="label <%= gb_label_style %>">&nbsp;<%= gb_score %>&nbsp;</span>
     </a></li>
 <% end %>
+
+<% if TOGGLES_CONFIG['five_alive_twist'] %>
+    <li><a href="<%= fat_selections_path %>" data-theme="a">5 Alive
+      <!--<span class="label-success">&nbsp; &nbsp;</span>-->
+    </a></li>
+<% end %>

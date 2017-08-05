@@ -13,7 +13,7 @@
 }
 
 .leaderboard {
-    font-size: .8em;
+    font-size: .6em;
 }
 
 .spot_on {
@@ -78,6 +78,13 @@
 .main-font {
     font-size: 14px;
     text-shadow: none !important;
+}
+
+.player-font {
+    font-size: 14px;
+    text-shadow: none !important;
+    position: relative;
+    top: 5px;
 }
 
 .fixture-date {
@@ -307,7 +314,7 @@ div.ui-btn, input[type="submit"] {
 }
 
 .custom-list-correct {
-    background: #ccffcc !important;
+    background: #d9ffb3 !important;
 }
 
 .custom-list-wrong {
@@ -543,4 +550,9 @@ div.ui-btn, input[type="submit"] {
 
 .radio-toolbar label {
     margin: 2px;
+}
+
+.custom-fill-winner {
+    background: lightgreen;
+    color: lightgreen;
 }

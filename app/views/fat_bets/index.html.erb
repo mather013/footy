@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= fat_rounds_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1><%= "Round #{@round.id}" %></h1>
+</div>
+
+
+<div data-role="content">
+  <ul data-role="listview">
+
+    <% if @bets.present? %>
+        <% @bets.each do |bet| %>
+
+            <% case bet.correct? %>
+            <% when true %>
+                <% style = 'custom-list-correct' %>
+            <% when false %>
+                <% style = 'custom-list-wrong' %>
+            <% else %>
+                <% style = 'custom-list' %>
+            <% end %>
+
+            <li class="<%= style %>">
+              <div class="ui-grid-b">
+                <% player = bet.player %>
+
+                <div class="ui-block-a main-font" style="width:10%">
+                  <%= image_tag "#{BADGE_PATH}#{player.team.abbreviation}.png", class: 'badge-medium' %>
+                </div>
+
+                <div class="ui-block-b player-font" style="width:12%">
+                  <%= "##{player.squad_number}" %>
+                </div>
+
+                <div class="ui-block-c player-font" style="width:48%">
+                  <%= player.name %>
+                </div>
+
+                <div class="ui-block-d main-font" align="center" style="width:10%">
+                  <%= image_tag "#{BADGE_PATH}#{bet.fixture.home_team.abbreviation}.png", class: 'badge-medium' %>
+                </div>
+
+                <div class="ui-block-d player-font" align="center" style="width:10%">
+                  vs
+                </div>
+
+                <div class="ui-block-d main-font" align="center" style="width:10%">
+                  <%= image_tag "#{BADGE_PATH}#{bet.fixture.away_team.abbreviation}.png", class: 'badge-medium' %>
+                </div>
+
+              </div>
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<%= render 'common/footer' %>
+</html>

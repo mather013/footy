@@ -1,0 +1,23 @@
+<div class="ui-grid-b">
+  <div class="ui-block-a" align="center" style="width:10%">
+    <%= image_tag "#{BADGE_PATH}#{@team.abbreviation}.png", class: 'player-badge-size' %>
+  </div>
+  <div class="ui-block-b" style="width:10%">
+    <%= "##{@player.squad_number}" %>
+  </div>
+  <div class="ui-block-c" style="width:70%">
+    <%= "#{@player.forename} #{@player.surname}" %>
+  </div>
+  <div class="ui-block-d" align="center" style="width:10%">
+    <% case @player.position.upcase %>
+    <% when 'FW' %>
+        <span class="label label-success"><%= @player.position %></span>
+    <% when 'MF' %>
+        <span class="label label-warning"><%= @player.position %></span>
+    <% when 'DF' %>
+        <span class="label label-danger"><%= @player.position %></span>
+    <% when 'GK' %>
+        <span class="label label-primary"><%= @player.position %></span>
+    <% end %>
+  </div>
+</div>

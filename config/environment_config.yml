@@ -15,6 +15,9 @@ defaults: &defaults
   euro_cup:
     type: international
     knockout_rounds: []
+  confederations_cup:
+    type: international
+    knockout_rounds: []
   club:
     strip_path: 'club/strip/'
     badge_path: 'club/badge/'
@@ -24,11 +27,13 @@ defaults: &defaults
   feed:
     football_data_api:
       url: http://api.football-data.org
-      competition_id: 426
+      competition_id: 445
     football_api:
       url: http://football-api.com/api/
       competition_id: 1204
-  bonus_threshold: 15
+  bonus_threshold: 26
+  bonus_amount: 20
+  bonus_points_matrix: 30
 
 development:
   <<: *defaults

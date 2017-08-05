@@ -7,7 +7,7 @@
 
 <div data-role="content">
   <div class="ui-field-contain" align="center">
-    <form action="/fat_selections/new?" method="get">
+    <form action="<%="/fat_selections/#{@selection.id}/edit?"%>" method="get">
       <select name="team_id" align="center" id="team_id">
         <% @teams.each do |team| %>
             <% if team.id == @team.id %>
@@ -26,7 +26,7 @@
 
 <div class="custom-list">
   <div class="player-goals" data-role="listview" data-count-theme="d">
-    <form method="POST" action="<%= fat_selections_path %>">
+    <form method="PUT" action="<%= fat_selection_path(@selection.id) %>">
 
       <input type="hidden" name="selection_id" value="<%= params['selection_id'] %>">
 
@@ -40,7 +40,7 @@
             <input type="radio" name="player_id" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= player.id %>">
             <label for="radio-choice-<%= i %>">
 
-              <div class="ui-grid-b player-font">
+              <div class="ui-grid-b main-font">
                 <div class="ui-block-a" align="center" style="width:10%">
                   <%= image_tag "#{BADGE_PATH}#{@team.abbreviation}.png", class: 'player-badge-size' %>
                 </div>

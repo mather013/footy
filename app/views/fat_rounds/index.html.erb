@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<div class="ui-title" data-theme="a" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= fat_selections_path %>" class="ui-btn-left" data-theme="a" data-rel="">Players</a>
+  <h1>5 Alive</h1>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview">
+    <% @rounds.each do |round| %>
+
+        <li class="custom-list">
+          <a href="<%= fat_bets_path(round.id) %>">
+            <div class="ui-grid-b">
+              <div class="ui-block-a main-font" style="width:90%">
+                <%= "#{round.description}" %>
+
+                <% case round.week.status %>
+                <% when 'Complete' %>
+                    <span class="label label-default">complete</span>
+                <% when 'In play' %>
+                    <span class="label label-warning">in play</span>
+                <% end %>
+
+                <br>
+                <h10 class="kickoff">
+                  <%= "#{DateTime.parse(round.week.close_date_local_time.to_s).strftime("%A #{round.week.close_date_local_time.day.ordinalize} %H:%M")}" %>
+                </h10>
+              </div>
+
+              <div class=ui-block-c" style="width:8%">
+
+              </div>
+            </div>
+          </a>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>
