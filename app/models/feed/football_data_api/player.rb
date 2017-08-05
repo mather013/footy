@@ -31,7 +31,7 @@ module Feed
             Position::GOALIE
           when 'left-back','right-back','centre-back'
             Position::DEFENDER
-          when 'defensive midfield', 'central midfield', 'attacking midfield', 'right wing','left wing'
+          when 'defensive midfield', 'central midfield', 'right midfield', 'left midfield', 'attacking midfield', 'right wing','left wing'
             Position::MIDFIELDER
           when 'secondary striker', 'centre-forward'
             Position::FORWARD
