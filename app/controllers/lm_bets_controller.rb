@@ -14,7 +14,7 @@ class LmBetsController < ApplicationController
   end
 
   def edit
-    @bet = LmBet.find(:all, :conditions => ['lm_round_id = ? AND user_id = ?', params[:lm_round_id], current_user.id]).first
+    @bet = LmBet.find_by(lm_round_id: params[:lm_round_id], user_id: current_user.id)
     load_details
   end
 

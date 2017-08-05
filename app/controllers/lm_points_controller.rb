@@ -4,7 +4,7 @@ class LmPointsController < ApplicationController
   def index
     @game = game
     @max_round = LmRound.current
-    @total_points = LmPoint.find(:all, :select => 'user_id, value', :order => 'value DESC')
+    @total_points = LmPoint.select('user_id, value').order('value DESC')
   end
 
   private
