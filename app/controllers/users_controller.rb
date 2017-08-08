@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     @view_user = User.find(params[:user_id])
   end
 
+  def fat_round_bets
+    @round = FatRound.find(params['fat_round_id'])
+    @user = User.find(params['user_id'].to_i)
+    @bets = @round.bets.where(user_id: @user.id)
+  end
+
   private
 
   def bonuses_for_user_and_week

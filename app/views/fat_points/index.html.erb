@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
+  <a href="<%= fat_rounds_path(@round.id) %>" data-theme="a" data-rel="">Back</a>
+  <h1><%= '5 Alive Points' %></h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+    <% position = 0 %>
+
+    <% @points.each do |point| %>
+        <li class="custom-list">
+          <a href="<%= user_fat_round_bets_path(point.user_id, @round.id) %>" class="leaderboard">
+            <div class="ui-grid-b">
+
+              <% position += 1 %>
+              <% user = point.user %>
+              <% username_style = (user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+
+              <div class="ui-block-a" style="width:10%">
+                <%= "#{position}" %>
+              </div>
+
+              <div class="<%= username_style %>" style="width:35%">
+                <%= user.name %>
+              </div>
+
+              <div class="ui-block-d" align="center" style="width:45%">
+                <% 5.times do %>
+                    <%= image_tag "#{BADGE_PATH}tba.png", class: 'strip-size' %>
+                <% end %>
+              </div>
+
+              <div class="ui-block-d" align="center" style="width:10%">
+                <%= point.value.to_i %>
+              </div>
+
+            </div>
+          </a>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

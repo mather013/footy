@@ -39,7 +39,14 @@
 <% end %>
 
 <% if TOGGLES_CONFIG['five_alive_twist'] %>
-    <li><a href="<%= fat_selections_path %>" data-theme="a">5 Alive
-      <!--<span class="label-success">&nbsp; &nbsp;</span>-->
-    </a></li>
+    <% latest_round = FatRound.sorted.first %>
+    <% if latest_round.week.status == 'In play' %>
+        <li><a href="<%= fat_bets_path(latest_round.id) %>" data-theme="a">5 Alive
+          <span class="label label-warning">&nbsp; &nbsp;</span>
+        </a></li>
+    <% else %>
+        <li><a href="<%= fat_selections_path %>" data-theme="a">5 Alive
+          <span class="label label-success">&nbsp; &nbsp;</span>
+        </a></li>
+    <% end %>
 <% end %>

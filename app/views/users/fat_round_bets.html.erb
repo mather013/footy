@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-tap-toggle="false">
-  <a href="<%= fat_rounds_path %>" class="ui-btn-left" data-theme="a" data-rel="">Rounds</a>
-  <a href="<%= fat_points_path(@round.id) %>" class="ui-btn-right" data-theme="a" data-rel="">Points</a>
-  <h1><%= "Round #{@round.id}" %></h1>
+  <a href="<%= fat_points_path(@round.id) %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1><%= "#{@user.name}" %></h1>
 </div>
 
 <div data-role="content">
@@ -13,7 +12,7 @@
         <% @bets.each do |bet| %>
 
             <% case bet.correct? %>
-            <% when true %>
+    <% when true %>
                 <% style = 'custom-list-correct' %>
             <% when false %>
                 <% style = 'custom-list-wrong' %>

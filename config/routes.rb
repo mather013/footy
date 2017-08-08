@@ -18,7 +18,7 @@ Footy::Application.routes.draw do
   resources :jobs,         :only => [:index]
   resources :fat_selections,   :only => [:index, :create, :new, :edit, :update, :show]
   resources :fat_rounds,       :only => [:index]
-  # resources :fat_bets,         :only => [:index]
+  # resources :fat_points,       :only => [:index]
 
   get  'sessions'                                 => 'sessions#new'
   get  'weeks/:week_id/fixtures'                  => 'fixtures#index',  :as => 'fixtures'
@@ -40,7 +40,8 @@ Footy::Application.routes.draw do
   match 'jobs/perform/:job_name'                  => 'jobs#perform',    :as => 'jobs_perform', :via => :post
   #match '*a', :to => 'errors#routing'
   get  'fat_rounds/:fat_round_id/fat_bets'        => 'fat_bets#index',  :as => 'fat_bets'
-  # post 'fat_selection' => 'fat_selections#new',        :as => 'new_fat_selections'
+  get  'fat_rounds/:fat_round_id/points'          => 'fat_points#index',:as => 'fat_points'
+  get  'users/:user_id/fat_round/:fat_round_id/bets'   => 'users#fat_round_bets',     :as => 'user_fat_round_bets'
 
   namespace :api do
     post 'fixtures/add_score'  => 'fixtures#add_score'
