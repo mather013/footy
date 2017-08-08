@@ -6,7 +6,7 @@ module RakeTaskResources
         index = 0
         position = 0
         previous_score = -10
-        total_points = Point.find(:all, :select => 'user_id, count(*) as count, sum(value) as value', :group => 'user_id', :order => 'value DESC' )
+        total_points = Point.select('user_id, count(*) as count, sum(value) as value').group(:user_id).order('value DESC')
 
         total_points.each do |point|
           position +=1 unless previous_score == point.value

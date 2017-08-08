@@ -4,7 +4,7 @@ module RakeTaskResources
       def perform
         puts "marking last man"
         User.all.each do |user|
-          lm_bets = LmBet.find_all_by_user_id(user.id)
+          lm_bets = LmBet.where(user_id: user.id)
           if lm_bets.present?
             points = mark_last_man lm_bets
             award_points user, points
