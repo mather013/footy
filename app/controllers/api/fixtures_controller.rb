@@ -22,7 +22,7 @@ module Api
 
         if player.present? && fixture.present?
           fixture.update_attributes(status: Fixture::Status::IN_PLAY) unless fixture.status == Fixture::Status::FINISHED
-          fixture.score.create(home: 0, away: 0) if fixture.score.nil?
+          fixture.create_score(home: 0, away: 0) if fixture.score.nil?
           fixture.score.goals.create(player_id: player.id)
           result = fixture.score.goals.create(player_id: player.id)
         end
