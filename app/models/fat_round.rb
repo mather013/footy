@@ -5,6 +5,7 @@ class FatRound < ActiveRecord::Base
   has_many :points, :foreign_key => 'fat_round_id', :class_name => 'FatPoint'
 
   scope :sorted, -> { order('week_id desc') }
+  scope :latest, -> { sorted.limit(1).first }
 
   validates :week_id, uniqueness: true
 
