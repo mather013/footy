@@ -48,6 +48,7 @@ end
 
 gem 'rollbar'
 gem 'keen'
+gem 'oj', '~> 2.16.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
