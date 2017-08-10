@@ -88,4 +88,9 @@ namespace :footy do
     RakeTaskResources::SetTeams.perform args
   end
 
+  desc 'Create 5 Alive bets'
+  task :create_fat_bets, [:week_id] => :environment do |t, args|
+    RakeTaskResources::CreateFatBets.perform args
+  end
+
 end
