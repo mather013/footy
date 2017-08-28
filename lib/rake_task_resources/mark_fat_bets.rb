@@ -11,8 +11,10 @@ module RakeTaskResources
 
         User.all.each do |user|
           bets = round.bets.where(user_id: user.id)
-          points = calculate_points(bets)
-          record_points(round, user, points)
+          if bets.present?
+            points = calculate_points(bets)
+            record_points(round, user, points)
+          end
         end
       end
 
