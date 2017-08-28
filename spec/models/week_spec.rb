@@ -175,16 +175,27 @@ describe Week do
     end
 
     describe '#maybe_mark_complete' do
-      let!(:fixture_one) { Fixture.create(id: 1, week_id: week.id,) }
-      let!(:fixture_two) { Fixture.create(id: 2, week_id: week.id,) }
+      let!(:fixture_one) { Fixture.create(id: 1, week_id: week.id, status: Fixture::Status::FINISHED) }
+      let!(:fixture_two) { Fixture.create(id: 2, week_id: week.id, status: Fixture::Status::IN_PLAY) }
       let!(:score_one) { Score.create(id: 1, fixture_id: 1, home: 1, away: 0) }
 
       context 'when all scores are in' do
         let!(:score_two) { Score.create(id: 2, fixture_id: 2, home: 1, away: 0) }
 
-        it 'marks week as complete' do
-          week.maybe_mark_complete
-          expect(week.complete).to eq (true)
+        context 'fixtures are all finished' do
+          it 'marks week as complete' do
+            fixture_two.update_attributes(status: Fixture::Status::FINISHED)
+
+            week.maybe_mark_complete
+            expect(week.complete).to eq (true)
+          end
+        end
+
+        context 'fixtures are not all finished' do
+          it 'does not mark week as complete' do
+            week.maybe_mark_complete
+            expect(week.complete).to eq (false)
+          end
         end
       end
 

@@ -92,7 +92,7 @@ class Week < ActiveRecord::Base
   private
 
   def can_be_marked_complete?
-    fixtures.collect(&:score).exclude?(nil)
+    fixtures.map(&:status).uniq == [Fixture::Status::FINISHED] && fixtures.collect(&:score).exclude?(nil)
   end
 
 end
