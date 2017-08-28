@@ -107,7 +107,7 @@ class Team < ActiveRecord::Base
   end
 
   def finished_fixtures
-    Fixture.joins(:score).where('home_team_id = ? OR away_team_id = ?', self.id, self.id)
+    Fixture.finished.joins(:score).where('home_team_id = ? OR away_team_id = ?', self.id, self.id)
   end
 
   #def finished_home_fixtures
