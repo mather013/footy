@@ -16,6 +16,8 @@ class Fixture < ActiveRecord::Base
   scope :requiring_score, -> { where('kickoff between ? and ?', 7.days.ago, 105.minutes.ago).includes(:score).where(:scores => { :fixture_id => nil } ) }
   scope :recent_not_finished, -> { where("status != 'finished' and kickoff between ? and ?", 7.days.ago, 1.minutes.ago) }
 
+  scope :finished, -> { where(status: Status::FINISHED) }
+
   module Status
     DEFINED   = 'defined'
     SCHEDULED = 'scheduled'

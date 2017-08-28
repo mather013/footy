@@ -69,6 +69,17 @@ describe Fixture do
         expect(Fixture.recent_not_finished).to eq [fixture_two, fixture_three, fixture_four]
       end
     end
+
+    describe 'finished' do
+      let!(:fixture_one) { Fixture.create(kickoff: 2.days.ago, external_id: nil, status: Fixture::Status::FINISHED) }
+      let!(:fixture_two) { Fixture.create(kickoff: 3.days.ago, external_id: nil, status: Fixture::Status::FINISHED) }
+      let!(:fixture_three) { Fixture.create(kickoff: 1.days.from_now, external_id: nil, status: Fixture::Status::DEFINED) }
+
+      it 'returns the expected fixtures' do
+        expect(Fixture.finished).to eq [fixture_one, fixture_two]
+      end
+    end
+
   end
 
   describe 'instance methods' do
