@@ -45,4 +45,13 @@ class User < ActiveRecord::Base
     sweep_bet.present? && sweep_bet.team.in_sweep?
   end
 
+  def fat_survivor?(round_id)
+    bets = fat_bets.for_round_sorted(round_id)
+
+    bets.all.each do |bet|
+      return false unless bet.correct?
+    end
+    true
+  end
+
 end

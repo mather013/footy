@@ -7,22 +7,24 @@
 
 <div class="leaderboard">
   <ul data-role="listview">
-    <% position = 0 %>
 
     <% @points.each do |point| %>
-        <li class="custom-list">
-          <a href="<%= user_fat_round_bets_path(point.user_id, @round.id) %>" class="leaderboard">
+        <% user = point.user %>
+        <% username_style = (user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+        <% style = 'disabled-font' unless user.fat_survivor?(@round.id) %>
+
+        <% list_style = point.value.to_i == 5 ? 'custom-list-winner' : 'custom-list' %>
+
+        <li class="<%= list_style %>">
+
+          <a href="<%= user_fat_round_bets_path(point.user_id, @round.id) %>" class="leaderboard" >
             <div class="ui-grid-b">
 
-              <% position += 1 %>
-              <% user = point.user %>
-              <% username_style = (user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
-
               <div class="ui-block-a" style="width:10%">
-                <%= "#{position}" %>
+
               </div>
 
-              <div class="<%= username_style %>" style="width:35%">
+              <div class="<%= style %> <%= username_style %>" style="width:35%">
                 <%= user.name %>
               </div>
 
