@@ -14,7 +14,7 @@
   <!--<a href="<%= winner_path(@week.close_date.month) %>" class="ui-btn-right" data-theme="a" data-rel="">Month</a>-->
 </div>
 
-<div class="leaderboard">
+<div data-role="content">
   <ul data-role="listview">
     <% index = 0 %>
     <% position = 0 %>
@@ -37,8 +37,8 @@
         <% list_style = position == 1 && competition_type == 'club' && @week.complete? ? "custom-list-winner" : "custom-list" %>
 
         <li class="<%= list_style %>">
-          <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>" class="leaderboard">
-            <div class="ui-grid-b">
+          <a href="<%= user_week_fixtures_path(point.user_id, @week.id) %>">
+            <div class="ui-grid-b leaderboard">
               <div class="ui-block-a" style="width:10%">
                 <% if previous_score == point.value %>
                     <%= "#{position}" %>
@@ -60,7 +60,7 @@
               </div>
 
               <!--<div class="ui-block-d payout-icon" align="left" style="width:10%">-->
-                <!--<%= "£10" if competition_type == 'club' && paying_winners.count == 1 && paying_winners.collect(&:id).include?(point.user.id) %>-->
+              <!--<%= "£10" if competition_type == 'club' && paying_winners.count == 1 && paying_winners.collect(&:id).include?(point.user.id) %>-->
               <!--</div>-->
 
               <div class="ui-block-d" align="right" style="width:10%">

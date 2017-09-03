@@ -23,7 +23,7 @@ end
 gem 'pry'
 gem 'jquery-rails'
 gem 'therubyracer'
-gem 'jquery_mobile_rails', '~> 1.3.0'
+gem 'jquery_mobile_rails'#, '~> 1.3.0'
 gem 'rspec-rails'
 gem 'rest-client'
 gem 'httparty'

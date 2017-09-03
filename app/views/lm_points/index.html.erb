@@ -2,18 +2,17 @@
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
   <a href="<%= lm_rounds_path %>" data-theme="a" data-rel="">Back</a>
-
   <h1>
     Last Man Standing
   </h1>
 </div>
 
-<div class="leaderboard">
+<div data-role="content">
   <ul data-role="listview">
     <% @total_points.each do |point| %>
         <li class="custom-list">
-          <a href="<%= user_lm_rounds_path(point.user_id) %>" class="leaderboard">
-            <div class="ui-grid-b">
+          <a href="<%= user_lm_rounds_path(point.user_id) %>">
+            <div class="ui-grid-b leaderboard">
 
               <% knocked_out = point.value < @max_round.id-1 %>
               <% style = 'disabled-font' if knocked_out %>
