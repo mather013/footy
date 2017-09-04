@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include ::ActionController::Cookies
+  include ActionController::MimeResponds
   protect_from_forgery
 
   def current_user

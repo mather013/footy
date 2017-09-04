@@ -37,7 +37,7 @@ class FatSelectionsController < ApplicationController
     @week = Week.current
     @selection = FatSelection.find(params['id'])
     selections = @selection.value.split(',',-1)
-    selections[params['selection_id'].to_i] = params['player_id']
+    selections[params['selection_id'].to_i] = params['player_id'] unless params['player_id'] == '0'
     selections = selections.join(',')
 
     @selection.update_attributes(value: selections)

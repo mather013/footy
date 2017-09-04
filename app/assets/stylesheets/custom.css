@@ -81,10 +81,10 @@
 }
 
 .player-font {
-    font-size: 14px;
+    font-size: 12px;
     text-shadow: none !important;
     position: relative;
-    top: 5px;
+    top: 6px;
 }
 
 .fixture-date {

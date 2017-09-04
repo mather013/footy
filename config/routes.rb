@@ -42,6 +42,7 @@ Footy::Application.routes.draw do
   get  'fat_rounds/:fat_round_id/fat_bets'        => 'fat_bets#index',  :as => 'fat_bets'
   get  'fat_rounds/:fat_round_id/points'          => 'fat_points#index',:as => 'fat_points'
   get  'users/:user_id/fat_round/:fat_round_id/bets'   => 'users#fat_round_bets',     :as => 'user_fat_round_bets'
+  get  'teams/players'   => 'teams#players',     :as => 'team_players'
 
   namespace :api do
     post 'fixtures/add_score'  => 'fixtures#add_score'

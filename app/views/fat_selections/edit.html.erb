@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id=disable-viewport>
 <div data-role="header" data-position="fixed" data-tap-toggle="false">
   <a href="<%= fat_selections_path %>" data-theme="a" data-rel="">Back</a>
   <h1><%="Player #{params['selection_id'].to_i+1}"%></h1>
@@ -7,82 +7,64 @@
 
 <div data-role="content">
   <div class="ui-field-contain" align="center">
+
     <form action="<%="/fat_selections/#{@selection.id}/edit?"%>" method="get">
-      <select name="team_id" align="center" id="team_id">
+      <select name="team_id" align="center" id="teams">
+        <option selected value="0">Select Team</option>
         <% @teams.each do |team| %>
-            <% if team.id == @team.id %>
-                <option selected value="<%= team.id %>"><%= team.name %></option>
-            <% else %>
-                <option value="<%= team.id %>"><%= team.name %></option>
-            <% end %>
+            <option value="<%= team.id %>"><%= team.name %></option>
         <% end %>
         <option value=1> <input type=hidden name="selection_id" value=<%= params['selection_id'] %>>
       </select>
     </form>
-  </div>
-</div>
 
-<% i=0 %>
-
-<div class="custom-list">
-  <div class="player-goals" data-role="listview" data-count-theme="d">
     <form method="PUT" action="<%= fat_selection_path(@selection.id) %>">
-
+      <select name="player_id" align="center" id="players">
+        <option selected value="0">Select Player</option>
+      </select>
       <input type="hidden" name="selection_id" value="<%= params['selection_id'] %>">
-
-      <% @players.each do |player| %>
-          <% @player = player %>
-
-          <div class="radio-toolbar">
-
-            <% i+=1 %>
-            <% radio_choice = "unchecked" %>
-            <input type="radio" name="player_id" id="radio-choice-<%= i %>" <%= radio_choice %> value="<%= player.id %>">
-            <label for="radio-choice-<%= i %>">
-
-              <div class="ui-grid-b main-font">
-                <div class="ui-block-a" align="center" style="width:10%">
-                  <%= image_tag "#{BADGE_PATH}#{@team.abbreviation}.png", class: 'player-badge-size' %>
-                </div>
-                <div class="ui-block-b" style="width:10%">
-                  <%= "##{@player.squad_number}" %>
-                </div>
-                <div class="ui-block-c" style="width:70%">
-                  <%= "#{@player.forename} #{@player.surname}" %>
-                </div>
-                <div class="ui-block-d" align="center" style="width:10%">
-                  <% case @player.position.upcase %>
-                  <% when 'FW' %>
-                      <span class="label label-success"><%= @player.position %></span>
-                  <% when 'MF' %>
-                      <span class="label label-warning"><%= @player.position %></span>
-                  <% when 'DF' %>
-                      <span class="label label-danger"><%= @player.position %></span>
-                  <% when 'GK' %>
-                      <span class="label label-primary"><%= @player.position %></span>
-                  <% end %>
-                </div>
-              </div>
-
-            </label>
-
-          </div>
-
-      <% end %>
       <br>
       <input type="submit" value="Save"/>
-      <br>
     </form>
+
   </div>
 </div>
+
 
 <%= render 'common/footer' %>
 </html>
 
 <script type="text/javascript">
   $(function () {
-    $('#team_id').change(function () {
-      this.form.submit();
+    $('#teams').change(function () {
+      var team_id = $(this).val();
+      $.ajax({
+        type: "GET",
+        url: '/teams/players',
+        cache: false,
+        dataType:'json',
+        data: {
+          team_id: team_id
+        },
+        success: function(data) {
+//          console.log(data[0].reference, data[0].surname);
+          $('#players').empty();
+
+          var div_data="<option value='0'>Select Player</option>";
+          $(div_data).appendTo('#players');
+
+          $.each(data,function(i,obj)
+          {
+//            console.log(obj.id, obj.surname);
+            var div_data="<option value="+obj.id+">#"+obj.squad_number+" - "+obj.surname+" ("+obj.position+")</option>";
+            $(div_data).appendTo('#players');
+
+          });
+
+          $('#players').selectmenu('refresh');
+
+        },
+      });
     });
   });
 </script>
