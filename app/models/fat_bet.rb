@@ -18,7 +18,12 @@ class FatBet < ActiveRecord::Base
     return nil if goals.empty? && !fixture.finished?
     return false if goals.empty? && fixture.finished?
 
-    goals.where(player_id: player_id).present?
+    if fixture.finished?
+      goals.where(player_id: player_id).present?
+    else
+      goals.where(player_id: player_id).present? ? true : nil
+    end
+
   end
 
 end

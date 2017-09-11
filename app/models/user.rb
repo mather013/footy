@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     bets = fat_bets.for_round_sorted(round_id)
 
     bets.all.each do |bet|
-      return false unless bet.correct?
+      return false if bet.correct? == false
     end
     true
   end

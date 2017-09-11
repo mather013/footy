@@ -8,6 +8,7 @@ module Jobs
       RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
       RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
       RakeTaskResources::MarkGbBets.perform if TOGGLES_CONFIG['goal_buster']
+      RakeTaskResources::MarkFatBets.perform week.id if TOGGLES_CONFIG['five_alive_twist']
     end
 
   end

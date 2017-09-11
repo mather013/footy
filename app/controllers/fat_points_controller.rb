@@ -4,7 +4,7 @@ class FatPointsController < ApplicationController
   def index
     @current_user = current_user
     @round = FatRound.find(params['fat_round_id'])
-    @points = @round.points.select('user_id, value').order('value DESC')
+    @points = @round.points.select('user_id, value, additional_info').order('value DESC')
   end
 
 end

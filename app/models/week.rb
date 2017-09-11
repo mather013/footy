@@ -8,13 +8,16 @@ class Week < ActiveRecord::Base
   scope :sorted_recent, -> { where('complete is null or close_date >= ?',21.days.ago).order('close_date asc') }
   scope :sorted_non_recent, -> { where('complete is not null and close_date < ?',21.days.ago).order('close_date asc') }
 
-  def self.current
-    self.where("close_date > '#{Time.now}'").order(:close_date).first
-  end
+  scope :current, -> { where('close_date > ?', Time.now).order(:close_date).first }
+  scope :previous, -> { where('close_date < ?', Time.now).order('close_date desc').first }
 
-  def self.previous
-    self.where("close_date < '#{Time.now}'").order('close_date desc').first
-  end
+  # def self.current
+  #   self.where("close_date > '#{Time.now}'").order(:close_date).first
+  # end
+
+  # def self.previous
+  #   self.where("close_date < '#{Time.now}'").order('close_date desc').first
+  # end
 
   def status
     return 'Complete' if complete?
