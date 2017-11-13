@@ -123,6 +123,10 @@
     font-size: 11px;
 }
 
+.big-score {
+    font-size: 14px;
+}
+
 .info-txt {
     font-size: .7em;
     color: #686868;

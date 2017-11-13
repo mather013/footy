@@ -1,28 +1,61 @@
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
-  <a data-theme="a" data-rel="back">Back</a>
-
+  <a href="<%= fixtures_path(@week) %>" data-theme="a" data-rel="">Back</a>
   <h1><%= "Fixture #{@fixture.id.to_s.rjust(3, "0")}" %></h1>
+  <% if @user.admin? %>
+      <a href="<%= update_goals_path(@week, @fixture.id) %>" class="ui-btn-right" data-theme="a" data-rel="">Goals</a>
+  <% end %>
 </div>
 
 <div class="ui-grid-a" style=padding:30px>
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
   <p>
 
-  <div class="ui-block-a" style="width:45%" align="center">
+  <div class="ui-block-a" style="width:38%" align="center">
     <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.home_team.abbreviation}.png", class: "badge-size" %>
     <br>
-    <%= @fixture.home_team.name.upcase %>
+    <%= @fixture.home_team.short_name.upcase %>
+    <br>
+    <div class="info-txt-clear">
+      <% if @fixture.score.present? %>
+          <% @fixture.score.goals.each do |goal| %>
+              <% if goal.player.team == @fixture.home_team %>
+                  <%= "#{goal.player.surname}" %>
+                  <br>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
   </div>
-  <div class="ui-block-b" style="width:10%" align="center">
+  <div class="ui-block-b" style="width:24%" align="center">
     <h8 class="bet-versus">
       VS
     </h8>
+
+    <div class="big-score">
+    <% score_theme = 'label ft-score' if @fixture.finished? %>
+    <% score_theme = 'label in-play-score' if @fixture.in_play? %>
+    <% if score_theme.present? %>
+        <span class= '<%=score_theme%>'><%= @fixture.score.home %></span>
+        <span class= '<%=score_theme%>'><%= @fixture.score.away %></span>
+    <% end %>
   </div>
-  <div class="ui-block-c" style="width:45%" align="center">
+  </div>
+  <div class="ui-block-c" style="width:38%" align="center">
     <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@fixture.away_team.abbreviation}.png", class: "badge-size" %>
     <br>
-    <%= @fixture.away_team.name.upcase %>
+    <%= @fixture.away_team.short_name.upcase %>
+    <br>
+    <div class="info-txt-clear">
+      <% if @fixture.score.present? %>
+          <% @fixture.score.goals.each do |goal| %>
+              <% if goal.player.team == @fixture.away_team %>
+                  <%= goal.player.surname %>
+                  <br>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 
@@ -54,7 +87,7 @@
               </div>
 
               <div class="ui-block-d standings-text" style="width:20%" align="right">
-                <% if @fixture.score.present? && @fixture.score.outcome == value %>
+                <% if @fixture.finished? && @fixture.score.present? && @fixture.score.outcome == value %>
                 <span class="label label-success">
                     <%= value %>
                 </span>

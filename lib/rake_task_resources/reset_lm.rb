@@ -5,7 +5,7 @@ module RakeTaskResources
         LmPoint.delete_all
         LmBet.delete_all
         LmRound.delete_all
-        LmRound.find_or_create_by_id(id: 1, week_id: week_id)
+        LmRound.create(id: 1, week_id: week_id)
         remove_lm_game_from_all_users unless rollover
       end
 

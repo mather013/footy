@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-tap-toggle="false">
-  <a href="<%= fa_bets_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <a href="<%= fixture_bets_info_path(@week.id, @fixture.id) %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
   <h1>Goal scorers</h1>
 </div>
 
-<div data-role="collapsible-set">
-  <div class="player-goals" data-role="listview" data-count-theme="d">
-    <% @goals.each do |goals_for_player| %>
-        <% @player = goals_for_player.player %>
-        <%= render 'fa_bets/players' %>
+<form method="PUT" action="<%= update_goals_path %>">
+  <fieldset data-role="controlgroup" data-iconpos="right" data-mini="true" id="players">
+    <% @players.each do |player| %>
+        <label>
+          <% if @goals.map(&:player_id).uniq.include?(player.id) %>
+              <input name="player" id="<%= "checkbox-p-#{player.id}" %>" value="<%= player.id %>" type="checkbox" checked="checked">
+          <% else %>
+              <input name="player" id="<%= "checkbox-p-#{player.id}" %>" value="<%= player.id %>" type="checkbox">
+          <% end %>
+          <%= "#{player.team.name} - #{player.name} ##{player.squad_number}" %>
+        </label>
     <% end %>
-  </div>
-</div>
+    <input type="hidden" id='my-hidden' name="player_ids" value="">
+  </fieldset>
+  <br>
+  <input type="submit" value="Save" id="submit-players"/>
+  <br>
+</form>
+
 <%= render 'common/footer' %>
 </html>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#submit-players").click(function () {
+      var favorite = [];
+      $.each($("input[name='player']:checked"), function(){
+        favorite.push($(this).val());
+      });
+      $('#my-hidden').val(favorite.join(", "));
+    });
+  });
+</script>

@@ -4,14 +4,15 @@
   <% unless @round.open? %>
       <a href="<%= gb_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Points</a>
   <% end %>
-  <h1><%= "Goal Buster" %></h1>
+  <h1><%= 'Goal Buster' %></h1>
 </div>
 
 <div class="info-txt" data-role="content">
   The first team to score a total of exactly 11 goals over a number of fixtures.
   <p></p>
-  When you join, you'll be given a unique team by random from a pot of premiership teams - you cannot choose your team.
-  It's £1 to play with £20 jackpot.
+  Format: Random Team<br>
+  Cost: £1<br>
+  Jackpot: £20<br>
   <p></p>
   Teams left in the pot: <%= @available_choices_count %>
 </div>

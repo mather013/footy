@@ -4,7 +4,6 @@ Footy::Application.routes.draw do
   resources :weeks,        :only => [:index]
   resources :sessions,     :only => [:new, :create]
   resources :bets,         :only => [:create, :update, :index, :show]
-  resources :goals,        :only => [:index]
   # resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
   resources :lm_rounds,    :only => [:index]
   resources :lm_bets,      :only => [:create, :update]
@@ -43,6 +42,9 @@ Footy::Application.routes.draw do
   get  'fat_rounds/:fat_round_id/points'          => 'fat_points#index',:as => 'fat_points'
   get  'users/:user_id/fat_round/:fat_round_id/bets'   => 'users#fat_round_bets',     :as => 'user_fat_round_bets'
   get  'teams/players'   => 'teams#players',     :as => 'team_players'
+  get  'weeks/:week_id/fixtures/:fixture_id/goals' => 'goals#index', :as => 'goals'
+  put  'weeks/:week_id/fixtures/:fixture_id/goals' => 'goals#update', :as => 'update_goals'
+  get  'goals'                                   => 'goals#all',  :as => 'goals_all'
 
   namespace :api do
     post 'fixtures/add_score'  => 'fixtures#add_score'

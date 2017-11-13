@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= fa_bets_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1>Goal scorers</h1>
+</div>
+
+<div data-role="collapsible-set">
+  <div class="player-goals" data-role="listview" data-count-theme="d">
+    <% @goals.each do |goals_for_player| %>
+        <% @player = goals_for_player.player %>
+        <%= render 'fa_bets/players' %>
+    <% end %>
+  </div>
+</div>
+<%= render 'common/footer' %>
+</html>
