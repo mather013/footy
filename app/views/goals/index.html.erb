@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-tap-toggle="false">
-  <a href="<%= fixture_bets_info_path(@week.id, @fixture.id) %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <a href="<%= fixture_bets_info_path(@fixture.week.id, @fixture.id) %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
   <h1>Goal scorers</h1>
 </div>
 
@@ -9,7 +9,7 @@
   <fieldset data-role="controlgroup" data-iconpos="right" data-mini="true" id="players">
     <% @players.each do |player| %>
         <label>
-          <% if @goals.map(&:player_id).uniq.include?(player.id) %>
+          <% if @goals.present? && @goals.map(&:player_id).uniq.include?(player.id) %>
               <input name="player" id="<%= "checkbox-p-#{player.id}" %>" value="<%= player.id %>" type="checkbox" checked="checked">
           <% else %>
               <input name="player" id="<%= "checkbox-p-#{player.id}" %>" value="<%= player.id %>" type="checkbox">

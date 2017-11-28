@@ -28,7 +28,7 @@
               </div>
 
               <div class="ui-block-d" align="left" style="width:35%">
-                <% results = point.additional_info.split(',') %>
+                <% results = point.additional_info.nil? ? [] : point.additional_info.split(',') %>
                 <% results.each do |result| %>
                     <% case result %>
                     <% when 'W' %>
