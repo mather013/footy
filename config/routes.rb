@@ -39,7 +39,8 @@ Footy::Application.routes.draw do
   match 'jobs/perform/:job_name'                  => 'jobs#perform',    :as => 'jobs_perform', :via => :post
   #match '*a', :to => 'errors#routing'
   get  'fat_rounds/:fat_round_id/fat_bets'        => 'fat_bets#index',  :as => 'fat_bets'
-  get  'fat_rounds/:fat_round_id/points'          => 'fat_points#index',:as => 'fat_points'
+  get  'fat_rounds/:fat_round_id/points'          => 'fat_points#show',:as => 'fat_points'
+  get  'fat_points'                               => 'fat_points#index', :as => 'fat_total_points'
   get  'users/:user_id/fat_round/:fat_round_id/bets'   => 'users#fat_round_bets',     :as => 'user_fat_round_bets'
   get  'teams/players'   => 'teams#players',     :as => 'team_players'
   get  'weeks/:week_id/fixtures/:fixture_id/goals' => 'goals#index', :as => 'goals'

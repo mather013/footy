@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
+  <a href="<%= fat_rounds_path(@round.id) %>" data-theme="a" data-rel="">Back</a>
+  <h1><%= '5 Alive Points' %></h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+
+    <% @points.each do |point| %>
+        <% user = point.user %>
+        <% username_style = (user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+
+        <% list_style = point.value.to_i == 5 ? 'custom-list-winner' : 'custom-list' %>
+
+        <li class="<%= list_style %>">
+
+          <a href="<%= user_fat_round_bets_path(point.user_id, @round.id) %>" class="leaderboard" >
+            <div class="ui-grid-b leaderboard">
+
+              <div class="ui-block-a" style="width:10%">
+
+              </div>
+
+              <div class="<%= username_style %>" style="width:45%">
+                <%= user.name %>
+              </div>
+
+              <div class="ui-block-d" align="left" style="width:35%">
+                <% results = point.additional_info.nil? ? [] : point.additional_info.split(',') %>
+                <% results.each do |result| %>
+                    <% case result %>
+                    <% when 'W' %>
+                        <%= image_tag 'event/football-green.png', class: 'strip-size' %>
+                    <% when 'L' %>
+                        <%= image_tag 'event/football-red.png', class: 'strip-size' %>
+                    <% when '-' %>
+
+                    <% end %>
+                <% end %>
+              </div>
+
+              <div class="ui-block-d" align="center" style="width:10%">
+                <%= point.value.to_i %>
+              </div>
+
+            </div>
+          </a>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

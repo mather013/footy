@@ -4,7 +4,10 @@
 <div class="ui-title" data-theme="a" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
   <a href="<%= fat_selections_path %>" class="ui-btn-left" data-theme="a" data-rel="">Players</a>
   <h1>5 Alive</h1>
+  <a href="<%= fat_total_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Totals</a>
 </div>
+
+<% points = @user.fat_points %>
 
 <div data-role="content">
   <ul data-role="listview">
@@ -13,14 +16,13 @@
         <li class="custom-list">
           <a href="<%= fat_bets_path(round.id) %>">
             <div class="ui-grid-b">
-              <div class="ui-block-a main-font" style="width:90%">
+              <div class="ui-block-a main-font" style="width:70%">
                 <%= "#{round.description}" %>
 
-                <% case round.week.status %>
-                <% when 'Complete' %>
-                    <span class="label label-default">complete</span>
-                <% when 'In play' %>
-                    <span class="label label-warning">in play</span>
+                <% if round.won? %>
+                    <span class="label label-success">winner</span>
+                <% else %>
+                    <span class="label label-default">rollover</span>
                 <% end %>
 
                 <br>
@@ -29,8 +31,13 @@
                 </h10>
               </div>
 
-              <div class=ui-block-c" style="width:8%">
-
+              <div class="ui-block-c main-font" style="width:30%">
+                <% point = points.select { |point| point[:fat_round_id] == round.id }.first %>
+                <% if point.present? %>
+                    <% point.value.times do %>
+                        <%= image_tag 'event/football-green.png', class: 'strip-size' %>
+                    <% end %>
+                <% end %>
               </div>
             </div>
           </a>

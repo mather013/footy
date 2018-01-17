@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_one :sweep_bet
   has_one :fat_selection
   has_many :fat_bets
+  has_many :fat_points
 
   validates_presence_of :name, :username, :password
 

@@ -13,4 +13,8 @@ class FatRound < ActiveRecord::Base
     "Round #{format('%02d', id)}"
   end
 
+  def won?
+    self.points.where(value: 5).present?
+  end
+
 end

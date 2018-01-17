@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
-  <a href="<%= fat_rounds_path(@round.id) %>" data-theme="a" data-rel="">Back</a>
-  <h1><%= '5 Alive Points' %></h1>
+  <a href="<%= fat_rounds_path %>" data-theme="a" data-rel="">Back</a>
+
+  <h1><%= '5 Alive Totals' %></h1>
 </div>
 
 <div class="leaderboard">
   <ul data-role="listview">
 
-    <% @points.each do |point| %>
-        <% user = point.user %>
-        <% username_style = (user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+    <% @total_points.each do |point| %>
+        <li class="custom-list">
+          <div class="ui-grid-b">
 
-        <% list_style = point.value.to_i == 5 ? 'custom-list-winner' : 'custom-list' %>
-
-        <li class="<%= list_style %>">
-
-          <a href="<%= user_fat_round_bets_path(point.user_id, @round.id) %>" class="leaderboard" >
-            <div class="ui-grid-b leaderboard">
-
-              <div class="ui-block-a" style="width:10%">
-
-              </div>
-
-              <div class="<%= username_style %>" style="width:45%">
-                <%= user.name %>
-              </div>
-
-              <div class="ui-block-d" align="left" style="width:35%">
-                <% results = point.additional_info.nil? ? [] : point.additional_info.split(',') %>
-                <% results.each do |result| %>
-                    <% case result %>
-                    <% when 'W' %>
-                        <%= image_tag 'event/football-green.png', class: 'strip-size' %>
-                    <% when 'L' %>
-                        <%= image_tag 'event/football-red.png', class: 'strip-size' %>
-                    <% when '-' %>
-
-                    <% end %>
-                <% end %>
-              </div>
-
-              <div class="ui-block-d" align="center" style="width:10%">
-                <%= point.value.to_i %>
-              </div>
-
+            <div class="ui-block-a" style="width:10%">
             </div>
-          </a>
+
+            <% user = User.find(point.user_id) %>
+            <% username_style = (user.id == @current_user.id ? "ui-block-b current_user" : "ui-block-b") %>
+            <div class="<%= username_style %>" style="width:35%">
+              <%= user.name %>
+            </div>
+
+            <% user_player_ids = @all_bets.where(user_id: user.id).map(&:player_id).sort %>
+            <% freq = user_player_ids.inject(Hash.new(0)) { |h, v| h[v] += 1; h } %>
+            <% fav_player_id = user_player_ids.max_by { |v| freq[v] } %>
+            <% player = Player.find(fav_player_id) %>
+            <div class="ui-block-c" style="width:30%">
+              <%= player.name %>
+            </div>
+
+            <div class="ui-block-d percent-points" align="center" style="width:15%">
+              <% freq[fav_player_id] %>
+            </div>
+
+            <div class="ui-block-e" align="center" style="width:10%">
+              <%= point.total.to_i %>
+            </div>
+
+          </div>
         </li>
     <% end %>
   </ul>
