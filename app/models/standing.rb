@@ -7,7 +7,7 @@ class Standing < ActiveRecord::Base
   class << self
 
     def up_to_date?
-      (Standing.all.collect(&:played).sum/2) >= Fixture.joins(:score).count
+      (self.all.collect(&:played).sum/2) >= Fixture.finished.joins(:score).count
     end
 
     def refresh
