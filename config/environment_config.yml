@@ -29,7 +29,7 @@ defaults: &defaults
       url: http://api.football-data.org
       competition_id: 445
     football_api:
-      url: http://football-api.com/api/
+      url: http://api.football-api.com/2.0/
       competition_id: 1204
   bonus_threshold: 26
   bonus_amount: 20
