@@ -30,6 +30,7 @@
     <% elsif @fixture.score.present? %>
         <% score_theme = 'label ft-score' if @fixture.finished? %>
         <% score_theme = 'label in-play-score' if @fixture.in_play? %>
+        <% score_theme = 'label halftime-score' if @fixture.halftime? %>
         <% if score_theme.present? %>
             <span class= '<%=score_theme%>'><%= @fixture.score.home %></span>
             <span class= '<%=score_theme%>'><%= @fixture.score.away %></span>

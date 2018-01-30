@@ -5,14 +5,13 @@ module Feed
       attr_accessor :id, :event_type, :player_name, :team, :minute
 
       def initialize(hash)
-        @id = hash[:event_id].to_i
-        @event_type = hash[:event_type]
-        @player_name = hash[:event_player]
-        @team = hash[:event_team]
-        @minute = hash[:event_minute].to_i
-        #@match_id = hash[:event_match_id]
-        #@player_id = hash[:event_player_id].to_i
-        #@result = hash[:event_result]
+        @id = hash[:id].to_i
+        @event_type = hash[:type]
+        @player_name = hash[:player]
+        @team = hash[:team]
+        @minute = hash[:minute].to_i
+        # @player_id = hash[:player_id].to_i
+        # @result = hash[:result]
       end
 
       def to_savable_hash

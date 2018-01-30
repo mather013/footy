@@ -21,9 +21,10 @@ class Fixture < ActiveRecord::Base
   module Status
     DEFINED   = 'defined'
     SCHEDULED = 'scheduled'
-    IN_PLAY = 'in_play'
+    IN_PLAY   = 'in_play'
     POSTPONED = 'postponed'
     FINISHED  = 'finished'
+    HALFTIME  = 'halftime'
   end
 
   def to_s
@@ -81,6 +82,10 @@ class Fixture < ActiveRecord::Base
 
   def in_play?
     status == Fixture::Status::IN_PLAY
+  end
+
+  def halftime?
+    status == Fixture::Status::HALFTIME
   end
 
   def postponed?
