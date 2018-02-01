@@ -7,6 +7,8 @@
   <% end %>
 </div>
 
+<% goal_events = @fixture.events.where(event_type: 'goal') %>
+
 <div class="ui-grid-a" style=padding:30px>
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
   <p>
@@ -17,12 +19,10 @@
     <%= @fixture.home_team.short_name.upcase %>
     <br>
     <div class="info-txt-clear">
-      <% if @fixture.score.present? %>
-          <% @fixture.score.goals.each do |goal| %>
-              <% if goal.player.team == @fixture.home_team %>
-                  <%= "#{goal.player.surname}" %>
-                  <br>
-              <% end %>
+      <% goal_events.each do |goal_event| %>
+          <% if goal_event.team != 'visitorteam' %>
+              <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
+              <br>
           <% end %>
       <% end %>
     </div>
@@ -47,12 +47,10 @@
     <%= @fixture.away_team.short_name.upcase %>
     <br>
     <div class="info-txt-clear">
-      <% if @fixture.score.present? %>
-          <% @fixture.score.goals.each do |goal| %>
-              <% if goal.player.team == @fixture.away_team %>
-                  <%= goal.player.surname %>
-                  <br>
-              <% end %>
+      <% goal_events.each do |goal_event| %>
+          <% if goal_event.team == 'visitorteam' %>
+              <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
+              <br>
           <% end %>
       <% end %>
     </div>

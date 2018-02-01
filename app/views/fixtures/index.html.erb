@@ -34,14 +34,8 @@
                   <% end %>
               <% end %>
           <% else %>
-              <% if @fixture.events.present? %>
-                  <%= link_to fixture_events_path(@week.id, @fixture.id), :method => :get do %>
-                      <%= render 'fixture_info' %>
-                  <% end %>
-              <% else %>
-                  <%= link_to fixture_bets_info_path(@week.id, @fixture.id), :method => :get do %>
-                      <%= render 'fixture_info' %>
-                  <% end %>
+              <%= link_to fixture_bets_info_path(@week.id, @fixture.id), :method => :get do %>
+                  <%= render 'fixture_info' %>
               <% end %>
           <% end %>
         </li>
