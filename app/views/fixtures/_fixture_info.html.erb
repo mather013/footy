@@ -26,7 +26,7 @@
 
   <div class="ui-block-c fixture-score" align="center" style="width:14%">
     <% if @fixture.postponed? %>
-        <span class="label pending-score">P - P</span>
+        <span class="label postponed-score">P - P</span>
     <% elsif @fixture.score.present? %>
         <% score_theme = 'label ft-score' if @fixture.finished? %>
         <% score_theme = 'label in-play-score' if @fixture.in_play? %>

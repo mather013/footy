@@ -534,6 +534,18 @@ div.ui-btn, input[type="submit"] {
     vertical-align: middle;
 }
 
+.postponed-score {
+    background: #d9534f;
+    font-size: 1em;
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    height: 1.2em;
+    line-height: 1.4em;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .fa_opposing_team {
     font-size: .7em;
     position: relative;
