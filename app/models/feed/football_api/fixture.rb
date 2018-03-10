@@ -10,6 +10,8 @@ module Feed
         POSTPONED = 'POSTPONED'
       end
 
+      POSTPONED_TIME = 'Postp.'
+
       def initialize(hash)
         @id = hash[:id].to_i
         @home_team_id = hash[:localteam_id].to_i
@@ -19,7 +21,7 @@ module Feed
         @date = hash[:formatted_date]
         @time = hash[:time]
         @score = hash[:ft_score]
-        @status = common_status hash[:status]
+        @status = common_status hash[:status],hash[:time]
         @finished = hash[:status] == Status::FINISHED
         @events = Feed::Events.new(hash[:events])
       end
@@ -34,12 +36,11 @@ module Feed
 
       private
 
-      def common_status feed_status
-        return ::Fixture::Status::SCHEDULED if feed_status.include?(':')
-        return ::Fixture::Status::FINISHED if feed_status == Status::FINISHED
-        return ::Fixture::Status::HALFTIME if feed_status == Status::HALFTIME
-        return ::Fixture::Status::IN_PLAY unless feed_status.include?(':')
-        ::Fixture::Status::POSTPONED if feed_status == Status::POSTPONED
+      def common_status(feed_status, feed_time)
+        return ::Fixture::Status::POSTPONED if feed_time == POSTPONED_TIME
+        return ::Fixture::Status::FINISHED  if feed_status == Status::FINISHED
+        return ::Fixture::Status::HALFTIME  if feed_status == Status::HALFTIME
+        feed_status.include?(':') ? ::Fixture::Status::SCHEDULED : ::Fixture::Status::IN_PLAY
       end
 
     end

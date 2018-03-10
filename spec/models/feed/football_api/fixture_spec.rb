@@ -4,6 +4,7 @@ module Feed
   module FootballApi
     describe Fixture do
       let(:status) { 'FT' }
+      let(:time) { '20:00' }
       let(:fixture) { Feed::FootballApi::Fixture.new(hash) }
       let(:hash) { {:id => '1952554',
                     :comp_id => '1204',
@@ -14,7 +15,7 @@ module Feed
                     :venue_city_beta => '',
                     :status => status,
                     :timer => '',
-                    :time => '20:00',
+                    :time => time,
                     :localteam_id => '9127',
                     :localteam_name => 'Crystal Palace',
                     :localteam_score => '1',
@@ -57,7 +58,52 @@ module Feed
           expect(fixture.score).to eq('[1-3]')
           expect(fixture.home_team_goals).to eq(1)
           expect(fixture.away_team_goals).to eq(3)
-          expect(fixture.status).to eq('FT')
+          expect(fixture.status).to eq(::Fixture::Status::FINISHED)
+        end
+
+        context 'when fixture has been postponed' do
+          let(:status) { nil }
+          let(:time) { Fixture::POSTPONED_TIME }
+
+          it 'has the expected values' do
+            expect(fixture.status).to eq(::Fixture::Status::POSTPONED)
+          end
+        end
+
+        context 'when fixture is in play' do
+          let(:status) { '39' }
+          let(:time) { '15:00' }
+
+          it 'has the expected values' do
+            expect(fixture.status).to eq(::Fixture::Status::IN_PLAY)
+          end
+        end
+
+        context 'when fixture has not started' do
+          let(:status) { '15:00' }
+          let(:time) { '15:00' }
+
+          it 'has the expected values' do
+            expect(fixture.status).to eq(::Fixture::Status::SCHEDULED)
+          end
+        end
+
+        context 'when fixture is at halt time' do
+          let(:status) { Fixture::Status::HALFTIME }
+          let(:time) { '45' }
+
+          it 'has the expected values' do
+            expect(fixture.status).to eq(::Fixture::Status::HALFTIME)
+          end
+        end
+
+        context 'when fixture has finished' do
+          let(:status) { Fixture::Status::FINISHED }
+          let(:time) { '15:00' }
+
+          it 'has the expected values' do
+            expect(fixture.status).to eq(::Fixture::Status::FINISHED)
+          end
         end
       end
 
