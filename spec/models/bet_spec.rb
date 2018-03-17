@@ -58,6 +58,26 @@ describe Bet do
             expect(bet.errors.messages).to eq ({:fixture_id => ['fixture has already kicked off']})
             expect(Bet.count).to eq 0
           end
+
+          context 'and fixture is postponed' do
+
+            it 'allows the bet to be created' do
+              fixture_1.update_attributes(status: Fixture::Status::POSTPONED)
+              bet = user.bets.create(fixture_id: fixture_1.id, value: 'H')
+              expect(Bet.count).to eq 1
+            end
+          end
+
+          context 'and fixture is not postponed' do
+
+            it 'does not allow the bet to be created' do
+              fixture_1.update_attributes(status: Fixture::Status::IN_PLAY)
+              bet = user.bets.create(fixture_id: fixture_1.id, value: 'H')
+              expect(bet.errors.messages).to eq ({:fixture_id => ['fixture has already kicked off']})
+              expect(Bet.count).to eq 0
+            end
+          end
+
         end
       end
 
