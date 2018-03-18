@@ -62,11 +62,23 @@ module Feed
         end
 
         context 'when fixture has been postponed' do
-          let(:status) { nil }
-          let(:time) { Fixture::POSTPONED_TIME }
 
-          it 'has the expected values' do
-            expect(fixture.status).to eq(::Fixture::Status::POSTPONED)
+          context 'via time' do
+            let(:status) { nil }
+            let(:time) { Fixture::POSTPONED_TIME }
+
+            it 'has the expected values' do
+              expect(fixture.status).to eq(::Fixture::Status::POSTPONED)
+            end
+          end
+
+          context 'via status' do
+            let(:status) { Fixture::POSTPONED_TIME }
+            let(:time) { '12:30' }
+
+            it 'has the expected values' do
+              expect(fixture.status).to eq(::Fixture::Status::POSTPONED)
+            end
           end
         end
 

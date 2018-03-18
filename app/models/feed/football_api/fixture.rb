@@ -37,7 +37,7 @@ module Feed
       private
 
       def common_status(feed_status, feed_time)
-        return ::Fixture::Status::POSTPONED if feed_time == POSTPONED_TIME
+        return ::Fixture::Status::POSTPONED if feed_time == POSTPONED_TIME || feed_status == POSTPONED_TIME
         return ::Fixture::Status::FINISHED  if feed_status == Status::FINISHED
         return ::Fixture::Status::HALFTIME  if feed_status == Status::HALFTIME
         feed_status.include?(':') ? ::Fixture::Status::SCHEDULED : ::Fixture::Status::IN_PLAY
