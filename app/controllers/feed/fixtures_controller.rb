@@ -1,16 +1,16 @@
 module Feed
   class FixturesController < ApplicationController
 
-    def get_fixtures_for date
+    def get_fixtures_for(date)
       Feed::Fixtures.new(data_service.perform([date]))
     end
 
-    def get_fixtures_between from_date, to_date
+    def get_fixtures_between(from_date, to_date)
       Feed::Fixtures.new(data_service.perform([from_date,to_date]))
     end
 
     def get_all_fixtures
-      Feed::Fixtures.new(data_service.perform)
+      Feed::Fixtures.new(data_service.perform([Date.today, 12.months.from_now]))
     end
 
     private
