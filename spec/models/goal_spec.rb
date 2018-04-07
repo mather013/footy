@@ -27,14 +27,14 @@ describe Goal do
   describe 'instance methods' do
 
     describe '#opposing_team' do
-      let!(:home_team) { Team.create(id: 1, name: 'Brazil') }
-      let!(:away_team) { Team.create(id: 2, name: 'Argentina') }
+      let!(:home_team) { Team.create(id: 1, name: 'Brazil', abbreviation: 'bra') }
+      let!(:away_team) { Team.create(id: 2, name: 'Argentina', abbreviation: 'arg') }
       let!(:fixture) { Fixture.create(id: 1, home_team_id: home_team.id, away_team_id: away_team.id) }
       let!(:score)   { Score.create(id: 1, fixture_id: fixture.id, home: 1, away: 1) }
       let!(:goal) { Goal.create(player_id: scorer.id, score_id: 1) }
 
       context 'when a home team player scores' do
-        let!(:scorer)  { Player.create(id: 1, surname: 'Pele', team_id: home_team.id) }
+        let!(:scorer)  { Player.create(id: 1, surname: 'Pele', team_id: home_team.id, squad_number: 10) }
 
         it 'returns the away team as the opposition' do
           expect(goal.opposing_team).to eq away_team

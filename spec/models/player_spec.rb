@@ -88,13 +88,13 @@ describe Player do
 
     describe 'name' do
       it 'returns player forename and surname as string' do
-        expect(player.name).to eq('Mark Mather')
+        expect(player.name).to eq('Mark MATHER')
       end
     end
 
     describe 'name_and_number' do
       it 'returns player forename, surname and squad number as string' do
-        expect(player.name_and_number).to eq('Mark Mather #10')
+        expect(player.name_and_number).to eq('Mark MATHER #10')
       end
     end
 

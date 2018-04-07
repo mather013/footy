@@ -338,11 +338,13 @@ describe Fixture do
           end
         end
 
-        context 'and a bet value exists below the bonus threshold' do
+        if TOGGLES_CONFIG['bonus_points']
+          context 'and a bet value exists below the bonus threshold' do
 
-          it 'returns true' do
-            stub_const('ENVIRONMENT_CONFIG', {'bonus_threshold' => 20})
-            expect(fixture.bonus_available?).to eq(true)
+            it 'returns true' do
+              stub_const('ENVIRONMENT_CONFIG', {'bonus_threshold' => 20})
+              expect(fixture.bonus_available?).to eq(true)
+            end
           end
         end
 
