@@ -15,17 +15,22 @@ describe Week do
   end
 
   describe 'scopes' do
-    let!(:week_01) { Week.create(description: 'Week 01', close_date: 22.days.ago, complete: true) }
-    let!(:week_02) { Week.create(description: 'Week 02', close_date: 15.days.ago, complete: true) }
-    let!(:week_03) { Week.create(description: 'Week 03', close_date: 8.days.ago, complete: true) }
-    let!(:week_04) { Week.create(description: 'Week 04', close_date: 1.days.ago, complete: true) }
-    let!(:week_05) { Week.create(description: 'Week 05', close_date: 6.days.from_now) }
-    let!(:week_06) { Week.create(description: 'Week 06', close_date: 13.days.from_now) }
+    let!(:week_01) { Week.create(description: 'Week 01', close_date: 40.days.ago, complete: true) }
+    let!(:week_02) { Week.create(description: 'Week 02', close_date: 35.days.ago, complete: false) }
+    let!(:week_03) { Week.create(description: 'Week 03', close_date: 30.days.ago, complete: true) }
+    let!(:week_04) { Week.create(description: 'Week 04', close_date: 25.days.ago, complete: true) }
+    let!(:week_05) { Week.create(description: 'Week 05', close_date: 20.days.ago, complete: true) }
+    let!(:week_06) { Week.create(description: 'Week 06', close_date: 15.days.ago, complete: true) }
+    let!(:week_07) { Week.create(description: 'Week 07', close_date: 10.days.ago, complete: true) }
+    let!(:week_08) { Week.create(description: 'Week 08', close_date: 5.days.ago,  complete: true) }
+    let!(:week_09) { Week.create(description: 'Week 09', close_date: 1.hour.from_now, complete: false) }
+    let!(:week_10) { Week.create(description: 'Week 10', close_date: 5.days.from_now, complete: false) }
+    let!(:week_11) { Week.create(description: 'Week 11', close_date: 10.days.from_now, complete: false) }
 
-    describe 'ordered' do
+    describe 'sorted' do
 
       it 'weeks by ascending close_date' do
-        expect(Week.sorted).to eq [week_01, week_02, week_03, week_04, week_05, week_06]
+        expect(Week.sorted).to eq [week_01, week_02, week_03, week_04, week_05, week_06, week_07, week_08, week_09, week_10, week_11]
       end
 
       it 'creates the expected sql for weeks by ascending close_date' do
@@ -33,28 +38,24 @@ describe Week do
       end
     end
 
-    describe 'ordered_open' do
+    describe 'sorted_open' do
 
       it 'weeks by not complete and ascending close_date' do
-        expect(Week.sorted_open).to eq [week_05, week_06, week_01, week_02, week_03, week_04]
-      end
-
-      it 'creates the expected sql for weeks by not complete and ascending close_date' do
-        expect(Week.sorted_open.to_sql).to eq("SELECT \"weeks\".* FROM \"weeks\" ORDER BY complete desc, close_date asc")
+        expect(Week.sorted_open).to eq [week_09, week_10, week_11]
       end
     end
 
     describe 'sorted_recent' do
 
       it 'weeks by not complete and close_date' do
-        expect(Week.sorted_recent).to eq [week_02, week_03, week_04, week_05, week_06]
+        expect(Week.sorted_recent).to eq [week_02, week_05, week_06, week_07, week_08, week_09, week_10, week_11]
       end
     end
 
     describe 'sorted_non_recent' do
 
       it 'weeks by complete and close_date' do
-        expect(Week.sorted_non_recent).to eq [week_01]
+        expect(Week.sorted_non_recent).to eq [week_01, week_03, week_04]
       end
     end
   end

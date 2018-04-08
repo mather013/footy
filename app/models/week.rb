@@ -4,20 +4,22 @@ class Week < ActiveRecord::Base
   has_many :points
 
   scope :sorted, -> { order('close_date asc') }
-  scope :sorted_open, -> { order('complete desc, close_date asc') }
-  scope :sorted_recent, -> { where('complete is null or close_date >= ?',21.days.ago).order('close_date asc') }
-  scope :sorted_non_recent, -> { where('complete is not null and close_date < ?',21.days.ago).order('close_date asc') }
+  scope :sorted_open, -> { where("complete != 'true' and close_date >= ?", DateTime.now).order('close_date asc') }
+  scope :sorted_recent, -> { where("complete != 'true' or close_date >= ?",21.days.ago).order('close_date asc') }
+  scope :sorted_non_recent, -> { where("complete = 'true' and close_date < ?",21.days.ago).order('close_date asc') }
 
   scope :current, -> { where('close_date > ?', Time.now).order(:close_date).first }
   scope :previous, -> { where('close_date < ?', Time.now).order('close_date desc').first }
 
-  # def self.current
-  #   self.where("close_date > '#{Time.now}'").order(:close_date).first
-  # end
+  def self.league_weeks
+    self.all - self.knockout_weeks
+  end
 
-  # def self.previous
-  #   self.where("close_date < '#{Time.now}'").order('close_date desc').first
-  # end
+  def self.knockout_weeks
+    competition = ENVIRONMENT_CONFIG['competition']
+    knockout_round_ids = ENVIRONMENT_CONFIG["#{competition}"]['knockout_rounds']
+    self.where(id: knockout_round_ids)
+  end
 
   def status
     return 'Complete' if complete?
