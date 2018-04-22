@@ -4,7 +4,7 @@ class FaPointsController < ApplicationController
   def index
     @current_user = current_user
     @game = game
-    @total_points = FaPoint.find(:all, :select => 'user_id, value', :order => 'value DESC')
+    @total_points = FaPoint.total_points
   end
 
   private
