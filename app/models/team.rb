@@ -1,5 +1,4 @@
 class Team < ActiveRecord::Base
-  #attr_accessible :id, :name, :abbreviation, :external_id
 
   has_one :standing
   has_one :gb_point
@@ -8,8 +7,11 @@ class Team < ActiveRecord::Base
   has_many :events
   has_many :home_fixtures, foreign_key: 'home_team_id', class_name: 'Fixture'
   has_many :away_fixtures, foreign_key: 'away_team_id', class_name: 'Fixture'
+  has_one :group_team
+  has_one :group, through: :group_team
 
   scope :sorted, -> { where("name != 'TBA'").order('name asc') }
+  scope :sorted_by_group, -> { where("teams.name != 'TBA'").joins(:group).order('groups.id asc') }
 
   def in_sweep?
     sweep_point.present? && sweep_point.value == maximum_sweep_points
@@ -25,97 +27,34 @@ class Team < ActiveRecord::Base
     result
   end
 
-  #def home_results
-  #  calc_results(finished_home_fixtures)
-  #end
-  #
-  #def away_results
-  #  calc_results(finished_away_fixtures)
-  #end
+  def form
+    standing.form
+  end
 
-  #def goals
-  #  {for: goals_for, against: goals_against, home: home_goals, away: away_goals}
-  #end
+  def short_name
+    self[:short_name] || self.name
+  end
 
   def results
-    calc_results(finished_fixtures)
+    TeamStatsFull.new(self).perform[:results]
   end
 
   def calc_form
     results.last(5)
   end
 
-  def form
-    standing.form
+  def league_stats
+    TeamStatsLeague.new(self).perform
   end
 
-  def league_stats
-    gf = goals_for
-    ga = goals_against
-    team_results = results
-
-    hash = {pld: 0, pts: 0, gf: gf, ga: ga, gd: gf-ga, form: team_results.last(5).join('')}
-
-    team_results.each do |result|
-      hash[:pts] += 1 if result == 'D'
-      hash[:pts] += 3 if result == 'W'
-      hash[:pld] += 1
-    end
-    hash
+  def stats
+    TeamStatsFull.new(self).perform
   end
 
   private
 
-  def calc_results(fixtures)
-    result = []
-
-    fixtures.order(:kickoff).each do |fixture|
-      is_home_team = fixture.home_team_id == id
-
-      case fixture.score.outcome
-        when 'D'
-          result << 'D'
-        when 'H'
-          is_home_team ? result << 'W' : result << 'L'
-        when 'A'
-          is_home_team ? result << 'L' : result << 'W'
-      end
-    end
-    result
-  end
-
-  def goals_for
-    home_goals[:goals_for]+away_goals[:goals_for]
-  end
-
-  def goals_against
-    home_goals[:goals_against]+away_goals[:goals_against]
-  end
-
-  def home_goals
-    scores = home_fixtures.joins(:score).collect(&:score)
-    {goals_for: scores.collect(&:home).sum, goals_against: scores.collect(&:away).sum}
-  end
-
-  def away_goals
-    scores = away_fixtures.joins(:score).collect(&:score)
-    {goals_for: scores.collect(&:away).sum, goals_against: scores.collect(&:home).sum}
-  end
-
   def maximum_sweep_points
     Week.count+1
   end
-
-  def finished_fixtures
-    Fixture.finished.joins(:score).where('home_team_id = ? OR away_team_id = ?', self.id, self.id)
-  end
-
-  #def finished_home_fixtures
-  #  Fixture.joins(:score).where(home_team_id: self.id)
-  #end
-  #
-  #def finished_away_fixtures
-  #  Fixture.joins(:score).where(away_team_id: self.id)
-  #end
 
 end

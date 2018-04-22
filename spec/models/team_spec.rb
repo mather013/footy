@@ -90,45 +90,34 @@ describe Team do
 
     end
 
-    describe 'results and league_stats' do
+    describe 'results' do
       let(:liverpool) { Team.create(name: 'Liverpool') }
-      let(:newcastle) { Team.create(name: 'Newcastle') }
-      let(:everton)   { Team.create(name: 'Everton') }
+      let(:team_stats) { double(TeamStatsFull, perform: {pld: 4, pts: 7, gf: 8, ga: 6, gd: 2, form: 'LDWW', results: %w'W D L'}) }
 
-      let(:fixtures) { [{id: 1, kickoff: 4.days.ago, home_team_id: liverpool.id, away_team_id: newcastle.id},
-                        {id: 2, kickoff: 6.days.ago, home_team_id: newcastle.id, away_team_id: liverpool.id},
-                        {id: 3, kickoff: 8.days.ago, home_team_id: liverpool.id, away_team_id: newcastle.id},
-                        {id: 4, kickoff: 2.days.ago, home_team_id: newcastle.id, away_team_id: liverpool.id},
-                        {id: 5, kickoff: 2.days.from_now, home_team_id: everton.id, away_team_id: liverpool.id}] }
-
-      let(:scores) { [{id: 1, fixture_id: 1, home: 2, away: 0 },
-                      {id: 2, fixture_id: 2, home: 2, away: 2 },
-                      {id: 3, fixture_id: 3, home: 1, away: 2 },
-                      {id: 4, fixture_id: 4, home: 2, away: 3 }] }
-
-      before :each do
-        fixtures.shuffle.each { |f| Fixture.create(id: f[:id],
-                                                   kickoff: f[:kickoff],
-                                                   home_team_id: f[:home_team_id],
-                                                   away_team_id: f[:away_team_id]) }
-        scores.each { |s| Score.create(id: s[:id],
-                                       fixture_id: s[:fixture_id],
-                                       home: s[:home],
-                                       away: s[:away]) }
-
-        Fixture.where(id: [1,2,3,4]).each { |f| f.update_attributes(status: Fixture::Status::FINISHED) }
+      it 'returns expected results for team' do
+        expect(TeamStatsFull).to receive(:new).with(liverpool).and_return(team_stats)
+        expect(liverpool.results).to eq(%w'W D L')
       end
+    end
 
-      it 'returns all teams results ordered by kickoff' do
-        expect(liverpool.results).to eq(%w'L D W W')
-        expect(newcastle.results).to eq(%w'W D L L')
+    describe 'league_stats' do
+      let(:liverpool) { Team.create(name: 'Liverpool') }
+      let(:team_league_stats) { double(TeamStatsLeague, perform: {pld: 2, pts: 4, gf: 4, ga: 3, gd: 1, form: 'DW'}) }
+
+      it 'returns expected results for team' do
+        expect(TeamStatsLeague).to receive(:new).with(liverpool).and_return(team_league_stats)
+        expect(liverpool.league_stats).to eq({pld: 2, pts: 4, gf: 4, ga: 3, gd: 1, form: 'DW'})
       end
+    end
 
-      it 'returns expected league stats' do
-        expect(liverpool.league_stats).to eq({pld: 4, pts: 7, gf: 8, ga: 6, gd: 2, form: 'LDWW'})
-        expect(newcastle.league_stats).to eq({pld: 4, pts: 4, gf: 6, ga: 8, gd: -2, form: 'WDLL'})
+    describe 'stats' do
+      let(:liverpool) { Team.create(name: 'Liverpool') }
+      let(:team_stats) { double(TeamStatsFull, perform: {pld: 4, pts: 7, gf: 8, ga: 6, gd: 2, form: 'LDWW'}) }
+
+      it 'returns expected results for team' do
+        expect(TeamStatsFull).to receive(:new).with(liverpool).and_return(team_stats)
+        expect(liverpool.stats).to eq({pld: 4, pts: 7, gf: 8, ga: 6, gd: 2, form: 'LDWW'})
       end
-
     end
 
   end
