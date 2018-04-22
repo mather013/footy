@@ -3,11 +3,9 @@
 
 <div class="ui-title" data-theme="a" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
   <% if ENVIRONMENT_CONFIG['competition'] == 'premier_league' %>
-      <a href="<%= standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">League</a>
+      <a href="<%= league_standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">League</a>
   <% else %>
-      <% if @user.admin? %>
-          <a href="<%= info_path %>" class="ui-btn-left" data-theme="a" data-rel="">Info</a>
-      <% end %>
+      <a href="<%= group_standings_path %>" class="ui-btn-left" data-theme="a" data-rel="">Groups</a>
   <% end %>
   <h1>Footy Forecast</h1>
   <a href="<%= points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Totals</a>

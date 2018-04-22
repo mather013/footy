@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
+  <a href="<%= weeks_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+
+  <h1><%= 'Group Tables' %></h1>
+  <% if @user.admin? %>
+      <a href="<%= info_path %>" class="ui-btn-right" data-theme="a" data-rel="">Info</a>
+  <% end %>
+</div>
+
+<% group_id = 0 %>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+
+    <% @standings.each do |standing| %>
+
+        <% if standing.group_id != group_id %>
+            <% group_id = standing.group_id %>
+
+            <div class="leaderboard">
+              <ul data-role="listview">
+                <li class="custom-list-header fixture-date">
+                  <div class="ui-grid-b">
+                    <div class="ui-block-a" align="left" style="width:5%"><%= standing.group.name.upcase %></div>
+                    <div class="ui-block-b" align="left" style="width:45%"></div>
+                    <div class="ui-block-c" align="center" style="width:8%">Pld</div>
+                    <div class="ui-block-c" align="center" style="width:8%">GF</div>
+                    <div class="ui-block-c" align="center" style="width:8%">GA</div>
+                    <div class="ui-block-c" align="center" style="width:8%">GD</div>
+                    <div class="ui-block-c" align="center" style="width:14%">Pts</div>
+                    <div class="ui-block-d" align="right" style="width:4%"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        <% end %>
+
+        <li class="custom-list standings-text">
+          <div class="ui-grid-b">
+
+            <div class="ui-block-a" style="width:5%">
+              <% standing.position.ordinalize %>
+            </div>
+
+            <div class="ui-block-b" style="width:45%">
+              <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+              <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{standing.team.abbreviation}.png", class: 'badge-small' %>
+              &nbsp
+              <%= "#{standing.team.name.upcase}" %>
+            </div>
+
+            <div class="ui-block-c" align="center" style="width:8%">
+              <%= "#{standing.played}" %>
+            </div>
+
+            <div class="ui-block-c" align="center" style="width:8%">
+              <%= "#{standing.goals_for}" %>
+            </div>
+
+            <div class="ui-block-c" align="center" style="width:8%">
+              <%= "#{standing.goals_against}" %>
+            </div>
+
+            <div class="ui-block-c" align="center" style="width:8%">
+              <%= "#{standing.goal_difference}" %>
+            </div>
+
+            <div class="ui-block-c" align="center" style="width:14%">
+              <%= standing.points %>
+            </div>
+
+            <div class="ui-block-d" align="right" style="width:4%">
+            </div>
+
+          </div>
+        </li>
+    <% end %>
+    <li class="standings-text">
+      <div class="ui-grid-b">
+        <%= "Last updated at #{@standings.first.updated_at.in_time_zone('London').strftime('%d/%m/%Y %H:%M')}" if @standings.present? %>
+      </div>
+    </li>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

@@ -15,10 +15,12 @@ describe Standing do
   end
 
   describe '.up_to_date?' do
+    let(:finished_fixtures) { [double(Fixture), [double(Fixture)]] }
 
     before :each do
       Standing.delete_all
-      allow(Fixture).to receive(:joins).with(:score).and_return([double(Fixture), double(Fixture)])
+      allow(Fixture).to receive(:finished).and_return(finished_fixtures)
+      allow(finished_fixtures).to receive(:joins).with(:score).and_return([double(Fixture), double(Fixture)])
     end
 
     context 'when standings are up to date' do
@@ -38,7 +40,7 @@ describe Standing do
 
   end
 
-  describe '.refresh' do
+  describe '.refresh' do #moved to sub classes
     let(:team_1) { double(Team, id: 1, name: 'Argentina', league_stats: {pld: 3, pts: 9, gf: 8, ga: 1, gd: 7, form: 'WWW'}) }
     let(:team_2) { double(Team, id: 2, name: 'Brazil', league_stats: {pld: 3, pts: 6, gf: 5, ga: 6, gd: -1, form: 'LWW'}) }
     let(:team_3) { double(Team, id: 3, name: 'Chile', league_stats: {pld: 3, pts: 1, gf: 1, ga: 5, gd: -4, form: 'DLL'}) }
@@ -48,7 +50,7 @@ describe Standing do
       Standing.delete_all
     end
 
-    it 'creates expected standings data' do
+    xit 'creates expected standings data' do
       allow(Team).to receive(:all).and_return([team_1, team_2, team_3, team_4])
 
       Standing.refresh
