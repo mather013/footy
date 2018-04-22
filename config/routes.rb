@@ -4,11 +4,10 @@ Footy::Application.routes.draw do
   resources :weeks,        :only => [:index]
   resources :sessions,     :only => [:new, :create]
   resources :bets,         :only => [:create, :update, :index, :show]
-  # resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
+  resources :fa_bets,      :only => [:index, :create, :new, :edit, :update]
   resources :lm_rounds,    :only => [:index]
   resources :lm_bets,      :only => [:create, :update]
   resources :lm_points,    :only => [:index]
-  resources :standings,    :only => [:index]
   resources :gb_bets,      :only => [:index, :create, :new]
   resources :gb_points,    :only => [:index, :show]
   resources :sweep_bets,   :only => [:index, :create, :new]
@@ -17,6 +16,8 @@ Footy::Application.routes.draw do
   resources :jobs,         :only => [:index]
   resources :fat_selections,   :only => [:index, :create, :new, :edit, :update, :show]
   resources :fat_rounds,       :only => [:index]
+  resources :group_standings,  :only => [:index]
+  resources :league_standings, :only => [:index]
   # resources :fat_points,       :only => [:index]
 
   get  'sessions'                                 => 'sessions#new'
