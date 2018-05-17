@@ -1,7 +1,7 @@
 defaults: &defaults
   round_open_period_in_days: 7
   days_in_advance_to_sync_fixtures: 8
-  competition: premier_league
+  competition: world_cup
   week_jackpot:
   premier_league:
     type: club

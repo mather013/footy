@@ -9,9 +9,9 @@
 <div class="info-txt" data-role="content">
   Rules:
   <ul type="square">
-    <li>£5 a ball</li>
-    <li>Each ball contains a random team</li>
-    <li>Draw will take place 28 May 20:30</li>
+    <li>£5 a Team</li>
+    <li>Teams are random</li>
+    <li>Draw will take place 26 May</li>
     <li>First come, first served</li>
   </ul>
   <p></p>
@@ -19,10 +19,9 @@
   Payouts:
   <p></p>
   <ul type="square">
-    <li>£50 - 1st (Final Winner)</li>
-    <li>£30 - 2nd (Final Runner Up)</li>
-    <li>£15 - 3rd (Both Semi Final Runners Up)</li>
-    <li>£10 - Last (fewest points, worst goal difference)</li>
+    <li>£75 - 1st (Final Winner)</li>
+    <li>£50 - 2nd (Final Runner Up)</li>
+    <li>£25 - 3rd (Third place play-off Winner)</li>
   </ul>
   <p></p>
   <br>
@@ -31,7 +30,7 @@
   <br>
 </div>
 
-<% open_date_time = (Week.find(1).close_date - (ENVIRONMENT_CONFIG['round_open_period_in_days']*2).days) %>
+<% open_date_time = (Week.find(1).close_date - 26.days) %>
 
 <p>
   <%= form_for(@bet) do |bet| %>

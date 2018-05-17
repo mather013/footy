@@ -8,11 +8,17 @@ module RakeTaskResources
         Event.delete_all
         FaBet.delete_all
         FaPoint.delete_all
+        FatBet.delete_all
+        FatPoint.delete_all
+        FatRound.delete_all
+        FatSelection.delete_all
         Fixture.delete_all
         GbBet.delete_all
         GbPoint.delete_all
         GbRound.delete_all
         Goal.delete_all
+        Group.delete_all
+        GroupTeam.delete_all
         LmBet.delete_all
         LmPoint.delete_all
         LmRound.delete_all
