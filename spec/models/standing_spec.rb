@@ -26,6 +26,7 @@ describe Standing do
     context 'when standings are up to date' do
 
       it 'returns true' do
+        allow(Standing).to receive(:count).and_return(2)
         Standing.create(position: 1, team_id: 1, points: 6, played: 2, goal_difference: 2)
         Standing.create(position: 2, team_id: 2, points: 0, played: 2, goal_difference: -2)
         expect(Standing.up_to_date?).to eq true
@@ -33,11 +34,20 @@ describe Standing do
     end
 
     context 'when standings are not up to date' do
-      it 'returns false' do
-        expect(Standing.up_to_date?).to eq false
+
+      context 'because there are no standings' do
+        it 'returns false' do
+          expect(Standing.up_to_date?).to eq false
+        end
+      end
+
+      context 'because fixtures have finished since last refresh' do
+        it 'returns false' do
+          allow(Standing).to receive(:count).and_return(2)
+          expect(Standing.up_to_date?).to eq false
+        end
       end
     end
-
   end
 
   describe '.refresh' do #moved to sub classes
