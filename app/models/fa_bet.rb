@@ -9,6 +9,11 @@ class FaBet < ActiveRecord::Base
   validate :combination_unique
 
   def combination_unique
+    unless Player.try(:find_by, id: player_id)
+      errors.add(:player_id, 'Sorry, invalid player chosen')
+      return false
+    end
+
     users_selections = User.find_by_id(user_id).fa_bets.map(&:player_id).sort
     return true if player_id_was.present? and users_selections.count < 5
 

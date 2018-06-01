@@ -6,21 +6,20 @@ class FaBetsController < ApplicationController
   end
 
   def new
-    load_players
-    @bet = FaBet.new
+    @teams = Team.sorted
   end
 
   def create
     @bet = FaBet.new(user_id: current_user.id, player_id: params['player_id'])
-    success = @bet.save!
+    success = @bet.save
     Services::AnalyticsService.publish(:bet_create, params_for_analytics) if success
     load_common
     render action: "index"
   end
 
   def edit
-    load_players
     @bet = FaBet.where('id = ? and user_id = ?', params['id'], current_user.id).first
+    @teams = Team.sorted
   end
 
   def update

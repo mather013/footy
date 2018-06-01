@@ -1,19 +1,68 @@
+<!DOCTYPE html>
 <html>
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
   <a href="<%= fa_bets_path %>" data-theme="a" data-rel="">Back</a>
   <h1><%= "Select Player" %></h1>
 </div>
 
-<form method="POST" action="<%= fa_bets_path %>">
-  <%= render 'selection' %>
-</form>
+<div data-role="content">
+  <div class="ui-field-contain" align="center">
+
+    <form action="<%="/fa_bets"%>" method="get">
+      <select name="team_id" align="center" id="teams">
+        <option selected value="0">Select Team</option>
+        <% @teams.each do |team| %>
+            <option value="<%= team.id %>"><%= team.name %></option>
+        <% end %>
+        <option value=1> <input type=hidden name="selection_id" value=<%= params['selection_id'] %>>
+      </select>
+    </form>
+
+    <form method="POST" action="<%= fa_bets_path %>">
+      <select name="player_id" align="center" id="players">
+        <option selected value="0">Select Player</option>
+      </select>
+      <input type="hidden" name="selection_id" value="<%= params['selection_id'] %>">
+      <br>
+      <input type="submit" value="Save"/>
+    </form>
+  </div>
+</div>
+
 <%= render 'common/footer' %>
 </html>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('form').submit(function () {
-            $('input[type=submit]').attr("disabled", "disabled");
-        });
+  $(function () {
+    $('#teams').change(function () {
+      var team_id = $(this).val();
+      $.ajax({
+        type: "GET",
+        url: '/teams/players',
+        cache: false,
+        dataType:'json',
+        data: {
+          team_id: team_id
+        },
+        success: function(data) {
+//          console.log(data[0].reference, data[0].surname);
+          $('#players').empty();
+
+          var div_data="<option value='0'>Select Player</option>";
+          $(div_data).appendTo('#players');
+
+          $.each(data,function(i,obj)
+          {
+//            console.log(obj.id, obj.surname);
+            var div_data="<option value="+obj.id+">#"+obj.squad_number+" - "+obj.forename+" "+obj.surname+"</option>";
+            $(div_data).appendTo('#players');
+
+          });
+
+          $('#players').selectmenu('refresh');
+
+        },
+      });
     });
+  });
 </script>
