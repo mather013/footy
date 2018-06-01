@@ -10,6 +10,7 @@ defaults: &defaults
   bonus_points: false
   feed: football_api
   form_for_bets: false
+  analytics: false
 
 development:
   <<: *defaults
