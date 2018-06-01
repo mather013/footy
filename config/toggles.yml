@@ -2,8 +2,8 @@ defaults: &defaults
   bet_type_hda: true
   last_man_standing: false
   goal_buster: false
-  five_alive: false
-  five_alive_twist: true
+  five_alive: true
+  five_alive_twist: false
   sweep: true
   week_deadline: false
   sms_communications: false
