@@ -21,22 +21,22 @@ end
 end
 
 # GROUP C
-[11, 2, 1, 13].each do |team_id|
+[11, 2, 21, 13].each do |team_id|
   GroupTeam.create(group_id: 3, team_id: team_id)
 end
 
 # GROUP D
-[21, 8, 7, 19].each do |team_id|
+[1, 8, 7, 19].each do |team_id|
   GroupTeam.create(group_id: 4, team_id: team_id)
 end
 
 # GROUP E
-[6, 27, 12, 17].each do |team_id|
+[4, 6, 27, 30].each do |team_id|
   GroupTeam.create(group_id: 5, team_id: team_id)
 end
 
 # GROUP F
-[4, 30, 29, 16].each do |team_id|
+[12, 17, 29, 16].each do |team_id|
   GroupTeam.create(group_id: 6, team_id: team_id)
 end
 
