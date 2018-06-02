@@ -8,7 +8,9 @@ module Api
         home_goals = params['score'].split("-").first.to_i
         away_goals = params['score'].split("-").last.to_i
         record_score(fixture, home_goals, away_goals)
-        result = fixture.update_attributes(status: Fixture::Status::FINISHED)
+
+        status = params['finished'] == 'true' ? Fixture::Status::FINISHED : Fixture::Status::IN_PLAY
+        result = fixture.update_attributes(status: status)
       end
 
       render status: 200, json: params.merge(result: result).to_json
@@ -23,7 +25,12 @@ module Api
         if player.present? && fixture.present?
           fixture.update_attributes(status: Fixture::Status::IN_PLAY) unless fixture.status == Fixture::Status::FINISHED
           fixture.create_score(home: 0, away: 0) if fixture.score.nil?
-          fixture.score.goals.create(player_id: player.id)
+
+          player_name = "#{player.forename} #{player.surname}"
+          team = player.team.id == fixture.home_team.id ? 'home' : 'away'
+
+          fixture.events.create(event_type: 'goal', minute: params['minute'], player_name: player_name, team: team)
+
           result = fixture.score.goals.create(player_id: player.id)
         end
       end
