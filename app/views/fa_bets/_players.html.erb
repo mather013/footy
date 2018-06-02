@@ -16,17 +16,28 @@
     </div>
   </h5>
 
-  <div class="ui-grid-b">
-    <% @player.goals.each do |goal| %>
-        <div class="ui-block-a" style="width:26%"></div>
-        <div class="ui-block-b" style="width:6%">
-          <%= image_tag "#{STRIP_PATH}#{goal.opposing_team.abbreviation}.png", class: "strip-size" %>
+  <div class="ui-grid-b" align="center">
+    <% @player.team.fixtures.each do |fixture| %>
+
+        <% home_team = fixture.home_team %>
+        <% away_team = fixture.away_team %>
+
+        <div class="ui-block-a" style="width:20%"></div>
+
+        <div class="ui-block-b" style="width:10%">
+          <%= image_tag "#{STRIP_PATH}#{home_team.abbreviation}.png", class: "strip-size" %>
         </div>
-        <div class="ui-block-c fa_opposing_team" style="width:30%">
-          <%="#{goal.opposing_team.name.upcase}" %>
+
+        <div class="ui-block-c kickoff" style="width:20%">
+          <%= DateTime.parse(fixture.kickoff_local_time.to_s).strftime('%e %^b') %>
         </div>
-        <div class="ui-block-d fa_opposing_team" style="width:38%">
-          <%= DateTime.parse(goal.score.fixture.kickoff_local_time.to_s).strftime('%e %^b') %>
+
+        <div class="ui-block-d" style="width:10%">
+          <%= image_tag "#{STRIP_PATH}#{away_team.abbreviation}.png", class: "strip-size" %>
+        </div>
+
+        <div class="ui-block-e kickoff" style="width:40%">
+          <%= fixture.score && !fixture.score.goals.empty? ? "#{fixture.score.goals.where(player_id: @player.id).count}" : 0 %>
         </div>
     <% end %>
   </div>
