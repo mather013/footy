@@ -1,17 +1,27 @@
-<div data-role="collapsible" class="custom-collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+<div data-role="collapsible" class="acol" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
   <h5>
     <div class="ui-grid-b main-font">
       <div class="ui-block-a" style="width:8%">
-        <%= image_tag "#{STRIP_PATH}#{@player.team.abbreviation}.png", class: "player-badge-size" %>
+        <%= image_tag "#{STRIP_PATH}#{@player.team.abbreviation}.png", class: 'player-badge-size' %>
       </div>
       <div class="ui-block-b" style="width:12%">
         <%= "##{@player.squad_number}" %>
       </div>
-      <div class="ui-block-c" style="width:70%">
+      <div class="ui-block-c" style="width:55%">
         <%= "#{@player.name}" %>
       </div>
+
+      <% player_goals = @player.goals.count %>
+
+      <div class="ui-block-c" style="width:15%">
+        <%= image_tag 'event/star.png', class: 'player-badge-size' if player_goals > 0 && player_goals == @top_tally %>
+      </div>
+
       <div class="ui-block-d" align="center" style="width:10%">
-        <%= @player.goals.count %>
+        <% style = player_goals < 5 ? "goals_#{player_goals}" : 'goals_5' %>
+        <span class="<%= "ui-li-count #{style}" %>">
+          <%= player_goals %>
+        </span>
       </div>
     </div>
   </h5>
@@ -22,22 +32,33 @@
         <% home_team = fixture.home_team %>
         <% away_team = fixture.away_team %>
 
-        <div class="ui-block-a" style="width:20%"></div>
+        <div class="ui-block-a" style="width:35%"></div>
 
-        <div class="ui-block-b" style="width:10%">
-          <%= image_tag "#{STRIP_PATH}#{home_team.abbreviation}.png", class: "strip-size" %>
+        <div class="ui-block-b" style="width:8%">
+          <%= image_tag "#{STRIP_PATH}#{home_team.abbreviation}.png", class: 'strip-size' %>
         </div>
 
-        <div class="ui-block-c kickoff" style="width:20%">
+        <div class="ui-block-c kickoff" style="width:14%">
           <%= DateTime.parse(fixture.kickoff_local_time.to_s).strftime('%e %^b') %>
         </div>
 
-        <div class="ui-block-d" style="width:10%">
-          <%= image_tag "#{STRIP_PATH}#{away_team.abbreviation}.png", class: "strip-size" %>
+        <div class="ui-block-d" style="width:8%">
+          <%= image_tag "#{STRIP_PATH}#{away_team.abbreviation}.png", class: 'strip-size' %>
         </div>
 
-        <div class="ui-block-e kickoff" style="width:40%">
-          <%= fixture.score && !fixture.score.goals.empty? ? "#{fixture.score.goals.where(player_id: @player.id).count}" : 0 %>
+        <div class="ui-block-d" style="width:10%"></div>
+
+        <div class="ui-block-e kickoff" style="width:25%" align="left">
+          <% if fixture.score %>
+              <% goals_for_fixture = fixture.score.goals.where(player_id: @player.id).count %>
+              <% if goals_for_fixture == 0 %>
+                  <%= image_tag 'event/football-red.png', class: 'strip-size' if fixture.finished? %>
+              <% else %>
+                  <% goals_for_fixture.times do %>
+                      <%= image_tag 'event/football-green.png', class: 'strip-size' %>
+                  <% end %>
+              <% end %>
+          <% end %>
         </div>
     <% end %>
   </div>

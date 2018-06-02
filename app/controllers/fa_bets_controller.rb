@@ -3,6 +3,7 @@ class FaBetsController < ApplicationController
 
   def index
     load_common
+    @top_tally = Goal.top_tally.count
   end
 
   def new

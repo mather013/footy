@@ -3,6 +3,7 @@ class GoalsController < ApplicationController
 
   def all
     @goals = Goal.all_player_grouped_total_ordered
+    @top_tally = Goal.top_tally.count
   end
 
   def index

@@ -314,6 +314,68 @@ div.ui-btn, input[type="submit"] {
     background-color: white !important;
 }
 
+.acol .ui-collapsible-heading-collapsed > .ui-collapsible-heading-toggle {
+    background:white !important;
+}
+.acol .ui-collapsible-heading-toggle {
+    background: #d9ffb3 !important;
+}
+
+.goals_5 {
+    color: white;
+    background: #ff4000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+    text-shadow: none;
+}
+
+.goals_4 {
+    color: white;
+    background: #ff5000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+    text-shadow: none;
+}
+
+.goals_3 {
+    color: white;
+    background: #ff7000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+    text-shadow: none;
+}
+
+.goals_2 {
+    color: white;
+    background: #ff9000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+    text-shadow: none;
+}
+
+.goals_1 {
+    color: white;
+    background: #ffb000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+    text-shadow: none;
+}
+
+.goals_0 {
+    color: white;
+    background: #979797;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+    text-shadow: none;
+}
+
+
 .custom-list {
     background: white !important;
 }
