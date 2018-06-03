@@ -32,12 +32,12 @@ class TeamStats
   end
 
   def home_goals
-    scores = @team.home_fixtures.where(week_id: @weeks.map(&:id)).joins(:score).collect(&:score)
+    scores = @team.home_fixtures.finished.where(week_id: @weeks.map(&:id)).joins(:score).collect(&:score)
     {goals_for: scores.collect(&:home).sum, goals_against: scores.collect(&:away).sum}
   end
 
   def away_goals
-    scores = @team.away_fixtures.where(week_id: @weeks.map(&:id)).joins(:score).collect(&:score)
+    scores = @team.away_fixtures.finished.where(week_id: @weeks.map(&:id)).joins(:score).collect(&:score)
     {goals_for: scores.collect(&:away).sum, goals_against: scores.collect(&:home).sum}
   end
 
