@@ -3,6 +3,8 @@ class Score < ActiveRecord::Base
   belongs_to :fixture
   has_many   :goals
 
+  validates :fixture_id, uniqueness: true
+
   def to_s
     "#{home} - #{away}"
   end

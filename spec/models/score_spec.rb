@@ -16,6 +16,13 @@ describe Score do
 
   describe 'validations' do
 
+    context 'when score already belongs to a fixture' do
+      let!(:score_1) { Score.create(id: 1, fixture_id: 1, home: 1, away: 0) }
+
+      it 'is invalid' do
+        expect(Score.new(fixture_id: 1, home: 2, away: 0)).to_not be_valid
+      end
+    end
   end
 
   describe 'instance methods' do
