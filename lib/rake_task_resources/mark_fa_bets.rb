@@ -1,28 +1,34 @@
 module RakeTaskResources
   class MarkFaBets
     class << self
+
       def perform
         puts "marking 5 alive bets"
         puts "===================="
-        User.all.each do |user|
-          fa_bets = FaBet.find_all_by_user_id(user.id)
-          mark_5_alive user, fa_bets unless fa_bets.empty?
+
+        users.each do |user|
+          fa_bets = user.fa_bets
+
+          return false if fa_bets.empty?
+
+          goals = 0
+          fa_bets.each { |bet| goals += bet.player.goals.count }
+
+          record_points(user, goals)
+          puts "#{user.name} goals: #{goals}"
         end
       end
 
       private
 
-      def mark_5_alive user, fa_bets
-        goals = 0
-
-        fa_bets.each do |bet|
-          goals += bet.player.goals.count
-        end
-
-        user.fa_point.present? ? user.fa_point.update_attributes(value: goals) : FaPoint.create(user_id: user.id, value: goals)
-        puts "#{user.name} goals: #{goals}"
-
+      def users
+        User.all
       end
+
+      def record_points(user, points)
+        user.fa_point.present? ? user.fa_point.update_attributes(value: points) : FaPoint.create(user_id: user.id, value: points)
+      end
+
     end
   end
 end

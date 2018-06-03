@@ -14,7 +14,7 @@
           <div class="ui-grid-b">
 
             <div class="ui-block-a" style="width:10%">
-              <%= "#{i+1}." %>
+              <% "#{i+1}." %>
             </div>
 
             <% username_style = (bet.present? && bet.user.id == @current_user.id ? 'ui-block-b current_user' : 'ui-block-b') %>

@@ -12,7 +12,7 @@ class Player < ActiveRecord::Base
   before_save :generate_reference
 
   def name
-    "#{forename} #{surname.upcase}".to_s
+    forename.nil? || forename.blank? ? surname.upcase.to_s : "#{forename}. #{surname.upcase}".to_s
   end
 
   def name_and_number
