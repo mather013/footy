@@ -9,13 +9,13 @@ module RakeTaskResources
         users.each do |user|
           fa_bets = user.fa_bets
 
-          return false if fa_bets.empty?
+          if fa_bets.present?
+            goals = 0
+            fa_bets.each { |bet| goals += bet.player.goals.count }
 
-          goals = 0
-          fa_bets.each { |bet| goals += bet.player.goals.count }
-
-          record_points(user, goals)
-          puts "#{user.name} goals: #{goals}"
+            record_points(user, goals)
+            puts "#{user.name} goals: #{goals}"
+          end
         end
       end
 
