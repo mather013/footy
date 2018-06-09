@@ -2,15 +2,17 @@
 <html>
 <div data-role=footer data-position=fixed data-tap-toggle=false>
   <div data-role=navbar>
-    <ul>
-      <li><a href="<%= weeks_path %>" data-theme="a">H/D/A
-        <span class="label label-warning"><%= @user.position.current.ordinalize if @user.position.present? %></span>
-      </a></li>
+    <% if @user.community_id == 1 %>
+        <ul>
+          <li><a href="<%= weeks_path %>" data-theme="a">H/D/A
+            <span class="label label-warning"><%= @user.position.current.ordinalize if @user.position.present? %></span>
+          </a></li>
 
-      <% partial = ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type'] == 'club' ? 'common/club' : 'common/international' %>
-      <%= render partial %>
+          <% partial = ENVIRONMENT_CONFIG["#{ENVIRONMENT_CONFIG['competition']}"]['type'] == 'club' ? 'common/club' : 'common/international' %>
+          <%= render partial %>
 
-    </ul>
+        </ul>
+    <% end %>
   </div>
 </div>
 </html>

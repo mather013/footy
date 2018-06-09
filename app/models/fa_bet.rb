@@ -14,7 +14,8 @@ class FaBet < ActiveRecord::Base
       return false
     end
 
-    users_selections = User.find_by_id(user_id).fa_bets.map(&:player_id).sort
+    user = User.find(user_id)
+    users_selections = user.fa_bets.map(&:player_id).sort
     return true if player_id_was.present? and users_selections.count < 5
 
     if users_selections.count < 5
@@ -26,8 +27,9 @@ class FaBet < ActiveRecord::Base
     user_ids = FaBet.all.map(&:user_id).uniq
     user_ids.delete(user_id)
     user_ids.each do |rival_user_id|
-      rival_selections = User.find_by_id(rival_user_id).fa_bets.map(&:player_id)
-      if users_selections.count == 5 && rival_selections.sort == users_selections.sort
+      rival_user = User.find(rival_user_id)
+      rival_selections = rival_user.fa_bets.map(&:player_id)
+      if users_selections.count == 5 && rival_selections.sort == users_selections.sort && rival_user.community_id == user.community_id
         errors.add(:player_id, 'Sorry, invalid combination chosen')
       end
     end
