@@ -32,23 +32,36 @@
         <% home_team = fixture.home_team %>
         <% away_team = fixture.away_team %>
 
-        <div class="ui-block-a" style="width:35%"></div>
+        <div class="ui-block-a" style="width:31%"></div>
 
-        <div class="ui-block-b" style="width:8%">
+        <div class="ui-block-b scores-small" style="width:6%">
+          <%= home_team.abbreviation.upcase %>
+        </div>
+
+        <div class="ui-block-b scores-small" style="width:6%">
           <%= image_tag "#{STRIP_PATH}#{home_team.abbreviation}.png", class: 'strip-size' %>
         </div>
 
-        <div class="ui-block-c kickoff" style="width:14%">
-          <%= DateTime.parse(fixture.kickoff_local_time.to_s).strftime('%e %^b') %>
+        <div class="ui-block-c scores-small" style="width:14%">
+          <% if fixture.finished? && fixture.score.present? %>
+              <% score = fixture.score %>
+              <%= "#{score.home} - #{score.away}" %>
+          <% else %>
+              <%= DateTime.parse(fixture.kickoff_local_time.to_s).strftime('%e %^b') %>
+          <% end %>
         </div>
 
-        <div class="ui-block-d" style="width:8%">
+        <div class="ui-block-d" style="width:6%">
           <%= image_tag "#{STRIP_PATH}#{away_team.abbreviation}.png", class: 'strip-size' %>
+        </div>
+
+        <div class="ui-block-b scores-small" style="width:6%">
+          <%= away_team.abbreviation.upcase %>
         </div>
 
         <div class="ui-block-d" style="width:10%"></div>
 
-        <div class="ui-block-e kickoff" style="width:25%" align="left">
+        <div class="ui-block-e scores-small" style="width:21%" align="left">
           <% if fixture.score %>
               <% goals_for_fixture = fixture.score.goals.where(player_id: @player.id).count %>
               <% if goals_for_fixture == 0 %>

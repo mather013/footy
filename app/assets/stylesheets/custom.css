@@ -13,7 +13,7 @@
 }
 
 .leaderboard {
-    font-size: .6em;
+    font-size: .7em;
 }
 
 .spot_on {
@@ -73,6 +73,13 @@
     position: relative;
     top: 2px;
     color: #979797;
+}
+
+.scores-small {
+    font-size: .7em;
+    position: relative;
+    top: 2px;
+    color: #404040;
 }
 
 .main-font {
@@ -171,8 +178,8 @@
 }
 
 .strip-size {
-    max-width: 12px;
-    max-height: 12px;
+    max-width: 13px;
+    max-height: 13px;
 }
 
 .badge-big {

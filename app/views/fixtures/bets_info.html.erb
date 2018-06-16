@@ -20,7 +20,7 @@
     <br>
     <div class="info-txt-clear">
       <% goal_events.each do |goal_event| %>
-          <% if goal_event.team != 'visitorteam' %>
+          <% if goal_event.team != 'away' %>
               <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
               <br>
           <% end %>
@@ -48,7 +48,7 @@
     <br>
     <div class="info-txt-clear">
       <% goal_events.each do |goal_event| %>
-          <% if goal_event.team == 'visitorteam' %>
+          <% if goal_event.team == 'away' %>
               <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
               <br>
           <% end %>
