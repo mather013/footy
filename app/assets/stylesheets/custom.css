@@ -456,6 +456,11 @@ div.ui-btn, input[type="submit"] {
     font-size: 11px;
 }
 
+.standings-qualify-text {
+    background: #FFF380 !important;
+    font-size: 11px;
+}
+
 .won {
     background: #5cb85c none repeat scroll 0% 0%;
 }
