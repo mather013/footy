@@ -40,7 +40,7 @@
             <% i=1 %>
         <% end %>
 
-        <% style = 'standings-qualify-text' if i <= 2 && standing.played >= 1 %>
+        <% style = 'standings-qualify-text' if i < 3 && standing.played > 2 %>
         <% i+=1 %>
 
         <li class="custom-list <%= style %>">
