@@ -1,7 +1,7 @@
 defaults: &defaults
   round_open_period_in_days: 7
   days_in_advance_to_sync_fixtures: 8
-  competition: world_cup
+  competition: premier_league
   week_jackpot:
   premier_league:
     type: club
@@ -31,7 +31,7 @@ defaults: &defaults
     football_api:
       url: http://api.football-api.com/2.0/
       competition_id: 1204
-  bonus_threshold: 26
+  bonus_threshold: 20
   bonus_amount: 20
   bonus_points_matrix: 30
 
