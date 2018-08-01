@@ -23,7 +23,7 @@
             <li class="custom-list">
               <% if selections[i].present? %>
                   <% player = Player.find(selections[i].to_i) %>
-                  <%= link_to edit_fat_selection_path(@selection.id, team_id: 1, selection_id: i) do %>
+                  <%= link_to edit_fat_selection_path(@selection.id, selection_id: i) do %>
                       <div class="ui-block-a main-font" style="width:10%">
                         <%= image_tag "#{BADGE_PATH}#{player.team.abbreviation}.png", class: 'badge-medium' %>
                       </div>
@@ -69,7 +69,7 @@
       <ul data-role="listview">
         <% 5.times do |i| %>
             <li class="custom-list">
-              <%= link_to new_fat_selection_path(team_id: 1, selection_id: i) do %>
+              <%= link_to new_fat_selection_path(selection_id: i) do %>
                   <div class="ui-block-a main-font" style="width:10%">
                     <%= image_tag "#{BADGE_PATH}tba.png", class: "player-badge-size" %>
                   </div>

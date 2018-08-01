@@ -57,6 +57,7 @@
                         </div>
                     <% else %>
                         <% points_style = point.present? ? point.value : 0 %>
+                        <% points_style = "100" if point.value.to_i > 100 %>
                         <div class="<%= "label points_#{points_style}" %>">
                           <%= point.value if point.present? %>
                         </div>

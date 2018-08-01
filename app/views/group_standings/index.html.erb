@@ -19,6 +19,7 @@
     <% @standings.each do |standing| %>
 
         <% if standing.group_id != group_id %>
+            <% i+=1 %>
             <% group_id = standing.group_id %>
 
             <div class="leaderboard">
@@ -41,7 +42,6 @@
         <% end %>
 
         <% style = 'standings-qualify-text' if i < 3 && standing.played > 2 %>
-        <% i+=1 %>
 
         <li class="custom-list <%= style %>">
           <div class="ui-grid-b">
