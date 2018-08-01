@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180607121248) do
+ActiveRecord::Schema.define(version: 20180801191214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,6 +193,7 @@ ActiveRecord::Schema.define(version: 20180607121248) do
     t.integer "squad_number"
     t.string "reference"
     t.string "position"
+    t.integer "external_id"
   end
 
   create_table "points", id: :serial, force: :cascade do |t|

@@ -1,1 +1,1 @@
-Player.delete_all
+# Player.delete_all
