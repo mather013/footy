@@ -6,7 +6,7 @@ class LeagueStanding < Standing
 
     def refresh
       delete_all
-      team_stats(Team.all).each_with_index do |stats, i|
+      team_stats(Team.sorted).each_with_index do |stats, i|
         params = {id: i+1,
                   position: i+1,
                   played: stats[:pld],

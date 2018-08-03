@@ -5,7 +5,7 @@ class Standing < ActiveRecord::Base
   class << self
 
     def up_to_date?
-      return false if GroupStanding.count == 0
+      return false if Standing.count == 0
       (all.collect(&:played).sum/2) >= Fixture.finished.joins(:score).count
     end
 
