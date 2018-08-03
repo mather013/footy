@@ -28,7 +28,7 @@ class Team < ActiveRecord::Base
   end
 
   def form
-    standing.form
+    standing.try(:form).to_s
   end
 
   def short_name
