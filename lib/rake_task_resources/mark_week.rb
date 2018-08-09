@@ -26,7 +26,7 @@ module RakeTaskResources
           points+=10 if bet.outcome == 'correct'
           points+=30 if bet.outcome == 'spot_on' unless TOGGLES_CONFIG['bet_type_hda']
 
-          if TOGGLES_CONFIG['bonus_points'] && (bet.outcome == 'correct' || bet.outcome == 'spot_on')
+          if TOGGLES_CONFIG['bonus_points']
             bonus_val += adjust_bonus(point,bet)
           end
         end
@@ -47,11 +47,12 @@ module RakeTaskResources
       end
 
       def calculate_bonus(bet)
+        return 0 unless bet.outcome == 'correct' || bet.outcome == 'spot_on'
         bets = bet.fixture.bets.collect(&:value)
         correct_count = bets.count(bet.value)
         percentage = (correct_count.to_f / bets.count.to_f)*100
 
-        percentage < ENVIRONMENT_CONFIG['bonus_threshold'] ? 10 : 0
+        percentage <= ENVIRONMENT_CONFIG['bonus_threshold'] ? 10 : 0
       end
 
     end

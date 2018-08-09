@@ -32,7 +32,7 @@ defaults: &defaults
       url: http://api.football-api.com/2.0/
       competition_id: 1204
   bonus_threshold: 20
-  bonus_amount: 20
+  bonus_amount: 10
   bonus_points_matrix: 30
 
 development:

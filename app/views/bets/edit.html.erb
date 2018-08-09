@@ -10,5 +10,16 @@
   <% page = TOGGLES_CONFIG['bet_type_hda'] ? "selection" : "selection_score" %>
   <%= render page %>
 </form>
+
+<%= render 'bonus' if TOGGLES_CONFIG['bonus_points']%>
+
 <%= render 'common/footer' %>
 </html>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('form').submit(function () {
+      $('input[type=submit]').attr("disabled", "disabled");
+    });
+  });
+</script>

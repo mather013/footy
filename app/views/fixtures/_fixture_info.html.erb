@@ -5,13 +5,9 @@
     <% if @fixture.finished? %>
         <% bonus = @bonuses.select { |b| b[:fixture_id] == @fixture.id }.first if @bonuses.present? %>
         <% if bonus.present? %>
-            <span class="label bonus-points">
-                bonus
-            </span>
+            <%= image_tag 'event/star-green.png', class: 'player-badge-size' %>
         <% elsif @fixture.bonus_available? %>
-                <span class="label label-primary">
-                miss
-            </span>
+            <%= image_tag 'event/star-grey.png', class: 'player-badge-size' %>
         <% end %>
     <% end %>
   </div>
