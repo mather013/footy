@@ -92,11 +92,22 @@ module Feed
         end
 
         context 'when fixture has not started' do
-          let(:status) { '15:00' }
-          let(:time) { '15:00' }
+          context 'status contains time' do
+            let(:status) { '15:00' }
+            let(:time) { '15:00' }
 
-          it 'has the expected values' do
-            expect(fixture.status).to eq(::Fixture::Status::SCHEDULED)
+            it 'has the expected values' do
+              expect(fixture.status).to eq(::Fixture::Status::SCHEDULED)
+            end
+          end
+
+          context 'status is blank' do
+            let(:status) { '' }
+            let(:time) { '15:00' }
+
+            it 'has the expected values' do
+              expect(fixture.status).to eq(::Fixture::Status::SCHEDULED)
+            end
           end
         end
 

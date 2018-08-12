@@ -21,7 +21,7 @@ module Feed
         @date = hash[:formatted_date]
         @time = hash[:time]
         @score = hash[:ft_score]
-        @status = common_status hash[:status],hash[:time]
+        @status = common_status(hash[:status], hash[:time])
         @finished = hash[:status] == Status::FINISHED
         @events = Feed::Events.new(hash[:events])
       end
@@ -40,7 +40,11 @@ module Feed
         return ::Fixture::Status::POSTPONED if feed_time == POSTPONED_TIME || feed_status == POSTPONED_TIME
         return ::Fixture::Status::FINISHED  if feed_status == Status::FINISHED
         return ::Fixture::Status::HALFTIME  if feed_status == Status::HALFTIME
-        feed_status.include?(':') ? ::Fixture::Status::SCHEDULED : ::Fixture::Status::IN_PLAY
+        feed_status.present? && feed_status.match(number_regex).present? ? ::Fixture::Status::IN_PLAY : ::Fixture::Status::SCHEDULED
+      end
+
+      def number_regex
+        /^[0-9]*$/
       end
 
     end
