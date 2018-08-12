@@ -73,7 +73,7 @@ class Fixture < ActiveRecord::Base
     correct_count = bet_values.count(result)
     percentage = (correct_count.to_f / bet_values.count.to_f)*100
 
-    percentage < ENVIRONMENT_CONFIG['bonus_threshold']
+    percentage <= ENVIRONMENT_CONFIG['bonus_threshold']
   end
 
   def finished?

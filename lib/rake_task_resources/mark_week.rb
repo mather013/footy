@@ -52,7 +52,7 @@ module RakeTaskResources
         correct_count = bets.count(bet.value)
         percentage = (correct_count.to_f / bets.count.to_f)*100
 
-        percentage <= ENVIRONMENT_CONFIG['bonus_threshold'] ? 10 : 0
+        percentage <= ENVIRONMENT_CONFIG['bonus_threshold'] ? ENVIRONMENT_CONFIG['bonus_amount'] : 0
       end
 
     end
