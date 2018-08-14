@@ -8,6 +8,8 @@
 </div>
 
 <% goal_events = @fixture.events.where(event_type: 'goal').order(:minute) %>
+<% fixture_bonus_available = @fixture.bonus_available? %>
+<% fixture_score_outcome = @fixture.score ? @fixture.score.outcome : nil %>
 
 <div class="ui-grid-a" style=padding:30px>
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
@@ -20,7 +22,7 @@
     <br>
     <div class="info-txt-clear">
       <% goal_events.each do |goal_event| %>
-          <% if goal_event.team != 'away' %>
+          <% if goal_event.team != 'visitorteam' %>
               <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
               <br>
           <% end %>
@@ -48,7 +50,7 @@
     <br>
     <div class="info-txt-clear">
       <% goal_events.each do |goal_event| %>
-          <% if goal_event.team == 'away' %>
+          <% if goal_event.team == 'visitorteam' %>
               <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
               <br>
           <% end %>
@@ -96,7 +98,9 @@
                   <%= bet.updated_at.in_time_zone('London').strftime('%d/%m/%Y %H:%M') %>
                 </div>
                 <div class="ui-block-c">
-                  <%= '+10' if @fixture.score.outcome == value %>
+                  <% if fixture_score_outcome && fixture_score_outcome == value %>
+                      <%= (fixture_bonus_available ? "+#{10+ENVIRONMENT_CONFIG['bonus_amount']}" : '+10') %>
+                  <% end %>
                 </div>
             <% end %>
           </div>
