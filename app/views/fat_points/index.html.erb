@@ -3,7 +3,7 @@
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
   <a href="<%= fat_rounds_path %>" data-theme="a" data-rel="">Back</a>
 
-  <h1><%= '5 Alive Totals' %></h1>
+  <h1><%= 'Full House Totals' %></h1>
 </div>
 
 <div class="leaderboard">
@@ -27,7 +27,7 @@
             <% fav_player_id = user_player_ids.max_by { |v| freq[v] } %>
             <% player = Player.find(fav_player_id) %>
             <div class="ui-block-c" style="width:30%">
-              <%= player.name %>
+              <% player.name %>
             </div>
 
             <div class="ui-block-d percent-points" align="center" style="width:15%">
