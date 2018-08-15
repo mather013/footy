@@ -60,7 +60,6 @@
         <% end %>
         <span class="label label-<%= label %> ">
           <%= @current_user != @user && @fixture.betable? ? '?' : "#{bet.value}" %>
-            <%= bet.value %>
         </span>
     <% end %>
   </div>
