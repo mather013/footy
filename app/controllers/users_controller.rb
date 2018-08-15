@@ -6,14 +6,16 @@ class UsersController < ApplicationController
     redirect_to root_url if @week.status == 'Open'
 
     @fixtures = @week.fixtures.sorted
-    @view_user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
+    @current_user = current_user
 
     @bonuses = bonuses_for_user_and_week unless @week.status == 'pending'
   end
 
   def show
     @rounds = LmRound.sorted
-    @view_user = User.find(params[:user_id])
+    @user = User.find(params[:user_id])
+    @current_user = current_user
   end
 
   def fat_round_bets
@@ -25,7 +27,7 @@ class UsersController < ApplicationController
   private
 
   def bonuses_for_user_and_week
-    point = @view_user.points.where(week_id: @week.id).first
+    point = @user.points.where(week_id: @week.id).first
     point.present? ? point.bonuses : []
   end
 

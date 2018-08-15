@@ -6,6 +6,7 @@ class FixturesController < ApplicationController
     @fixtures = @week.fixtures.sorted
     @bonuses = bonuses_for_user_and_week unless @week.status == 'pending'
     @user = current_user
+    @current_user = @user
   end
 
   def bets_info

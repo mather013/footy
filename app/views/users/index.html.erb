@@ -2,7 +2,7 @@
 <html>
 <div data-role="header" data-position="fixed">
   <a href="<%= week_points_path(@week.id) %>" data-theme="a" data-rel="">Back</a>
-  <h1><%= "#{@view_user.name} R#{@week.id}" %></h1>
+  <h1><%= "#{@user.name} R#{@week.id}" %></h1>
 </div>
 
 <% date = nil %>
@@ -21,7 +21,7 @@
 
         <li class="custom-list">
           <%= link_to fixture_bets_info_path(@week.id, @fixture.id), :method => :get do %>
-              <%= render 'fixture_info' %>
+              <%= render 'fixtures/fixture_info' %>
           <% end %>
         </li>
     <% end %>
