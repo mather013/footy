@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
   def players
     team_id = params['team_id']
     @team = Team.find(team_id)
-    @players = @team.players.position_order
+    @players = @team.players.active.position_order
 
     respond_to do |format|
       format.html { head :ok }

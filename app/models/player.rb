@@ -5,9 +5,10 @@ class Player < ActiveRecord::Base
 
   scope :team_and_surname_order, -> { order('team_id asc, surname asc') }
   scope :by_surname, -> { order('surname asc') }
+  scope :active, -> { where(active: true) }
 
-  validates :surname, :uniqueness => {:scope => :forename}
-  validates :reference, uniqueness: true
+  # validates :surname, :uniqueness => {:scope => :forename}
+  # validates :reference, uniqueness: true
 
   before_save :generate_reference
 
