@@ -37,15 +37,27 @@
                       <% player_team_id = player.team.id %>
                       <% fixture = week_fixtures.where('home_team_id=? or away_team_id=?', player_team_id, player_team_id).first %>
 
-                      <div class="ui-block-d main-font" align="center" style="width:10%">
-                        <%= image_tag "#{BADGE_PATH}#{fixture.home_team.abbreviation}.png", class: 'badge-medium' %>
-                      </div>
-                      <div class="ui-block-d player-font" align="center" style="width:10%">
-                        vs
-                      </div>
-                      <div class="ui-block-d main-font" align="center" style="width:10%">
-                        <%= image_tag "#{BADGE_PATH}#{fixture.away_team.abbreviation}.png", class: 'badge-medium' %>
-                      </div>
+                      <% if @permitted_fixtures.include?(fixture) %>
+                          <div class="ui-block-d main-font" align="center" style="width:10%">
+                            <%= image_tag "#{BADGE_PATH}#{fixture.home_team.abbreviation}.png", class: 'badge-medium' %>
+                          </div>
+                          <div class="ui-block-d player-font" align="center" style="width:10%">
+                            vs
+                          </div>
+                          <div class="ui-block-d main-font" align="center" style="width:10%">
+                            <%= image_tag "#{BADGE_PATH}#{fixture.away_team.abbreviation}.png", class: 'badge-medium' %>
+                          </div>
+                      <% else %>
+                          <div class="ui-block-d player-font" align="center" style="width:18%">
+                            NO GAME
+                          </div>
+                          <div class="ui-block-d player-font" align="center" style="width:2%">
+
+                          </div>
+                          <div class="ui-block-d main-font" align="center" style="width:10%">
+                            <%= image_tag 'event/football-red.png', class: 'badge-medium' %>
+                          </div>
+                      <% end %>
                   <% end %>
               <% else %>
                   <%= link_to edit_fat_selection_path(@selection.id, team_id: 1, selection_id: i) do %>

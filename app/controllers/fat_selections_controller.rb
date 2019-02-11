@@ -2,7 +2,7 @@ class FatSelectionsController < ApplicationController
   before_action :require_login
 
   def index
-    @week = Week.current
+    load_common
     @selection = current_user.fat_selection
   end
 
@@ -50,6 +50,7 @@ class FatSelectionsController < ApplicationController
 
   def load_common
     @week = Week.current
+    @permitted_fixtures = @week.fixtures.where(id: @week.fixtures_strict.map(&:id))
     @teams = Team.sorted
     @team = Team.find(params['team_id']) if params['team_id'].present?
     @players = params['team_id'].present? ? @team.players.position_order : []
