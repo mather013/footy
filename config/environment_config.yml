@@ -31,6 +31,9 @@ defaults: &defaults
     football_api:
       url: http://api.football-api.com/2.0/
       competition_id: 1204
+    e_api:
+      url: placeholder
+      competition_id: 47
   bonus_threshold: 20
   bonus_amount: 10
   bonus_points_matrix: 30
