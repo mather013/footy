@@ -11,5 +11,9 @@ module Feed
       @fixtures.each(&block) if @fixtures.present?
     end
 
+    def all
+      @fixtures.each.inject([]) { |fixtures, fixture| fixtures << fixture }
+    end
+
   end
 end

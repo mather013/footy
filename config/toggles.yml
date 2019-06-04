@@ -11,6 +11,7 @@ defaults: &defaults
   feed: football_api
   form_for_bets: true
   analytics: false
+  log_web_requests: false
 
 development:
   <<: *defaults

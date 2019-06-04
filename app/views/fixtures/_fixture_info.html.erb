@@ -59,7 +59,7 @@
             <% label = 'default' %>
         <% end %>
         <span class="label label-<%= label %> ">
-          <%= @current_user != @user && @fixture.betable? ? '?' : "#{bet.value}" %>
+          <%= @current_user.id != @user.id && @fixture.betable? ? '?' : "#{bet.value}" %>
         </span>
     <% end %>
   </div>

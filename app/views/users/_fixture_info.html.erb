@@ -2,20 +2,18 @@
   <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
 
   <div class="ui-block-a fixture-bet" align="left" style="width:10%">
-    <% bonus = @bonuses.select { |b| b[:fixture_id] == @fixture.id }.first if @bonuses.present? %>
-    <% if bonus.present? %>
-        <span class="label bonus-points">
-            bonus
-        </span>
-    <% elsif @fixture.bonus_available? %>
-            <span class="label label-primary">
-            miss
-        </span>
+    <% if @fixture.finished? %>
+        <% bonus = @bonuses.select { |b| b[:fixture_id] == @fixture.id }.first if @bonuses.present? %>
+        <% if bonus.present? %>
+            <%= image_tag 'event/star-green.png', class: 'player-badge-size' %>
+        <% elsif @fixture.bonus_available? %>
+            <%= image_tag 'event/star-grey.png', class: 'player-badge-size' %>
+        <% end %>
     <% end %>
   </div>
 
   <div class="ui-block-b fixture-teams" align="right" style="width:21%">
-    <%= @fixture.home_team.abbreviation.upcase %>
+    <%= @fixture.home_team.short_name.upcase %>
   </div>
 
   <div class="ui-block-b" align="center" style="width:12%">
@@ -23,10 +21,20 @@
   </div>
 
   <div class="ui-block-c fixture-score" align="center" style="width:14%">
-    <% if @fixture.status == Fixture::Status::POSTPONED %>
-        P - P
+    <% if @fixture.postponed? %>
+        <span class="label postponed-score">P - P</span>
+    <% elsif @fixture.score.present? %>
+        <% score_theme = 'label ft-score' if @fixture.finished? %>
+        <% score_theme = 'label in-play-score' if @fixture.in_play? %>
+        <% score_theme = 'label halftime-score' if @fixture.halftime? %>
+        <% if score_theme.present? %>
+            <span class='<%= score_theme %>'><%= @fixture.score.home %></span>
+            <span class='<%= score_theme %>'><%= @fixture.score.away %></span>
+        <% end %>
     <% else %>
-        <%= @fixture.score.present? ? "#{@fixture.score.home} - #{@fixture.score.away}" : @fixture.kickoff_local_time.strftime('%H:%M') %>
+        <span class="label pending-score">
+          <%= @fixture.kickoff_local_time.strftime('%H:%M') %>
+        </span>
     <% end %>
   </div>
 
@@ -35,15 +43,15 @@
   </div>
 
   <div class="ui-block-e fixture-teams" align="left" style="width:21%">
-    <%= @fixture.away_team.abbreviation.upcase %>
+    <%= @fixture.away_team.short_name.upcase %>
   </div>
 
-  <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @view_user.id) %>
+  <% bet=Bet.find_by_fixture_id_and_user_id(@fixture.id, @user.id) %>
 
   <div class="ui-block-e fixture-bet" align="right" style="width:10%">
     <% if bet.present? %>
         <% case bet.outcome %>
-        <% when 'correct' %>
+    <% when 'correct' %>
             <% label = 'success' %>
         <% when 'wrong' %>
             <% label = 'danger' %>
@@ -51,7 +59,7 @@
             <% label = 'default' %>
         <% end %>
         <span class="label label-<%= label %> ">
-            <%= @fixture.betable? ? '?' : "#{bet.value}" %>
+          <%= @fixture.betable? ? '?' : "#{bet.value}" %>
         </span>
     <% end %>
   </div>
