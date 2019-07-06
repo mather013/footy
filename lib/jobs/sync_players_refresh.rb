@@ -5,14 +5,15 @@ module Jobs
       Player.delete_all
 
       Team.all.each do |team|
-        players_from_feed(team).each do |player|
-          player_params = {surname: player.surname,
-                           forename: player.forename,
-                           squad_number: player.squad_number,
-                           position: player.position,
+        players_from_feed(team).each do |feed_player|
+          player_params = {surname: feed_player.surname,
+                           forename: feed_player.forename,
+                           squad_number: feed_player.squad_number,
+                           position: feed_player.position,
+                           external_id: feed_player.id,
                            team_id: team.id}
 
-          Player.find_or_create_by(player_params)
+          Player.create(player_params) if feed_player.surname.present?
         end
       end
     end
