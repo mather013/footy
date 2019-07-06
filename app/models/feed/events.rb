@@ -11,5 +11,9 @@ module Feed
       @events.each(&block) if @events.present?
     end
 
+    def all
+      @events.each.inject([]) { |events, event| events << event }
+    end
+
   end
 end

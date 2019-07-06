@@ -1,8 +1,8 @@
 module Feed
-  module FootballApi
+  module EApi
     class Player
 
-      attr_accessor :id, :surname, :forename, :squad_number, :position, :external_id
+      attr_accessor :id, :surname, :forename, :squad_number, :position
 
       module Position
         FORWARD = 'FW'
@@ -13,11 +13,12 @@ module Feed
       end
 
       def initialize(hash)
-        player_hash = hash[hash.keys.first]
-        names = player_hash[:participant][:name].split
+        player_hash = hash[:participant].values.first
+        return if player_hash[:type] != 'athlete'
+        names = player_hash[:name].split
         @surname = names.last
         @forename = names.count > 1 ? names.first : ''
-        @squad_number = player_hash[:properties][:value].to_i
+        @squad_number = hash[:properties].values.first[:value] unless hash[:properties].nil?
         @position = Position::UNKNOWN
         @id = player_hash[:id].to_i
       end

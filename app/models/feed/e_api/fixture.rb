@@ -2,19 +2,22 @@ module Feed
   module EApi
     class Fixture
 
-      attr_accessor :id, :home_team_id, :away_team_id, :events, :score, :home_team_goals, :away_team_goals, :status
+      attr_accessor :id, :home_team_id, :away_team_id, :events, :score, :home_team_goals, :away_team_goals, :status, :round_number
 
       module Status
         FINISHED = 'Finished'
-        HALFTIME = '??'
+        HALFTIME = 'Half Time'
         POSTPONED = 'Postponed'
+        IN_PLAY = 'inprogress'
+        FIRST_HALF = '1st half'
+        SECOND_HALF = '2nd half'
+        FINISHED_AET ='Finished AET'
       end
 
       def initialize(hash)
         @id = hash[:id].to_i
         @date = hash[:startdate]
-        @status = hash[:status_type]
-        @finished = hash[:status] == Status::FINISHED
+        @status = common_status(hash[:status_type])
 
         home_team_hash = hash[:event_participants][hash[:event_participants].keys.first]
         away_team_hash = hash[:event_participants][hash[:event_participants].keys.last]
@@ -35,10 +38,32 @@ module Feed
         end
 
         @score = "#{@home_team_goals}-#{@away_team_goals}"
+        @round_number= hash[:property].values.select { |p| p[:name].downcase == 'round' }.first[:value]
+
+        if home_team_hash[:incident].present?
+          home_team_events = home_team_hash[:incident].each.inject([]) do |h, event|
+            event[1][:team]='localteam'
+            h << event[1]
+          end
+        end
+
+        if away_team_hash[:incident].present?
+          away_team_events = away_team_hash[:incident].each.inject([]) do |h, event|
+            event[1][:team]='visitorteam'
+            h << event[1]
+          end
+        end
+
+        if home_team_events || away_team_events
+          formatted_events_hash = home_team_events + away_team_events
+          @events = Feed::Events.new(formatted_events_hash)
+        end
+
+        nil
       end
 
       def finished?
-        @finished
+        status == Status::FINISHED
       end
 
       def kickoff
@@ -48,14 +73,22 @@ module Feed
       private
 
       def common_status(feed_status)
-        return ::Fixture::Status::POSTPONED if feed_status == POSTPONED_TIME
-        return ::Fixture::Status::FINISHED  if feed_status == Status::FINISHED
-        return ::Fixture::Status::HALFTIME  if feed_status == Status::HALFTIME
-        feed_status.present? && feed_status.match(number_regex).present? ? ::Fixture::Status::IN_PLAY : ::Fixture::Status::SCHEDULED
+        return ::Fixture::Status::IN_PLAY if in_play_status.include?(feed_status)
+        return ::Fixture::Status::HALFTIME if halt_time_status.include?(feed_status)
+        return ::Fixture::Status::FINISHED if full_time_status.include?(feed_status)
+        ::Fixture::Status::SCHEDULED
       end
 
-      def number_regex
-        /^[0-9]*$/
+      def full_time_status
+        [Status::FINISHED, Status::FINISHED_AET]
+      end
+
+      def in_play_status
+        [Status::IN_PLAY, Status::FIRST_HALF, Status::SECOND_HALF]
+      end
+
+      def halt_time_status
+        [Status::HALFTIME]
       end
 
     end
