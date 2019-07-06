@@ -12,40 +12,41 @@
     <li class="custom-list">
       <div class="ui-grid-b main-font">
         <div class="ui-block-a" align="right" style="width:40%">
-          <%= @fixture.home_team.name %>
+          <%= @fixture.home_team.short_name %>
         </div>
         <div class="ui-block-b" align="center" style="width:20%">
           <%= "[ #{@fixture.score.to_s} ]" %>
         </div>
         <div class="ui-block-c" align="left" style="width:40%">
-          <%= @fixture.away_team.name %>
+          <%= @fixture.away_team.short_name %>
         </div>
       </div>
     </li>
 
     <% @events.each do |event| %>
-        <li class="custom-list">
+        <li class="custom-list-events">
           <div class="ui-grid-b event-font">
-            <div class="ui-block-a" align="right" style="width:40%">
-              <% if event.team == 'localteam' %>
-                  <%= "#{event.player_name}" %>
-                  &nbsp;
-                  <%= image_tag "event/#{event.event_type}.png", class: "strip-size" %>
-              <% end %>
-              <p></p>
+
+            <div class="ui-block-a" align="right" style="width:32%">
+              <%= "#{event.player_name}" if event.team == 'localteam' %>
             </div>
-            <div class="ui-block-b" align="center" style="width:20%">
-              <%= "#{event.minute}" %>
-              <p></p>
+
+            <div class="ui-block-b" align="right" style="width:8%">
+              <%= image_tag "event/#{event.event_type}.png", class: "event-size" if event.team == 'localteam' %>
             </div>
-            <div class="ui-block-c" align="left" style="width:40%">
-              <% if event.team != 'localteam' %>
-                  <%= image_tag "event/#{event.event_type}.png", class: "strip-size" %>
-                  &nbsp;
-                  <%= "#{event.player_name}" %>
-              <% end %>
-              <p></p>
+
+            <div class="ui-block-c" align="center" style="width:20%">
+              <%= "#{event.minute}'" %>
             </div>
+
+            <div class="ui-block-d" align="left" style="width:8%">
+              <%= image_tag "event/#{event.event_type}.png", class: "event-size" if event.team != 'localteam' %>
+            </div>
+
+            <div class="ui-block-e" align="left" style="width:32%">
+              <%= "#{event.player_name}" if event.team != 'localteam' %>
+            </div>
+
           </div>
         </li>
     <% end %>

@@ -387,6 +387,16 @@ div.ui-btn, input[type="submit"] {
     background: white !important;
 }
 
+.custom-list-events {
+    background: white !important;
+    height:14px;
+}
+
+.event-size {
+    max-width: 13px;
+    max-height: 13px;
+}
+
 .custom-list-correct {
     background: #d9ffb3 !important;
 }
