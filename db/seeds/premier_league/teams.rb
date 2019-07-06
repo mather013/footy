@@ -14,7 +14,7 @@ Team.create(id: 11, external_id: 8456,  abbreviation: 'mci', name: 'Manchester C
 Team.create(id: 12, external_id: 10260, abbreviation: 'mun', name: 'Manchester Utd',           short_name: 'Man Utd')
 Team.create(id: 13, external_id: 9850,  abbreviation: 'nor', name: 'Norwich City',             short_name: 'Norwich')
 Team.create(id: 14, external_id: 10261, abbreviation: 'new', name: 'Newcastle Utd',            short_name: 'Newcastle')
-Team.create(id: 15, external_id: 8657,  abbreviation: 'shu', name: 'Sheffield Utd',            short_name: "Shef'ld Utd")
+Team.create(id: 15, external_id: 8657,  abbreviation: 'shu', name: 'Sheffield Utd',            short_name: "Shef Utd")
 Team.create(id: 16, external_id: 8466,  abbreviation: 'sou', name: 'Southampton',              short_name: "So'ton")
 Team.create(id: 17, external_id: 8586,  abbreviation: 'tot', name: 'Tottenham Hotspur',        short_name: 'Tottenham')
 Team.create(id: 18, external_id: 9817,  abbreviation: 'wat', name: 'Watford',                  short_name: 'Watford')
