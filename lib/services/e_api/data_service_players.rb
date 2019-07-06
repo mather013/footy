@@ -3,20 +3,18 @@ module Services
     class DataServicePlayers < DataService
 
       def perform(team)
-        url = api_url('team/details/', team.external_id)
-        hash = send_request url
-        raise RuntimeError, "Error: problem returning players (url: #{url})" if hash[:team].nil? || hash[:team][team.external_id.to_sym].nil?
-        hash[:team][team.external_id.to_sym]
+        url = api_url('/team/details/',"&id=#{team.external_id}&includeSquad=yes&includeLeagues=yes&includeTeamProperties=yes&includeSquadProperties=yes&includeLeaguesProperties=yes")
+        response = send_request(url)
+        raise RuntimeError, "Error: problem returning players (url: #{url})" if invalid?(response, team)
+        response[:team][team.external_id.to_s.to_sym][:participants].values
       end
 
       private
 
-      def api_url(action, team_id)
-        "#{url}#{action}/?language_typeFK=3&token=#{api_key}&username=#{api_user}&id=#{team_id}&includeSquad=yes&includeSquadProperties=yes"
-      end
-
-      def url
-        ENV['E_API_URL']
+      def invalid?(response, team)
+        response[:team].nil? ||
+            response[:team][team.external_id.to_s.to_sym].nil? ||
+            response[:team][team.external_id.to_s.to_sym][:participants].nil?
       end
 
     end

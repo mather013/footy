@@ -7,8 +7,8 @@ module Services
 
       private
 
-      def api_url(action)
-        "#{url}#{action}?language_typeFK=3&token=#{api_key}&username=#{api_user}&tournament_templateFK=#{comp_id}"
+      def api_url(action, args)
+        "#{url}#{action}?language_typeFK=3&token=#{api_key}&username=#{api_user}#{args}"
       end
 
       def send_request(url)
