@@ -4,14 +4,19 @@ module Feed
 
       attr_accessor :id, :event_type, :player_name, :team, :minute, :player_id
 
+      RED_CARD_EVENT_TYPE_IDS = [15, 16]
+
       module EventType
         CARD = 'card'
         GOAL = 'goal'
+        ASSIST = 'assist'
+        SUB_IN = 'subst_in'
+        SUB_OUT = 'subst'
       end
 
       def initialize(hash)
         @id = hash[:id].to_i
-        @event_type = fixture_event_type(hash[:incident_code])
+        @event_type = fixture_event_type(hash[:incident_code], hash[:incident_typeFK].to_i)
         @player_id = hash[:participant][:id].to_i
         @player_name = hash[:participant][:name]
         @team = hash[:team]
@@ -21,16 +26,18 @@ module Feed
       def to_savable_hash
         hash = {}
         instance_variables.each { |var| hash[var.to_s.delete("@")] = instance_variable_get(var) }
-        hash.delete(:id)
-        hash
+        hash.except('id','player_id')
       end
 
       private
 
-
-      def fixture_event_type(feed_event_type)
+      def fixture_event_type(feed_event_type, feed_event_type_id)
+        return 'redcard' if feed_event_type == EventType::CARD && RED_CARD_EVENT_TYPE_ID.include?(feed_event_type_id)
         return 'yellowcard' if feed_event_type == EventType::CARD
+        return 'assist' if feed_event_type == EventType::ASSIST
         return 'goal' if feed_event_type == EventType::GOAL
+        return 'sub_in' if feed_event_type == EventType::SUB_IN
+        return 'sub_out' if feed_event_type == EventType::SUB_OUT
       end
 
     end
