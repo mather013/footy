@@ -29,10 +29,18 @@ module Feed
         hash.except('id','player_id')
       end
 
+      def is_goal?
+        event_type == EventType::GOAL
+      end
+
+      def by_home_team?
+        team == 'localteam'
+      end
+
       private
 
       def fixture_event_type(feed_event_type, feed_event_type_id)
-        return 'redcard' if feed_event_type == EventType::CARD && RED_CARD_EVENT_TYPE_ID.include?(feed_event_type_id)
+        return 'redcard' if feed_event_type == EventType::CARD && RED_CARD_EVENT_TYPE_IDS.include?(feed_event_type_id)
         return 'yellowcard' if feed_event_type == EventType::CARD
         return 'assist' if feed_event_type == EventType::ASSIST
         return 'goal' if feed_event_type == EventType::GOAL
