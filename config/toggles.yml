@@ -1,14 +1,14 @@
 defaults: &defaults
   bet_type_hda: true
-  last_man_standing: true
+  last_man_standing: false
   goal_buster: false
   five_alive: false
-  five_alive_twist: true
+  five_alive_twist: false
   sweep: false
   week_deadline: false
   sms_communications: false
   bonus_points: true
-  feed: football_api
+  feed: e_api
   form_for_bets: true
   analytics: false
   log_web_requests: false
