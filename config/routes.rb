@@ -18,6 +18,9 @@ Footy::Application.routes.draw do
   resources :fat_rounds,       :only => [:index]
   resources :group_standings,  :only => [:index]
   resources :league_standings, :only => [:index]
+  resources :lp_rounds,    :only => [:index]
+  resources :lp_bets,      :only => [:create, :update]
+  resources :lp_points,    :only => [:index]
   # resources :fat_points,       :only => [:index]
 
   get  'sessions'                                 => 'sessions#new'
@@ -33,6 +36,10 @@ Footy::Application.routes.draw do
   post 'lm_rounds/:lm_round_id/lm_bets'           => 'lm_bets#new',     :as => 'new_lm_bet'
   get  'lm_rounds/:lm_round_id/lm_bets'           => 'lm_bets#edit',    :as => 'edit_lm_bet'
   get  'lm_rounds_info'                           => 'lm_rounds#info',  :as => 'lm_rounds_info'
+  post 'lp_rounds/:lp_round_id/lp_bets'           => 'lp_bets#new',     :as => 'new_lp_bet'
+  get  'lp_rounds/:lp_round_id/lp_bets'           => 'lp_bets#edit',    :as => 'edit_lp_bet'
+  put  'lp_rounds'                                => 'lp_rounds#index'
+  get  'lp_rounds_info'                           => 'lp_rounds#info',  :as => 'lp_rounds_info'
   get  'users/:user_id/weeks/:week_id/fixtures'   => 'users#index',     :as => 'user_week_fixtures'
   get  'users/:user_id/lm_rounds'                 => 'users#show',      :as => 'user_lm_rounds'
   get  'weeks/:week_id/fixtures/:fixture_id/events' => 'events#index',  :as => 'fixture_events'
