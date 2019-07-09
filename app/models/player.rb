@@ -16,6 +16,10 @@ class Player < ActiveRecord::Base
     forename.nil? || forename.blank? ? surname.upcase.to_s : "#{forename}. #{surname.upcase}".to_s
   end
 
+  def short_name
+    forename.nil? || forename.blank? ? surname.upcase.to_s : "#{forename[0]} #{surname.upcase}".to_s
+  end
+
   def name_and_number
     "#{name} ##{squad_number}".to_s
   end

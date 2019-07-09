@@ -1,0 +1,56 @@
+<% fixtures = @fixtures %>
+<div data-role="content">
+  <ul data-role="listview" id="fix-list">
+    <% (fixtures.count*0.5).to_f.ceil.times do |i| %>
+
+        <% team_names=[] %>
+        <% @choices.each { |team| team_names << team[0] } %>
+        <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+
+        <li class="custom-list">
+          <div class="ui-grid-b main-font" align="center">
+
+            <% if fixtures[i*2].present? %>
+                <div class="ui-block-a" style="width: 12%">
+                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2].home_team.abbreviation}.png", class: 'badge-big' %>
+                </div>
+                <div class="ui-block-b lms_fixture" style="width: 24%">
+                    <span class="<%= team_names.include?(fixtures[i*2].home_team.name) ? '' : 'disabled-font' %>">
+                        <%= fixtures[i*2].home_team.short_name %>
+                    </span>
+                    <br>v<br>
+                    <span class="<%= team_names.include?(fixtures[i*2].away_team.name) ? '' : 'disabled-font' %>">
+                        <%= fixtures[i*2].away_team.short_name %>
+                    </span>
+                </div>
+                <div class="ui-block-c" style="width: 12%">
+                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2].away_team.abbreviation}.png", class: 'badge-big' %>
+                </div>
+            <% end %>
+
+            <div class="ui-block-b" style="width: 4%">
+              &nbsp;
+            </div>
+
+            <% if fixtures[i*2+1].present? %>
+                <div class="ui-block-d" style="width: 12%">
+                    <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2+1].home_team.abbreviation}.png", class: 'badge-big' %>
+                </div>
+                <div class="ui-block-e lms_fixture" style="width: 24%">
+                    <span class="<%= team_names.include?(fixtures[i*2+1].home_team.name) ? '' : 'disabled-font' %>">
+                        <%= fixtures[i*2+1].home_team.short_name  %>
+                    </span>
+                    <br>v<br>
+                    <span class="<%= team_names.include?(fixtures[i*2+1].away_team.name) ? '' : 'disabled-font' %>">
+                        <%= fixtures[i*2+1].away_team.short_name  %>
+                    </span>
+                </div>
+                <div class="ui-block-c" style="width: 12%">
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixtures[i*2+1].away_team.abbreviation}.png", class: 'badge-big' %>
+                </div>
+            <% end %>
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>

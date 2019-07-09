@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :bets
   has_many :fa_bets
   has_many :lm_bets
+  has_many :lp_bets
   has_many :points
   has_many :communications
   has_one :fa_point
