@@ -2,9 +2,9 @@ defaults: &defaults
   adapter: postgresql
   encoding: utf8
   host: localhost
-  username: developer
-  password: password
-  port: 15432
+  username: <%= ENV['DB_USR'] %>
+  password: <%= ENV['DB_PWD'] %>
+  port: 5432
   pool: 5
 
 development:
@@ -18,6 +18,4 @@ test: &test
 production:
   <<: *defaults
   database: footy_production
-  username: "<%= PRODUCTION_CONFIG['db_username'] %>"
-  password: "<%= PRODUCTION_CONFIG['db_password'] %>"
   port: 5432
