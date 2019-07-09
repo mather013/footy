@@ -6,11 +6,21 @@ module Feed
     end
 
     def get_fixtures_between(from_date, to_date)
-      Feed::Fixtures.new(data_service.perform([from_date,to_date]))
+      response = data_service.perform([from_date, to_date])
+      Feed::Fixtures.new(response)
     end
 
     def get_all_fixtures
-      Feed::Fixtures.new(data_service.perform([Date.today, 12.months.from_now]))
+      from_date = Date.today       # Date.parse('2018-08-10')
+      to_date = 12.months.from_now # Date.parse('2018-08-12')
+
+      response = data_service.perform([from_date, to_date])
+      Feed::Fixtures.new(response)
+    end
+
+    def get_feed_fixtures_with_score_for(fixtures)
+      response = data_service.perform_with_scores(fixtures)
+      Feed::Fixtures.new(response)
     end
 
     private

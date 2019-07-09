@@ -2,7 +2,7 @@ module Services
   module FootballApi
     class DataServiceFixtures < DataService
 
-      def perform dates
+      def perform(dates)
         if dates.count == 1
           url = "#{api_url('matches')}&match_date=#{dates[0].strftime(DATE_FORMAT)}"
         else

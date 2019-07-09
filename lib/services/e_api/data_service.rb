@@ -25,7 +25,7 @@ module Services
       end
 
       def api_user
-        ENV['E_API_USER']
+        ENV['E_API_USR']
       end
 
       def comp_id

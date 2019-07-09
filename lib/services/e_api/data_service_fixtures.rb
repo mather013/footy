@@ -2,8 +2,11 @@ module Services
   module EApi
     class DataServiceFixtures < DataService
 
-      def perform(from_date, until_date)
-        dates(from_date, until_date, false).each.inject([]) do |raw_fixtures, date|
+      def perform(dates)
+        from_date = dates[0]
+        to_date = dates[1]
+
+        dates(from_date, to_date, false).each.inject([]) do |raw_fixtures, date|
           url = api_url('/event/daily/',"&tournament_templateFK=#{comp_id}&date=#{date.strftime(DATE_FORMAT)}")
           response = send_request(url)
           raw_fixtures << (response.values.first.present? ? response.values.first.values : [])
