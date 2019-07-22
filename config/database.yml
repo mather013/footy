@@ -10,12 +10,15 @@ defaults: &defaults
 development:
   <<: *defaults
   database: footy_development
+  url: <%= ENV['DATABASE_URL'].gsub('?', '_development?') %>
 
 test: &test
   <<: *defaults
   database: footy_test
+  url: <%= ENV['DATABASE_URL'].gsub('?', '_test?') %>
 
 production:
   <<: *defaults
   database: footy_production
   port: 5432
+  url: <%= ENV['DATABASE_URL'].gsub('?', '_production?') %>

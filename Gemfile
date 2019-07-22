@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails', '5.1.0'
-gem 'rake'
+# gem 'rake'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+gem 'pg', '~> 0.18'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
+  gem 'sass-rails', '~> 5.0'
   gem 'coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -20,7 +20,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'pry'
+# gem 'pry'
 gem 'jquery-rails'
 gem 'therubyracer'
 gem 'jquery_mobile_rails'#, '~> 1.3.0'
@@ -32,6 +32,7 @@ gem 'clockworksms'
 group :test do
   gem 'shoulda'
   #gem 'rspec-spies'
+  gem 'hashdiff', '>= 1.0.0'
   gem 'webmock'
   gem 'timecop'
 end
@@ -39,6 +40,7 @@ end
 group :development, :test do
   #gem 'dotenv'
   #gem 'dotenv-deployment'
+  gem 'byebug', platform: :mri
 end
 
 group :production do
