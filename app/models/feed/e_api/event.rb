@@ -5,6 +5,8 @@ module Feed
       attr_accessor :id, :event_type, :player_name, :team, :minute, :player_id
 
       RED_CARD_EVENT_TYPE_IDS = [15, 16]
+      GOAL_CANCELLED_EVENT_TYPE_IDS = [33, 61, 62]
+      MISSED_PENALTY_EVENT_TYPE_IDS = [9]
 
       module EventType
         CARD = 'card'
@@ -43,6 +45,8 @@ module Feed
         return 'redcard' if feed_event_type == EventType::CARD && RED_CARD_EVENT_TYPE_IDS.include?(feed_event_type_id)
         return 'yellowcard' if feed_event_type == EventType::CARD
         return 'assist' if feed_event_type == EventType::ASSIST
+        return 'goal_cancelled' if feed_event_type == EventType::GOAL && GOAL_CANCELLED_EVENT_TYPE_IDS.include?(feed_event_type_id)
+        return 'penalty_missed' if feed_event_type == EventType::GOAL && MISSED_PENALTY_EVENT_TYPE_IDS.include?(feed_event_type_id)
         return 'goal' if feed_event_type == EventType::GOAL
         return 'sub_in' if feed_event_type == EventType::SUB_IN
         return 'sub_out' if feed_event_type == EventType::SUB_OUT
