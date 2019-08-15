@@ -7,6 +7,7 @@ module Feed
       RED_CARD_EVENT_TYPE_IDS = [15, 16]
       GOAL_CANCELLED_EVENT_TYPE_IDS = [33, 61, 62]
       MISSED_PENALTY_EVENT_TYPE_IDS = [9]
+      OWN_GOAL_EVENT_TYPE_IDS = [10]
 
       module EventType
         CARD = 'card'
@@ -47,6 +48,7 @@ module Feed
         return 'assist' if feed_event_type == EventType::ASSIST
         return 'goal_cancelled' if feed_event_type == EventType::GOAL && GOAL_CANCELLED_EVENT_TYPE_IDS.include?(feed_event_type_id)
         return 'penalty_missed' if feed_event_type == EventType::GOAL && MISSED_PENALTY_EVENT_TYPE_IDS.include?(feed_event_type_id)
+        return 'own_goal' if feed_event_type == EventType::GOAL && OWN_GOAL_EVENT_TYPE_IDS.include?(feed_event_type_id)
         return 'goal' if feed_event_type == EventType::GOAL
         return 'sub_in' if feed_event_type == EventType::SUB_IN
         return 'sub_out' if feed_event_type == EventType::SUB_OUT
