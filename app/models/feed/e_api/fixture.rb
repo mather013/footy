@@ -54,10 +54,10 @@ module Feed
           end
         end
 
-        if home_team_events || away_team_events
-          formatted_events_hash = home_team_events + away_team_events
-          @events = Feed::Events.new(formatted_events_hash)
-        end
+        formatted_events_hash = []
+        formatted_events_hash << home_team_events if home_team_events
+        formatted_events_hash << away_team_events if away_team_events
+        @events = Feed::Events.new(formatted_events_hash.flatten)
 
         nil
       end
