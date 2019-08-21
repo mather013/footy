@@ -2,12 +2,10 @@
 <div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
   <a href="<%= fixtures_path(@week) %>" data-theme="a" data-rel="">Back</a>
   <h1><%= "Fixture #{@fixture.id.to_s.rjust(3, "0")}" %></h1>
-  <% if @user.admin? %>
-      <a href="<%= update_goals_path(@week, @fixture.id) %>" class="ui-btn-right" data-theme="a" data-rel="">Goals</a>
-  <% end %>
+  <a href="<%= fixture_events_path(@fixture.id) %>" class="ui-btn-right" data-theme="a" data-rel="">Details</a>
 </div>
 
-<% goal_events = @fixture.events.where(event_type: 'goal').order(:minute) %>
+<% goal_events = @fixture.events.where(event_type: %w(goal own_goal)).order(:minute) %>
 <% fixture_bonus_available = @fixture.bonus_available? %>
 <% fixture_score_outcome = @fixture.score ? @fixture.score.outcome : nil %>
 
@@ -22,8 +20,8 @@
     <br>
     <div class="info-txt-clear">
       <% goal_events.each do |goal_event| %>
-          <% if goal_event.team != 'visitorteam' %>
-              <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
+          <% if goal_event.home_team_event? %>
+              <%= goal_event.event_type == 'own_goal' ? "#{goal_event.player_name_short} (#{goal_event.minute}' og)" : "#{goal_event.player_name_short} (#{goal_event.minute}')" %>
               <br>
           <% end %>
       <% end %>
@@ -50,8 +48,8 @@
     <br>
     <div class="info-txt-clear">
       <% goal_events.each do |goal_event| %>
-          <% if goal_event.team == 'visitorteam' %>
-              <%= "#{goal_event.player_name} (#{goal_event.minute}')" %>
+          <% unless goal_event.home_team_event? %>
+              <%= goal_event.event_type == 'own_goal' ? "#{goal_event.player_name_short} (#{goal_event.minute}' og)" : "#{goal_event.player_name_short} (#{goal_event.minute}')" %>
               <br>
           <% end %>
       <% end %>
