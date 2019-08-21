@@ -94,6 +94,10 @@ class Week < ActiveRecord::Base
     permitted_fixtures
   end
 
+  def scorers
+    fixtures.map(&:score).compact.map(&:goals).compact.flatten.map(&:player).uniq
+  end
+
   private
 
   def can_be_marked_complete?
