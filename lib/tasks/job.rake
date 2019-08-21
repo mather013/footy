@@ -39,6 +39,7 @@ namespace :job do
       RakeTaskResources::RefreshPositions.perform
       RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
       RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
+      RakeTaskResources::MarkLpBets.perform if TOGGLES_CONFIG['last_player_standing']
       RakeTaskResources::MarkGbBets.perform if TOGGLES_CONFIG['goal_buster']
       RakeTaskResources::MarkFatBets.perform if TOGGLES_CONFIG['five_alive_twist']
       #Jobs::SyncStandings.new.perform if ENVIRONMENT_CONFIG['competition'] == 'premier_league'

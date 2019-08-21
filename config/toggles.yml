@@ -1,6 +1,7 @@
 defaults: &defaults
   bet_type_hda: true
-  last_man_standing: false
+  last_man_standing: true
+  last_player_standing: false
   goal_buster: false
   five_alive: false
   five_alive_twist: false

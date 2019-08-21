@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :communications
   has_one :fa_point
   has_one :lm_point
+  has_one :lp_point
   has_and_belongs_to_many :games
   has_one :position
   has_one :gb_bet
@@ -41,6 +42,15 @@ class User < ActiveRecord::Base
       correct_count +=1 if bet.correct?
     end
     correct_count == LmRound.all.count-1
+  end
+
+  def lp_survivor?
+    return false if read_only?
+    correct_count = 0
+    lp_bets.each do |bet|
+      correct_count +=1 if bet.correct?
+    end
+    correct_count == LpRound.all.count-1
   end
 
   def in_sweep?
