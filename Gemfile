@@ -20,7 +20,6 @@ group :assets do
   gem 'uglifier'
 end
 
-# gem 'pry'
 gem 'jquery-rails'
 gem 'therubyracer'
 gem 'jquery_mobile_rails'#, '~> 1.3.0'
@@ -40,6 +39,7 @@ end
 group :development, :test do
   #gem 'dotenv'
   #gem 'dotenv-deployment'
+  gem 'pry'
   gem 'byebug', platform: :mri
 end
 
