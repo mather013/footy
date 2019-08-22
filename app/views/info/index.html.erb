@@ -16,7 +16,7 @@
   <%= "Current time: #{Time.current}" %> <br>
   <p></p>
   <% @users.each do |user| %>
-      <% if user.bets.present? || user.lm_bets.present? || user.fa_bets.present? %>
+      <% if user.bets.present? || user.lm_bets.present? || user.fa_bets.present? || user.lp_bets.present? %>
           <div class="ui-grid-b">
             <div class="ui-block-a" style="width:50%">
               <%= user.name %>
@@ -29,6 +29,12 @@
             <% if TOGGLES_CONFIG['last_man_standing'] %>
                 <div class="ui-block-c" style="width:10%">
                   <%= LmBet.bets_for_user_and_round(user, @round_current).count if user.lm_survivor? %>
+                </div>
+            <% end %>
+
+            <% if TOGGLES_CONFIG['last_player_standing'] %>
+                <div class="ui-block-c" style="width:10%">
+                  <%= LpBet.bets_for_user_and_round(user, @lp_round_current).count if user.lp_survivor? %>
                 </div>
             <% end %>
 

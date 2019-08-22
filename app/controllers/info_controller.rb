@@ -6,6 +6,7 @@ class InfoController < ApplicationController
     @user = current_user
     @week_current = Week.current
     @round_current = LmRound.current
+    @lp_round_current = LpRound.current
   end
 
 end

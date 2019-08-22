@@ -30,7 +30,7 @@ class LpBetsController < ApplicationController
 
   def load_details
     @lp_round = LpRound.find(params[:lp_round_id])
-    @teams = Team.all
+    @teams = Team.sorted
     @fixtures = @lp_round.week.fixtures_strict
 
     # @selections_used = current_user.lp_bets.each.inject([]) do |selections_used, bet|
