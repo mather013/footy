@@ -52,7 +52,7 @@
 
           $.each(data,function(i,obj)
           {
-            var div_data="<option value="+obj.id+">#"+obj.squad_number+" - "+obj.surname+" ("+obj.position+")</option>";
+            var div_data="<option value="+obj.id+">#"+obj.squad_number+" - "+obj.forename+" "+obj.surname+"</option>";
             $(div_data).appendTo('#players');
 
           });
