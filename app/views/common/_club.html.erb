@@ -10,8 +10,25 @@
         <% lm_label_style = 'label-danger' %>
     <% end %>
 
-    <li><a href="<%= lm_path %>" data-theme="a">LMS
+    <li><a href="<%= lm_path %>" data-theme="a">LMS1
       <span class="label <%= lm_label_style %>">&nbsp; &nbsp;</span>
+    </a></li>
+<% end %>
+
+<% if TOGGLES_CONFIG['last_player_standing'] %>
+    <% lp_points = @user.lp_point.present? ? @user.lp_point.value : 0 %>
+    <% lp_survivor = lp_points >= (LpRound.current.id-1) %>
+
+    <% if lp_survivor %>
+        <% lp_path = lp_rounds_path %>
+        <% lp_label_style = LpRound.last.week.open? ? 'label-success' : 'label-warning' %>
+    <% else %>
+        <% lp_path = lp_points_path %>
+        <% lp_label_style = 'label-danger' %>
+    <% end %>
+
+    <li><a href="<%= lp_path %>" data-theme="a">LMS2
+      <span class="label <%= lp_label_style %>">&nbsp; &nbsp;</span>
     </a></li>
 <% end %>
 

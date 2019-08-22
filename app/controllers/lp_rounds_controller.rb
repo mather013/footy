@@ -4,6 +4,7 @@ class LpRoundsController < ApplicationController
   def index
     @rounds = LpRound.sorted
     @user = current_user
+    @error = params['error']
   end
 
 end

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<div class="ui-title" data-role="header" align="left" data-position="fixed">
+  <a href="<%= lp_points_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1><%= "#{@user.name} LMS2" %></h1>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview" id="fix-list">
+    <% @rounds.each do |round| %>
+        <% @round = round %>
+        <li class="custom-list">
+          <% @bet = LpBet.bets_for_user_and_round(@user, round).first %>
+
+          <div class="ui-grid-b">
+            <% block_a_style='width:36%' %>
+            <% block_c_style='width:40%' %>
+
+            <div class="ui-block-a main-font" style="<%= block_a_style %>">
+              <%= "Round #{@round.id.to_s.rjust(2, '0')}" %>
+              <br>
+              <h10 class="kickoff">
+                <%= "#{DateTime.parse(@round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
+              </h10>
+            </div>
+
+            <% if @bet.present? && @round.week.status != 'Open'%>
+                <div class="ui-block-b main-font" align="center" style="width:14%">
+                  <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@bet.player.team.abbreviation}.png", class: "badge-medium" %>
+                </div>
+
+                <div class="ui-block-c main-font" style="<%= block_c_style %>">
+                  <%= @bet.player.short_name.upcase %>
+                  <br>
+                  <h10 class="kickoff">
+                    <%= @bet.opposing_team_name %>
+                  </h10>
+                </div>
+
+                <%= image_tag 'event/football-green.png', class: 'badge-medium' if @bet.correct? %>
+
+            <% else %>
+                <div class="ui-block-b main-font" align="center" style="width:14%">
+                  <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}tba.png", class: "badge-medium" %>
+                </div>
+
+                <div class="ui-block-c main-font" style="<%= block_c_style %>">
+                  ? ? ? ? ?
+                  <br>
+                  <h10 class="kickoff">
+                    ? ? ? ? ? ?
+                  </h10>
+                </div>
+            <% end %>
+          </div>
+
+
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

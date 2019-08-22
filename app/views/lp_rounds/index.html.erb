@@ -3,7 +3,7 @@
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
   <a href="<%= lp_rounds_info_path %>" class="ui-btn-left" data-theme="a" data-rel="">Rules</a>
-  <h1>Last Player Standing</h1>
+  <h1>Last Man Standing 2</h1>
   <a href="<%= lp_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>
 
@@ -30,5 +30,6 @@
     <% end %>
   </ul>
 </div>
+<%= render 'error' if @error.present? %>
 <%= render 'common/footer' %>
 </html>

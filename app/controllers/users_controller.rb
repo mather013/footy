@@ -18,6 +18,12 @@ class UsersController < ApplicationController
     @current_user = current_user
   end
 
+  def show_lp
+    @rounds = LpRound.sorted
+    @user = User.find(params[:user_id])
+    @current_user = current_user
+  end
+
   def fat_round_bets
     @round = FatRound.find(params['fat_round_id'])
     @user = User.find(params['user_id'].to_i)

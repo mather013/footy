@@ -7,21 +7,23 @@ class LpBetsController < ApplicationController
   end
 
   def create
-    bet_params = {lp_round_id: params['lp_round_id'], user_id: current_user.id, player_id: params['player_id']}
-    success = LpBet.create(bet_params)
+    bet_params = {round_id: params['lp_round_id'], user_id: current_user.id, selection: params['player_id']}
+    success = LpBet.create(bet_params).errors.empty?
     Services::AnalyticsService.publish(:bet_create, params_for_analytics) if success
-    redirect_to lp_rounds_path
+    args = success ? {} : {error: 'message'}
+    redirect_to lp_rounds_path args
   end
 
   def edit
-    @bet = LpBet.find_by(lp_round_id: params[:lp_round_id], user_id: current_user.id)
+    @bet = LpBet.find_by(round_id: params[:lp_round_id], user_id: current_user.id)
     load_details
   end
 
   def update
-    success = LpBet.find(params['id']).update_attributes(player_id: params['player_id'])
+    success = LpBet.find(params['id']).update_attributes(selection: params['player_id'])
     Services::AnalyticsService.publish(:bet_change, params_for_analytics) if success
-    redirect_to lp_rounds_path
+    args = success ? {} : {error: 'message'}
+    redirect_to lp_rounds_path args
   end
 
   private
@@ -30,6 +32,10 @@ class LpBetsController < ApplicationController
     @lp_round = LpRound.find(params[:lp_round_id])
     @teams = Team.all
     @fixtures = @lp_round.week.fixtures_strict
+
+    # @selections_used = current_user.lp_bets.each.inject([]) do |selections_used, bet|
+    #   selections_used << bet.player.id unless @bet.present? && @bet.selection == bet.player.id }
+    # end
   end
 
   def params_for_analytics
