@@ -29,7 +29,7 @@ module Feed
       def to_savable_hash
         hash = {}
         instance_variables.each { |var| hash[var.to_s.delete("@")] = instance_variable_get(var) }
-        hash.except('id','player_id')
+        hash.except('id')
       end
 
       def is_goal?

@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
 
   belongs_to :team
   has_many :goals
+  has_many :events
 
   scope :team_and_surname_order, -> { order('team_id asc, surname asc') }
   scope :by_surname, -> { order('surname asc') }
