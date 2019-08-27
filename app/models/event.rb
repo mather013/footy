@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 
   belongs_to :fixture
-  belongs_to :player
+  belongs_to :player, :primary_key => 'external_id', :foreign_key => 'player_id', :class_name => 'Player'
   belongs_to :event_team, :foreign_key => 'team_id', :class_name => 'Team'
 
   scope :supported, -> { where('event_type in (?)', SUPPORTED_TYPES) }
