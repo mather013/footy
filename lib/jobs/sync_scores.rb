@@ -32,11 +32,6 @@ module Jobs
         team_id = feed_event.by_home_team? ? fixture.home_team_id : fixture.away_team_id
         event_hash = feed_event.to_savable_hash.merge({team_id: team_id})
         event.update_attributes(event_hash)
-
-        if feed_event.is_goal?
-          player = Player.find_by(external_id: feed_event.player_id)
-          Goal.find_or_create_by(score_id: fixture.score.id, player_id: player.id) if player.present?
-        end
       end
     end
 

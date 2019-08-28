@@ -95,7 +95,7 @@ class Week < ActiveRecord::Base
   end
 
   def scorers
-    fixtures.map(&:score).compact.map(&:goals).compact.flatten.map(&:player).uniq
+    fixtures.map(&:events).map(&:goals).flatten.map(&:player).uniq
   end
 
   private
