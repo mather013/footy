@@ -10,10 +10,6 @@ class LpBet < BetSingle
     round.week.scorers.include?(player)
   end
 
-  def result
-    # round.week.results_hash[player.abbreviation.to_sym]
-  end
-
   def opposing_team_name
     player.team.id == fixture.home_team.id ? "#{fixture.away_team.name} (H)" : "#{fixture.home_team.name} (A)"
   end

@@ -12,9 +12,9 @@
     <% @rounds.each do |round| %>
         <% @round = round %>
         <li class="custom-list">
-          <% @lp_bet = LpBet.bets_for_user_and_round(@user, round).first %>
+          <% @bet = LpBet.bets_for_user_and_round(@user, round).first %>
           <% if round.week.open? && @user.lp_survivor?%>
-              <% if @lp_bet.nil? %>
+              <% if @bet.nil? %>
                   <%= link_to new_lp_bet_path(round.id), :method => :post do %>
                       <%= render 'round_info' %>
                   <% end %>

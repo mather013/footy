@@ -39,7 +39,8 @@
                   </h10>
                 </div>
 
-                <%= image_tag 'event/football-green.png', class: 'badge-medium' if @bet.correct? %>
+                <%= image_tag 'event/football-green.png', class: 'badge-medium' if @bet.result == 'won' %>
+                <%= image_tag 'event/football-red.png', class: 'badge-medium' if @bet.result == 'lost' %>
 
             <% else %>
                 <div class="ui-block-b main-font" align="center" style="width:14%">
