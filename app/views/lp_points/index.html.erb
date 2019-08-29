@@ -39,7 +39,7 @@
                     <% when 'In play' %>
                         <span class="label label-warning"><%= "#{round.id}" %></span>
                         &nbsp;
-                        <%= user_last_lp_bet.player.name.upcase %>
+                        <%= user_last_lp_bet.player.short_name.upcase %>
                     <% when 'Complete' %>
                         <% if knocked_out %>
                             <span class="label label-default"><%= "#{round.id}" %></span>
@@ -47,7 +47,7 @@
                             <span class="label label-warning"><%= "#{round.id}" %></span>
                         <% end %>
                         &nbsp;
-                        <%= user_last_lp_bet.player.name.upcase %>
+                        <%= user_last_lp_bet.player.short_name.upcase %>
                     <% end %>
                 <% else %>
                     <span class="label label-default">1</span>
