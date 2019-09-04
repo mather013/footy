@@ -84,7 +84,7 @@ class Week < ActiveRecord::Base
 
     if next_week.present?
       fixtures.sorted.each do |fixture|
-        if fixture.status != Fixture::Status::POSTPONED && fixture.kickoff < next_week.close_date && fixture.kickoff > DateTime.now
+        if fixture.status != Fixture::Status::POSTPONED && fixture.kickoff < next_week.close_date && fixture.kickoff >= self.close_date
           permitted_fixtures << fixture
         end
       end

@@ -7,7 +7,7 @@ module Jobs
 
     def perform
       players_for_team_from_feed.each do |feed_player|
-        player = Player.find_by(external_id: feed_player.external_id)
+        player = Player.find_by(external_id: feed_player.id)
         player.present? ? player.update_attributes(params(feed_player)) : Player.create(params(feed_player))
       end
     end
@@ -28,7 +28,7 @@ module Jobs
        forename: feed_player.forename,
        squad_number: feed_player.squad_number,
        position: feed_player.position,
-       external_id: feed_player.external_id}
+       external_id: feed_player.id}
     end
 
   end

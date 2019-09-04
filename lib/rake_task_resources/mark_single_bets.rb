@@ -6,14 +6,21 @@ module RakeTaskResources
         print_output
 
         pending_bets.each do |bet|
-          points = bet.correct? ? points_for_win : points_for_loss
-          award_points(bet, points)
-          apply_result(bet, points)
+          points = calc_points(bet)
+          award_points(bet, points) unless points.nil?
+          apply_result(bet, points) unless points.nil?
         end
         add_new_round if new_round_required?
       end
 
       private
+
+      def calc_points(bet)
+        results = round_results(bet.round)
+        return points_for_win  if results[:winning_selections].include?(bet.selection)
+        return points_for_loss if results[:settle]
+        nil
+      end
 
       def pending_bets
         bet_class.pending
@@ -34,6 +41,12 @@ module RakeTaskResources
 
       def add_new_round
         new_round_resource.perform
+      end
+
+      def round_results(round)
+        @results_hash ||= {round.class.name => {round.id.to_s => round.results}}
+        @results_hash[round.class.name][round.id.to_s] = round.results unless @results_hash[round.class.name][round.id.to_s]
+        @results_hash[round.class.name][round.id.to_s]
       end
 
     end
