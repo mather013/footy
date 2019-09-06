@@ -7,6 +7,7 @@
   <% if @user.admin? %>
       <a href="<%= jobs_path %>" class="ui-btn-right" data-theme="a" data-rel="">Jobs</a>
   <% end %>
+
 </div>
 
 <div class="kickoff" data-role="content">
@@ -15,43 +16,37 @@
   <%= "#{@week_current.description}: #{@week_current.status}" %> <br>
   <%= "Current time: #{Time.current}" %> <br>
   <p></p>
-  <% @users.each do |user| %>
-      <% if user.bets.present? || user.lm_bets.present? || user.fa_bets.present? || user.lp_bets.present? %>
-          <div class="ui-grid-b">
-            <div class="ui-block-a" style="width:50%">
-              <%= user.name %>
-            </div>
 
-            <div class="ui-block-b" style="width:20%">
-              <%= (Bet.bets_for_user_and_fixtures(user, @week_current.fixtures.map(&:id))).count %>
-            </div>
+  <% @playing_users.each do |user| %>
 
-            <% if TOGGLES_CONFIG['last_man_standing'] %>
-                <div class="ui-block-c" style="width:10%">
-                  <%= LmBet.bets_for_user_and_round(user, @round_current).count if user.lm_survivor? %>
-                </div>
-            <% end %>
+      <div class="ui-grid-b">
 
-            <% if TOGGLES_CONFIG['last_player_standing'] %>
-                <div class="ui-block-c" style="width:10%">
-                  <%= LpBet.bets_for_user_and_round(user, @lp_round_current).count if user.lp_survivor? %>
-                </div>
-            <% end %>
+        <div class="ui-block-a" style="width:50%">
+          <%= user.name %>
+        </div>
 
-            <% if TOGGLES_CONFIG['five_alive'] %>
-                <div class="ui-block-c" style="width:20%">
-                  <%= user.fa_bets.count %>
-                </div>
-            <% end %>
+        <div class="ui-block-b" style="width:20%">
+          <%= (user.bets.where(fixture_id: @week_current.fixtures.map(&:id))).count %>
+        </div>
 
-            <% if TOGGLES_CONFIG['goal_buster'] %>
-                <div class="ui-block-d" style="width:20%">
-                  <%= user.gb_bet.team.abbreviation.upcase if user.gb_bet.present? %>
-                </div>
-            <% end %>
+        <div class="ui-block-c" style="width:10%">
+          <%= user.lm_bets.count if TOGGLES_CONFIG['last_man_standing'] && user.lm_survivor? %>
+        </div>
 
-          </div>
-      <% end %>
+        <div class="ui-block-c" style="width:10%">
+          <%= user.lp_bets.count if TOGGLES_CONFIG['last_player_standing'] && user.lp_survivor? %>
+        </div>
+
+        <div class="ui-block-c" style="width:20%">
+          <%= user.fa_bets.count if TOGGLES_CONFIG['five_alive'] %>
+        </div>
+
+        <div class="ui-block-d" style="width:20%">
+          <%= user.gb_bet.team.abbreviation.upcase if TOGGLES_CONFIG['goal_buster'] && user.gb_bet.present? %>
+        </div>
+
+      </div>
+
   <% end %>
 
 </div>

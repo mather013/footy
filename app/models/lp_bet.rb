@@ -6,10 +6,6 @@ class LpBet < BetSingle
   validates :user_id, :uniqueness => {:scope => :selection}
   validates :user_id, :uniqueness => {:scope => :round_id}
 
-  def correct?
-    round.week.scorers.include?(player)
-  end
-
   def opposing_team_name
     player.team.id == fixture.home_team.id ? "#{fixture.away_team.name} (H)" : "#{fixture.home_team.name} (A)"
   end

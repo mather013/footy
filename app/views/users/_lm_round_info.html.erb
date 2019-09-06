@@ -1,33 +1,23 @@
 <div class="ui-grid-b">
-  <% if @round.week.status == 'Open' %>
-      <% block_a_style='width:40%' %>
-      <% block_c_style='width:36%' %>
-  <% else %>
-      <% block_a_style='width:36%' %>
-      <% block_c_style='width:40%' %>
-  <% end %>
+  <% block_a_style='width:36%' %>
+  <% block_c_style='width:40%' %>
 
   <div class="ui-block-a main-font" style="<%= block_a_style %>">
     <%= "Round #{@round.id.to_s.rjust(2, '0')}" %>
-    <% if @round.week.status == 'In play' %>
-        <span class="label label-warning">in play</span>
-    <% elsif @round.week.status == 'Open' %>
-        <span class="label label-success">open</span>
-    <% end %>
     <br>
     <h10 class="kickoff">
       <%= "#{DateTime.parse(@round.week.close_date_local_time.to_s).strftime('%e %B %H:%M')}" %>
     </h10>
   </div>
 
-  <% if @bet.present? %>
+  <% if @bet.present? && @round.week.status != 'Open'%>
       <div class="ui-block-b main-font" align="center" style="width:14%">
         <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
-        <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@bet.player.team.abbreviation}.png", class: "badge-medium" %>
+        <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{@bet.team.abbreviation}.png", class: 'badge-medium' %>
       </div>
 
       <div class="ui-block-c main-font" style="<%= block_c_style %>">
-        <%= @bet.player.short_name %>
+        <%= @bet.team.short_name.upcase %>
         <br>
         <h10 class="kickoff">
           <%= @bet.opposing_team_name %>
@@ -37,5 +27,10 @@
       <%= image_tag 'event/football-green.png', class: 'badge-medium' if @bet.result == 'won' %>
       <%= image_tag 'event/football-red.png',   class: 'badge-medium' if @bet.result == 'lost' %>
 
+  <% else %>
+      <div class="ui-block-b main-font" align="center" style="width:14%">
+        <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+        <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}tba.png", class: 'badge-medium' %>
+      </div>
   <% end %>
 </div>

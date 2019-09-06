@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :username, :password
 
+  def plays?
+    bets.present? || lm_bets.present? || fa_bets.present? || lp_bets.present?
+  end
+
   def admin?
     username == 'markm'
   end
@@ -35,22 +39,14 @@ class User < ActiveRecord::Base
     teams
   end
 
-  def lm_survivor?
-    return false if read_only?
-    correct_count = 0
-    lm_bets.each do |bet|
-      correct_count +=1 if bet.correct?
-    end
-    correct_count == LmRound.all.count-1
+  def lm_survivor? # user must not have a losing bet AND must not have missed a round
+    results = lm_bets.map(&:result)
+    results.uniq.exclude?('lost') && results.count >= LmRound.count-1
   end
 
-  def lp_survivor?
-    return false if read_only?
-    correct_count = 0
-    lp_bets.each do |bet|
-      correct_count +=1 if bet.correct?
-    end
-    correct_count == LpRound.all.count-1
+  def lp_survivor? # user must not have a losing bet AND must not have missed a round
+    results = lp_bets.map(&:result)
+    results.uniq.exclude?('lost') && results.count >= LpRound.count-1
   end
 
   def in_sweep?

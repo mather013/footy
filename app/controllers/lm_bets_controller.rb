@@ -7,19 +7,19 @@ class LmBetsController < ApplicationController
   end
 
   def create
-    bet_params = {lm_round_id: params['lm_bet']['lm_round'], user_id: current_user.id, team_id: params['lm_bet']['team_id']}
+    bet_params = {round_id: params['lm_bet']['lm_round'], user_id: current_user.id, selection: params['lm_bet']['team_id']}
     success = LmBet.create(bet_params)
     Services::AnalyticsService.publish(:bet_create, params_for_analytics) if success
     redirect_to lm_rounds_path
   end
 
   def edit
-    @bet = LmBet.find_by(lm_round_id: params[:lm_round_id], user_id: current_user.id)
+    @bet = LmBet.find_by(round_id: params[:round_id], user_id: current_user.id)
     load_details
   end
 
   def update
-    success = LmBet.find(params['id']).update_attributes(team_id: params['lm_bet']['team_id'])
+    success = LmBet.find(params['id']).update_attributes(selection: params['lm_bet']['team_id'])
     Services::AnalyticsService.publish(:bet_change, params_for_analytics) if success
     redirect_to lm_rounds_path
   end

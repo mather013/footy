@@ -1,28 +1,17 @@
-class LmBet < ActiveRecord::Base
+class LmBet < BetSingle
 
-  belongs_to :user
-  belongs_to :team
-  belongs_to :lm_round
+  belongs_to :team,  :foreign_key => :selection, :class_name => 'Team'
+  belongs_to :round, :foreign_key => :round_id,  :class_name => 'LmRound'
 
-  validates :user_id, :uniqueness => {:scope => :team_id}
-  validates :user_id, :uniqueness => {:scope => :lm_round_id}
-
-  scope :bets_for_user_and_round, -> (user, round) { where('user_id = ? and lm_round_id = ?', user.id, round.id) }
-
-  def correct?
-    self.lm_round.week.winning_teams.include? self.team
-  end
-
-  def result
-    lm_round.week.results_hash[team.abbreviation.to_sym]
-  end
+  validates :user_id, :uniqueness => {:scope => :selection}
+  validates :user_id, :uniqueness => {:scope => :round_id}
 
   def opposing_team_name
-    team_id == fixture.home_team.id ? "#{fixture.away_team.name} (H)" : "#{fixture.home_team.name} (A)"
+    selection == fixture.home_team.id ? "#{fixture.away_team.name} (H)" : "#{fixture.home_team.name} (A)"
   end
 
   def fixture
-    lm_round.week.fixtures.where('home_team_id = ? or away_team_id = ?', team_id, team_id).first
+    round.week.fixtures.where('home_team_id = ? or away_team_id = ?', selection, selection).first
   end
 
 end
