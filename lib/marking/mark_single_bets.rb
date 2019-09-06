@@ -1,8 +1,9 @@
-module Markings
+module Marking
   class MarkSingleBets
+    self.abstract_class = true
 
-    POINTS_FOR_WIN = 1
-    POINTS_FOR_LOSS = 0
+    POINTS_FOR_WIN = 1.freeze
+    POINTS_FOR_LOSS = 0.freeze
 
     def perform
       log('Marking')
@@ -26,8 +27,8 @@ module Markings
 
     def calc_points(bet)
       results = round_results(bet.round)
-      return POINTS_FOR_WIN  if results[:winning_selections].include?(bet.selection)
-      return POINTS_FOR_LOSS if results[:settle]
+      return points_for_win if results[:winning_selections].include?(bet.selection)
+      return points_for_loss if results[:settle]
       nil
     end
 
@@ -41,7 +42,7 @@ module Markings
     end
 
     def apply_result(bet, points)
-      points == POINTS_FOR_WIN ? bet.set_won : bet.set_lost
+      points == points_for_win ? bet.set_won : bet.set_lost
     end
 
     def new_round_required?
@@ -56,6 +57,14 @@ module Markings
       @results_hash ||= {round.class.name => {round.id.to_s => round.results}}
       @results_hash[round.class.name][round.id.to_s] = round.results unless @results_hash[round.class.name][round.id.to_s]
       @results_hash[round.class.name][round.id.to_s]
+    end
+
+    def points_for_win
+      POINTS_FOR_WIN
+    end
+
+    def points_for_loss
+      POINTS_FOR_LOSS
     end
 
     def log(action)

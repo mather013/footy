@@ -1,4 +1,4 @@
-module RakeTaskResources
+module Marking
   class MarkFaBets
     class << self
 

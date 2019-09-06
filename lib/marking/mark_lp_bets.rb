@@ -1,4 +1,4 @@
-module Markings
+module Marking
   class MarkLpBets < MarkSingleBets
 
     def initialize

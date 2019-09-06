@@ -1,4 +1,4 @@
-module RakeTaskResources
+module Marking
   class MarkFatBets
     class << self
       def perform(week_id = nil)
@@ -27,11 +27,11 @@ module RakeTaskResources
 
       def record_points(round, user, points, additional_info)
         round_points_user = round.points.find_by(user_id: user.id)
-        round_points_user.present? ? round_points_user.update_attributes(value: points, additional_info: additional_info) : round.points.create(user_id: user.id, value: points,  additional_info: additional_info)
+        round_points_user.present? ? round_points_user.update_attributes(value: points, additional_info: additional_info) : round.points.create(user_id: user.id, value: points, additional_info: additional_info)
       end
 
       def calculate_results(bets)
-        results = { points: 0, additional_info: [] }
+        results = {points: 0, additional_info: []}
         bets.each do |bet|
           case bet.correct?
             when false
