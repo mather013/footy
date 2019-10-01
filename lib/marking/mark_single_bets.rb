@@ -1,6 +1,6 @@
 module Marking
   class MarkSingleBets
-    self.abstract_class = true
+    # self.abstract_class = true
 
     POINTS_FOR_WIN = 1.freeze
     POINTS_FOR_LOSS = 0.freeze
@@ -8,9 +8,11 @@ module Marking
     def perform
       log('Marking')
       pending_bets.each do |bet|
-        points = calc_points(bet)
-        award_points(bet, points) unless points.nil?
-        apply_result(bet, points) unless points.nil?
+        user_points = find_or_create_user_point(bet)
+        value = calc_points(bet)
+
+        award_points(user_points, value) unless value.nil?
+        apply_result(bet, value) unless value.nil?
       end
       add_new_round if new_round_required?
     end
@@ -36,9 +38,8 @@ module Marking
       bet_class.pending
     end
 
-    def award_points(bet, points)
-      user_bet_point = find_or_create_user_point(bet)
-      user_bet_point.add_points(points)
+    def award_points(user_points, value)
+      user_points.add_points(value)
     end
 
     def apply_result(bet, points)

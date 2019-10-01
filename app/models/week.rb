@@ -95,7 +95,14 @@ class Week < ActiveRecord::Base
   end
 
   def scorers
-    fixtures.map(&:events).map(&:goals).flatten.map(&:player).uniq
+    fixtures.map(&:events).map(&:goals).flatten.map(&:player).compact.uniq
+  end
+
+  def results
+    fixtures.each.inject({}) do |result_hash, fixture|
+      result_hash[fixture.id.to_s] = fixture.result
+      result_hash
+    end
   end
 
   private

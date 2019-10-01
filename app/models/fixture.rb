@@ -92,6 +92,16 @@ class Fixture < ActiveRecord::Base
     status == Fixture::Status::POSTPONED
   end
 
+  def result
+    if finished? && score
+      home_goals = score.home
+      away_goals = score.away
+      return 'H' if home_goals > away_goals
+      return 'A' if home_goals < away_goals
+      return 'D' if home_goals == away_goals
+    end
+  end
+
   private
 
   def kickoff_pending?

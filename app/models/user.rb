@@ -39,14 +39,14 @@ class User < ActiveRecord::Base
     teams
   end
 
-  def lm_survivor? # user must not have a losing bet AND must not have missed a round
+  def lm_survivor?
     results = lm_bets.map(&:result)
-    results.uniq.exclude?('lost') && results.count >= LmRound.count-1
+    results.present? && (results.count('won') >= LmRound.count-1 || LmRound.count == 1)
   end
 
-  def lp_survivor? # user must not have a losing bet AND must not have missed a round
+  def lp_survivor?
     results = lp_bets.map(&:result)
-    results.uniq.exclude?('lost') && results.count >= LpRound.count-1
+    results.present? && (results.count('won') >= LpRound.count-1 || LpRound.count == 1)
   end
 
   def in_sweep?

@@ -12,7 +12,7 @@
         <% @round = round %>
         <li class="custom-list">
           <% @bet = @user.lp_bets.where(round_id: round.id).first %>
-          <%= render :template => 'lp_round_info' %>
+          <%= render 'lp_round_info' %>
         </li>
     <% end %>
   </ul>
