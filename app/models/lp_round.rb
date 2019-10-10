@@ -8,6 +8,14 @@ class LpRound < ActiveRecord::Base
     self.last
   end
 
+  def self.new_competition?
+    self.count == 1
+  end
+
+  def first_round?
+    self.class.new_competition?
+  end
+
   def results
     { winning_selections: winning_selections,
       settle: can_be_settled? }

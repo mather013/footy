@@ -40,13 +40,15 @@ class User < ActiveRecord::Base
   end
 
   def lm_survivor?
+    return true if LmRound.new_competition?
     results = lm_bets.map(&:result)
-    results.present? && (results.count('won') >= LmRound.count-1 || LmRound.count == 1)
+    results.present? && results.count('won') >= LmRound.count-1
   end
 
   def lp_survivor?
+    return true if LpRound.new_competition?
     results = lp_bets.map(&:result)
-    results.present? && (results.count('won') >= LpRound.count-1 || LpRound.count == 1)
+    results.present? && results.count('won') >= LpRound.count-1
   end
 
   def in_sweep?
