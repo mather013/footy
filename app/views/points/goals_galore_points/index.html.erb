@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
+  <a href="<%= goals_galore_rounds_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1>
+    Goals Galore Totals
+  </h1>
+</div>
+
+<div class="leaderboard">
+  <ul data-role="listview">
+
+    <% @points.each do |point| %>
+        <% user = point.user %>
+
+        <li class="custom-list">
+          <div class="ui-grid-b">
+
+            <div class="ui-block-a" style="width:10%">
+
+            </div>
+
+            <div class="ui-block-b" style="width:10%">
+
+            </div>
+
+            <% username_style = (user.id == @user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+            <div class="<%= username_style %>" style="width:45%">
+              <%= user.name %>
+            </div>
+
+            <div class="ui-block-c payout-icon" style="width:10%">
+
+            </div>
+
+            <div class="ui-block-d percent-points" align="center" style="width:15%">
+
+            </div>
+
+            <div class="ui-block-e" align="center" style="width:10%">
+              <%= point.total.to_i %>
+            </div>
+
+          </div>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

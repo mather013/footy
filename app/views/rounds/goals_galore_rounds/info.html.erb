@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<div data-role="header" data-position="fixed" data-backbtn="false" data-tap-toggle="false">
+  <a href="<%= goals_galore_rounds_path %>" data-theme="a" data-rel="">Play</a>
+  <h1><%= 'Goals Galore' %></h1>
+</div>
+
+<div class="info-txt" data-role="content">
+
+  Select the fixtures you think both teams will score.
+
+  <p>
+  <li>10 pts for each correct prediction</li>
+  <li>-15 pts for each incorrect prediction</li>
+  <li>Winner is the first to 100 pts</li>
+  <li>Shared jackpot if more than one winner</li>
+
+  <p>
+    E.g.
+  <li>Predicting 3 GG fixtures and only 2 come in = 15 pts</li>
+  <li>Predicting 5 GG fixtures and only 4 come in = 25 pts</li>
+  <li>Predicting 8 GG fixtures and only 5 come in = 5 pts</li>
+  <li>Predicting 4 GG fixtures and all 4 come in = 40 pts</li>
+  <li>Predicting 4 GG fixtures and only 3 come in = 15 pts</li>
+  <li>Predicting 9 GG fixtures and only 5 come in = 0 pts</li>
+
+</div>
+<%= render 'common/footer' %>
+</html>

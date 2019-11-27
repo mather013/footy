@@ -56,8 +56,23 @@ Footy::Application.routes.draw do
   put  'weeks/:week_id/fixtures/:fixture_id/goals' => 'goals#update', :as => 'update_goals'
   get  'goals'                                   => 'goals#all',  :as => 'goals_all'
 
+  scope module: :rounds do
+    get  'goals_galore_rounds'      => 'goals_galore_rounds#index', :as => 'goals_galore_rounds'
+    get  'goals_galore_rounds/info' => 'goals_galore_rounds#info',  :as => 'goals_galore_info'
+  end
+
+  scope module: :bets do
+    get  'goals_galore_rounds/:round_id/bets' => 'goals_galore_bets#index',  :as => 'bets/goals_galore_bets'
+    post 'goals_galore_rounds/:round_id/bets' => 'goals_galore_bets#create', :as => 'bets/new_goals_galore_bets'
+  end
+
+  scope module: :points do
+    get  'goals_galore_points'                  => 'goals_galore_points#index',  :as => 'points/goals_galore_points'
+    get  'goals_galore_rounds/:round_id/points' => 'goals_galore_points#show',   :as => 'points/goals_galore_round_points'
+  end
+
   namespace :api do
-    post 'fixtures/add_score'  => 'fixtures#add_score'
+    post 'fixtures/add_score' => 'fixtures#add_score'
     post 'fixtures/add_goal'  => 'fixtures#add_goal'
   end
 

@@ -6,6 +6,7 @@ defaults: &defaults
   five_alive: false
   five_alive_twist: false
   sweep: false
+  goals_galore: false
   week_deadline: false
   sms_communications: false
   bonus_points: true

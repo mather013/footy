@@ -483,6 +483,13 @@ div.ui-btn, input[type="submit"] {
     background: #d9534f none repeat scroll 0% 0%;
 }
 
+.selection-count {
+    color: #979797;
+    font-size: .8em;
+    position: relative;
+    top: 6px;
+}
+
 .points_100 {
     background: #ff4000;
     font-size: .7em;
@@ -555,6 +562,13 @@ div.ui-btn, input[type="submit"] {
 
 .points_0 {
     background: #ffd000;
+    font-size: .7em;
+    position: relative;
+    top: 5px;
+}
+
+.points_tba {
+    background: #adb5bd;
     font-size: .7em;
     position: relative;
     top: 5px;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190829125150) do
+ActiveRecord::Schema.define(version: 20191112222039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,15 @@ ActiveRecord::Schema.define(version: 20190829125150) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "goals_galore_points", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "round_id", null: false
+    t.integer "value"
+    t.integer "bonus", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "group_teams", force: :cascade do |t|
     t.integer "group_id"
     t.integer "team_id"
@@ -243,6 +252,13 @@ ActiveRecord::Schema.define(version: 20190829125150) do
     t.integer "previous"
     t.integer "current"
     t.integer "last_marked_week_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rounds", id: :serial, force: :cascade do |t|
+    t.integer "week_id", null: false
+    t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

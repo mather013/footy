@@ -63,3 +63,9 @@
         </a></li>
     <% end %>
 <% end %>
+
+<% if TOGGLES_CONFIG['goals_galore'] %>
+    <li><a href="<%= goals_galore_rounds_path %>" data-theme="a">GG
+      <span class="label label-success">&nbsp; &nbsp;</span>
+    </a></li>
+<% end %>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= goals_galore_info_path %>" class="ui-btn-left" data-theme="a" data-rel="">Rules</a>
+  <h1>Goals Galore Rounds</h1>
+  <a href="<%= points_goals_galore_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Totals</a>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview" id="fix-list">
+    <% @rounds.each do |round| %>
+        <% @round = round %>
+        <li class="custom-list">
+          <% @round_bets = @bets.where(round_id: round.id) %>
+          <%= link_to bets_goals_galore_bets_path(round.id), :method => :get do %>
+              <%= render 'round_info' %>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+</div>
+
+<%= render 'common/footer' %>
+</html>
