@@ -2,7 +2,8 @@ module Feed
   class FixturesController < ApplicationController
 
     def get_fixtures_for(date)
-      Feed::Fixtures.new(data_service.perform([date]))
+      response = data_service.perform([date])
+      Feed::Fixtures.new(response)
     end
 
     def get_fixtures_between(from_date, to_date)
@@ -11,8 +12,8 @@ module Feed
     end
 
     def get_all_fixtures
-      from_date = Date.today       # Date.parse('2018-08-10')
-      to_date = 12.months.from_now # Date.parse('2018-08-12')
+      from_date = Date.today
+      to_date = Date.today
 
       response = data_service.perform([from_date, to_date])
       Feed::Fixtures.new(response)
@@ -33,3 +34,5 @@ module Feed
 
   end
 end
+
+# Jobs::Syncing::SyncFixturesRefresh.new.perform

@@ -37,7 +37,7 @@ Footy::Application.routes.draw do
   get  'lm_rounds/:round_id/lm_bets'           => 'lm_bets#edit',    :as => 'edit_lm_bet'
   get  'lm_rounds_info'                           => 'lm_rounds#info',  :as => 'lm_rounds_info'
   post 'lp_rounds/:round_id/lp_bets'           => 'lp_bets#new',     :as => 'new_lp_bet'
-  get  'lp_rounds/:lp_round_id/lp_bets'           => 'lp_bets#edit',    :as => 'edit_lp_bet'
+  get  'lp_rounds/:round_id/lp_bets'              => 'lp_bets#edit',    :as => 'edit_lp_bet'
   put  'lp_rounds'                                => 'lp_rounds#index'
   get  'lp_rounds_info'                           => 'lp_rounds#info',  :as => 'lp_rounds_info'
   get  'users/:user_id/weeks/:week_id/fixtures'   => 'users#index',     :as => 'user_week_fixtures'

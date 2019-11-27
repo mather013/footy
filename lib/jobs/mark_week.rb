@@ -3,7 +3,7 @@ module Jobs
     class << self
 
       def perform(weeks)
-        weeks.each { |week| Marking::MarkWeek.perform week.id }
+        weeks.each { |week| Marking::MarkHdaBets.perform week.id }
 
         if weeks.present?
           Marking::RefreshPositions.perform
@@ -16,5 +16,10 @@ module Jobs
       end
 
     end
+
+    def perform
+      self.class.perform([Week.current])
+    end
+
   end
 end

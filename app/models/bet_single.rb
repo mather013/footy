@@ -5,6 +5,8 @@ class BetSingle < ActiveRecord::Base
   scope :pending, -> { where(result: Result::PENDING) }
   scope :sorted, -> { order(:round_id) }
 
+  validate :check_permitted
+
   module Result
     PENDING = 'pending'
     WON = 'won'
@@ -29,6 +31,10 @@ class BetSingle < ActiveRecord::Base
 
   def set_lost
     self.update_attributes!(result: BetSingle::Result::LOST)
+  end
+
+  def check_permitted
+    errors.add(:selection, 'invalid selection chosen') if selection.to_i == 0
   end
 
 end
