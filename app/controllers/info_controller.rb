@@ -2,10 +2,9 @@ class InfoController < ApplicationController
   before_action :require_login
 
   def index
-    @users = User.order('username')
+    @playing_users = User.order(:username).select(&:plays?)
     @user = current_user
     @week_current = Week.current
-    @round_current = LmRound.current
   end
 
 end

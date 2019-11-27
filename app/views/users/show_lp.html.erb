@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<div class="ui-title" data-role="header" align="left" data-position="fixed">
+  <a href="<%= lp_points_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1><%= "#{@user.name} LMS2" %></h1>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview" id="fix-list">
+    <% @rounds.each do |round| %>
+        <% @round = round %>
+        <li class="custom-list">
+          <% @bet = @user.lp_bets.where(round_id: round.id).first %>
+          <%= render 'lp_round_info' %>
+        </li>
+    <% end %>
+  </ul>
+</div>
+<%= render 'common/footer' %>
+</html>

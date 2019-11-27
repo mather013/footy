@@ -3,7 +3,7 @@
 
 <div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
   <a href="<%= lm_rounds_info_path %>" class="ui-btn-left" data-theme="a" data-rel="">Rules</a>
-  <h1>Last Man Standing</h1>
+  <h1>Last Man Standing 1</h1>
   <a href="<%= lm_points_path %>" class="ui-btn-right" data-theme="a" data-rel="">Table</a>
 </div>
 
@@ -12,9 +12,9 @@
     <% @rounds.each do |round| %>
         <% @round = round %>
         <li class="custom-list">
-          <% @lm_bet = LmBet.bets_for_user_and_round(@user, round).first %>
-          <% if round.week.open? and not @user.read_only? and @user.lm_survivor? %>
-              <% if @lm_bet.nil? %>
+          <% @bet = @user.lm_bets.sorted.where(round_id: round.id).first %>
+          <% if round.week.open? && @user.lm_survivor? %>
+              <% if @bet.nil? %>
                   <%= link_to new_lm_bet_path(round.id), :method => :post do %>
                       <%= render 'round_info' %>
                   <% end %>
@@ -30,5 +30,6 @@
     <% end %>
   </ul>
 </div>
+
 <%= render 'common/footer' %>
 </html>

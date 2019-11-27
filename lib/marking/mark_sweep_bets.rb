@@ -1,5 +1,5 @@
-module RakeTaskResources
-  class MarkSweepBets
+module Marking
+  class MarkSweepBets < MarkSingleBets
     class << self
 
       def perform

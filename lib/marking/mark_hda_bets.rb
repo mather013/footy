@@ -1,5 +1,5 @@
-module RakeTaskResources
-  class MarkWeek
+module Marking
+  class MarkHdaBets
     class << self
       def perform week_id
         puts "marking h/d/a round #{week_id}"
@@ -27,14 +27,14 @@ module RakeTaskResources
           points+=30 if bet.outcome == 'spot_on' unless TOGGLES_CONFIG['bet_type_hda']
 
           if TOGGLES_CONFIG['bonus_points']
-            bonus_val += adjust_bonus(point,bet)
+            bonus_val += adjust_bonus(point, bet)
           end
         end
 
         point.update_attributes(value: points+bonus_val, bonus: bonus_val)
       end
 
-      def adjust_bonus(point,bet)
+      def adjust_bonus(point, bet)
         bonus = point.bonuses.where(fixture_id: bet.fixture.id).first
         bonus_val = calculate_bonus(bet)
 

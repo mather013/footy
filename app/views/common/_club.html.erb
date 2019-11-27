@@ -1,17 +1,30 @@
 <% if TOGGLES_CONFIG['last_man_standing'] %>
-    <% lm_points = @user.lm_point.present? ? @user.lm_point.value : 0 %>
-    <% lm_survivor = lm_points >= (LmRound.current.id-1) %>
-
-    <% if lm_survivor %>
-        <% lm_path = lm_rounds_path %>
-        <% lm_label_style = LmRound.last.week.open? ? 'label-success' : 'label-warning' %>
+    <% if @user.lm_survivor? %>
+        <% round_open = LmRound.current.week.open? %>
+        <% path = round_open ? lm_rounds_path : lm_points_path %>
+        <% label_style = round_open ? 'label-success' : 'label-warning' %>
     <% else %>
-        <% lm_path = lm_points_path %>
-        <% lm_label_style = 'label-danger' %>
+        <% path = lm_points_path %>
+        <% label_style = 'label-danger' %>
     <% end %>
 
-    <li><a href="<%= lm_path %>" data-theme="a">LMS
-      <span class="label <%= lm_label_style %>">&nbsp; &nbsp;</span>
+    <li><a href="<%= path %>" data-theme="a">LMS1
+      <span class="label <%= label_style %>">&nbsp; &nbsp;</span>
+    </a></li>
+<% end %>
+
+<% if TOGGLES_CONFIG['last_player_standing'] %>
+    <% if @user.lp_survivor? %>
+        <% round_open = LpRound.current.week.open? %>
+        <% path = round_open ? lp_rounds_path : lp_points_path %>
+        <% label_style = round_open ? 'label-success' : 'label-warning' %>
+    <% else %>
+        <% path = lp_points_path %>
+        <% label_style = 'label-danger' %>
+    <% end %>
+
+    <li><a href="<%= path %>" data-theme="a">LMS2
+      <span class="label <%= label_style %>">&nbsp; &nbsp;</span>
     </a></li>
 <% end %>
 

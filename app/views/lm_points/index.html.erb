@@ -14,9 +14,9 @@
           <a href="<%= user_lm_rounds_path(point.user_id) %>">
             <div class="ui-grid-b leaderboard">
 
-              <% knocked_out = point.value < @max_round.id-1 %>
-              <% style = 'disabled-font' if knocked_out %>
               <% user = User.find(point.user_id) %>
+              <% knocked_out = !user.lm_survivor? %>
+              <% style = 'disabled-font' if knocked_out %>
 
               <div class="ui-block-b <%= style %>" style="width:40%">
                 <%= user.name %>
@@ -29,22 +29,22 @@
               <div class="ui-block-d <%= style %>" align="left" style="width:50%">
                 <% if user.lm_bets.present? %>
                     <% user_last_lm_bet = user.lm_bets.order('created_at DESC').first %>
-                    <% lm_round = user_last_lm_bet.lm_round %>
+                    <% round = user_last_lm_bet.round %>
 
-                    <% case lm_round.week.status %>
+                    <% case round.week.status %>
                     <% when 'Open' %>
-                        <span class="label label-success"><%= "#{lm_round.id}" %></span>
+                        <span class="label label-success"><%= "#{round.id}" %></span>
                         &nbsp;
                         ? ? ? ? ? ?
                     <% when 'In play' %>
-                        <span class="label label-warning"><%= "#{lm_round.id}" %></span>
+                        <span class="label label-warning"><%= "#{round.id}" %></span>
                         &nbsp;
                         <%= user_last_lm_bet.team.name.upcase %>
                     <% when 'Complete' %>
                         <% if knocked_out %>
-                            <span class="label label-default"><%= "#{lm_round.id}" %></span>
+                            <span class="label label-default"><%= "#{round.id}" %></span>
                         <% else %>
-                            <span class="label label-warning"><%= "#{lm_round.id}" %></span>
+                            <span class="label label-warning"><%= "#{round.id}" %></span>
                         <% end %>
                         &nbsp;
                         <%= user_last_lm_bet.team.name.upcase %>

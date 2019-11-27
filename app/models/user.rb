@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :communications
   has_one :fa_point
   has_one :lm_point
+  has_one :lp_point
   has_and_belongs_to_many :games
   has_one :position
   has_one :gb_bet
@@ -17,6 +18,10 @@ class User < ActiveRecord::Base
   has_many :fat_points
 
   validates_presence_of :name, :username, :password
+
+  def plays?
+    bets.present? || lm_bets.present? || fa_bets.present? || lp_bets.present?
+  end
 
   def admin?
     username == 'markm'
@@ -35,12 +40,15 @@ class User < ActiveRecord::Base
   end
 
   def lm_survivor?
-    return false if read_only?
-    correct_count = 0
-    lm_bets.each do |bet|
-      correct_count +=1 if bet.correct?
-    end
-    correct_count == LmRound.all.count-1
+    return true if LmRound.new_competition?
+    results = lm_bets.map(&:result)
+    results.present? && results.count('won') >= LmRound.count-1
+  end
+
+  def lp_survivor?
+    return true if LpRound.new_competition?
+    results = lp_bets.map(&:result)
+    results.present? && results.count('won') >= LpRound.count-1
   end
 
   def in_sweep?

@@ -2,7 +2,7 @@
 <html>
 <div data-role="header" data-position="fixed" data-tap-toggle="false">
   <a href="<%= lp_rounds_path %>" data-theme="a" data-rel="">Back</a>
-  <h1><%= "Round #{@lp_round.id.to_s.rjust(2, '0')}" %></h1>
+  <h1><%= "Round #{@round.id.to_s.rjust(2, '0')}" %></h1>
 </div>
 
 <div data-role="content">
@@ -18,9 +18,9 @@
     </form>
 
     <form method="PUT" action="<%= lp_bet_path(@bet.id) %>">
-      <select name="player_id" align="center" id="players">
+      <select name="selection" align="center" id="players">
         <option selected value="0">Select Player</option>
-        <option value=<%= @lp_round.id %>><input type=hidden name="lp_round_id" value=<%= params['lp_round_id'] %>>
+        <option value=<%= @round.id %>><input type=hidden name="round_id" value=<%= params['round_id'] %>>
       </select>
       <br>
       <input type="submit" value="Save"/>
@@ -52,7 +52,7 @@
 
           $.each(data,function(i,obj)
           {
-            var div_data="<option value="+obj.id+">#"+obj.squad_number+" - "+obj.surname+" ("+obj.position+")</option>";
+            var div_data="<option value="+obj.id+">#"+obj.squad_number+" - "+obj.forename+" "+obj.surname+"</option>";
             $(div_data).appendTo('#players');
 
           });

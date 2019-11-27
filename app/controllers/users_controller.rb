@@ -12,8 +12,14 @@ class UsersController < ApplicationController
     @bonuses = bonuses_for_user_and_week unless @week.status == 'pending'
   end
 
-  def show
+  def show_lm
     @rounds = LmRound.sorted
+    @user = User.find(params[:user_id])
+    @current_user = current_user
+  end
+
+  def show_lp
+    @rounds = LpRound.sorted
     @user = User.find(params[:user_id])
     @current_user = current_user
   end

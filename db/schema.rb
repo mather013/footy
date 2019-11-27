@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190706215540) do
+ActiveRecord::Schema.define(version: 20190829125150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bet_singles", force: :cascade do |t|
+    t.string "type", null: false
+    t.integer "round_id", null: false
+    t.integer "user_id", null: false
+    t.integer "selection", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "result", default: "pending", null: false
+  end
 
   create_table "bets", id: :serial, force: :cascade do |t|
     t.integer "fixture_id", null: false
@@ -50,6 +60,7 @@ ActiveRecord::Schema.define(version: 20190706215540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "team_id"
+    t.integer "player_id"
   end
 
   create_table "fa_bets", id: :serial, force: :cascade do |t|
@@ -188,6 +199,13 @@ ActiveRecord::Schema.define(version: 20190706215540) do
     t.integer "lp_round_id", null: false
     t.integer "user_id", null: false
     t.integer "player_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lp_points", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

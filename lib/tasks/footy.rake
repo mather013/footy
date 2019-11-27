@@ -12,7 +12,7 @@ namespace :footy do
   desc 'Set week to completed'
   task :mark_complete, [:id] => :environment do |t, args|
     week_id = args[:id]
-    RakeTaskResources::MarkWeekComplete.perform week_id
+    Week.find(week_id).try(:mark_complete)
   end
 
   desc 'Record scorer for fixture'
@@ -56,22 +56,6 @@ namespace :footy do
     RakeTaskResources::UserGames.perform params
   end
 
-  desc 'Mark bets for week'
-  task :mark_week, [:week_id] => :environment do |t, args|
-    RakeTaskResources::MarkWeek.perform args[:week_id]
-    RakeTaskResources::RefreshPositions.perform
-    RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
-    RakeTaskResources::MarkLmBets.perform if TOGGLES_CONFIG['last_man_standing']
-    RakeTaskResources::MarkGbBets.perform if TOGGLES_CONFIG['goal_buster']
-    RakeTaskResources::MarkFatBets.perform args[:week_id] if TOGGLES_CONFIG['five_alive_twist']
-    #Jobs::SyncStandings.new.perform if ENVIRONMENT_CONFIG['competition'] == 'premier_league'
-  end
-
-  desc 'Mark 5 Alive bets only'
-  task :mark_fa => :environment do |t, args|
-    RakeTaskResources::MarkFaBets.perform if TOGGLES_CONFIG['five_alive']
-  end
-
   desc 'Record goal and goal event for fixture'
   task :add_goal_and_event, [:fixture_name, :forename, :surname, :minute, :team, :amount] => :environment do |t, args|
     args.with_defaults(amount:1)
@@ -92,6 +76,12 @@ namespace :footy do
   desc 'Create 5 Alive bets'
   task :create_fat_bets, [:week_id] => :environment do |t, args|
     RakeTaskResources::CreateFatBets.perform args
+  end
+
+  desc 'Mark bets for week'
+  task :mark_week, [:week_id] => :environment do |t, args|
+    week = args[:week_id]
+    Marking::MarkWeek.perform(week)
   end
 
 end

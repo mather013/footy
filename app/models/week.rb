@@ -84,7 +84,7 @@ class Week < ActiveRecord::Base
 
     if next_week.present?
       fixtures.sorted.each do |fixture|
-        if fixture.status != Fixture::Status::POSTPONED && fixture.kickoff < next_week.close_date && fixture.kickoff > DateTime.now
+        if fixture.status != Fixture::Status::POSTPONED && fixture.kickoff < next_week.close_date && fixture.kickoff >= self.close_date
           permitted_fixtures << fixture
         end
       end
@@ -92,6 +92,17 @@ class Week < ActiveRecord::Base
       permitted_fixtures = fixtures
     end
     permitted_fixtures
+  end
+
+  def scorers
+    fixtures.map(&:events).map(&:goals).flatten.map(&:player).compact.uniq
+  end
+
+  def results
+    fixtures.each.inject({}) do |result_hash, fixture|
+      result_hash[fixture.id.to_s] = fixture.result
+      result_hash
+    end
   end
 
   private

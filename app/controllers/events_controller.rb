@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @fixture = Fixture.find(params[:fixture_id].to_i)
-    @events = @fixture.events.order(:minute)
+    @events = @fixture.events.supported.order(:minute)
   end
 
 end
