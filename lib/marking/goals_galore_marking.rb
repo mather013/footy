@@ -31,7 +31,7 @@ module Marking
     def calc_points(bet)
       results = round_results(bet.round)
       return points_for_win if results[:winning_selections].include?(bet.selection)
-      return points_for_loss if results[:settle]
+      return points_for_loss if results[:losing_selections].include?(bet.selection)
       nil
     end
 
