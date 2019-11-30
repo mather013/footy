@@ -65,7 +65,8 @@
 <% end %>
 
 <% if TOGGLES_CONFIG['goals_galore'] %>
-    <li><a href="<%= goals_galore_rounds_path %>" data-theme="a">GG
+    <% path = @user.goals_galore_bets.present? ? goals_galore_rounds_path : goals_galore_info_path %>
+    <li><a href="<%= path %>" data-theme="a">GG
       <span class="label label-success">&nbsp; &nbsp;</span>
     </a></li>
 <% end %>

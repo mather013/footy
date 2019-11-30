@@ -12,6 +12,7 @@ module Jobs
           Marking::MarkLpBets.new.perform if TOGGLES_CONFIG['last_player_standing']
           Marking::MarkGbBets.perform if TOGGLES_CONFIG['goal_buster']
           Marking::MarkFatBets.perform if TOGGLES_CONFIG['five_alive_twist']
+          Marking::GoalsGaloreMarking.perform if TOGGLES_CONFIG['goals_galore']
         end
       end
 
