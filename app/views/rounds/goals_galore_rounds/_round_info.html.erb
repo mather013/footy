@@ -22,7 +22,9 @@
   <div class="ui-block-c" align="center" style="width:10%">
     <% round_points_value = @points.for_user_and_round(@user.id, @round.id).first.try(:value) || 0 %>
     <% if round_points_value < 0 %>
-        <%= image_tag 'event/football-red.png', class: 'badge-medium' %>
+        <div class="label points_0">
+          0
+        </div>
     <% elsif @round.week.status == 'Open' %>
         <div class='label points_tba'>
           <%= "#{@round_bets.count*10}" %>

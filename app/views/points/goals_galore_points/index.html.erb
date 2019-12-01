@@ -38,7 +38,8 @@
             </div>
 
             <div class="ui-block-e" align="center" style="width:10%">
-              <%= point.total.to_i %>
+              <% points = point.total.to_i %>
+              <%= points > 0 ? points : 0 %>
             </div>
 
           </div>

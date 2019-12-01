@@ -12,7 +12,7 @@ module Points
     def show
       @user = current_user
       @round = Rounds::GoalsGaloreRound.find_by(id: params['round_id'])
-      @points = @round ? @round.points.sorted : []
+      @points = @round ? Points::GoalsGalorePoint.for_round(params['round_id']).sorted : []
     end
 
   end

@@ -33,12 +33,13 @@
 
             </div>
 
-            <div class="ui-block-d percent-points" align="center" style="width:15%">
-
+            <% points = point.value.to_i %>
+            <div class="ui-block-d disabled-font" align="center" style="width:15%">
+              <%= points if points < 0 %>
             </div>
 
             <div class="ui-block-e" align="center" style="width:10%">
-              <%= point.value.to_i %>
+              <%= points > 0 ? points : 0 %>
             </div>
 
           </div>

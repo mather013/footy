@@ -86,6 +86,7 @@
 
                     <div class="ui-block-e" align="left" style="width:8%">
                       <% bet = @bets.where(selection: fixture.id).first %>
+                      <%= image_tag 'event/football-black.png', class: 'badge-medium' if bet.try(:result) == 'pending' %>
                       <%= image_tag 'event/football-green.png', class: 'badge-medium' if bet.try(:result) == 'won' %>
                       <%= image_tag 'event/football-red.png',   class: 'badge-medium' if bet.try(:result) == 'lost' %>
                     </div>
