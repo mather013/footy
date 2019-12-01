@@ -4,7 +4,7 @@ module Bets
 
     def index
       @round = Rounds::GoalsGaloreRound.find(round_id)
-      @fixtures = @round.week.fixtures
+      @fixtures = @round.week.fixtures.sorted
       @bet = Bets::GoalsGaloreBet.new
       @bets = user_bets_for_round
     end
