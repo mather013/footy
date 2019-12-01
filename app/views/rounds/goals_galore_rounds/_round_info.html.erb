@@ -26,11 +26,11 @@
           0
         </div>
     <% elsif @round.week.status == 'Open' %>
-        <div class='label points_tba'>
-          <%= "#{@round_bets.count*10}" %>
+        <div class='label goals_0'>
+          <%= @round_bets.count*10 %>
         </div>
     <% else %>
-        <div class="<%= "label points_#{round_points_value}" %>">
+        <div class="<%= "label points_#{round_points_value.round(-1)}" %>">
           <%= round_points_value %>
         </div>
     <% end %>
