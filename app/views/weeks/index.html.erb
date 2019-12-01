@@ -29,7 +29,7 @@
           <a href="<%= fixtures_path(week.id) %>">
             <div class="ui-grid-b">
               <div class="ui-block-a main-font" style="width:90%">
-                <%= "#{week.description}" %>
+                <%= week.description %>
 
                 <% case week.status %>
                 <% when 'Complete' %>
@@ -40,9 +40,13 @@
                     <span class="label label-success">open</span>
                 <% end %>
 
+                <% if ENVIRONMENT_CONFIG['bonus_weeks'].include?(week.id) %>
+                    <%= image_tag 'event/star-grey.png', class: 'player-badge-size' %>
+                <% end %>
+
                 <br>
                 <h10 class="kickoff">
-                  <%= "#{DateTime.parse(week.close_date_local_time.to_s).strftime("%A #{week.close_date_local_time.day.ordinalize} %H:%M")}" %>
+                  <%= DateTime.parse(week.close_date_local_time.to_s).strftime("%A #{week.close_date_local_time.day.ordinalize} %H:%M") %>
                 </h10>
               </div>
 
@@ -51,13 +55,13 @@
                 <% if point.present? %>
                     <% if TOGGLES_CONFIG['bonus_points'] %>
                         <% points_style = point.present? ? (point.value).to_i : 0 %>
-                        <% points_style = "100" if point.value.to_i > 100 %>
+                        <% points_style = '100' if point.value.to_i > 100 %>
                         <div class="<%= "label points_#{points_style}" %>">
                           <%= point.value.to_i if point.present? %>
                         </div>
                     <% else %>
                         <% points_style = point.present? ? point.value : 0 %>
-                        <% points_style = "100" if point.value.to_i > 100 %>
+                        <% points_style = '100' if point.value.to_i > 100 %>
                         <div class="<%= "label points_#{points_style}" %>">
                           <%= point.value if point.present? %>
                         </div>
