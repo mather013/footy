@@ -24,11 +24,11 @@ module Rounds
     private
 
     def winning_selections
-      week.fixtures.map(&:score).select { |s| s.home > 0 && s.away > 0 if s }.map(&:fixture_id)
+      week.fixtures.finished.map(&:score).select { |s| s.home > 0 && s.away > 0 if s }.map(&:fixture_id)
     end
 
     def losing_selections
-      week.fixtures.map(&:score).select { |s| s.home == 0 || s.away == 0 if s }.map(&:fixture_id)
+      week.fixtures.finished.map(&:score).select { |s| s.home == 0 || s.away == 0 if s }.map(&:fixture_id)
     end
 
     def can_be_settled?

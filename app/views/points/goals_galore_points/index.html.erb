@@ -11,8 +11,6 @@
   <ul data-role="listview">
 
     <% @points.each do |point| %>
-        <% user = point.user %>
-
         <li class="custom-list">
           <div class="ui-grid-b">
 
@@ -24,9 +22,9 @@
 
             </div>
 
-            <% username_style = (user.id == @user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
+            <% username_style = (point[:user_id].to_i == @user.id ? 'ui-block-b current_user' : 'ui-block-b') %>
             <div class="<%= username_style %>" style="width:45%">
-              <%= user.name %>
+              <%= point[:username] %>
             </div>
 
             <div class="ui-block-c payout-icon" style="width:10%">
@@ -38,7 +36,7 @@
             </div>
 
             <div class="ui-block-e" align="center" style="width:10%">
-              <% points = point.total.to_i %>
+              <% points = point[:total].to_i %>
               <%= points > 0 ? points : 0 %>
             </div>
 
