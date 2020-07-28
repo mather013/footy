@@ -1,6 +1,11 @@
 module Api
   class FixturesController < ApplicationController
 
+    def index
+      @fixtures = Week.find(params[:week_id]).fixtures
+      render json: @fixtures
+    end
+
     def add_score
       result = false
       if params_valid(params) && authorised_user(params['username'])
