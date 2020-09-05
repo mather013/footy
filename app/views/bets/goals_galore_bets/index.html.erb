@@ -9,10 +9,10 @@
 
 <% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
 
-<div data-role="content">
-  <ul data-role="listview" id="">
-    <% if @round.week.open? %>
+<% if @round.week.open? %>
 
+    <div data-role="content">
+      <ul data-role="listview" id="">
         <%= form_for(@bet) do |b| %>
             <fieldset data-role="controlgroup" data-iconpos="right">
               <% @fixtures.each do |fixture| %>
@@ -56,11 +56,21 @@
             </div>
             <p></p>
         <% end %>
+      </ul>
+    </div>
 
-    <% else %>
-        <div data-role="content">
-          <ul data-role="listview" id="fix-list">
-            <% @fixtures.each do |fixture| %>
+<% else %>
+
+    <div data-role="collapsible-set">
+      <div class="player-goals" data-role="listview" data-count-theme="d">
+        <% @fixtures.each do |fixture| %>
+            <div data-role="collapsible" class="acol">
+              <div class="ui-grid-b scores-small">
+                <% @bets_for_round.where(selection: fixture.id).each do |fixture_bet| %>
+                    <%= fixture_bet.user.name %><br>
+                <% end %>
+              </div>
+              <h5>
                 <li class="custom-list">
                   <div class="ui-grid-b">
 
@@ -94,17 +104,16 @@
                       <% bet = @bets.where(selection: fixture.id).first %>
                       <%= image_tag 'event/football-black.png', class: 'badge-medium' if bet.try(:result) == 'pending' %>
                       <%= image_tag 'event/football-green.png', class: 'badge-medium' if bet.try(:result) == 'won' %>
-                      <%= image_tag 'event/football-red.png',   class: 'badge-medium' if bet.try(:result) == 'lost' %>
+                      <%= image_tag 'event/football-red.png', class: 'badge-medium' if bet.try(:result) == 'lost' %>
                     </div>
 
                   </div>
                 </li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-  </ul>
-</div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+<% end %>
 
 <%= render 'common/footer' %>
 </html>

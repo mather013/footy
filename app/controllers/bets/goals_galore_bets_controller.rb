@@ -5,8 +5,10 @@ module Bets
     def index
       @round = Rounds::GoalsGaloreRound.find(round_id)
       @fixtures = @round.week.fixtures.sorted
+      @fixtures = @round.week.fixtures_strict.sort_by(&:kickoff)
       @bet = Bets::GoalsGaloreBet.new
       @bets = user_bets_for_round
+      @bets_for_round = Bets::GoalsGaloreBet.for_round(round_id)
     end
 
     def create

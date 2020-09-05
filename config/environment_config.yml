@@ -37,6 +37,7 @@ defaults: &defaults
   bonus_threshold: 20
   bonus_amount: 10
   bonus_points_matrix: 30
+  bonus_weeks: [19]
 
 development:
   <<: *defaults

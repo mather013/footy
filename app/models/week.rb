@@ -5,7 +5,7 @@ class Week < ActiveRecord::Base
 
   scope :sorted, -> { order('close_date asc') }
   scope :sorted_open, -> { where("complete != 'true' and close_date >= ?", DateTime.now).order('close_date asc') }
-  scope :sorted_recent, -> { where("complete != 'true' or close_date >= ?",21.days.ago).order('close_date asc') }
+  scope :sorted_recent, -> { where("complete IS NULL OR close_date >= ?",21.days.ago).order('close_date asc') }
   scope :sorted_non_recent, -> { where("complete = 'true' and close_date < ?",21.days.ago).order('close_date asc') }
 
   scope :current, -> { where('close_date > ?', Time.now).order(:close_date).first }

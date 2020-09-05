@@ -40,8 +40,13 @@
                     <span class="label label-success">open</span>
                 <% end %>
 
+                &nbsp
                 <% if ENVIRONMENT_CONFIG['bonus_weeks'].include?(week.id) %>
-                    <%= image_tag 'event/star-grey.png', class: 'player-badge-size' %>
+                    <%= image_tag 'event/star-grey.png', class: 'badge-small' %>
+                    <h10 class="kickoff">
+                    DOUBLE POINTS
+                      </h10>
+                    <%= image_tag 'event/star-grey.png', class: 'badge-small' %>
                 <% end %>
 
                 <br>

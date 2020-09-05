@@ -76,6 +76,7 @@ module Feed
         return ::Fixture::Status::IN_PLAY if in_play_status.include?(feed_status)
         return ::Fixture::Status::HALFTIME if halt_time_status.include?(feed_status)
         return ::Fixture::Status::FINISHED if full_time_status.include?(feed_status)
+        return ::Fixture::Status::POSTPONED if postponed_status.include?(feed_status)
         ::Fixture::Status::SCHEDULED
       end
 
@@ -89,6 +90,10 @@ module Feed
 
       def halt_time_status
         [Status::HALFTIME]
+      end
+
+      def postponed_status
+        [Status::POSTPONED]
       end
 
     end

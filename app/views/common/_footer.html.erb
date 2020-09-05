@@ -4,7 +4,7 @@
   <div data-role=navbar>
     <% if @user.community_id == 1 %>
         <ul>
-          <li><a href="<%= weeks_path %>" data-theme="a">H/D/A
+          <li><a href="<%= weeks_path %>" data-ajax="false" data-theme="a">H/D/A
             <span class="label label-warning"><%= @user.position.current.ordinalize if @user.position.present? %></span>
           </a></li>
 

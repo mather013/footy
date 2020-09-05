@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= points_goals_galore_round_points_path(@round.id) %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1><%= "Round #{@round.id}" %></h1>
+</div>
+
+<% competition_type = ENVIRONMENT_CONFIG[ENVIRONMENT_CONFIG['competition']]['type'] %>
+
+<div data-role="content">
+  <ul data-role="listview" id="">
+    <div data-role="content">
+      <ul data-role="listview" id="fix-list">
+        <% @fixtures.each do |fixture| %>
+            <li class="custom-list">
+              <div class="ui-grid-b">
+
+                <div class="ui-block-a fixture-teams" align="right" style="width:26%">
+                  <%= fixture.home_team.short_name.upcase %>
+                </div>
+
+                <div class="ui-block-b" align="center" style="width:12%">
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.home_team.abbreviation}.png", class: 'badge-medium' %>
+                </div>
+
+                <div class="ui-block-c fixture-score" align="center" style="width:14%">
+                  <% if fixture.finished? && fixture.score.present? %>
+                      <% colour = (fixture.score.home > 0 && fixture.score.away > 0) ? '#5cb85c' : '#adb5bd' %>
+                      <span class="label halftime-score" style="<%= "background-color:#{colour}" %>;"><%= fixture.score.home %></span>
+                      <span class="label halftime-score" style="<%= "background-color:#{colour}" %>;"><%= fixture.score.away %></span>
+                  <% else %>
+                      vs
+                  <% end %>
+                </div>
+
+                <div class="ui-block-d" align="center" style="width:12%">
+                  <%= image_tag "#{ENVIRONMENT_CONFIG[competition_type]['badge_path']}#{fixture.away_team.abbreviation}.png", class: 'badge-medium' %>
+                </div>
+
+                <div class="ui-block-e fixture-teams" align="left" style="width:26%">
+                  <%= fixture.away_team.short_name.upcase %>
+                </div>
+
+                <div class="ui-block-e" align="left" style="width:8%">
+                  <% bet = @bets.where(selection: fixture.id).first %>
+                  <%= image_tag 'event/football-black.png', class: 'badge-medium' if bet.try(:result) == 'pending' %>
+                  <%= image_tag 'event/football-green.png', class: 'badge-medium' if bet.try(:result) == 'won' %>
+                  <%= image_tag 'event/football-red.png', class: 'badge-medium' if bet.try(:result) == 'lost' %>
+                </div>
+
+              </div>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </ul>
+</div>
+
+<%= render 'common/footer' %>
+</html>

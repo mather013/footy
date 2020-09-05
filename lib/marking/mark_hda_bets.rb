@@ -31,6 +31,8 @@ module Marking
           end
         end
 
+        points = points*2 if is_double_points_week?
+
         point.update_attributes(value: points+bonus_val, bonus: bonus_val)
       end
 
@@ -52,7 +54,16 @@ module Marking
         correct_count = bets.count(bet.value)
         percentage = (correct_count.to_f / bets.count.to_f)*100
 
-        percentage <= ENVIRONMENT_CONFIG['bonus_threshold'] ? ENVIRONMENT_CONFIG['bonus_amount'] : 0
+        percentage <= ENVIRONMENT_CONFIG['bonus_threshold'] ? bonus_amount : 0
+      end
+
+      def is_double_points_week?
+        ENVIRONMENT_CONFIG['bonus_weeks'].include?(@week.id)
+      end
+
+      def bonus_amount
+        amount = ENVIRONMENT_CONFIG['bonus_amount']
+        is_double_points_week? ? amount*2 : amount
       end
 
     end
