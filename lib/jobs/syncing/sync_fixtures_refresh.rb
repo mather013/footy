@@ -2,12 +2,13 @@ module Jobs
   module Syncing
     class SyncFixturesRefresh
 
-      def perform
+      def perform(args={})
 
+        date = DateTime.parse(args[:date]) rescue nil
 
         weeks_to_update = []
 
-        fixtures_from_feed.each do |feed_fixture|
+        fixtures_from_feed(date).each do |feed_fixture|
           home_team = Team.find_by_external_id(feed_fixture.home_team_id)
           away_team = Team.find_by_external_id(feed_fixture.away_team_id)
           fixture_name = "#{home_team.abbreviation.upcase}-#{away_team.abbreviation.upcase}" if home_team && away_team
@@ -30,10 +31,9 @@ module Jobs
 
       private
 
-      def fixtures_from_feed
-
-
-        Feed::FixturesController.new.get_all_fixtures
+      def fixtures_from_feed(date)
+        service = Feed::FixturesController.new
+        date.nil? ? service.get_all_fixtures : service.get_fixtures_between(date, date)
       end
 
     end

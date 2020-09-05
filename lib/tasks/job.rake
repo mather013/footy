@@ -20,6 +20,11 @@ namespace :job do
     Jobs::Syncing::SyncFixturesRefresh.new.perform
   end
 
+  desc 'Sync fixtures refresh date'
+  task :sync_fixtures_refresh_date, [:date] => :environment do |t, args|
+    Jobs::Syncing::SyncFixturesRefresh.new.perform(args)
+  end
+
   desc 'Sync standings'
   task :sync_standings => :environment do
     Jobs::Syncing::SyncStandings.new.perform
