@@ -34,7 +34,7 @@
                   <% end %>
               <% end %>
           <% else %>
-              <% if fixture.kickoff.to_date > DateTime.now %>
+              <% if fixture.kickoff < DateTime.now %>
                   <%= link_to fixture_bets_info_path(@week.id, @fixture.id), :method => :get do %>
                       <%= render 'fixture_info' %>
                   <% end %>
