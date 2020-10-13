@@ -16,9 +16,11 @@ class User < ActiveRecord::Base
   has_one :fat_selection
   has_many :fat_bets
   has_many :fat_points
-  has_many :goals_galore_points, class_name: 'Points::GoalsGalorePoint'
-  has_many :goals_galore_bets,   class_name: 'Bets::GoalsGaloreBet'
-  has_one :streak_selection, class_name: 'Selections::StreakSelection'
+  has_many :goals_galore_points,  class_name: 'Points::GoalsGalorePoint'
+  has_many :goals_galore_bets,    class_name: 'Bets::GoalsGaloreBet'
+  has_one :streak_selection,      class_name: 'Selections::StreakSelection'
+  has_many :streak_bets,          class_name: 'Bets::StreakBet'
+  has_many :streak_points,        class_name: 'Points::StreakPoint'
 
   validates_presence_of :name, :username, :password
 
