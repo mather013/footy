@@ -59,6 +59,7 @@ Footy::Application.routes.draw do
   scope module: :rounds do
     get  'goals_galore_rounds'      => 'goals_galore_rounds#index', :as => 'goals_galore_rounds'
     get  'goals_galore_rounds/info' => 'goals_galore_rounds#info',  :as => 'goals_galore_info'
+    get  'streak_rounds'            => 'streak_rounds#index',       :as => 'streak_rounds'
   end
 
   scope module: :bets do
@@ -70,6 +71,15 @@ Footy::Application.routes.draw do
   scope module: :points do
     get  'goals_galore_points'                  => 'goals_galore_points#index',  :as => 'points/goals_galore_points'
     get  'goals_galore_rounds/:round_id/points' => 'goals_galore_points#show',   :as => 'points/goals_galore_round_points'
+  end
+
+  scope module: :selections do
+    get  'streak_selections'                => 'streak_selections#index',    :as => 'streak_selections'
+    get  'streak_selections/new'            => 'streak_selections#new',      :as => 'new_streak_selections'
+    get  'streak_selections/:id/edit'       => 'streak_selections#edit',     :as => 'edit_streak_selections'
+    post 'streak_selections'                => 'streak_selections#create',   :as => 'create_streak_selections'
+    put  'streak_selections/:id'            => 'streak_selections#update',   :as => 'update_streak_selections'
+    get  'streak_selections/:id'            => 'streak_selections#show',     :as => 'show_streak_selections'
   end
 
   # get 'user_round_bets_gg' => 'users#user_round_bets_gg', :as => 'user_round_bets_gg'

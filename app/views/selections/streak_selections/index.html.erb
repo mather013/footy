@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html id=disable-viewport>
+<div data-role="header" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= streak_rounds_path %>" class="ui-btn-left" data-theme="a" data-rel="">Rounds</a>
+  <h1>Players</h1>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview">
+    <li class="custom-list-header fixture-date">
+      <%= "Next Round: #{DateTime.parse(@week.close_date_local_time.to_s).strftime("%A #{@week.close_date_local_time.day.ordinalize} %b %H:%M")}" %>
+    </li>
+  </ul>
+</div>
+
+<% if @selection.present? %>
+    <% selections = @selection.value.split(',', -1) %>
+    <% week_fixtures = @week.fixtures %>
+
+    <div data-role="content">
+      <ul data-role="listview">
+        <% 3.times do |i| %>
+            <li class="custom-list">
+              <% if selections[i].present? %>
+                  <% player = Player.find(selections[i].to_i) %>
+                  <%= link_to edit_streak_selections_path(@selection.id, selection_id: i) do %>
+                      <div class="ui-block-a main-font" style="width:10%">
+                        <%= image_tag "#{BADGE_PATH}#{player.team.abbreviation}.png", class: 'badge-medium' %>
+                      </div>
+                      <div class="ui-block-b player-font" style="width:12%">
+                        <%= "##{player.squad_number}" %>
+                      </div>
+                      <div class="ui-block-c player-font" style="width:48%">
+                        <%= player.name %>
+                      </div>
+
+                      <% player_team_id = player.team.id %>
+                      <% fixture = week_fixtures.where('home_team_id=? or away_team_id=?', player_team_id, player_team_id).first %>
+
+                      <% if @permitted_fixtures.include?(fixture) %>
+                          <div class="ui-block-d main-font" align="center" style="width:10%">
+                            <%= image_tag "#{BADGE_PATH}#{fixture.home_team.abbreviation}.png", class: 'badge-medium' %>
+                          </div>
+                          <div class="ui-block-d player-font" align="center" style="width:10%">
+                            vs
+                          </div>
+                          <div class="ui-block-d main-font" align="center" style="width:10%">
+                            <%= image_tag "#{BADGE_PATH}#{fixture.away_team.abbreviation}.png", class: 'badge-medium' %>
+                          </div>
+                      <% else %>
+                          <div class="ui-block-d player-font" align="center" style="width:18%">
+                            NO GAME
+                          </div>
+                          <div class="ui-block-d player-font" align="center" style="width:2%">
+
+                          </div>
+                          <div class="ui-block-d main-font" align="center" style="width:10%">
+                            <%= image_tag 'event/football-red.png', class: 'badge-medium' %>
+                          </div>
+                      <% end %>
+                  <% end %>
+              <% else %>
+                  <%= link_to edit_streak_selections_path(@selection.id, team_id: 1, selection_id: i) do %>
+                      <div class="ui-block-a main-font" style="width:10%">
+                        <%= image_tag "#{BADGE_PATH}tba.png", class: "player-badge-size" %>
+                      </div>
+                      <div class="ui-block-b main-font" style="width:12%">
+
+                      </div>
+                      <div class="ui-block-c main-font" style="width:78%">
+                        Select Player
+                      </div>
+                  <% end %>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% else %>
+    <div data-role="content">
+      <ul data-role="listview">
+        <% 3.times do |i| %>
+            <li class="custom-list">
+              <%= link_to new_streak_selections_path(selection_id: i) do %>
+                  <div class="ui-block-a main-font" style="width:10%">
+                    <%= image_tag "#{BADGE_PATH}tba.png", class: "player-badge-size" %>
+                  </div>
+                  <div class="ui-block-b main-font" style="width:12%">
+
+                  </div>
+                  <div class="ui-block-c main-font" style="width:78%">
+                    Select Player
+                  </div>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<%= render 'error' if @selection.present? && @selection.errors.present? %>
+<%= render 'common/footer' %>
+</html>
