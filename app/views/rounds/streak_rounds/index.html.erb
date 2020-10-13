@@ -13,7 +13,7 @@
         <% @round = round %>
         <li class="custom-list">
           <% @round_bets = @bets.where(round_id: round.id) %>
-          <%= link_to bets_goals_galore_bets_path(round.id), :method => :get do %>
+          <%= link_to bets_streak_bets_path(round.id), :method => :get do %>
               <%= render 'round_info' %>
           <% end %>
         </li>

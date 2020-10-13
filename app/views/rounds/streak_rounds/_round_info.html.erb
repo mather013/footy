@@ -13,27 +13,15 @@
     </h10>
   </div>
 
-  <div class="ui-block-b main-font" style="width:22%">
+  <div class="ui-block-b main-font" style="width:12%">
     <div class="label selection-count">
-      <% "Fixtures: #{@round_bets.count}" %>
+
     </div>
   </div>
 
-  <div class="ui-block-c" align="center" style="width:10%">
+  <div class="ui-block-c" align="center" style="width:20%">
     <% round_points_value = @points.for_user_and_round(@user.id, @round.id).first.try(:value) || 0 %>
-    <% if round_points_value < 0 %>
-        <div class="label points_0">
-          0
-        </div>
-    <% elsif @round.week.status == 'Open' %>
-        <div class='label goals_0'>
-          <%= @round_bets.count*10 %>
-        </div>
-    <% else %>
-        <div class="<%= "label points_#{round_points_value.round(-1)}" %>">
-          <%= round_points_value %>
-        </div>
-    <% end %>
+    <%= image_tag 'event/football-green.png', class: 'ball-medium' if round_points_value > 0 %>
   </div>
 
 </div>

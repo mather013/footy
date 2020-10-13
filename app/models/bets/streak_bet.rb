@@ -1,7 +1,7 @@
 module Bets
   class StreakBet < BetSingle
 
-    belongs_to :fixture, foreign_key: :selection, class_name: 'Fixture'
+    belongs_to :player, foreign_key: :selection, class_name: 'Player'
     belongs_to :round,   foreign_key: :round_id,  class_name: 'Rounds::StreakRound'
 
     validates :user_id, uniqueness: {scope: :selection}
@@ -13,7 +13,8 @@ module Bets
     private
 
     def check_permitted
-      errors.add(:round_id, 'round has already started') if round.week.close_date < DateTime.now
+      # errors.add(:round_id, 'round has already started') if round.week.close_date < DateTime.now
+      true
     end
 
   end

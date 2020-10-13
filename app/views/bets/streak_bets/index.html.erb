@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<div class="ui-title" data-role="header" align="left" data-position="fixed" data-tap-toggle="false">
+  <a href="<%= streak_rounds_path %>" class="ui-btn-left" data-theme="a" data-rel="">Back</a>
+  <h1><%= "Streak Round #{@round.id}" %></h1>
+  <a href="<%= points_goals_galore_round_points_path(@round.id) %>" class="ui-btn-right" data-theme="a" data-rel="">Points</a>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview">
+
+    <% if @bets.present? %>
+        <% @bets.each do |bet| %>
+
+            <li class="custom-list">
+              <div class="ui-grid-b">
+                <% player = bet.player %>
+
+                <div class="ui-block-a main-font" style="width:10%">
+                  <%= image_tag "#{BADGE_PATH}#{player.team.abbreviation}.png", class: 'badge-medium' %>
+                </div>
+
+                <div class="ui-block-b player-font" style="width:12%">
+                  <%= "##{player.squad_number}" %>
+                </div>
+
+                <div class="ui-block-c player-font" style="width:38%">
+                  <%= player.surname.upcase %>
+                </div>
+
+                <div class="ui-block-d main-font" align="center" style="width:10%">
+
+                </div>
+
+                <div class="ui-block-d player-font" align="center" style="width:10%">
+                  vs
+                </div>
+
+                <div class="ui-block-d main-font" align="center" style="width:10%">
+
+                </div>
+
+                <div class="ui-block-d main-font" align="center" style="width:10%">
+                  <%= image_tag 'event/football-green.png', class: 'ball-medium' if bet.won? %>
+                </div>
+
+              </div>
+
+            </li>
+        <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<%= render 'common/footer' %>
+</html>

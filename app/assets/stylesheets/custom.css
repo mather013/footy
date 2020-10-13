@@ -197,6 +197,13 @@
     max-height: 12px;
 }
 
+.ball-medium {
+    position: relative;
+    top: 2px;
+    max-width: 24px;
+    max-height: 24px;
+}
+
 .player-badge-size {
     max-width: 16px;
     max-height: 16px;
