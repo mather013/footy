@@ -69,4 +69,26 @@ class User < ActiveRecord::Base
     true
   end
 
+  def streak_info
+    {best: best_streak, current: current_streak}
+  end
+
+  def current_streak
+    value = 0
+    streak_points.sorted.each do |point|
+      point.value == 0 ? value = 0 : value += 1
+    end
+    value
+  end
+
+  def best_streak
+    value = 0
+    highest = 0
+    streak_points.sorted.each do |point|
+      point.value == 0 ? value = 0 : value += 1
+      highest = value if value > highest
+    end
+    highest
+  end
+
 end
