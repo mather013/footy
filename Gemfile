@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.0'
+gem 'rails', '6.1.0'
 # gem 'rake'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg', '~> 0.18'
+gem 'pg'#, '~> 0.21'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,7 +21,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'therubyracer'
+# gem 'therubyracer'
+gem 'mini_racer'
 gem 'jquery_mobile_rails'#, '~> 1.3.0'
 gem 'rspec-rails'
 gem 'rest-client'
@@ -41,6 +42,8 @@ group :development, :test do
   #gem 'dotenv-deployment'
   gem 'pry'
   gem 'byebug', platform: :mri
+  gem 'rubocop'
+  gem 'puma'
 end
 
 group :production do
@@ -50,7 +53,7 @@ end
 
 gem 'rollbar'
 gem 'keen'
-gem 'oj', '~> 2.16.1'
+# gem 'oj', '~> 2.16.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
