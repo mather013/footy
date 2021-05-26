@@ -17,7 +17,7 @@ Team.find_or_create_by_id(id: 14, external_id: 0,  abbreviation: 'pol', name: 'P
 Team.find_or_create_by_id(id: 15, external_id: 0,  abbreviation: 'por', name: 'Portugal')
 Team.find_or_create_by_id(id: 16, external_id: 0,  abbreviation: 'rus', name: 'Russia')
 Team.find_or_create_by_id(id: 17, external_id: 0,  abbreviation: 'sco', name: 'Scotland')
-Team.find_or_create_by_id(id: 18, external_id: 0,  abbreviation: 'slo', name: 'Slovakia')
+Team.find_or_create_by_id(id: 18, external_id: 0,  abbreviation: 'svk', name: 'Slovakia')
 Team.find_or_create_by_id(id: 19, external_id: 0,  abbreviation: 'spa', name: 'Spain')
 Team.find_or_create_by_id(id: 20, external_id: 0,  abbreviation: 'swe', name: 'Sweden')
 Team.find_or_create_by_id(id: 21, external_id: 0,  abbreviation: 'swi', name: 'Switzerland')
