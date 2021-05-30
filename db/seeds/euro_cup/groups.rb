@@ -14,7 +14,7 @@ Group.create(id: 6, name: 'Group F')
 end
 
 # GROUP B
-[2, 5, 7 16].each do |team_id|
+[2, 5, 7, 16].each do |team_id|
   GroupTeam.create(group_id: 2, team_id: team_id)
 end
 
