@@ -9,10 +9,10 @@
 <div class="info-txt" data-role="content">
   Rules:
   <ul type="square">
-    <li>£5 a Team</li>
+    <li>£5 a team</li>
     <li>Teams are random</li>
-    <li>Draw will take place 26 May</li>
-    <li>First come, first served</li>
+    <li>Draw will take place during Turkey vs Italy on 11th June</li>
+    <li>There are only 24 teams so it will be a first come, first served basis</li>
   </ul>
   <p></p>
 
@@ -20,8 +20,8 @@
   <p></p>
   <ul type="square">
     <li>£75 - 1st (Final Winner)</li>
-    <li>£50 - 2nd (Final Runner Up)</li>
-    <li>£25 - 3rd (Third place play-off Winner)</li>
+    <li>£35 - 2nd (Final Runner Up)</li>
+    <li>£10 - 24th (Worst team of competition)</li>
   </ul>
   <p></p>
   <br>
@@ -30,7 +30,7 @@
   <br>
 </div>
 
-<% open_date_time = (Week.find(1).close_date - 26.days) %>
+<% open_date_time = (Week.find(1).close_date - 14.days) %>
 
 <p>
   <%= form_for(@bet) do |bet| %>
