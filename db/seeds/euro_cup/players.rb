@@ -3,15 +3,15 @@
 Player.delete_all
 
 #1 - austria
-Player.create(id: 12,  team_id: 1,  squad_number: 99,  forename: 'M', surname: 'Arnautović')
-Player.create(id: 13,  team_id: 1,  squad_number: 99,  forename: 'S', surname: 'Kalajdžić')
+Player.create(id: 12,  team_id: 1,  squad_number:  7,  forename: 'M', surname: 'Arnautović')
+Player.create(id: 13,  team_id: 1,  squad_number: 25,  forename: 'S', surname: 'Kalajdžić')
 
 #2 - belgium
 Player.create(id: 21,  team_id: 2,  squad_number: 9,  forename: 'R', surname: 'Lukaku')
 Player.create(id: 22,  team_id: 2,  squad_number: 20, forename: 'C', surname: 'Benteke')
 Player.create(id: 23,  team_id: 2,  squad_number: 10, forename: 'E', surname: 'Hazard')
 Player.create(id: 25,  team_id: 2,  squad_number: 7,  forename: 'K', surname: 'De Bruyne')
-Player.create(id: 27,  team_id: 2,  squad_number: 23, forename: 'M', surname: 'Batshuayi')
+Player.create(id: 26,  team_id: 2,  squad_number: 23, forename: 'M', surname: 'Batshuayi')
 Player.create(id: 27,  team_id: 2,  squad_number: 14, forename: 'D', surname: 'Mertens')
 
 #3 - croatia
@@ -20,14 +20,14 @@ Player.create(id: 32,  team_id: 3,  squad_number: 10, forename: 'L', surname: 'M
 Player.create(id: 33,  team_id: 3,  squad_number: 4,  forename: 'I', surname: 'Perišić')
 
 #4 - czech republic
-Player.create(id: 41,  team_id: 4,  squad_number: 99, forename: 'M', surname: 'Vydra')
-Player.create(id: 42,  team_id: 4,  squad_number: 99, forename: 'V', surname: 'Darida')
-Player.create(id: 43,  team_id: 4,  squad_number: 99, forename: 'P', surname: 'Schick')
+Player.create(id: 41,  team_id: 4,  squad_number: 20, forename: 'M', surname: 'Vydra')
+Player.create(id: 42,  team_id: 4,  squad_number:  8, forename: 'V', surname: 'Darida')
+Player.create(id: 43,  team_id: 4,  squad_number: 10, forename: 'P', surname: 'Schick')
 
 #5 - denmark
-Player.create(id: 51,  team_id: 5,  squad_number: 99, forename: 'C', surname: 'Eriksen')
-Player.create(id: 52,  team_id: 5,  squad_number: 99, forename: 'Y', surname: 'Poulsen')
-Player.create(id: 53,  team_id: 5,  squad_number: 99, forename: 'K', surname: 'Dolberg')
+Player.create(id: 51,  team_id: 5,  squad_number: 10, forename: 'C', surname: 'Eriksen')
+Player.create(id: 52,  team_id: 5,  squad_number: 20, forename: 'Y', surname: 'Poulsen')
+Player.create(id: 53,  team_id: 5,  squad_number: 12, forename: 'K', surname: 'Dolberg')
 
 #6 - england
 Player.create(id: 61,  team_id: 6,  squad_number: 9,  forename: 'H', surname: 'Kane')
@@ -61,38 +61,37 @@ Player.create(id: 97,  team_id: 9,  squad_number: 9,  forename: 'K', surname: 'V
 
 #10 - hungary
 Player.create(id: 101,  team_id: 10,  squad_number: 9,  forename: 'A', surname: 'Szalai')
-Player.create(id: 102,  team_id: 10,  squad_number: 19, forename: 'N', surname: 'Nikolić')
+Player.create(id: 102,  team_id: 10,  squad_number: 23, forename: 'N', surname: 'Nikolić')
 
 #11 - italy
-Player.create(id: 111, team_id: 11, squad_number: 99, forename: 'L', surname: 'Insigne')
-Player.create(id: 112, team_id: 11, squad_number: 99, forename: 'C', surname: 'Immobile')
-Player.create(id: 113, team_id: 11, squad_number: 99, forename: 'A', surname: 'Belotti')
+Player.create(id: 111, team_id: 11, squad_number: 10, forename: 'L', surname: 'Insigne')
+Player.create(id: 112, team_id: 11, squad_number: 17, forename: 'C', surname: 'Immobile')
+Player.create(id: 113, team_id: 11, squad_number: 9,  forename: 'A', surname: 'Belotti')
 
 #12 - netherlands
-Player.create(id: 121, team_id: 12, squad_number: 99, forename: 'M', surname: 'Depay')
-Player.create(id: 122, team_id: 12, squad_number: 99, forename: 'G', surname: 'Wijnaldum')
-Player.create(id: 123, team_id: 12, squad_number: 99, forename: 'D', surname: 'van de Beek')
+Player.create(id: 121, team_id: 12, squad_number: 10, forename: 'M', surname: 'Depay')
+Player.create(id: 122, team_id: 12, squad_number:  8, forename: 'G', surname: 'Wijnaldum')
 
 #13 - north macedonia
-Player.create(id: 111, team_id: 13, squad_number: 99, forename: 'G', surname: 'Pandev')
-Player.create(id: 112, team_id: 13, squad_number: 99, forename: 'A', surname: 'Trajkovski')
+Player.create(id: 131, team_id: 13, squad_number: 10, forename: 'G', surname: 'Pandev')
+Player.create(id: 132, team_id: 13, squad_number:  9, forename: 'A', surname: 'Trajkovski')
 
 #14 - poland
-Player.create(id: 121, team_id: 14, squad_number: 9,  forename: 'R', surname: 'Lewandowski')
-Player.create(id: 122, team_id: 14, squad_number: 7,  forename: 'A', surname: 'Milik')
+Player.create(id: 141, team_id: 14, squad_number: 9,  forename: 'R', surname: 'Lewandowski')
+Player.create(id: 142, team_id: 14, squad_number: 7,  forename: 'A', surname: 'Milik')
 
 #15 - portugal
 Player.create(id: 151, team_id: 15, squad_number: 7,  forename: 'C', surname: 'Ronaldo')
-Player.create(id: 152, team_id: 15, squad_number: 99, forename: 'D', surname: 'Jota')
-Player.create(id: 153, team_id: 15, squad_number: 99, forename: 'G', surname: 'Guedes')
-Player.create(id: 154, team_id: 15, squad_number: 99, forename: 'A', surname: 'Silva')
-Player.create(id: 155, team_id: 15, squad_number: 99, forename: 'B', surname: 'Silva')
-Player.create(id: 156, team_id: 15, squad_number: 99, forename: 'B', surname: 'Fernandes')
+Player.create(id: 152, team_id: 15, squad_number: 21, forename: 'D', surname: 'Jota')
+Player.create(id: 153, team_id: 15, squad_number: 17, forename: 'G', surname: 'Guedes')
+Player.create(id: 154, team_id: 15, squad_number: 19, forename: 'A', surname: 'Silva')
+Player.create(id: 155, team_id: 15, squad_number: 10, forename: 'B', surname: 'Silva')
+Player.create(id: 156, team_id: 15, squad_number: 11, forename: 'B', surname: 'Fernandes')
 
 #16 - russia
-Player.create(id: 161, team_id: 16, squad_number: 99, forename: 'A', surname: 'Dzyuba')
-Player.create(id: 162, team_id: 16, squad_number: 99, forename: 'A', surname: 'Sobolev')
-Player.create(id: 163, team_id: 16, squad_number: 99, forename: 'A', surname: 'Golovin')
+Player.create(id: 161, team_id: 16, squad_number: 22, forename: 'A', surname: 'Dzyuba')
+Player.create(id: 162, team_id: 16, squad_number:  9, forename: 'A', surname: 'Sobolev')
+Player.create(id: 163, team_id: 16, squad_number: 17, forename: 'A', surname: 'Golovin')
 
 #17 - scotland
 Player.create(id: 171, team_id: 17, squad_number: 7,  forename: 'J', surname: 'McGinn')
@@ -101,34 +100,34 @@ Player.create(id: 173, team_id: 17, squad_number: 25, forename: 'J', surname: 'F
 Player.create(id: 174, team_id: 17, squad_number: 11, forename: 'R', surname: 'Christie')
 
 #18 - slovakia
-Player.create(id: 171, team_id: 18, squad_number: 99, forename: 'J', surname: 'Kucka')
-Player.create(id: 172, team_id: 18, squad_number: 99, forename: 'R', surname: 'Boženík')
-Player.create(id: 173, team_id: 18, squad_number: 99, forename: 'R', surname: 'Mak')
-Player.create(id: 175, team_id: 18, squad_number: 99, forename: 'M', surname: 'Hamšík')
+Player.create(id: 181, team_id: 18, squad_number: 19, forename: 'J', surname: 'Kucka')
+Player.create(id: 182, team_id: 18, squad_number:  9, forename: 'R', surname: 'Boženík')
+Player.create(id: 183, team_id: 18, squad_number: 20, forename: 'R', surname: 'Mak')
+Player.create(id: 185, team_id: 18, squad_number: 17, forename: 'M', surname: 'Hamšík')
 
 #19 - spain
-Player.create(id: 181, team_id: 19, squad_number: 99, forename: 'A', surname: 'Morata')
-Player.create(id: 182, team_id: 19, squad_number: 99, forename: 'F', surname: 'Torres')
-Player.create(id: 187, team_id: 19, squad_number: 99, forename: 'G', surname: 'Moreno')
-Player.create(id: 188, team_id: 19, squad_number: 99, forename: 'P', surname: 'Sarabia')
+Player.create(id: 191, team_id: 19, squad_number:  9, forename: 'A', surname: 'Morata')
+Player.create(id: 192, team_id: 19, squad_number: 11, forename: 'F', surname: 'Torres')
+Player.create(id: 197, team_id: 19, squad_number:  9, forename: 'G', surname: 'Moreno')
+Player.create(id: 198, team_id: 19, squad_number: 22, forename: 'P', surname: 'Sarabia')
 
 #20 - sweden
-Player.create(id: 192, team_id: 20, squad_number:  7, forename: 'S', surname: 'Larsson')
-Player.create(id: 193, team_id: 20, squad_number:  9, forename: 'M', surname: 'Berg')
-Player.create(id: 194, team_id: 20, squad_number: 10, forename: 'E', surname: 'Forsberg')
-Player.create(id: 195, team_id: 20, squad_number: 11, forename: 'A', surname: 'Isak')
+Player.create(id: 202, team_id: 20, squad_number:  7, forename: 'S', surname: 'Larsson')
+Player.create(id: 203, team_id: 20, squad_number:  9, forename: 'M', surname: 'Berg')
+Player.create(id: 204, team_id: 20, squad_number: 10, forename: 'E', surname: 'Forsberg')
+Player.create(id: 205, team_id: 20, squad_number: 11, forename: 'A', surname: 'Isak')
 
 #21 - switzerland
-Player.create(id: 211, team_id: 21, squad_number: 99,  forename: 'H', surname: 'Seferović')
-Player.create(id: 212, team_id: 21, squad_number: 99, forename: 'X', surname: 'Shaqiri')
-Player.create(id: 213, team_id: 21, squad_number: 99,  forename: 'B', surname: 'Embolo')
-Player.create(id: 214, team_id: 21, squad_number: 99, forename: 'G', surname: 'Xhaka')
+Player.create(id: 211, team_id: 21, squad_number: 9,  forename: 'H', surname: 'Seferović')
+Player.create(id: 212, team_id: 21, squad_number: 23, forename: 'X', surname: 'Shaqiri')
+Player.create(id: 213, team_id: 21, squad_number:  7, forename: 'B', surname: 'Embolo')
+Player.create(id: 214, team_id: 21, squad_number: 10, forename: 'G', surname: 'Xhaka')
 
 #22 - turkey
-Player.create(id: 211, team_id: 22, squad_number: 99, forename: 'B', surname: 'Yılmaz')
-Player.create(id: 213, team_id: 22, squad_number: 99,  forename: 'H', surname: 'Çalhanoğlu')
-Player.create(id: 214, team_id: 22, squad_number: 99, forename: 'O', surname: 'Tufan')
-Player.create(id: 215, team_id: 22, squad_number: 99, forename: 'C', surname: 'Ünder')
+Player.create(id: 221, team_id: 22, squad_number: 17, forename: 'B', surname: 'Yılmaz')
+Player.create(id: 223, team_id: 22, squad_number: 10, forename: 'H', surname: 'Çalhanoğlu')
+Player.create(id: 224, team_id: 22, squad_number: 6,  forename: 'O', surname: 'Tufan')
+Player.create(id: 225, team_id: 22, squad_number: 7,  forename: 'C', surname: 'Ünder')
 
 #23 - ukraine
 Player.create(id: 231, team_id: 23, squad_number: 9,  forename: 'R', surname: 'Yaremchuk')
@@ -136,5 +135,5 @@ Player.create(id: 232, team_id: 23, squad_number: 19, forename: 'A', surname: 'B
 Player.create(id: 233, team_id: 23, squad_number: 7,  forename: 'A', surname: 'Yarmolenko')
 
 #24 - wales
-Player.create(id: 241, team_id: 24, squad_number: 99, forename: 'G', surname: 'Bale')
-Player.create(id: 242, team_id: 24, squad_number: 99, forename: 'A', surname: 'Ramsey')
+Player.create(id: 241, team_id: 24, squad_number: 11, forename: 'G', surname: 'Bale')
+Player.create(id: 242, team_id: 24, squad_number: 10, forename: 'A', surname: 'Ramsey')
